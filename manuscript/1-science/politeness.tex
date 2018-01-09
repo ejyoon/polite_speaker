@@ -11,6 +11,7 @@
 \usepackage{scicite}
 
 \usepackage{times}
+\usepackage{amsmath, amssymb}
 
 % The preamble here sets up a lot of new/revised commands and
 % environments.  It's annoying, but please do *not* try to strip these
@@ -48,10 +49,28 @@
         \renewcommand{\thefigure}{S\arabic{figure}}%
      }
 
+%EY: color for comments     
+\usepackage[usenames, dvipsnames]{color}
+
+\definecolor{Red}{RGB}{255,0,0}
+\definecolor{Green}{RGB}{10,200,100}
+\definecolor{Blue}{RGB}{10,100,200}
+\definecolor{Orange}{RGB}{255,153,0}
+
+\newcommand{\ejy}[1]{\textcolor{Red}{[ejy: #1]}}  
+\newcommand{\ndg}[1]{\textcolor{Green}{[ndg: #1]}}  
+\newcommand{\mht}[1]{\textcolor{Blue}{[mht: #1]}}  
+\newcommand{\mcf}[1]{\textcolor{Orange}{[mcf: #1]}}
+
+%EY: add packages
+ \usepackage{lscape}
+ \usepackage{array, booktabs, makecell}
+ \usepackage{siunitx, mhchem}
+
 
 % Include your paper's title here
 
-\title{Polite speech arises from desires to be helpful and look helpful} 
+\title{Speakers try to be helpful and look helpful: \\ Modeling epistemic and social goals in speech} 
 
 
 % Place the author information here.  Please hand-code the contact
@@ -119,24 +138,20 @@
 
 
 \begin{sciabstract}
-People often deviate from saying the maximally informative and succinct message 
-(e.g.~\enquote{Your talk was terrible}) 
-and instead speak \emph{politely}: 
-Speakers convey information in a false or indirect manner in consideration of listeners' wants
-(e.g.~\enquote{It was a great talk!}; \enquote{The talk wasn't bad; it's hard to give a good presentation anyway}). 
-If language is an important means of information transfer, does polite speech contradict cooperative communication?
-We argue that polite speech reflects a cooperative speaker's desire to balance between two communicative goals: 
-to be \emph{epistemically} helpful and convey the true state to the listener;
-and to be \emph{socially} helpful and make the listener feel good.
-We also argue that a polite speaker has a desire to \emph{look} helpful and 
-appear to have these two goals in mind. 
-We formalize the tradeoff between the speaker's goals within a probabilistic model 
-and show the model is able to predict people's polite speech production judgments. 
+Through language, people not only communicate information about the world, 
+but also form, maintain, and improve relationships with others.
+%In polite speech, speakers convey information in a false or indirect manner in consideration of listeners' wants
+%(e.g.~\enquote{Your talk was great!}; \enquote{The talk wasn't bad; it's hard to give a good presentation anyway}). 
+We propose a computational model of speech 
+in which the speaker's goals reflect these functions of language:
+%and she wants to speak in a way that is:
+to be \emph{epistemically} helpful, conveying the true state to the listener;
+to be \emph{socially} helpful, making the listener feel good; and
+to be \emph{presentational}, having herself appear to be helpful and have these two goals in mind. 
+Tested against a case of simple polite speech, our model is able to predict people's speech production judgments. 
 Our extension of formal theories of communication to account for speakers' social
 goals represents an advance in understanding of human speech.
 \end{sciabstract}
-
-
 
 % In setting up this template for *Science* papers, we've used both
 % the \section* command and the \paragraph* command for topical
@@ -148,139 +163,251 @@ goals represents an advance in understanding of human speech.
 % choice.  Either way, use the asterisk (*) modifier, as shown, to
 % suppress numbering.
 
-Human speech is an important means of exchanging information, but
-intriguingly speech often deviates from maximally efficient and accurate
-information transfer. Instead of saying the most direct message that the
-speaker wants the listener to access (\enquote{Your presentation was terrible}; 
-\enquote{Tell me where Jordan Hall is}), speakers often produce
-vague or underinformative remarks (\enquote{It's hard to give a good presentation}) 
-or add extraneous, seemingly irrelevant markers
-(\enquote{\emph{Could you please} tell me where Jordan Hall is?}) \cite{clark1980, holtgraves1998}. 
-People sometimes even produce false utterances that completely misrepresents the
-speaker's knowledge (\enquote{Your muffins are the best ever!} about truly
-terrible muffins) \cite{depaulo1996}.
+%%%%%%%%%%%%%%%%%%
+%%%%% Introduction %%%%%%%
+%%%%%%%%%%%%%%%%%%
 
-Polite language, in which speakers convey information in a false or indirect manner in consideration of listeners' wants, 
-violates a critical principle of cooperative communication: 
-exchanging information efficiently and accurately \cite{grice1975}. 
-Yet polite speech serves another important goal of communication: 
-maintaining and improving social relationships. 
-Here we propose that polite speech reflects a principled tradeoff between goals to be: 
-\emph{epistemic}, or to convey information accurately and efficiently; 
-\emph{social}, or to make the interactants feel good; 
-and \emph{self-presentational}, or to \emph{appear} to be epistemically and socially helpful to others.
+With language, we can convey to others our knowledge and beliefs about the world,
+but we don't always say what is on our mind explicitly or even truthfully. 
+Imagine your friend tries on her new dress and excitedly asks you, \enquote{How does this look?} 
+If her dress is truly hideous, the most informative answer will be \enquote{It looks terrible.}
+Yet intuitively we are more likely to lie and say \enquote{It looks great!}
+or carefully remark \enquote{Oh, it doesn't look too bad, but I really loved the other dress you wore last time.}
+But these indirect or false utterances can mislead the listener away from the truth,
+so why do people deviate from producing the most direct, truthful utterance possible?
+In this report, we present a computational model of speech that is indirect or false to some degree, 
+but thereby offers a balance between informational and social goals of the speaker. 
 
-How can we model production of polite speech? 
-Informal theories of politeness explain how speakers' social goals give rise to polite speech. 
-For example, Brown and Levinson \cite{brown1987} argue that
+Language is a versatile tool for both information exchange and social rapport. 
+Through language, people can communicate information to improve the listeners' epistemic knowledge, 
+but also form and improve their social relationships with others.
+On one hand, language can be seen as a transmission device that transfers information 
+that reflects context or the state of affairs from a sender to a receiver \cite{buhler1934, shannon1948, jakobson1960}.
+Informativity then is an integral assumption of language use, 
+on which speakers rely to convey more than what their spoken words literally suggest \cite{grice1975, searle1975}.
+On the other hand, language performs important social roles, 
+whereby people make contact with others and form relationships \cite{halliday1975, ervin1967}. 
+Language users tend to speak in a manner that abides by expectations of the community \cite{ervin1969}, 
+promoting a sense of social solidarity. 
+Thus, epistemic and social functions of language translate to speakers' goals to be informative and social in their language use.
+ 
+But maximizing on both informativity and social goals is difficult, as they often conflict with each other. 
+Courteous language to make the listener feel good 
+(\enquote{Your dress is gorgeous} about a truly hideous dress; 
+\enquote{It's hard to give a good presentation} after an awful talk) 
+will risk potential loss of their intended message, suffer inefficiencies, or even convey wrong information. 
+Conversely, maximally informative and efficient utterances can seem too blunt or rude 
+(\enquote{Be quiet!}; \enquote{Read my essay and give feedback now.}) 
+and fail to promote or maintain good relationships.
+How do people then speak to find balance between goals to be informative versus socially apt?
+
+Polite speech, in which people try to preserve other people's feelings by softening their potentially harsh message, 
+reflects the compromise between informative and social goals in conflict.
+On a daily basis,
+adults and even young children spontaneously produce polite, indirect requests (``Can you please close the window?'') 
+rather than direct orders (``Close the window.'') \cite{clark1980, axia1985}, 
+and speakers use polite forms of speech even while arguing, preventing unnecessary offense to their interactants \cite{holtgraves1997}. 
+Based on informativity-focused accounts of language, politeness clashes with the idea of cooperative communication 
+as it violates the goal to exchange information efficiently and accurately \cite{grice1975};
+if information transfer were the only currency in communication, politeness would be both infelicitous and undesirable.  
+A polite speaker, however, can be seen to be cooperative and helpful via 
+both an \emph{epistemic} goal to improve the listener's knowledge and 
+a \emph{social} goal to minimize potential damage to the hearer's (and the speaker's own) self-image, called \emph{face} \cite{brown1987}. 
+If the speaker's intended meaning contains no threat to the speaker or listener's face, 
+then the speaker will choose to convey the meaning in an explicit and efficient manner (putting it \enquote{on the record}). 
+As the degree of face-threat becomes more severe, however, a speaker will choose to be polite by producing more indirect utterances. 
+
+%There has largely been a divide between informal accounts of motivations behind polite speech production
+%and formal approaches to language use, which focused on speakers' goal to be informative.
+In this paper, using a case study of simple polite speech, 
+we formalize the idea that language reflects a principled tradeoff between speakers' epistemic and social communicative goals.
+Previous informal theories of politeness tried to explain how speakers' social goals give rise to polite speech: 
+For example, a prominent theory of politeness \cite{brown1987} proposes that
 deviation from informativity increases the level of polite face-saving.
-But there has been no formalization of the notion of speakers' social goals, 
-thus no systemic quantitative predictions of politeness theories have been available.
-On the other hand, formal theories of language have accounted for speakers' desires to be informative, but not for their potential social goals. 
+But there has not yet been a formal account of the social goals in speech, 
+thus no systematic, quantitative predictions of polite speech production have been available.
+
+On the other hand, formal theories of language have extensively accounted for speakers' desires to be informative, 
+but not for their potential social goals. 
 The Rational Speech Act (RSA) framework describes language understanding 
 as recursive probabilistic inference between a pragmatic listener and an informative speaker \cite{goodman2016}. 
 This framework has been successful at capturing the quantitative details of a number of language understanding tasks 
 but it neglects the social goals a speaker may pursue. 
-
-We propose a computational model of polite speech (\textbf{pRSA}) 
-that unifies formal theories of informative communication and informal theories of polite speech, 
-and accounts for both epistemic and social goals of speakers. 
-RSA models assume speakers choose utterances 
-approximately optimally given a utility function \cite{goodman2013}. 
-In our model, the speaker's utility function can be decomposed into two components. 
-First, \emph{epistemic utility} refers to the standard, informative utility in RSA: 
-the amount of information a literal listener (\(L_0\)) would still not know about world state s after hearing a speaker's utterance \(w\).
-Second, \emph{social utility} is the expected subjective utility of the state inferred given the utterance \(w\). 
-The expected subjective utility is related to the intrinsic value of the state, 
-and we use a value function (\(V\)) to map states to subjective utility values. 
-This captures the affective consequences for the listener of being in state \(s\). 
-The utility weight (single mixture parameter \(\phi_{S_1}\)) determines how informative versus social the speaker wants to be: 
-a higher \(\phi_{S_1}\) signifies the epistemic goal prioritized over the social goal. 
-Finally, some utterances might be costlier than others. 
-The utility of an utterance subtracts the cost \(c(w)\) from the weighted
-combination of the social and epistemic utilities.
-
-\[U(w; s; \phi]) = \phi_{S_1}\ \cdot L_0(s \mid w) + 
-(1 - \phi_{S_1}) \cdot V[L_0(s \mid w)]  - C(w)\]
-
-The recursive reasoning in our model unfolds as follows: 
-The speaker (\(S_1\)) chooses utterances \(w\) softmax-optimally given the state \(s\) and his goal mixture parameter weight \(\phi\). 
-Given the speaker's utterance, the pragmatic listener (\(L_1\)) jointly infers the state \(s\) and the utility weight \(\phi_{S_1}\) that the speaker had in mind. 
-Finally, the pragmatic speaker (\(S_2\)) chooses an utterance, based on the pragmatic
-listener \(L_1\)'s model and weights on three different goals: 
-(1) genuine epistemic goal to convey the true state (\(\phi_{epistemic}\)); 
-(2) genuine social goal to make L1 feel good (\(\phi_{social}\)); and
-(3) self-presentational goal to convey certain \(\phi_{S_1}\) to \(L_1\) 
-(i.e.~to \emph{appear} informative or kind; \(\phi_{self}\)). 
-
-\[P_{S_2}(w \mid s, \hat{\beta})\propto 
-\mathrm{exp}( \phi_{epistemic}\ \cdot L_1(s \mid w) +
-\phi_{social}\ \cdot V[L_1(s \mid w)] + 
-\phi_{self}\ \cdot L_1(\phi_{S_1} \mid w) )\]
+Also, work with RSA models have focused mostly on listener inference tasks 
+in which people infer meanings of utterances or goals behind them 
+based on the assumption that people produce corresponding utterances, 
+and there have been fewer speaker production tasks 
+that verify that people actually produce utterances as predicted by the models. 
 
 \begin{figure}
 \centering
-  \makebox[\textwidth]{\includegraphics[width=0.7\textwidth]{fig/screenshot.png}}
+  \makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{fig/fig1.pdf}}
 %\includegraphics{fig/screenshot.png}
-\caption{\label{fig:screenshot}Example of a trial in the speaker production task.}
+\caption{\label{fig:model}Diagram of the pRSA model: The \enquote{pragmatic speaker} observes the true state and determines her goal between three utilities (epistemic, social, and presentational), and produces an utterance. 
+}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%
+%%%%%% Model %%%%%%%
+%%%%%%%%%%%%%%%%%%
+
+Here we propose a computational model 
+that unifies formal theories of informative communication and informal theories of polite speech, 
+and accounts for both epistemic and social goals of speakers; 
+We then verify the model predictions against human predictions for speaker production.
+Our model represents a context in which someone (e.g., Bob the listener) gave a performance of some kind, 
+such as a presentation, and asks another person (e.g., Ann the speaker) how well he did. 
+The speaker considers two factors to choose her utterance: 
+the true state, or the rating truly deserved by the performance, 
+and her goal (Figure \ref{fig:model}). 
+%\ejy{how much detail to go into for the model?}
+The speaker's goal is represented as a utility function, 
+based on which she chooses utterances approximately optimally \cite{goodman2013}. 
+The speaker's utility function in the current model is made up of three components.
+First, \emph{epistemic utility} refers to the standard, informative utility in RSA: 
+the amount of information a literal listener (\(L_0\)) would still not know about world state \(s\) after hearing a speaker's utterance \(w\).
+In our model, besides the standard epistemic utility, 
+we add utilities to represent the speaker's social desires that lead her to produce utterances that deviate from informativity 
+but help maintain good relationships and self-reputation:
+\emph{Social utility} is the expected subjective utility of the state inferred given the utterance \(w\), 
+and is related to the intrinsic value of the state.
+We use a value function (\(V\)) to map states to subjective utility values,
+which captures the affective consequences for the listener of being in state \(s\). 
+\emph{Presentational utility} concerns conveying a particular utility (\(\phi_{S_1}\)) to the listener, 
+such that the speaker appears to have a particular goal (e.g. to be socially helpful) in mind.
+A weight is assigned to each utility component to determine which goal is to be prioritized (\(\phi_{epistemic}\), \(\phi_{social}\), \(\phi_{presentational}\) respectively). 
+Finally, some utterances might be costlier than others. 
+The total utility of an utterance subtracts the cost $C(w)$ from the weighted combination of the epistemic, social, and presentational utilities). 
+\begin{multline}
+%P_{S_2}(w \mid s, \phi_{epistemic}, \phi_{social}, \phi_{presentational}, \phi_{S_1}) \\
+%\propto \mathrm{exp}( \phi_{epistemic}\ \cdot \ln(P_{L_1}(s \mid w))  +
+%\phi_{social}\ \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + 
+%\phi_{presentational}\ \cdot \ln(P_{L_1}(s,  \phi_{S_1} \mid w)) )
+U(w;s; \hat{\phi}) =  \phi_{epistemic}\ \cdot \ln(P_{L_1}(s \mid w))  +
+\phi_{social}\ \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + \\
+\phi_{presentational}\ \cdot \ln(P_{L_1}(s,  \phi_{S_1} \mid w)) -
+C(w)
+\end{multline}
+
+Based on the utility function above, the speaker (\(S_2\)) chooses utterances \(w\) approximately optimally (as per speaker optimality parameter \(\lambda_{S_2}\)) given the state \(s\) and his goal weights \(\hat{\phi}\).
+
+\begin{equation}
+P_{S_2}(w \mid s, \hat{\phi}) \propto \mathrm{exp}(\lambda_{S_2} \cdot \mathbb{E}[U(w; s;  \hat{\phi})])
+\end{equation}
+
+\begin{figure}
+\centering
+  \makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{fig/fig3.pdf}}
+%\includegraphics{fig/screenshot.png}
+\caption{\label{fig:variance} Full distribution of human responses vs. fitted model predictions for pragmatic speaker production. Error bars represent 95\% confidence intervals for the data (vertical) and 95\% highest density intervals for the model (horizontal).}
+\end{figure}
+
+\begin{figure}
+\centering
+  \makebox[\textwidth]{\includegraphics[width=\textwidth]{fig/fig4.pdf}}
+%\includegraphics{fig/screenshot.png}
+\caption{\label{fig:uttComp} Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals. Gray dotted line indicates chance level at 12.5\%.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%
+%%%%% Human data %%%%%%%
+%%%%%%%%%%%%%%%%%%
+
 We used a simple procedure to empirically test whether our model is able to predict production of polite utterances. 
-Participants read scenarios in which someone (e.g.~Ann) gave a performance of some kind, 
-and another person (Bob) evaluated it. 
+Participants read scenarios in which someone (e.g.~Bob) gave a performance of some kind, 
+and another person (Ann) evaluated it (see Supplementary Materials for a detailed description of the task). 
 We provided information on Ann's feelings toward the presentation (\emph{true state}), 
 which were shown on a scale from zero to three hearts 
-(e.g.~one out of three hearts filled in red color; see Figure 1). 
-We also presented Ann's goal, which was one of the following: 
+(e.g.~one out of three hearts filled in red color). 
+We also presented Ann's \emph{goal}, which was one of the following: 
 to be \emph{informative} and give accurate feedback; 
 to be \emph{social} and to make Bob feel good; 
 or to be \emph{both} informative and social at the same time. 
+We assumed that the goal descriptions conveyed to the participants a particular set of goal weights (\(\phi_{epistemic}, \phi_{social}, \phi_{presentational}, \phi_{S_1}\)) that the speaker was using. We put uninformative priors on these weights \((\beta \thicksim Uniform(0,1))\) and inferred their credible values separately for each goal condition (see Supplementary Materials).
 We hypothesized that speakers with both goals to be informative and social given bad true states (i.e.~Bob's performance was poor) would produce more negation (\enquote{It wasn't\textasciitilde{}}) to save the listener's face while vaguely conveying the bad true state 
 (see our pre-registered model, hypothesis, and procedure at FIXME). 
 Each participant read 12 scenarios total (4 true states \(\times\) 3 goals).
-
 In a single trial, each scenario was followed by a question that asked for the most likely utterance by Ann. 
-Participants indicated their answer by choosing one of the options on the two dropdown menus, 
-side-by-side, one for choosing between \emph{It was} vs. \emph{It wasn't} and the other for choosing among \emph{terrible}, \emph{bad}, \emph{good}, and \emph{amazing}, 
-thereby selecting one of eight possible utterances (see Figure \ref{fig:screenshot}). 
+Participants selected one of eight possible utterances, by choosing between \emph{It was} vs. \emph{It wasn't} and then among \emph{terrible}, \emph{bad}, \emph{good}, and \emph{amazing}. 
 We separately gathered the literal meaning judgments for the eight possible utterances, 
 by measuring how likely each utterance is to be true given each true state, to set expected
 literal meanings of utterances in our model 
 (see Supplementary Materials for literal semantic results).
 
-\begin{figure}
-\centering
-\includegraphics{politeness_files/figure-latex/utterancePrediction-1.pdf}
-\caption{\label{fig:utterancePrediction}Experimental results (solid lines) and fitted model predictions (dashed lines) for speaker production.
-Proportion of utterances chosen (utterance type -- direct vs.~indirect -- in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\% confidence intervals for the data and 95\% highest density intervals for the model.
-Black dotted line represents the chance level.}
-\end{figure}
+%%%%%%%%%%%%%%%%%%
+%%%%% Results %%%%%%%
+%%%%%%%%%%%%%%%%%%
 
-\begin{figure}
-\centering
-\includegraphics{politeness_files/figure-latex/varianceExplained-1.pdf}
-\caption{\label{fig:varianceExplained}Full distribution of human responses vs.~model predictions. Error bars represent 95\% confidence intervals for the data (vertical) and 95\% highest density intervals for the model (horizontal).}
-\end{figure}
+Mean proportion of utterances chosen by participants in each true-state \(\times\) goal condition were 
+overall highly consistent with the our model predictions. 
+The posterior predictive of the model explained almost all of the variance in the production data 
+(\(r^2\)(96) = 0.97; Figure \ref{fig:variance}). 
+We compared the predictions of our model with its variants, which had different combinations of utility components: 
+with one or two of the three utilities to be epistemic, social, and presentational (Figure \ref{fig:uttComp}). 
+The current model yielded the closest predictions to the human data, especially for the condition in which the speaker was described to have both goals to be informative and social.
+The model fitting for the both-goal condition suggested that 
+the speaker had a high weight on epistemic utility, low weight on social utility, 
+and high weight on presentational utility to convey high social utility, 
+meaning that the speaker wanted to be genuinely informative while appearing to care about the listener's feelings
+(see Supplementary Materials for inferred weights for all goal conditions). 
+Unlike other model variants, the current model was able to capture the key pattern of the human data 
+that given a truly terrible performance (e.g. with the true state of 0 or 1 heart) a speaker with both informative and social goals would prefer to produce ``It wasn't terrible'' the most, 
+which would avoid saying a directly negative utterance but allow the listener to infer that his performance was actually (close to being) terrible. 
+Both the variance explained ($r^2 = 0.969$) and the Bayes factor (FIXME) were the highest 
+for the current model compared to its alternatives (see Table 1 in Supplementary Materials).
 
-\begin{figure}
-\centering
-  \makebox[\textwidth]{\includegraphics[width=\textwidth]{politeness_files/figure-latex/negationPrediction-1.pdf}}
-%\includegraphics{politeness_files/figure-latex/negationPrediction-1.pdf}
-\caption{\label{fig:negationPrediction}Experimental results (left) and fitted model predictions (right) for average proportion of negation produced among all utterances, given true states (x-axis) and goals (colors).}
-\end{figure}
+%In line with our hypothesis, conditions in which the both-goal speaker tried to convey bad true state (0 or 1 heart) yielded the greatest proportions of negation (\enquote{It wasn't \textasciitilde{}}; see Figure \ref{fig:negationPrediction}).
 
-Mean proportion of utterances chosen by participants in each true-state \(\times\) goal condition were overall highly consistent with the our model predictions (Figure \ref{fig:utterancePrediction}). 
-The posterior predictive of the model explained almost all of the variance in the production data (\(r^2\)(96) = 0.97; Figure \ref{fig:varianceExplained}). 
-In line with our hypothesis, conditions in which the both-goal speaker tried to convey bad true state (0 or 1 heart) yielded the greatest proportions of negation (\enquote{It wasn't \textasciitilde{}}; see Figure \ref{fig:negationPrediction}).
+%%%%%%%%%%%%%%%%%%
+%%%%% Implications %%%%%%%
+%%%%%%%%%%%%%%%%%%
 
+% importance in linguistics and modeling literature
 Our work unifies previous formal models of communication and informal
 theories of social uses of language. Our findings suggest that neither
 epistemic nor social motives alone motivate polite speech; instead,
 production of polite speech results from the conflict between these two,
-combined with a self-presentational desire to \emph{look} epistemically
-and socially helpful. These findings provide strong support for a
-utility-theoretic framing of politeness, and suggest new directions in
-understanding of pragmatic language use in social contexts.
+combined with a self-presentational desire to look epistemically
+and socially helpful. 
+%These findings provide strong support for a
+%utility-theoretic framing of politeness, and suggest new directions in
+%understanding of pragmatic language use in social contexts.
+
+Beyond language understanding, our model casts new light on understanding cognitive mechanisms 
+that involve both information processing and interactions among agents. 
+Many processes of human learning and inference
+have been extensively and fruitfully examined under computational modeling approaches similar to our own
+\cite{tenenbaum2011, xu2007, bonawitz2011, baker2009}. 
+%\ejy{what references should go here?}
+However, these processes have been mostly described as purely information-driven, 
+separate or independent of social goals of the agents involved.
+%(for example, learning as gathering and using relevant information; 
+%pedagogy as efficient transmission of information; and decision-making as optimal use of information)
+Our work provides the next step for addressing the issue of 
+how social goals influence cognitive processes that involve more than one agent. 
+
+Our formal model also has important implications for building an artificial system that is more human-like. 
+Social interactions require more than merely following simple rules (say ``please", ``thank you") at the right moments; 
+they require a balance of more intricate goals to be informative and social. 
+We successfully modeled the speaker who considers the tradeoff between 
+communicative informativity, kindness and presentation of herself as helpful. 
+This work takes a concrete step toward quantitative models of the nuances of human speech. 
+And it moves us closer to courteous computation -- to computers that communicate with tact.
+
+% broader implications: AI, informatics-related domains of psychology that involve social interactions
+
+%Will machines ever be polite? Politeness requires more
+%than merely saying conventionalized words (please, thank
+%you) at the right moments; it requires a balance of informativity
+%and kindness. Politeness is not an exception to rational
+%communication; it is one important element of rational
+%communication, serving a key social function of maintaining
+%relationships. We extended the Rational Speech Acts framework
+%to include social utility as a motive for utterance production.
+%This work takes a concrete step toward quantitative
+%models of the nuances of polite speech. And it moves us
+%closer to courteous computation?to computers that communicate
+%with tact.
 
 % Your references go at the end of the main text, and before the
 % figures.  For this document we've used BibTeX, the .bib file
@@ -309,6 +436,8 @@ This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to E
 
 \section*{Supplementary materials}
 
+%\ejy{SM sections and figures should be restructured...}
+
 \subsection*{Materials and Methods}
 
 \subsubsection*{Literal semantic task}
@@ -332,7 +461,7 @@ We used the fraction of participants that endorsed utterance $w$ for state $s$ t
 \subsubsection*{Speaker production task}
 
 202 participants with IP addresses in the United States were recruited on Amazon's Mechanical Turk.
-As in the semantics measurements above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)'s opinion on the performance. 
+As in the semantics measurements above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)'s opinion on the performance (see Fig. \ref{fig:exp}). 
 Additionally, we provided information on the speaker Ann's goal -- \emph{to make Bob feel good}, or \emph{to give as accurate and informative feedback as possible}, or \emph{both} -- 
 and the true state -- how Ann actually felt about Bob's performance (e.g., two out of three hearts, on a scale from zero to three hearts). 
 Each participant read 12 scenarios, depicting every possible combination of goals and states. 
@@ -342,37 +471,64 @@ Each scenario was followed by a question that read, "If Ann wanted \emph{to make
 
 \subsection*{Supplementary Text}
 
-\subsubsection*{Model fitting}
-
-We ran 4 MCMC chains for 40,000 iterations, discarding the first 20,000 for burnin. 
-
-\subsubsection*{Inferred parameters}
+\subsubsection*{Model fitting and inferred parameters}
 
 In the speaker production task, participants were told what speakers' intentions were 
 (e.g.~wanted to make Bob feel good). 
 We assume that the intention descriptions conveyed the weight mixtures $\phi_{epistemic}$, $\phi_{social}$, $\phi_{self}$ and $\phi_{S_1}$ that the speaker was using. 
-We put uninformative priors on each of these mixtures ($\phi \sim$ Uniform(0,1)) 
+We put uninformative priors on each of these mixtures ($\phi \sim Uniform(0,1)$) 
 and inferred their credible values separately for each goal condition ("wanted to X") 
 using Bayesian data analytic techniques \cite{lee2014}. 
-For the \enquote{wanted to give informative feedback} (\emph{informative}) condition, FIXME. 
-For the \enquote{wanted to make [listener] feel good} (\emph{social}) condition, FIXME. 
-For the \enquote{wanted BOTH to make [the listener] feel good and give informative feedback} (\emph{both}) condition, FIXME (see Figure \ref{fig:goalWeights}). 
+We ran 4 MCMC chains for 40,000 iterations, discarding the first 20,000 for burnin. 
+The inferred values of weight mixtures for each model variant (with different phi components) are shown in Table \ref{table:params}.
+%For the \enquote{wanted to give informative feedback} (\emph{informative}) condition, FIXME. 
+%For the \enquote{wanted to make [listener] feel good} (\emph{social}) condition, FIXME. 
+%For the \enquote{wanted BOTH to make [the listener] feel good and give informative feedback} (\emph{both}) condition, FIXME (see Figure \ref{fig:goalWeights}). 
 
-There were two additional parameters of the model, on which we put uninformative priors: the value scale parameter ($\alpha \sim $Unif(0,10)) in the utility function; and the cost parameter ($C(u) \sim $Unif(1,10)). We inferred their posterior credible values from the data. The Maximum A-Posteriori (MAP) estimates and 95\% Highest Probability Density Intervals (HDI) were: FIXME (see Figure \ref{fig:params}).
+There were two additional parameters of the model, on which we put uninformative priors: the value scale parameter ($\alpha \sim Unif(0,10)$) in the utility function; and the cost parameter ($C(u) \sim Unif(1,10)$). We inferred their posterior credible values from the data. The Maximum A-Posteriori (MAP) estimates and 95\% Highest Probability Density Intervals (HDI) are shown in Table \ref{table:params}.
+%FIXME (see Figure \ref{fig:params}).
 
-\subsubsection*{Model parameter and weight comparison}
+% Please add the following required packages to your document preamble:
+\begin{landscape}
+\begin{table}[]
+\centering
+\begin{tabular}{llcccccccc}
+Speaker goal condition & Parameters              & \thead{informative \\only} & \thead{social \\only} &  \thead{presentational \\only} & \thead{social, \\presentational} & \thead{informative, \\social} & \thead{informative, \\presentational} & \thead{informative, social, \\presentational} \\
+informative            & informative-phi    & 0.07             & 0.46        & 0.45                & NA                     & 0.74                & 0.49                        & 0.32                                \\
+informative            & social-phi         & 0.51             & 0.09        & 0.37                & 0.43                   & 0.26                & NA                          & 0.02                                \\
+informative            & presentational-phi & 0.43             & 0.44        & 0.18                & 0.57                   & NA                  & 0.51                        & 0.66                                \\
+informative            & S1-social-phi      & 0.51             & 0.53        & 0.67                & 0.05                   & 0.51                & 0.63                        & 0.56                                \\
+social                 & informative-phi    & 0.04             & 0.23        & 0.27                & NA                     & 0.39                & 0.46                        & 0.27                                \\
+social                 & social-phi         & 0.48             & 0.5         & 0.35                & 0.63                   & 0.61                & NA                          & 0.26                                \\
+social                 & presentational-phi & 0.48             & 0.27        & 0.38                & 0.37                   & NA                  & 0.54                        & 0.46                                \\
+social                 & S1-social-phi      & 0.5              & 0.49        & 0.66                & 0.31                   & 0.54                & 0.86                        & 0.71                                \\
+both                   & informative-phi    & 0.07             & 0.3         & 0.32                & NA                     & 0.53                & 0.53                        & 0.41                                \\
+both                   & social-phi         & 0.47             & 0.32        & 0.37                & 0.42                   & 0.47                & NA                          & 0.03                                \\
+both                   & presentational-phi & 0.45             & 0.38        & 0.31                & 0.58                   & NA                  & 0.47                        & 0.56                                \\
+both                   & S1-social-phi      & 0.5              & 0.51        & 0.63                & 0.51                   & 0.51                & 0.8                         & 0.73                                \\
+                       & speaker optimality & 11.15            & 5.46        & 13.75               & 3.43                   & 3.65                & 4.26                        & 4.98                                \\
+                       & cost               & 1.64             & 1.76        & 3.67                & 1.62                   & 1.18                & 3.04                        & 3.14         			\\
+                       & variance explained & 0.811            & 0.228       & 0.237               & 0.243                  & 0.909               & 0.95                        & 0.969                              
+                      
+\end{tabular}
+\caption{Inferred parameters from all model variants.}
+\label{table:params}
+\end{table}
+\end{landscape}
 
-Here we compare predictions of the current model with its possible
-alternatives. The current model has a triple mixture structure, with
-three goals each of which is assigned a different weight: (1) goal to be
-truly informative (i.e.~want to convey the true state); (2) goal to be
-truly social (i.e.~want to make the listener feel good); (3)
-self-presentational goal to appear certain way (as determined by
-$\phi_{S_1} $). Alternative models include one or two out of these three
-components. Below we show that the current model with all three utility components
-best captures the production pattern in the empirical data.
-
-FIXME: talk about the two figures.
+%\subsubsection*{Model comparison}
+%
+%Here we compare predictions of the current model with its possible
+%alternatives. The current model has a triple mixture structure, with
+%three goals each of which is assigned a different weight: (1) goal to be
+%truly informative (i.e.~want to convey the true state); (2) goal to be
+%truly social (i.e.~want to make the listener feel good); (3)
+%self-presentational goal to appear certain way (as determined by
+%$\phi_{S_1} $). Alternative models include one or two out of these three
+%components. Below we show that the current model with all three utility components
+%best captures the production pattern in the empirical data.
+%
+%\ejy{FIXME: talk about the two figures. include var explained and bayes factor for each model}
 
 \subsubsection*{Data analysis tools}
 
@@ -401,7 +557,7 @@ analyses.
 
 \begin{figure}[h]
 \centering
-  \makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{politeness_files/figure-latex/litSem-1.pdf}}
+  \makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{fig/litSem-1.pdf}}
 \caption{\label{fig:litSem}Semantic measurement results. Proportion of
 acceptances of utterance types (colors) combined with target words
 (facets) given the true state represented on a scale of hearts. Error
@@ -410,35 +566,46 @@ bars represent 95\% confidence intervals.}
 
 \begin{figure}
 \centering
-  \makebox[\textwidth]{\includegraphics[width=0.9\textwidth]{politeness_files/figure-latex/goalWeights-1.pdf}}
-\caption{\label{fig:goalWeights}Inferred goal weights for the main model. 
-Horizontal facets are different experimental conditions (trying to be X). 
-Density plots show likely weights used in the speaker's utility function.}
+  \makebox[\textwidth]{\includegraphics[width=0.6\textwidth]{fig/fig2.pdf}}
+%\includegraphics{fig/screenshot.png}
+\caption{\label{fig:exp} Example of a trial in the speaker production task. 
+}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{politeness_files/figure-latex/params-1.pdf}
-\caption{\label{fig:params}Inferred cost and speaker optimality parameters
-from the main model.}
+\includegraphics{fig/utterancePrediction-1.pdf}
+\caption{\label{fig:utterancePrediction}Experimental results (solid lines) and fitted model predictions (dashed lines) for speaker production.
+Proportion of utterances chosen (utterance type -- direct vs.~indirect -- in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\% confidence intervals for the data and 95\% highest density intervals for the model.
+Black dotted line represents the chance level.}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{politeness_files/figure-latex/utterancePredictionComp-1.pdf}
-\caption{\label{fig:utterancePredictionComp}Utterances from data (leftmost)
-and predictions from different model alternatives for a speaker with
-both goals addressing the true state of 0 heart. Proportion of
-utterances chosen (direct utterances in solid lines and indirect
-utterances in dotted lines, and words shown on x-axis). Error bars
-represent 95\% confidence intervals for the data and 95\% highest
-density intervals for the model. Black dotted line represents the chance
-level.}
+  \makebox[\textwidth]{\includegraphics[width=\textwidth]{fig/negationPrediction-1.pdf}}
+%\includegraphics{politeness_files/figure-latex/negationPrediction-1.pdf}
+\caption{\label{fig:negationPrediction}Experimental results (left) and fitted model predictions (right) for average proportion of negation produced among all utterances, given true states (x-axis) and goals (colors).}
 \end{figure}
+
+
+%\begin{figure}
+%\centering
+%  \makebox[\textwidth]{\includegraphics[width=0.9\textwidth]{fig/goalWeights-1.pdf}}
+%\caption{\label{fig:goalWeights}Inferred goal weights for the main model. 
+%Horizontal facets are different experimental conditions (trying to be X). 
+%Density plots show likely weights used in the speaker's utility function.}
+%\end{figure}
+
+%\begin{figure}
+%\centering
+%\includegraphics{fig/params-1.pdf}
+%\caption{\label{fig:params}Inferred cost and speaker optimality parameters
+%from the main model.}
+%\end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{politeness_files/figure-latex/negationPredictionComp-1.pdf}
+\includegraphics{fig/negationPredictionComp-1.pdf}
 \caption{\label{fig:negationPredictionComp}Experimental results (leftmost)
 and predictions from different model alternatives for average proportion
 of negation produced among all utterances, given true states (x-axis)
