@@ -143,11 +143,11 @@ but also form, maintain, and improve relationships with others.
 %In polite speech, speakers convey information in a false or indirect manner in consideration of listeners' wants
 %(e.g.~\enquote{Your talk was great!}; \enquote{The talk wasn't bad; it's hard to give a good presentation anyway}). 
 We propose a computational model of speech 
-in which the speaker's goals reflect these functions of language, 
-and she wants to speak in a way that is:
-\emph{epistemically} helpful, conveying the true state to the listener;
-\emph{socially} helpful, making the listener feel good; and
-\emph{presentational}, having herself appear to be helpful and have these two goals in mind. 
+in which the speaker's goals reflect these functions of language:
+%and she wants to speak in a way that is:
+to be \emph{epistemically} helpful, conveying the true state to the listener;
+to be \emph{socially} helpful, making the listener feel good; and
+to be \emph{presentational}, having herself appear to be helpful and have these two goals in mind. 
 Tested against a case of simple polite speech, our model is able to predict people's speech production judgments. 
 Our extension of formal theories of communication to account for speakers' social
 goals represents an advance in understanding of human speech.
@@ -167,13 +167,16 @@ goals represents an advance in understanding of human speech.
 %%%%% Introduction %%%%%%%
 %%%%%%%%%%%%%%%%%%
 
-%People use language to exchange information, 
-%but sometimes that language may be an imprecise or even false representation of the speaker's true beliefs.
-Imagine your friend tries on her new dress and excitedly asks you, \enquote{How do I look?} 
-Even at the most hideous sight, you might choose to say \enquote{You look great!} or mumble
-after a moment of hesitation, \enquote{Well, I don't think it looks amazing on you},
-rather than answer \enquote{You look terrible} to be most informative. 
-%\ejy{example at the start? if so which one? analogous to both-goal speaker's "not terrible"? need to elaborate more?}
+With language, we can convey to others our knowledge and beliefs about the world,
+but we don't always say what is on our mind explicitly or even truthfully. 
+Imagine your friend tries on her new dress and excitedly asks you, \enquote{How does this look?} 
+If her dress is truly hideous, the most informative answer will be \enquote{It looks terrible.}
+Yet intuitively we are more likely to lie and say \enquote{It looks great!}
+or carefully remark \enquote{Oh, it doesn't look too bad, but I really loved the other dress you wore last time.}
+But these indirect or false utterances can mislead the listener away from the truth,
+so why do people deviate from producing the most direct, truthful utterance possible?
+In this report, we present a computational model of speech that is indirect or false to some degree, 
+but thereby offers a balance between informational and social goals of the speaker. 
 
 Language is a versatile tool for both information exchange and social rapport. 
 Through language, people can communicate information to improve the listeners' epistemic knowledge, 
@@ -223,13 +226,18 @@ For example, a prominent theory of politeness \cite{brown1987} proposes that
 deviation from informativity increases the level of polite face-saving.
 But there has not yet been a formal account of the social goals in speech, 
 thus no systematic, quantitative predictions of polite speech production have been available.
+
 On the other hand, formal theories of language have extensively accounted for speakers' desires to be informative, 
 but not for their potential social goals. 
 The Rational Speech Act (RSA) framework describes language understanding 
 as recursive probabilistic inference between a pragmatic listener and an informative speaker \cite{goodman2016}. 
 This framework has been successful at capturing the quantitative details of a number of language understanding tasks 
 but it neglects the social goals a speaker may pursue. 
-Here we propose a computational model that unifies formal theories of informative communication and informal theories of polite speech, and accounts for both epistemic and social goals of speakers.
+Also, work with RSA models have focused mostly on listener inference tasks 
+in which people infer meanings of utterances or goals behind them 
+based on the assumption that people produce corresponding utterances, 
+and there have been fewer speaker production tasks 
+that verify that people actually produce utterances as predicted by the models. 
 
 \begin{figure}
 \centering
@@ -239,19 +247,14 @@ Here we propose a computational model that unifies formal theories of informativ
 }
 \end{figure}
 
-\begin{figure}
-\centering
-  \makebox[\textwidth]{\includegraphics[width=0.6\textwidth]{fig/fig2.pdf}}
-%\includegraphics{fig/screenshot.png}
-\caption{\label{fig:exp} Example of a trial in the speaker production task. 
-}
-\end{figure}
-
-
 %%%%%%%%%%%%%%%%%%
 %%%%%% Model %%%%%%%
 %%%%%%%%%%%%%%%%%%
 
+Here we propose a computational model 
+that unifies formal theories of informative communication and informal theories of polite speech, 
+and accounts for both epistemic and social goals of speakers; 
+We then verify the model predictions against human predictions for speaker production.
 Our model represents a context in which someone (e.g., Bob the listener) gave a performance of some kind, 
 such as a presentation, and asks another person (e.g., Ann the speaker) how well he did. 
 The speaker considers two factors to choose her utterance: 
@@ -312,7 +315,7 @@ P_{S_2}(w \mid s, \hat{\phi}) \propto \mathrm{exp}(\lambda_{S_2} \cdot \mathbb{E
 
 We used a simple procedure to empirically test whether our model is able to predict production of polite utterances. 
 Participants read scenarios in which someone (e.g.~Bob) gave a performance of some kind, 
-and another person (Ann) evaluated it (Figure \ref{fig:exp}). 
+and another person (Ann) evaluated it (see Supplementary Materials for a detailed description of the task). 
 We provided information on Ann's feelings toward the presentation (\emph{true state}), 
 which were shown on a scale from zero to three hearts 
 (e.g.~one out of three hearts filled in red color). 
@@ -325,9 +328,7 @@ We hypothesized that speakers with both goals to be informative and social given
 (see our pre-registered model, hypothesis, and procedure at FIXME). 
 Each participant read 12 scenarios total (4 true states \(\times\) 3 goals).
 In a single trial, each scenario was followed by a question that asked for the most likely utterance by Ann. 
-Participants indicated their answer by choosing one of the options on the two dropdown menus, 
-side-by-side, one for choosing between \emph{It was} vs. \emph{It wasn't} and the other for choosing among \emph{terrible}, \emph{bad}, \emph{good}, and \emph{amazing}, 
-thereby selecting one of eight possible utterances. 
+Participants selected one of eight possible utterances, by choosing between \emph{It was} vs. \emph{It wasn't} and then among \emph{terrible}, \emph{bad}, \emph{good}, and \emph{amazing}. 
 We separately gathered the literal meaning judgments for the eight possible utterances, 
 by measuring how likely each utterance is to be true given each true state, to set expected
 literal meanings of utterances in our model 
@@ -460,7 +461,7 @@ We used the fraction of participants that endorsed utterance $w$ for state $s$ t
 \subsubsection*{Speaker production task}
 
 202 participants with IP addresses in the United States were recruited on Amazon's Mechanical Turk.
-As in the semantics measurements above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)'s opinion on the performance. 
+As in the semantics measurements above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)'s opinion on the performance (see Fig. \ref{fig:exp}). 
 Additionally, we provided information on the speaker Ann's goal -- \emph{to make Bob feel good}, or \emph{to give as accurate and informative feedback as possible}, or \emph{both} -- 
 and the true state -- how Ann actually felt about Bob's performance (e.g., two out of three hearts, on a scale from zero to three hearts). 
 Each participant read 12 scenarios, depicting every possible combination of goals and states. 
@@ -471,22 +472,6 @@ Each scenario was followed by a question that read, "If Ann wanted \emph{to make
 \subsection*{Supplementary Text}
 
 \subsubsection*{Model fitting and inferred parameters}
-
-\begin{figure}
-\centering
-\includegraphics{fig/utterancePrediction-1.pdf}
-\caption{\label{fig:utterancePrediction}Experimental results (solid lines) and fitted model predictions (dashed lines) for speaker production.
-Proportion of utterances chosen (utterance type -- direct vs.~indirect -- in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\% confidence intervals for the data and 95\% highest density intervals for the model.
-Black dotted line represents the chance level.}
-\end{figure}
-
-\begin{figure}
-\centering
-  \makebox[\textwidth]{\includegraphics[width=\textwidth]{fig/negationPrediction-1.pdf}}
-%\includegraphics{politeness_files/figure-latex/negationPrediction-1.pdf}
-\caption{\label{fig:negationPrediction}Experimental results (left) and fitted model predictions (right) for average proportion of negation produced among all utterances, given true states (x-axis) and goals (colors).}
-\end{figure}
-
 
 In the speaker production task, participants were told what speakers' intentions were 
 (e.g.~wanted to make Bob feel good). 
@@ -578,6 +563,30 @@ acceptances of utterance types (colors) combined with target words
 (facets) given the true state represented on a scale of hearts. Error
 bars represent 95\% confidence intervals.}
 \end{figure}
+
+\begin{figure}
+\centering
+  \makebox[\textwidth]{\includegraphics[width=0.6\textwidth]{fig/fig2.pdf}}
+%\includegraphics{fig/screenshot.png}
+\caption{\label{fig:exp} Example of a trial in the speaker production task. 
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{fig/utterancePrediction-1.pdf}
+\caption{\label{fig:utterancePrediction}Experimental results (solid lines) and fitted model predictions (dashed lines) for speaker production.
+Proportion of utterances chosen (utterance type -- direct vs.~indirect -- in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\% confidence intervals for the data and 95\% highest density intervals for the model.
+Black dotted line represents the chance level.}
+\end{figure}
+
+\begin{figure}
+\centering
+  \makebox[\textwidth]{\includegraphics[width=\textwidth]{fig/negationPrediction-1.pdf}}
+%\includegraphics{politeness_files/figure-latex/negationPrediction-1.pdf}
+\caption{\label{fig:negationPrediction}Experimental results (left) and fitted model predictions (right) for average proportion of negation produced among all utterances, given true states (x-axis) and goals (colors).}
+\end{figure}
+
 
 %\begin{figure}
 %\centering
