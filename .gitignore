@@ -8,3 +8,5 @@
 *.synctex.gz
 *.docx
 manuscript/*.pdf
+zz*/
+zz/
