@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "336KAV9KYQSKZP9MGWMZB7VPU1U2YF",
+ "WorkerId": "1a7b109ca6565a5aa62c38f82d57b524",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:49:24.000Z",
+ "AcceptTime": "2018-05-11T00:42:13.000Z",
+ "SubmitTime": "2018-05-11T00:49:24.000Z",
+ "ApprovalTime": "2018-05-11T01:49:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "film",
+    "review",
+    "recital",
+    "dance",
+    "cookie",
+    "song",
+    "presentation",
+    "poem",
+    "app",
+    "painting",
+    "cake"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How our intentions change how we express the same information"
+   ],
+   "goal_thoughts": [
+    "Helpfulness perhaps"
+   ],
+   "expt_gen": [
+    "I did not think about 0 hearts equating with terrible at first and so thought of bad and good being on a spectrum of 2 hearts for several questions....something explicitly saying there could be zero hearts might be good.  "
+   ],
+   "numTrials": 15
+  }
+ }
+}

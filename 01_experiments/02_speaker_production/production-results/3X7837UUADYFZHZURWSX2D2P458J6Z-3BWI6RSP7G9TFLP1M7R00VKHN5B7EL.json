@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3BWI6RSP7G9TFLP1M7R00VKHN5B7EL",
+ "WorkerId": "5233653719605d4157fd7f3fa7cf9a88",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:41:48.000Z",
+ "AcceptTime": "2018-05-11T00:37:37.000Z",
+ "SubmitTime": "2018-05-11T00:41:48.000Z",
+ "ApprovalTime": "2018-05-11T01:41:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "dance",
+    "poem",
+    "cake",
+    "monologue",
+    "review",
+    "song",
+    "solo",
+    "cookie",
+    "recital",
+    "presentation",
+    "film",
+    "app"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "english"
+   ],
+   "expt_aim": [
+    "conversations"
+   ],
+   "goal_thoughts": [
+    "to be better people"
+   ],
+   "expt_gen": [
+    "thanks"
+   ],
+   "numTrials": 15
+  }
+ }
+}

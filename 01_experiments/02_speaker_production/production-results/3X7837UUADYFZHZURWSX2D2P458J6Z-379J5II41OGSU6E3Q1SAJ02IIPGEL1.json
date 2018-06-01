@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "379J5II41OGSU6E3Q1SAJ02IIPGEL1",
+ "WorkerId": "8fbf1d2d68aea4be57e255a7d4a01e6a",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:58:35.000Z",
+ "AcceptTime": "2018-05-11T00:53:34.000Z",
+ "SubmitTime": "2018-05-11T00:58:35.000Z",
+ "ApprovalTime": "2018-05-11T01:58:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "song",
+    "film",
+    "review",
+    "dance",
+    "cookie",
+    "monologue",
+    "recital",
+    "cake",
+    "poem",
+    "solo",
+    "presentation",
+    "app"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How to tell give someone good or bad critic.  "
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "none"
+   ],
+   "numTrials": 15
+  }
+ }
+}

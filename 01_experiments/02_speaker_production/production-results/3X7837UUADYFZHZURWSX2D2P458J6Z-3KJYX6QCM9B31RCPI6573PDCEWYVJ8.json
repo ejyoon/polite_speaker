@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3KJYX6QCM9B31RCPI6573PDCEWYVJ8",
+ "WorkerId": "009617c040d895d3d1e1d8fd2cfaaf82",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T06:34:51.000Z",
+ "AcceptTime": "2018-05-11T05:30:39.000Z",
+ "SubmitTime": "2018-05-11T05:34:51.000Z",
+ "ApprovalTime": "2018-05-11T06:34:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "presentation",
+    "cookie",
+    "painting",
+    "cake",
+    "app",
+    "recital",
+    "film",
+    "song",
+    "monologue",
+    "review",
+    "poem"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I don't know... doesn't matter to me, so I'll leave the experiment and its purpose to you guys. "
+   ],
+   "goal_thoughts": [
+    "I don't know."
+   ],
+   "expt_gen": [
+    "Thank you for letting me participate. "
+   ],
+   "numTrials": 15
+  }
+ }
+}

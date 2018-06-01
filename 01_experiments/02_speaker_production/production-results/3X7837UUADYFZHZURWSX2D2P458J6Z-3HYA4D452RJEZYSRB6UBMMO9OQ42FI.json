@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3HYA4D452RJEZYSRB6UBMMO9OQ42FI",
+ "WorkerId": "3523c5e3731f9c473d253e3c8508ea57",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:44:01.000Z",
+ "AcceptTime": "2018-05-11T00:38:52.000Z",
+ "SubmitTime": "2018-05-11T00:44:01.000Z",
+ "ApprovalTime": "2018-05-11T01:44:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "poem",
+    "dance",
+    "cake",
+    "painting",
+    "solo",
+    "monologue",
+    "app",
+    "song",
+    "review",
+    "presentation",
+    "recital",
+    "film"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "0"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Social interaction about trying to give feedback without hurting one's feelings."
+   ],
+   "goal_thoughts": [
+    "No"
+   ],
+   "expt_gen": [
+    "No, it was pleasant."
+   ],
+   "numTrials": 15
+  }
+ }
+}

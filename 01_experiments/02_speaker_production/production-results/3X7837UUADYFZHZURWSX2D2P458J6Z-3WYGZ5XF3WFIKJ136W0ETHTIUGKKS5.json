@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3WYGZ5XF3WFIKJ136W0ETHTIUGKKS5",
+ "WorkerId": "57e1151c97d4a2f5e0751bbf35ee9306",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:42:13.000Z",
+ "AcceptTime": "2018-05-11T00:39:59.000Z",
+ "SubmitTime": "2018-05-11T00:42:13.000Z",
+ "ApprovalTime": "2018-05-11T01:42:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cake",
+    "song",
+    "poem",
+    "dance",
+    "recital",
+    "film",
+    "solo",
+    "app",
+    "monologue",
+    "cookie",
+    "presentation",
+    "painting"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword0",
+    "keyword0",
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Perceptions of expert knowledge on language use"
+   ],
+   "goal_thoughts": [
+    "No"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

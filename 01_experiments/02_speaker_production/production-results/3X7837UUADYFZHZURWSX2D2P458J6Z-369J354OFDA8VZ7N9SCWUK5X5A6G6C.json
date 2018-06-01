@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "369J354OFDA8VZ7N9SCWUK5X5A6G6C",
+ "WorkerId": "d401e02c3d12c8cdc07b32d98aad3f3d",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:51:51.000Z",
+ "AcceptTime": "2018-05-11T00:45:22.000Z",
+ "SubmitTime": "2018-05-11T00:51:51.000Z",
+ "ApprovalTime": "2018-05-11T01:51:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "cake",
+    "song",
+    "review",
+    "solo",
+    "recital",
+    "cookie",
+    "film",
+    "monologue",
+    "dance",
+    "painting",
+    "poem"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword4",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword4",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "how people try to be both honest and compassionate to other's feelings at the same time."
+   ],
+   "goal_thoughts": [
+    "preserve the self esteem of the person they were reviewing."
+   ],
+   "expt_gen": [
+    "none, thank you."
+   ],
+   "numTrials": 15
+  }
+ }
+}

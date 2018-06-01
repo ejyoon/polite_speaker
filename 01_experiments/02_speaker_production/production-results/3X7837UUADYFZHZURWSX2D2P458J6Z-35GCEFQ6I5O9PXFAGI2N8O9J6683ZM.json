@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "35GCEFQ6I5O9PXFAGI2N8O9J6683ZM",
+ "WorkerId": "3e52f5c4bf7c0a4da72818bb7afbf408",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:49:07.000Z",
+ "AcceptTime": "2018-05-10T09:38:57.000Z",
+ "SubmitTime": "2018-05-10T09:49:07.000Z",
+ "ApprovalTime": "2018-05-10T10:49:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "poem",
+    "cake",
+    "monologue",
+    "presentation",
+    "song",
+    "recital",
+    "dance",
+    "cookie",
+    "solo",
+    "painting",
+    "film"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How little quirks of the English language can take four simple word to convey four different feelings.  We can use this mix of words to tell little white lies and not to hurt loved ones with blunt answers"
+   ],
+   "goal_thoughts": [
+    "Too see how comfortable other people are with giving tough criticism and the way people use words to weasel around what they really meant."
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

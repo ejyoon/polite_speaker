@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "339ANSOTR52TQ5Y71K60PFNVLFSIKF",
+ "WorkerId": "70948434ebdea4b4dacf7baae8943e55",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:28:51.000Z",
+ "AcceptTime": "2018-05-10T09:22:58.000Z",
+ "SubmitTime": "2018-05-10T09:28:51.000Z",
+ "ApprovalTime": "2018-05-10T10:28:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "presentation",
+    "cookie",
+    "poem",
+    "recital",
+    "solo",
+    "painting",
+    "review",
+    "song",
+    "monologue",
+    "cake",
+    "dance"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword4",
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "english"
+   ],
+   "expt_aim": [
+    "how words are chosen based on how they make a person feel"
+   ],
+   "goal_thoughts": [
+    "probably, but no idea what"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

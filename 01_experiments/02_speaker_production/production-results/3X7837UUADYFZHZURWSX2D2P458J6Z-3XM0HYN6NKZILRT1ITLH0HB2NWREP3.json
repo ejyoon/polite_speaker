@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3XM0HYN6NKZILRT1ITLH0HB2NWREP3",
+ "WorkerId": "c521576efe8d293318d5fa41cc2940fd",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:16:25.000Z",
+ "AcceptTime": "2018-05-10T09:47:02.000Z",
+ "SubmitTime": "2018-05-10T10:16:25.000Z",
+ "ApprovalTime": "2018-05-10T11:16:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "dance",
+    "cake",
+    "painting",
+    "review",
+    "solo",
+    "recital",
+    "poem",
+    "cookie",
+    "film",
+    "app",
+    "presentation",
+    "monologue"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "about societal norms and honesty in communicating with others."
+   ],
+   "goal_thoughts": [
+    "To get or remain close with people for later benefits to be derived from the association."
+   ],
+   "expt_gen": [
+    "n/a"
+   ],
+   "numTrials": 15
+  }
+ }
+}

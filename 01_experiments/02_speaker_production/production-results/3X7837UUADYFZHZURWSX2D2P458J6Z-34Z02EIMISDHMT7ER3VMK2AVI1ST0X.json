@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "34Z02EIMISDHMT7ER3VMK2AVI1ST0X",
+ "WorkerId": "c6341313abfd6fc270fb4ddf26fc6251",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:55:54.000Z",
+ "AcceptTime": "2018-05-11T00:51:47.000Z",
+ "SubmitTime": "2018-05-11T00:55:54.000Z",
+ "ApprovalTime": "2018-05-11T01:56:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "film",
+    "presentation",
+    "cake",
+    "recital",
+    "poem",
+    "cookie",
+    "monologue",
+    "app",
+    "review",
+    "painting",
+    "dance",
+    "song"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "Engish"
+   ],
+   "expt_aim": [
+    "To determine what people might say"
+   ],
+   "goal_thoughts": [
+    "N/A"
+   ],
+   "expt_gen": [
+    "Interesting survey, thanks for the opportunity."
+   ],
+   "numTrials": 15
+  }
+ }
+}

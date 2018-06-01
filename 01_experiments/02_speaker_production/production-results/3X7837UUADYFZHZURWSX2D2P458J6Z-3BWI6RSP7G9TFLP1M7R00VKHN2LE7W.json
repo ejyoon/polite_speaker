@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3BWI6RSP7G9TFLP1M7R00VKHN2LE7W",
+ "WorkerId": "da80783e3b254f988b5c46b211f6ebde",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:46:02.000Z",
+ "AcceptTime": "2018-05-10T09:39:00.000Z",
+ "SubmitTime": "2018-05-10T09:46:02.000Z",
+ "ApprovalTime": "2018-05-10T10:46:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "recital",
+    "cake",
+    "solo",
+    "painting",
+    "review",
+    "dance",
+    "song",
+    "film",
+    "cookie",
+    "app",
+    "poem",
+    "monologue"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword1",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I'm not sure what the experiment was about maybe to see how different people judge things based on limited information."
+   ],
+   "goal_thoughts": [
+    "No, I don't think they had any ulterior motivates."
+   ],
+   "expt_gen": [
+    "Everything went fine and I didn't have any problems."
+   ],
+   "numTrials": 15
+  }
+ }
+}

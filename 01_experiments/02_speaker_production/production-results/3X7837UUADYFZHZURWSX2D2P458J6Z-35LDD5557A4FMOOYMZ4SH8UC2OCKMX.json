@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "35LDD5557A4FMOOYMZ4SH8UC2OCKMX",
+ "WorkerId": "7c08774b57a0449e8cc03427323cb6f4",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:54:08.000Z",
+ "AcceptTime": "2018-05-10T09:50:06.000Z",
+ "SubmitTime": "2018-05-10T09:54:08.000Z",
+ "ApprovalTime": "2018-05-10T10:54:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "monologue",
+    "solo",
+    "song",
+    "app",
+    "film",
+    "cookie",
+    "cake",
+    "review",
+    "dance",
+    "painting",
+    "presentation",
+    "recital"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people rate others' opinion."
+   ],
+   "goal_thoughts": [
+    "No."
+   ],
+   "expt_gen": [
+    "No. "
+   ],
+   "numTrials": 15
+  }
+ }
+}

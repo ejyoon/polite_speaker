@@ -1,0 +1,2 @@
+load("/Users/ejyoon/Documents/Documents/Research/polite_speaker/analysis/script/brms_polite.Rds")
+summary(brms_pol)

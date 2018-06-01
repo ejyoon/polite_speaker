@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "39GAF6DQWR0W6AWLSHZ1ZPHQKEDV1H",
+ "WorkerId": "85b7be5fa20c0c291ae4bcb77ed9b97d",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:36:42.000Z",
+ "AcceptTime": "2018-05-11T00:34:30.000Z",
+ "SubmitTime": "2018-05-11T00:36:42.000Z",
+ "ApprovalTime": "2018-05-11T01:36:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "painting",
+    "film",
+    "song",
+    "presentation",
+    "review",
+    "poem",
+    "cookie",
+    "solo",
+    "cake",
+    "dance",
+    "recital"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "1",
+    "0"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "???"
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "NA"
+   ],
+   "numTrials": 15
+  }
+ }
+}

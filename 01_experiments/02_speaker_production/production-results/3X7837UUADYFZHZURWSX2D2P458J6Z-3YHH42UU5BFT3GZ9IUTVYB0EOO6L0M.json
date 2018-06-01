@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3YHH42UU5BFT3GZ9IUTVYB0EOO6L0M",
+ "WorkerId": "bbf1ddd095ab20f792054d347b6cb016",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:45:00.000Z",
+ "AcceptTime": "2018-05-11T00:40:46.000Z",
+ "SubmitTime": "2018-05-11T00:45:00.000Z",
+ "ApprovalTime": "2018-05-11T01:45:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "dance",
+    "poem",
+    "film",
+    "painting",
+    "review",
+    "song",
+    "presentation",
+    "solo",
+    "cookie",
+    "monologue",
+    "recital"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "thoughts on how we say things"
+   ],
+   "goal_thoughts": [
+    "to let others know how they felt"
+   ],
+   "expt_gen": [
+    "no"
+   ],
+   "numTrials": 15
+  }
+ }
+}

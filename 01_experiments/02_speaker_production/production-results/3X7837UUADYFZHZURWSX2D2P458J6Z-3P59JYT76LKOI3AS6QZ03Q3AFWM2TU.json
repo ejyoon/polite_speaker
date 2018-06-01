@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3P59JYT76LKOI3AS6QZ03Q3AFWM2TU",
+ "WorkerId": "d8eb7a87ab40fe6a9fa27c2ebd75a3c8",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:31:07.000Z",
+ "AcceptTime": "2018-05-10T09:21:39.000Z",
+ "SubmitTime": "2018-05-10T09:31:07.000Z",
+ "ApprovalTime": "2018-05-10T10:31:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "recital",
+    "review",
+    "film",
+    "poem",
+    "cake",
+    "monologue",
+    "app",
+    "cookie",
+    "solo",
+    "painting",
+    "dance",
+    "presentation"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "0"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "ENGLISH"
+   ],
+   "expt_aim": [
+    "IF PEOPLE WERE TRUTHFUL WHEN GIVING FEEDBACK"
+   ],
+   "goal_thoughts": [
+    "TO GIVE FEEDBACK"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

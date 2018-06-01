@@ -1,0 +1,18 @@
+---
+title: "polite manuscript equations"
+author: "Erica Yoon"
+date: "2/10/2018"
+output: html_document
+---
+
+$$ P_{S_2}(w \mid s, \hat{\phi}) \propto \mathrm{exp}(\lambda_{S_2} \cdot \mathbb{E}[U_{total}(w; s)]) $$
+
+$$ U_{inf}(w; s) \propto ln(P_{L_1}(s|w)) $$
+
+$$ U_{soc}(w; s) \propto \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] $$
+
+$$ U_{pres}(w; s) \propto \ln(P_{L_1}(s,  \phi_{S_1} \mid w)) $$
+
+$$ P_{L_1}(s, \hat{\phi} \mid w) \propto P_{S_1}(w \mid s, \hat{\phi})\cdot P(s) \cdot P( \hat{\phi}) $$
+
+$$U_{total}(w; s) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \phi_{pres} \cdot U_{pres}(w; s) - C(w)$$

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3PQ8K71NHXK88A6ND51YE3WG3YJAAK",
+ "WorkerId": "b8e89a8aa6ff8f810b61716e289ec6de",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T02:39:03.000Z",
+ "AcceptTime": "2018-05-11T00:39:41.000Z",
+ "SubmitTime": "2018-05-11T01:39:03.000Z",
+ "ApprovalTime": "2018-05-11T02:39:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "song",
+    "solo",
+    "film",
+    "recital",
+    "dance",
+    "poem",
+    "review",
+    "monologue",
+    "presentation",
+    "cookie",
+    "cake"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword4",
+    "keyword1",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I think this experiment was about how much partipants car about sparing someone's feelings."
+   ],
+   "goal_thoughts": [
+    "I'm not quit sure."
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

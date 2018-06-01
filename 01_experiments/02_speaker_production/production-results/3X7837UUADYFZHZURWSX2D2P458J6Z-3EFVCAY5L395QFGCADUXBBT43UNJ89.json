@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3EFVCAY5L395QFGCADUXBBT43UNJ89",
+ "WorkerId": "128fb2b6bf56e6d0d4a6b6eaefb04448",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:42:52.000Z",
+ "AcceptTime": "2018-05-10T09:39:15.000Z",
+ "SubmitTime": "2018-05-10T09:42:52.000Z",
+ "ApprovalTime": "2018-05-10T10:42:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "poem",
+    "review",
+    "dance",
+    "song",
+    "monologue",
+    "film",
+    "painting",
+    "solo",
+    "app",
+    "cookie",
+    "recital",
+    "presentation"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "0"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Perception of criticism "
+   ],
+   "goal_thoughts": [
+    "Loads of intentions what kinds only they know"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

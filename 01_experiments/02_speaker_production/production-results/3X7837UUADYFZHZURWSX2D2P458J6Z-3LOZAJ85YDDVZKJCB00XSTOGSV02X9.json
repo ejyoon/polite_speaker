@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3LOZAJ85YDDVZKJCB00XSTOGSV02X9",
+ "WorkerId": "49a675428989adfb95616549fd0b5a8b",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:47:11.000Z",
+ "AcceptTime": "2018-05-11T00:42:01.000Z",
+ "SubmitTime": "2018-05-11T00:47:11.000Z",
+ "ApprovalTime": "2018-05-11T01:47:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "film",
+    "cake",
+    "monologue",
+    "dance",
+    "cookie",
+    "poem",
+    "review",
+    "solo",
+    "recital",
+    "song",
+    "painting",
+    "app"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword1",
+    "keyword1",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people approach giving news"
+   ],
+   "goal_thoughts": [
+    "accurate"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3GD6L00D3SXDGN2CEPYACTYDTJD1ME",
+ "WorkerId": "4762cbecebb961822c187a1163df0c61",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:58:52.000Z",
+ "AcceptTime": "2018-05-10T09:52:15.000Z",
+ "SubmitTime": "2018-05-10T09:58:52.000Z",
+ "ApprovalTime": "2018-05-10T10:58:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "painting",
+    "app",
+    "song",
+    "cookie",
+    "presentation",
+    "recital",
+    "film",
+    "monologue",
+    "cake",
+    "poem",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "english"
+   ],
+   "expt_aim": [
+    "how people talk and relate honestly relate to each other"
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "none"
+   ],
+   "numTrials": 15
+  }
+ }
+}

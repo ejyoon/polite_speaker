@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3BEFOD78W6TU8MZV17HCAR5G53N4MU",
+ "WorkerId": "4b96b84ce5715a04eabce5f1024a3afc",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:03:11.000Z",
+ "AcceptTime": "2018-05-10T10:00:03.000Z",
+ "SubmitTime": "2018-05-10T10:03:11.000Z",
+ "ApprovalTime": "2018-05-10T11:03:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "film",
+    "recital",
+    "review",
+    "monologue",
+    "dance",
+    "app",
+    "cookie",
+    "presentation",
+    "painting",
+    "cake",
+    "song",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "1",
+    "0"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Ratings thoughts of how it was"
+   ],
+   "goal_thoughts": [
+    "To get three hearts"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

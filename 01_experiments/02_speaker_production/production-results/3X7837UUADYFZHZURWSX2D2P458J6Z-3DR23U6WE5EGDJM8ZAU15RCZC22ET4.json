@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3DR23U6WE5EGDJM8ZAU15RCZC22ET4",
+ "WorkerId": "bce2f2bca813c231e5f4f90ec0c854db",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:59:34.000Z",
+ "AcceptTime": "2018-05-11T00:55:21.000Z",
+ "SubmitTime": "2018-05-11T00:59:34.000Z",
+ "ApprovalTime": "2018-05-11T01:59:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "review",
+    "monologue",
+    "cake",
+    "solo",
+    "painting",
+    "dance",
+    "cookie",
+    "film",
+    "poem",
+    "recital",
+    "presentation"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "To see if we say positive (it was) or negative (it wasn't) depending on the situation? "
+   ],
+   "goal_thoughts": [
+    "No, not really. "
+   ],
+   "expt_gen": [
+    "This was interesting. "
+   ],
+   "numTrials": 15
+  }
+ }
+}

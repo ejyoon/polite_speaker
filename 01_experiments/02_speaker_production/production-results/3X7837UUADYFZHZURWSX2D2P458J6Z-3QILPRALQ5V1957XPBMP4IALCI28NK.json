@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3QILPRALQ5V1957XPBMP4IALCI28NK",
+ "WorkerId": "02c0db93461632d4aeee0f7972a912a0",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T06:34:08.000Z",
+ "AcceptTime": "2018-05-11T05:30:17.000Z",
+ "SubmitTime": "2018-05-11T05:34:08.000Z",
+ "ApprovalTime": "2018-05-11T06:34:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "song",
+    "presentation",
+    "monologue",
+    "cookie",
+    "recital",
+    "dance",
+    "film",
+    "painting",
+    "poem",
+    "cake",
+    "review",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English "
+   ],
+   "expt_aim": [
+    "Understand language "
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

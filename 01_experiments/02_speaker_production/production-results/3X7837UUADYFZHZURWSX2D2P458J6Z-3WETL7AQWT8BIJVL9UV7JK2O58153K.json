@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3WETL7AQWT8BIJVL9UV7JK2O58153K",
+ "WorkerId": "e1de851d974d2c73f8b8abb00fdd9e9d",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:09:20.000Z",
+ "AcceptTime": "2018-05-10T10:05:34.000Z",
+ "SubmitTime": "2018-05-10T10:09:20.000Z",
+ "ApprovalTime": "2018-05-10T11:09:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "recital",
+    "dance",
+    "app",
+    "review",
+    "painting",
+    "solo",
+    "monologue",
+    "song",
+    "cookie",
+    "presentation",
+    "cake",
+    "film"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword3",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people communicate without hurting others feelings"
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "Thank you"
+   ],
+   "numTrials": 15
+  }
+ }
+}

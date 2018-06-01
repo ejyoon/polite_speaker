@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "374TNBHA8BV1R8B7I7C07PTSA4IQYL",
+ "WorkerId": "e987bcc40a2b9ef97aac816130bc87d5",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:51:40.000Z",
+ "AcceptTime": "2018-05-10T09:48:10.000Z",
+ "SubmitTime": "2018-05-10T09:51:40.000Z",
+ "ApprovalTime": "2018-05-10T10:51:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "film",
+    "painting",
+    "presentation",
+    "cake",
+    "poem",
+    "monologue",
+    "review",
+    "song",
+    "recital",
+    "dance",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Semantics."
+   ],
+   "goal_thoughts": [
+    "I do not know; if I did, I would be the people in the experiment! :)"
+   ],
+   "expt_gen": [
+    "I have no additional comments at this time."
+   ],
+   "numTrials": 15
+  }
+ }
+}

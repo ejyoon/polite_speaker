@@ -1,0 +1,283 @@
+---
+title: "polite model ms - replication"
+author: "Erica Yoon"
+date: "May 10, 2018"
+output: html_document
+---
+
+load packages.
+
+```{r setup}
+library(tidyverse); library(binom); library(langcog); library(here); library(jsonlite)
+```
+
+# speaker production
+
+```{r warning=FALSE, message=FALSE}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+raw.data.path <- "../../experiments/speaker_production/production-results/"
+
+## LOOP TO READ IN FILES
+all.data <- data.frame()
+files <- dir(raw.data.path,pattern="*.json")
+
+for (file.name in files) {
+  
+  ## these are the two functions that are most meaningful
+  json_file <- readLines(paste(raw.data.path,file.name,sep=""))
+  json_file_str = paste(json_file, collapse = "")
+  json_file_str = gsub(",}", "}", json_file_str)
+  jso = jsonlite::fromJSON(json_file_str)
+  jso$answers$data$people <- NULL
+  jso$answers$data$order <- jso$answers$data$order[1:12]
+  jso$answers$data$utterance <- NULL
+  jso$answers$data$state <- jso$answers$data$state[4:15]
+  jso$answers$data$domain <- jso$answers$data$domain[4:15]
+  jso$corr <- ifelse(jso$answers$data$judgment[1] == "1" & jso$answers$data$judgment[2] == "0" & jso$answers$data$judgment[3] == "1", 1, 0)
+  jso$answers$data$judgment <- NULL
+  jso1 <- data.frame(jso)
+  jso1$subid <- file.name
+  
+  ## now here's where data get bound together
+  all.data <- rbind(all.data, jso1)
+}
+```
+
+Filter out participants and clean up.
+
+```{r}
+d0 <- all.data %>%
+  filter(corr == 1) %>%
+  select(subid, answers.data.cond, answers.data.order, answers.data.domain, answers.data.goal, answers.data.state, answers.data.posneg, answers.data.keyword)
+
+d1 <- d0 %>%
+  filter(answers.data.cond == 1) %>%
+  mutate(positivity = fct_recode(answers.data.posneg, 
+                                 "no_neg" = "posneg0",
+                                 "neg" = "posneg1"
+                                 ),
+         utterance = fct_recode(answers.data.keyword,
+                                "terrible" = "keyword0",
+                                "bad" = "keyword1",
+                                "good" = "keyword3",
+                                "amazing" = "keyword4"))
+
+d2 <- d0 %>%
+  filter(answers.data.cond == 2) %>%
+  filter(answers.data.posneg != "" & answers.data.keyword != "") %>%
+  mutate(positivity = fct_recode(answers.data.posneg, 
+                                 "no_neg" = "posneg0",
+                                 "neg" = "posneg1"
+                                 ),
+         utterance = fct_recode(answers.data.keyword,
+                                "terrible" = "keyword4",
+                                "bad" = "keyword3",
+                                "good" = "keyword1",
+                                "amazing" = "keyword0"))
+
+d3 <- d0 %>%
+  filter(answers.data.cond == 3) %>%
+  mutate(positivity = fct_recode(answers.data.posneg, 
+                                 "neg" = "posneg0",
+                                 "no_neg" = "posneg1"
+                                 ),
+         utterance = fct_recode(answers.data.keyword,
+                                "terrible" = "keyword0",
+                                "bad" = "keyword1",
+                                "good" = "keyword3",
+                                "amazing" = "keyword4"))
+
+d4 <- d0 %>%
+  filter(answers.data.cond == 4) %>%
+  mutate(positivity = fct_recode(answers.data.posneg, 
+                                 "neg" = "posneg0",
+                                 "no_neg" = "posneg1"
+                                 ),
+         utterance = fct_recode(answers.data.keyword,
+                                "terrible" = "keyword4",
+                                "bad" = "keyword3",
+                                "good" = "keyword1",
+                                "amazing" = "keyword0"))
+
+d <- rbind(d1, d2, d3, d4) %>%
+  mutate(goal = answers.data.goal) %>%
+  mutate(trial = answers.data.order) %>%
+  mutate(item = answers.data.domain) %>%
+  mutate(true_state = answers.data.state) %>%
+  mutate(item = answers.data.domain) %>%
+  select(subid, trial, item, goal, true_state, positivity, utterance)
+
+d$subid <- as.factor(d$subid)
+d$trial <- as.numeric(d$trial)
+d$item <- as.factor(d$item)
+d$positivity <- as.factor(d$positivity)
+d$true_state <- as.factor(d$true_state)
+d$utterance <- as.factor(d$utterance)
+d$goal <- factor(d$goal, levels =c("informative", "social", "both"))
+d$utterance <- ordered(d$utterance, levels = c("terrible", "bad", "good", "amazing"))
+
+ms <- d %>%
+  select(subid, goal, item, true_state, positivity, utterance) %>%
+  mutate(positivity = fct_recode(positivity, 
+                                 "not" = "neg",
+                                 "yes" = "no_neg"
+                                 )) %>%  
+  mutate(utterance = paste(positivity, utterance, sep="_")) %>%
+  mutate(true_state = substr(true_state, 6, 6)) %>%
+  mutate(subid = factor(subid, labels = c(1:length(levels(subid))))) %>%
+  select(subid, item, goal, true_state, utterance)
+
+write.csv(d,
+                         file=here("analysis/data/speakerProduction.csv"), # CHANGE FILE NAME AS NEEDED
+          row.names=FALSE)
+
+write(toJSON(ms, pretty=TRUE), here("analysis/data/speaker_data.json"))
+
+```
+
+# literal semantics
+
+```{r warning=FALSE, message=FALSE}
+library(jsonlite)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(binom)
+library(bootstrap)
+library(langcog)
+library(ggthemes)
+library(forcats)
+library(magrittr)
+library(readr)
+library(here)
+```
+
+```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+raw.data.path <- "../../experiments/prior_elicitation/production-results/"
+
+## LOOP TO READ IN FILES
+all.data <- data.frame()
+files <- dir(raw.data.path,pattern="*.json")
+
+for (file.name in files) {
+  
+  ## these are the two functions that are most meaningful
+  json_file <- readLines(paste(raw.data.path,file.name,sep=""))
+  json_file_str = paste(json_file, collapse = "")
+  json_file_str = gsub(",}", "}", json_file_str)
+  json_file_str = gsub(",}", "}", json_file_str)
+  jso = jsonlite::fromJSON(json_file_str)
+  jso$answers$data$people <- NULL
+  jso$ApprovalTime <- NULL
+  jso1 <- data.frame(jso)
+  jso1$subid <- file.name
+  
+  ## now here's where data get bound together
+  all.data <- rbind(all.data, jso1)
+}
+```
+
+Filter out participants and clean up.
+
+```{r}
+ms_corr1 <- all.data %>%
+  filter(answers.data.utterance == "practice1",answers.data.judgment == "1")
+ms_corr2 <- all.data %>%
+  filter(answers.data.utterance == "practice2",answers.data.judgment == "0")
+ms_corr3 <- all.data %>%
+  filter(answers.data.utterance == "practice3",answers.data.judgment == "1")
+
+```
+
+```{r}
+## making json
+d0 <- all.data %>%
+  filter(subid %in% ms_corr1$subid,
+         subid %in% ms_corr2$subid,
+         subid %in% ms_corr3$subid) %>%
+  filter(answers.data.utterance != "practice1",
+         answers.data.utterance != "practice2",
+         answers.data.utterance != "practice3") %>%
+  select(subid, answers.data.order, answers.data.domain, answers.data.state, answers.data.utterance, answers.data.judgment) %>%
+  mutate(subid = as.factor(subid)) %>%
+  mutate(subid = factor(subid, labels = c(1:length(levels(subid))))) %>%
+  mutate(trial = as.numeric(answers.data.order)) %>%
+  mutate(item = as.factor(answers.data.domain)) %>%
+  mutate(state = as.numeric(substr(answers.data.state, 6, 6))) %>%
+  mutate(utterance = as.factor(answers.data.utterance)) %>%
+  mutate(judgment = as.numeric(as.character(answers.data.judgment))) %>%
+  select(subid, trial, item, state, utterance, judgment) %>%
+  group_by(state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(state, utterance) %>%
+  summarize(posterior_b1 = 1+sum(judgment),
+            posterior_b2 = ifelse(1+n()-posterior_b1 == 0, 0.01, 1+n()-posterior_b1))
+
+d1 <- all.data %>%
+  # filter(subid %in% ms_corr1$subid,
+  #        subid %in% ms_corr2$subid,
+  #        subid %in% ms_corr3$subid) %>%
+  # filter(answers.data.utterance != "practice1",
+  #        answers.data.utterance != "practice2",
+  #        answers.data.utterance != "practice3") %>%
+  select(subid, answers.data.order, answers.data.domain, answers.data.state, answers.data.utterance, answers.data.judgment) %>%
+  mutate(subid = as.factor(subid)) %>%
+  mutate(subid = factor(subid, labels = c(1:length(levels(subid))))) %>%
+  mutate(trial = as.numeric(answers.data.order)) %>%
+  mutate(item = as.factor(answers.data.domain)) %>%
+  mutate(state = as.numeric(substr(answers.data.state, 6, 6))) %>%
+  mutate(utterance = as.factor(answers.data.utterance)) %>%
+  mutate(judgment = as.numeric(as.character(answers.data.judgment))) %>%
+  select(subid, trial, item, state, utterance, judgment) %>%
+  group_by(state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(state, utterance) %>%
+  multi_boot_standard(col = "judgment") %>%
+  mutate(MAP = mean,
+         cred_low = ci_lower,
+         cred_upper = ci_upper) %>%
+  select(-mean, -ci_lower, -ci_upper)
+d <- left_join(d0, d1)
+
+write(toJSON(d, pretty=TRUE), "../../analysis/data/literal_semantics_3heart.json")
+```
+
+```{r}
+d <- all.data %>%
+  filter(subid %in% ms_corr1$subid,
+         subid %in% ms_corr2$subid,
+         subid %in% ms_corr3$subid) %>%
+  filter(answers.data.utterance != "practice1",
+         answers.data.utterance != "practice2",
+         answers.data.utterance != "practice3") %>%
+  select(subid, answers.data.order, answers.data.domain, answers.data.state, answers.data.utterance, answers.data.judgment) %>%
+  mutate(subid = as.factor(subid)) %>%
+  mutate(trial = as.numeric(answers.data.order)) %>%
+  mutate(item = as.factor(answers.data.domain)) %>%
+  mutate(state = as.factor(substr(answers.data.state, 6, 6))) %>%
+  mutate(utterance = as.factor(answers.data.utterance)) %>%
+  mutate(judgment = as.numeric(as.character(answers.data.judgment))) %>%
+  mutate(positivity = factor(as.numeric(grepl("yes", utterance)), 
+                        levels = c(0, 1), 
+                        labels = c("negative","positive"))) %>%
+  mutate(utterance = as.factor(substring(utterance, 5))) %>%
+  select(subid, trial, item, state, positivity, utterance, judgment)
+
+# d$utterance <- ordered(d$utterance, levels = c("terrible", "bad", "good", "amazing"))
+d$utterance <- ordered(d$utterance, levels = c("terrible", "bad", "okay", "good", "amazing"))
+d$positivity <- relevel(d$positivity, ref="positive")
+levels(d$positivity) <- c("it was ___", "it wasn't ___")
+
+levels(d$subid)
+
+write.csv(d,
+                         file="../../analysis/data/literalSemantics.csv", # CHANGE FILE NAME AS NEEDED
+          row.names=FALSE)
+
+```
+

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3JRJSWSMQHLBE2OEKVOANE81I3P3EC",
+ "WorkerId": "a9fefb5493b883bf220f7c34f6fd6654",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:48:40.000Z",
+ "AcceptTime": "2018-05-11T00:44:20.000Z",
+ "SubmitTime": "2018-05-11T00:48:40.000Z",
+ "ApprovalTime": "2018-05-11T01:48:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "monologue",
+    "poem",
+    "solo",
+    "presentation",
+    "painting",
+    "recital",
+    "cake",
+    "review",
+    "film",
+    "cookie",
+    "app",
+    "song"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "ENGLISH"
+   ],
+   "expt_aim": [
+    "HOW PEOPLE TALK"
+   ],
+   "goal_thoughts": [
+    "PRESERVING THEIR IMAGE"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

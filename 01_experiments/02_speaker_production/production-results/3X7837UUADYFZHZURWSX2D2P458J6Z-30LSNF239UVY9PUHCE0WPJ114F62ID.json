@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "30LSNF239UVY9PUHCE0WPJ114F62ID",
+ "WorkerId": "4779a906f97460c66cff817d36e9a36f",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:36:16.000Z",
+ "AcceptTime": "2018-05-10T09:18:48.000Z",
+ "SubmitTime": "2018-05-10T09:36:16.000Z",
+ "ApprovalTime": "2018-05-10T10:36:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "poem",
+    "monologue",
+    "recital",
+    "solo",
+    "dance",
+    "presentation",
+    "film",
+    "song",
+    "cake",
+    "painting",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "When you have two conflicting goals (make feel good/be honest) which gets prioritized."
+   ],
+   "goal_thoughts": [
+    "Generally people asked for advice want to appear knowledgeable/competent, and most people want to be liked."
+   ],
+   "expt_gen": [
+    "Was interesting. Had a hard time choosing something. Enjoyed doing it."
+   ],
+   "numTrials": 15
+  }
+ }
+}

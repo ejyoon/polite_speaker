@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "39KFRKBFINVY6WYR3UKWIKYSV3ZOYA",
+ "WorkerId": "eaa4cff21bd069d7c6c215fa86e5fbcb",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:11:06.000Z",
+ "AcceptTime": "2018-05-10T08:59:44.000Z",
+ "SubmitTime": "2018-05-10T09:11:06.000Z",
+ "ApprovalTime": "2018-05-10T10:11:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "monologue",
+    "presentation",
+    "cake",
+    "painting",
+    "app",
+    "recital",
+    "review",
+    "solo",
+    "cookie",
+    "song",
+    "dance",
+    "poem"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I'm not entirely certain"
+   ],
+   "goal_thoughts": [
+    "As indicated above, I'm not entirely certain"
+   ],
+   "expt_gen": [
+    "No further relevant comment, at this time"
+   ],
+   "numTrials": 15
+  }
+ }
+}

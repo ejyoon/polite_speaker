@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3QXNC7EIPIVY2EY0TXQ5T29JORZ90H",
+ "WorkerId": "8dd39870ce7387e1c0c72492f6115cfc",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:40:35.000Z",
+ "AcceptTime": "2018-05-10T09:33:16.000Z",
+ "SubmitTime": "2018-05-10T09:40:35.000Z",
+ "ApprovalTime": "2018-05-10T10:40:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "film",
+    "monologue",
+    "painting",
+    "recital",
+    "cookie",
+    "cake",
+    "app",
+    "presentation",
+    "solo",
+    "song",
+    "poem",
+    "dance"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword0",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How we give feedback, good or bad"
+   ],
+   "goal_thoughts": [
+    "How we choose our wording"
+   ],
+   "expt_gen": [
+    "I enjoyed working on this experiment."
+   ],
+   "numTrials": 15
+  }
+ }
+}

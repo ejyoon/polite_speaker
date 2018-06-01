@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3EJPLAJKEMG8MG2SZK0LFRL3GXAZ6O",
+ "WorkerId": "c61ad49f471cfd29b003581b8386557d",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:55:20.000Z",
+ "AcceptTime": "2018-05-10T09:48:31.000Z",
+ "SubmitTime": "2018-05-10T09:55:20.000Z",
+ "ApprovalTime": "2018-05-10T10:55:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cake",
+    "painting",
+    "solo",
+    "song",
+    "poem",
+    "dance",
+    "app",
+    "recital",
+    "film",
+    "cookie",
+    "presentation",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword3",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "how people rate things"
+   ],
+   "goal_thoughts": [
+    "yes I think they are seeing how different people rate things based on personality"
+   ],
+   "expt_gen": [
+    "none"
+   ],
+   "numTrials": 15
+  }
+ }
+}

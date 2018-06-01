@@ -1,0 +1,30 @@
+{
+ "_cosubSpecVersion": 2,
+ "Url": "https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html",
+ "Title": "Quick study to judge what people think",
+ "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+ "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+ "Batch": true,
+ "FrameHeight": 450,
+ "AssignmentDuration": "1 hour",
+ "AutoApprovalDelay": "1 hour",
+ "Reward": "0.85",
+ "QualificationRequirements": [
+  {
+   "Name": "Worker_PercentAssignmentsApproved",
+   "Comparator": "GreaterThanOrEqualTo",
+   "IntegerValues": [
+    85
+   ]
+  },
+  {
+   "Name": "Worker_Locale",
+   "Comparator": "EqualTo",
+   "LocaleValues": [
+    {
+     "Country": "US"
+    }
+   ]
+  }
+ ]
+}

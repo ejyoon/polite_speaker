@@ -1,0 +1,321 @@
+// webppl s2-bda-4pred_self5_bdmc.wppl --require webppl-json 1
+
+// requires webppl package: webppl-json
+
+// steps before:
+// git clone https://github.com/probmods/webppl.git webppl-github
+// npm install
+// git fetch
+// git checkout bdmc
+// change last line on src/inference/bdmc.js	
+
+var index = last(process.argv) // load index as last command line index
+
+var utterances = [
+  "yes_terrible","yes_bad","yes_good","yes_amazing",
+  "not_terrible","not_bad","not_good","not_amazing"
+];
+
+var negative_utterances = [
+  "not_terrible","not_bad","not_good","not_amazing"
+];
+
+var states = [0, 1, 2, 3];
+
+var statePrior = function(){
+  return uniformDraw(states);
+};
+
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+
+var round = function(x){
+  return Math.round(x * 100) / 100
+}
+
+var weightBins = map(round, _.range(0,1, 0.025))
+var phiWeights = repeat(weightBins.length, function(){1})
+
+var goalWeightPrior = Infer({model: function(){
+  return uniformDraw(weightBins)
+}})
+
+var nBins = weightBins.length;
+var kernelWidth = nBins / 4;
+
+var kernelFn = function(prevVal){
+  var i = weightBins.indexOf(prevVal);
+  var upper = (i + kernelWidth) > nBins ? nBins : i + kernelWidth;
+  var lower = (i - kernelWidth) < 0 ? 0 : i - kernelWidth;
+  return Categorical({vs: weightBins.slice(lower,upper),
+                      ps: phiWeights.slice(lower,upper)})
+}
+
+// measured in Experiment 1
+var literalSemantics = json.read('data/literal_semantics_3heart.json');
+var data = json.read('data/utterance_3heart_registered.json')
+
+var litSemanticsPosteriorObj = _.fromPairs(map(function(u){
+  return [u, _.fromPairs(map(function(s){
+    var litParams = _.filter(literalSemantics, {state: s, utterance: u})[0]
+    return [s, {a: litParams.posterior_b1, b: litParams.posterior_b2}]
+  }, states))]
+}, utterances))
+
+
+var goals = _.uniq(_.map(data, "goal"));
+var states = _.uniq(_.map(data, "true_state"));
+
+
+var model = function(){
+
+var litSemantics = _.fromPairs(map(function(u){
+    return [u, _.fromPairs(map(function(s){
+      var litParams = litSemanticsPosteriorObj[u][s];
+      // return [s, beta(litParams)]
+      return [s, litParams.a / (litParams.a + litParams.b)]
+    }, states))]
+  }, utterances))
+
+  var RSAparameters = {
+    speakerOptimality: uniformDrift({a: 0, b: 20, width:2}),
+    cost: uniformDrift({a: 1, b: 10, width:0.25})
+  };
+
+  var cost_yes = 1;
+  var uttCosts = map(function(u) {
+    return isNegation(u) ? Math.exp(-RSAparameters.cost) : Math.exp(-cost_yes)
+  }, utterances)
+
+  var utterancePrior = Infer({model: function(){
+    return utterances[discrete(uttCosts)];
+  }});
+
+  var meaning = function(words, state){
+    return flip(litSemantics[words][state]);
+  };
+
+  var listener0 = cache(function(utterance) {
+    Infer({method: "enumerate"}, function(){
+      var state = uniformDraw(states);
+      var m = meaning(utterance, state);
+      condition(m);
+      return state;
+    });
+  }, 10000);
+
+  var speaker1 = cache(function(state, phi) {
+    Infer({method: "enumerate"}, function(){
+      var utterance = sample(utterancePrior);
+
+      var speakerOptimality = RSAparameters.speakerOptimality;
+
+      var L0 = listener0(utterance);
+
+      var epistemicUtility = L0.score(state);
+      var socialUtility = expectation(L0, function(s){return s});
+
+      var eUtility = phi*epistemicUtility;
+      var sUtility = (1-phi)*socialUtility;
+
+      var speakerUtility = eUtility+sUtility;
+//     	var speakerUtility = eUtility; //actual(1)
+
+      factor(speakerOptimality*speakerUtility);
+
+      return utterance;
+    })
+  }, 10000)
+
+  var listener1 = cache(function(utterance) {
+    Infer({method: "enumerate"}, function(){
+
+      var phi = categorical ({vs: weightBins, ps: phiWeights})
+
+      var state = uniformDraw(states);
+
+      var S1 = speaker1(state, phi)
+      observe(S1, utterance)
+
+      return {
+        state: state,
+        phi: phi
+      }
+    })
+  }, 10000)
+
+  var speaker2 = cache(function(exptCondInfo) {
+    Enumerate(function(){
+      var state = exptCondInfo.state;
+
+      var S1_phi = exptCondInfo.S1_phi;
+
+      var selfpres_phi = exptCondInfo.selfpres_phi;
+      var social_phi = exptCondInfo.social_phi;
+      var informative_phi = exptCondInfo.informative_phi;
+
+      var utterance = sample(utterancePrior);
+//       var alpha = RSAparameters.alpha;
+
+    var L1 = listener1(utterance)
+	  var L1_goal = marginalize(L1, "phi");
+	  var L1_state = marginalize(L1, "state");
+
+    var epistemicUtility = L1_state.score(state);
+    var selfpresUtility = L1_goal.score(S1_phi);
+    var socialUtility = expectation(L1_state, function(s){return s});
+
+
+    var speakerMixedUtility = informative_phi*epistemicUtility +
+                              selfpres_phi*selfpresUtility +
+                              social_phi*socialUtility
+
+	var speakerPartialMixedUtility = social_phi*socialUtility
+	
+//     var selfEUtility = s2Goals.phi*selfEpiUtility;
+//     var selfSUtility = (1-s2Goals.phi)*socialUtility;
+// var speakerSelfUtility = selfEUtility+selfSUtility;
+
+// var selfEpiUtility = L1.score({"state":state,"phi":s1Goals})
+
+
+//    	factor(RSAparameters.speakerOptimality*speakerUtility); // actual(2)
+//       factor(RSAparameters.speakerOptimality * L1.score({"state":state, "goals":s1Goals}))
+// factor(RSAparameters.speakerOptimality*speakerSelfUtility); // self(2)
+//     factor(RSAparameters.speakerOptimality * L1_state.score(state)); // self(3)
+//    factor(RSAparameters.speakerOptimality * L1_goal.score(intendedGoals)); // self(4)
+// 	factor(RSAparameters.speakerOptimality * speakerMixedUtility); // self(5)
+	factor(RSAparameters.speakerOptimality*speakerPartialMixedUtility); // self(６)
+
+      return utterance
+
+    })
+  }, 10000)
+
+
+  var goalWeightsAndPostPred = map(function(goal){
+
+    var S1_phi = sample(goalWeightPrior, {driftKernel: kernelFn})
+
+    var phi_selfPres = uniformDrift({a: 0, b: 1, width: 0.2})
+    var phi_informative = uniformDrift({a: 0, b: 1, width: 0.2})
+    var phi_social = uniformDrift({a: 0, b: 1, width: 0.2})
+
+    var normalized_phis = normalize([phi_selfPres, phi_informative, phi_social])
+    var normalized_true_phis = normalize([phi_informative, phi_social])
+// 	}
+
+    var postPred = map(function(state){
+
+      var utteranceData = _.filter(data, {true_state: state, goal: goal});
+
+      var exptConditionInfo = {
+        state: state,
+        utterance: false,
+        S1_phi: S1_phi,
+        selfpres_phi: normalized_phis[0],
+        informative_phi: normalized_phis[1],
+        social_phi: normalized_phis[2]
+      };
+
+      var RSApredictions = speaker2(exptConditionInfo);
+
+
+      mapData({data: utteranceData}, function(d){
+        observe(RSApredictions, d.utterance)
+      });
+
+      var postSupport = RSApredictions.support();
+
+      var postPredictive = map(function(u){
+        return {
+          key: "posteriorPredictive",
+          goal: goal,
+          state: state,
+          utt: u,
+          val: Math.exp(RSApredictions.score(u))
+        }
+      }, postSupport)
+
+
+      var negEndorsement = sum(map(function(u){
+        return Math.exp(RSApredictions.score(u))
+      }, negative_utterances))
+
+      return _.flattenDeep([postPredictive, {
+        key: "posteriorPredictive",
+        goal: goal,
+        state: state,
+        utt: "negation",
+        val: negEndorsement
+      }])
+
+    }, states)
+
+    return [
+      postPred,
+      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis[0]}, 
+//       {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[0]}, 
+//       {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[1]}, 
+      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis[1]}, 
+      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_phis[2]}, 
+      {key: "phi_s1", goal: goal, state: "NA", utt: "NA", val: S1_phi}
+    ]
+
+  }, goals)
+
+  var returnList = _.flattenDeep([
+    goalWeightsAndPostPred,
+    litSemantics,
+    {key: "speakerOptimality", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.speakerOptimality},
+//     {key: "speakerOptimality2", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.speakerOptimality2},
+//     {key: "alpha", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.alpha},
+    {key: "cost", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.cost}
+  ])
+
+  var returnObj = _.fromPairs(map(function(i){
+    [i.key + "_" + i.goal + "_" + i.state + "_" + i.utt, i.val]
+  }, returnList))
+
+  return returnObj
+
+}
+
+
+
+// var numSamples = 40000;
+// var method = "MCMC";
+// var samples = numSamples;
+// var burn = numSamples / 2;
+// var posterior = Infer({model, method, samples, burn, verbose: true})
+// var filename = 'bda-s2_self5_allNorm_3heart_paramAdj-mcmc'+
+// numSamples+'_burn'+burn+'_chain'+index+'.json'
+// 
+// json.write(filename, posterior)
+// 
+// "output written to " + filename;
+
+
+// var steps = 100
+// var samples = 6
+
+var all_samples = [
+6, 6, 4, 4
+]
+
+var all_steps = [
+  50000, 100000, 150000, 200000
+]
+
+var samples = all_samples[(index-1) % all_samples.length];
+var steps = all_steps[(index-1) % all_samples.length];
+
+// var postOut = AIS(model, {steps: steps, samples: samples, returnMean: false})
+var postOut = AIS(model, {steps: steps, samples: samples, returnMean: false})
+// postOut
+var resultsOutFile = 'ais-s2_trueSoc_3heart_step'+
+steps+'_sample'+samples+'_chain'+index+'.json'
+
+
+json.write(resultsOutFile, postOut)

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3DIP6YHAPCSXFZUKWCJ6EVGCYPI8EA",
+ "WorkerId": "33d14cd3dca82acceddf8dbe6a50dcaa",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T02:10:23.000Z",
+ "AcceptTime": "2018-05-11T01:09:00.000Z",
+ "SubmitTime": "2018-05-11T01:10:23.000Z",
+ "ApprovalTime": "2018-05-11T02:10:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "song",
+    "cake",
+    "poem",
+    "recital",
+    "monologue",
+    "film",
+    "review",
+    "presentation",
+    "cookie",
+    "solo",
+    "dance"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "0",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I do not know."
+   ],
+   "goal_thoughts": [
+    "I am not sure."
+   ],
+   "expt_gen": [
+    "No."
+   ],
+   "numTrials": 15
+  }
+ }
+}

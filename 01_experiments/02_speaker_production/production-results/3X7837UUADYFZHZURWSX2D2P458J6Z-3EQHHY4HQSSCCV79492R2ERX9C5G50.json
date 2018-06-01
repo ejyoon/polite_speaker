@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3EQHHY4HQSSCCV79492R2ERX9C5G50",
+ "WorkerId": "2a5ad0584c7276864fd6a3215389102b",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:30:27.000Z",
+ "AcceptTime": "2018-05-10T09:25:15.000Z",
+ "SubmitTime": "2018-05-10T09:30:27.000Z",
+ "ApprovalTime": "2018-05-10T10:30:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "painting",
+    "cookie",
+    "review",
+    "monologue",
+    "presentation",
+    "song",
+    "app",
+    "film",
+    "poem",
+    "recital",
+    "dance",
+    "cake"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people might adjust their wording to encourage someone and/or be truthful."
+   ],
+   "goal_thoughts": [
+    "To give their friend feedback so they can improve or feel good about their abilities."
+   ],
+   "expt_gen": [
+    "Would like more word options, some of them were difficult to choose because there weren't enough available selections!"
+   ],
+   "numTrials": 15
+  }
+ }
+}

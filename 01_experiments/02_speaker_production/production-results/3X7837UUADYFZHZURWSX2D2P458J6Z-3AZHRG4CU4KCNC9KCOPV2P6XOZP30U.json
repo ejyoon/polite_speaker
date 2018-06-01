@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3AZHRG4CU4KCNC9KCOPV2P6XOZP30U",
+ "WorkerId": "d73c592df9ed2f53b8ef828a96364dbd",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:29:28.000Z",
+ "AcceptTime": "2018-05-10T09:24:16.000Z",
+ "SubmitTime": "2018-05-10T09:29:28.000Z",
+ "ApprovalTime": "2018-05-10T10:29:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cookie",
+    "painting",
+    "film",
+    "poem",
+    "review",
+    "app",
+    "song",
+    "dance",
+    "presentation",
+    "cake",
+    "monologue",
+    "recital"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "To see how we view others comments."
+   ],
+   "goal_thoughts": [
+    "No, I think they were reviewing other peoples work."
+   ],
+   "expt_gen": [
+    "Thank you for letting me be a part of the study!"
+   ],
+   "numTrials": 15
+  }
+ }
+}

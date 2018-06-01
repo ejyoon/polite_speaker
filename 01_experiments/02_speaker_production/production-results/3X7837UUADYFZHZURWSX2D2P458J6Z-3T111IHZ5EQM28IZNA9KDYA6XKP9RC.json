@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3T111IHZ5EQM28IZNA9KDYA6XKP9RC",
+ "WorkerId": "0eb8779992c476b3139d09d3e33d60b2",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:46:54.000Z",
+ "AcceptTime": "2018-05-11T00:34:59.000Z",
+ "SubmitTime": "2018-05-11T00:46:54.000Z",
+ "ApprovalTime": "2018-05-11T01:47:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cake",
+    "poem",
+    "recital",
+    "review",
+    "song",
+    "film",
+    "presentation",
+    "painting",
+    "cookie",
+    "monologue",
+    "solo",
+    "dance"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people give feedback based on feelings"
+   ],
+   "goal_thoughts": [
+    "If people chose positive or negative feedback"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3300DTYQT2H3L3UGI6060M1CSV3QE2",
+ "WorkerId": "4e0456efe39724b6ca20caedb103f848",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:57:42.000Z",
+ "AcceptTime": "2018-05-11T00:50:00.000Z",
+ "SubmitTime": "2018-05-11T00:57:42.000Z",
+ "ApprovalTime": "2018-05-11T01:57:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "poem",
+    "cookie",
+    "monologue",
+    "solo",
+    "recital",
+    "song",
+    "dance",
+    "presentation",
+    "painting",
+    "review",
+    "cake",
+    "app"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English "
+   ],
+   "expt_aim": [
+    "If people are truthful about feedback? "
+   ],
+   "goal_thoughts": [
+    "I think the experiment is about how people communicate to lessen harsh criticism. "
+   ],
+   "expt_gen": [
+    "None, this was fun. Thanks! "
+   ],
+   "numTrials": 15
+  }
+ }
+}

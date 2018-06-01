@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3JZQSN0I3QA4ES0YALF0OQIAY99FGE",
+ "WorkerId": "39e44f3104e0a5cdd933d204a2ad7a5c",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:45:11.000Z",
+ "AcceptTime": "2018-05-11T00:39:07.000Z",
+ "SubmitTime": "2018-05-11T00:45:11.000Z",
+ "ApprovalTime": "2018-05-11T01:45:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "cookie",
+    "monologue",
+    "song",
+    "recital",
+    "presentation",
+    "poem",
+    "app",
+    "dance",
+    "film",
+    "cake",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "symantics, and nuance meanings of same words"
+   ],
+   "goal_thoughts": [
+    "people  you mean you (stanford), or the random names you use in the sentences?? if the latter, yes, to appear sympathetic, critical, knowledgeable, or to gain other's respect or favor"
+   ],
+   "expt_gen": [
+    "interesting"
+   ],
+   "numTrials": 15
+  }
+ }
+}

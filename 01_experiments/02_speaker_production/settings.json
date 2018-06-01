@@ -1,0 +1,30 @@
+{
+ "_cosubSpecVersion": 2,
+ "Url": "https://langcog.stanford.edu/expts/EJY/polgrice/speaker_production_3star/speaker_3star.html",
+ "Title": "Quick study to judge what people will say",
+ "Description": "A simple task of predicting what someone will say (takes ~3 minutes)",
+ "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+ "Batch": false,
+ "FrameHeight": 450,
+ "AssignmentDuration": "1 hour",
+ "AutoApprovalDelay": "1 hour",
+ "Reward": "0.45",
+ "QualificationRequirements": [
+  {
+   "Name": "Worker_PercentAssignmentsApproved",
+   "Comparator": "GreaterThanOrEqualTo",
+   "IntegerValues": [
+    85
+   ]
+  },
+  {
+   "Name": "Worker_Locale",
+   "Comparator": "EqualTo",
+   "LocaleValues": [
+    {
+     "Country": "US"
+    }
+   ]
+  }
+ ]
+}

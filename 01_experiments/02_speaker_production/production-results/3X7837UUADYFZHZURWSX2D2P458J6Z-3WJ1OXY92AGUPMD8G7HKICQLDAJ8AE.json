@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3WJ1OXY92AGUPMD8G7HKICQLDAJ8AE",
+ "WorkerId": "57dc4621a1fe9ba1cd06f80077680042",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:49:13.000Z",
+ "AcceptTime": "2018-05-11T00:45:07.000Z",
+ "SubmitTime": "2018-05-11T00:49:13.000Z",
+ "ApprovalTime": "2018-05-11T01:49:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "presentation",
+    "cake",
+    "poem",
+    "app",
+    "cookie",
+    "dance",
+    "film",
+    "song",
+    "monologue",
+    "recital",
+    "painting"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "how people perceive different choice of words for feelings versus objectivity"
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "no"
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3X1FV8S5JXRTAPMOA0K46CLWM07VGM",
+ "WorkerId": "17f41939548c886cd2cf47c2c4739dc8",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:16:30.000Z",
+ "AcceptTime": "2018-05-10T10:12:34.000Z",
+ "SubmitTime": "2018-05-10T10:16:30.000Z",
+ "ApprovalTime": "2018-05-10T11:16:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "poem",
+    "solo",
+    "review",
+    "cake",
+    "song",
+    "presentation",
+    "dance",
+    "recital",
+    "monologue",
+    "app",
+    "cookie",
+    "film"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "I have no idea. "
+   ],
+   "goal_thoughts": [
+    "I would assume so, but I'm not sure what. Seeing if context changes what a number on a scale from 1 to 3 represents?"
+   ],
+   "expt_gen": [
+    ""
+   ],
+   "numTrials": 15
+  }
+ }
+}

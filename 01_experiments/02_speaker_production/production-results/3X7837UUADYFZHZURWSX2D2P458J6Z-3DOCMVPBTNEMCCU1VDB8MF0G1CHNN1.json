@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3DOCMVPBTNEMCCU1VDB8MF0G1CHNN1",
+ "WorkerId": "8bdd33c237c4efb975b64117b913ed06",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:51:20.000Z",
+ "AcceptTime": "2018-05-11T00:46:43.000Z",
+ "SubmitTime": "2018-05-11T00:51:20.000Z",
+ "ApprovalTime": "2018-05-11T01:51:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cookie",
+    "monologue",
+    "app",
+    "poem",
+    "cake",
+    "review",
+    "song",
+    "recital",
+    "solo",
+    "dance",
+    "presentation",
+    "painting"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Proper responses when prompted to provide constructive feedback or morale boost"
+   ],
+   "goal_thoughts": [
+    "To provide useful information"
+   ],
+   "expt_gen": [
+    "I give this experiment 2 out of 3 hearts."
+   ],
+   "numTrials": 15
+  }
+ }
+}

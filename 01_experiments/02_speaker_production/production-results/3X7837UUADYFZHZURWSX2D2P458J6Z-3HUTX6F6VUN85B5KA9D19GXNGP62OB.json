@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3HUTX6F6VUN85B5KA9D19GXNGP62OB",
+ "WorkerId": "2cb79b96afd4a9a3b4d221aaacf759f3",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:11:50.000Z",
+ "AcceptTime": "2018-05-10T10:06:45.000Z",
+ "SubmitTime": "2018-05-10T10:11:50.000Z",
+ "ApprovalTime": "2018-05-10T11:11:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "monologue",
+    "cookie",
+    "review",
+    "painting",
+    "app",
+    "song",
+    "presentation",
+    "poem",
+    "film",
+    "recital",
+    "cake",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword4",
+    "keyword4",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "not sure"
+   ],
+   "goal_thoughts": [
+    "no"
+   ],
+   "expt_gen": [
+    "Thank you"
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3Z3ZLGNNSIU0B5EJTMJAHVXF13N3QS",
+ "WorkerId": "39c91764b98e0ca65f302bf27838f4d4",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:45:02.000Z",
+ "AcceptTime": "2018-05-10T09:36:28.000Z",
+ "SubmitTime": "2018-05-10T09:45:02.000Z",
+ "ApprovalTime": "2018-05-10T10:45:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "app",
+    "presentation",
+    "painting",
+    "song",
+    "poem",
+    "film",
+    "cake",
+    "dance",
+    "solo",
+    "review",
+    "cookie",
+    "monologue"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "english"
+   ],
+   "expt_aim": [
+    "how we choose to let people know what we think"
+   ],
+   "goal_thoughts": [
+    "only to satisfy others to the best of their ability"
+   ],
+   "expt_gen": [
+    "none"
+   ],
+   "numTrials": 15
+  }
+ }
+}

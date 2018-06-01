@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3QEMNNSB2XZONFB1QCGGUD2WNTC7DU",
+ "WorkerId": "7d0444964de75356b11a9642b8fd6fd4",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T02:39:47.000Z",
+ "AcceptTime": "2018-05-11T01:35:22.000Z",
+ "SubmitTime": "2018-05-11T01:39:47.000Z",
+ "ApprovalTime": "2018-05-11T02:39:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "song",
+    "dance",
+    "presentation",
+    "film",
+    "monologue",
+    "app",
+    "review",
+    "painting",
+    "cake",
+    "solo",
+    "poem",
+    "recital"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Interpreting the correct things to say depending on how you feel."
+   ],
+   "goal_thoughts": [
+    "Seeing how nice people will be even when they don't have to be."
+   ],
+   "expt_gen": [
+    "Interesting."
+   ],
+   "numTrials": 15
+  }
+ }
+}

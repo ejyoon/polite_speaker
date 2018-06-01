@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3K772S5NP8BQ8AVDZGDCR89B18AEHX",
+ "WorkerId": "5216e7b4772a6be611596ee6fbde91d5",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T03:06:38.000Z",
+ "AcceptTime": "2018-05-11T01:59:55.000Z",
+ "SubmitTime": "2018-05-11T02:06:38.000Z",
+ "ApprovalTime": "2018-05-11T03:06:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "review",
+    "cookie",
+    "painting",
+    "presentation",
+    "recital",
+    "song",
+    "poem",
+    "cake",
+    "solo",
+    "monologue",
+    "app",
+    "dance"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0",
+    "heart2",
+    "heart3",
+    "heart1",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword1",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people change their phrasing to ease negative feelings towards people they know"
+   ],
+   "goal_thoughts": [
+    "How they would stay friends or colleagues with people after telling them negative news"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

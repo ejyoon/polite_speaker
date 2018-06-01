@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3WYP994K17R8HQSN3YY21KC1A6W6Y0",
+ "WorkerId": "98bf3b33292874acf9820035f4830549",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:39:24.000Z",
+ "AcceptTime": "2018-05-11T00:34:12.000Z",
+ "SubmitTime": "2018-05-11T00:39:24.000Z",
+ "ApprovalTime": "2018-05-11T01:39:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "dance",
+    "monologue",
+    "recital",
+    "cake",
+    "film",
+    "review",
+    "song",
+    "painting",
+    "poem",
+    "app",
+    "solo",
+    "cookie"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword4",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How we tell white lies"
+   ],
+   "goal_thoughts": [
+    "Probably"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

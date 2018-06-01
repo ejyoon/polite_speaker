@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3PJ71Z61R42Y93JIPGU577STTJ591K",
+ "WorkerId": "669e95856839b3b539b58f376f819ab2",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:39:18.000Z",
+ "AcceptTime": "2018-05-10T09:33:44.000Z",
+ "SubmitTime": "2018-05-10T09:39:18.000Z",
+ "ApprovalTime": "2018-05-10T10:39:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "cake",
+    "solo",
+    "dance",
+    "presentation",
+    "recital",
+    "poem",
+    "app",
+    "film",
+    "cookie",
+    "painting",
+    "monologue",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart3",
+    "heart0"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword0",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword0",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Gauging when people will \"sugarcoat\" criticisms"
+   ],
+   "goal_thoughts": [
+    "Not tearing their friendships apart."
+   ],
+   "expt_gen": [
+    "It was interesting - I've never seen a survey like this before"
+   ],
+   "numTrials": 15
+  }
+ }
+}

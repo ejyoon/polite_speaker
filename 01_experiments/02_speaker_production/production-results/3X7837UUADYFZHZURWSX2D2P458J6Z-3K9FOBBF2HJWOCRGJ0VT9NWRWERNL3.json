@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3K9FOBBF2HJWOCRGJ0VT9NWRWERNL3",
+ "WorkerId": "25ca931511a84bfc51e2cb0b0a6e3a4e",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T10:23:32.000Z",
+ "AcceptTime": "2018-05-10T09:19:36.000Z",
+ "SubmitTime": "2018-05-10T09:23:32.000Z",
+ "ApprovalTime": "2018-05-10T10:23:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "app",
+    "painting",
+    "song",
+    "dance",
+    "film",
+    "monologue",
+    "presentation",
+    "poem",
+    "review",
+    "cookie",
+    "cake"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "1",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword0",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "Turkish"
+   ],
+   "expt_aim": [
+    "What do we think people say when they want to give either accurate feedback or make the other person feel good."
+   ],
+   "goal_thoughts": [
+    "No"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

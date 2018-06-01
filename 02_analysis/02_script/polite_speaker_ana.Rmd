@@ -1,0 +1,350 @@
+---
+title: "polite model ms - replication"
+author: "Erica Yoon"
+date: "May 10, 2018"
+output: html_document
+---
+
+load packages.
+
+```{r setup}
+library(tidyverse); library(binom); library(langcog); library(here)
+```
+
+```{r}
+d <- read.csv(file=here("02_analysis/01_data/speaker_production.csv"))
+```
+
+```{r}
+ms2 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal) %>%
+  summarise(n.total=n())
+
+ms3 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal, positivity, utterance) %>%
+  summarize(n = n())
+
+ms <- left_join(ms2, ms3) %>%
+  group_by(true_state, goal, positivity, utterance) %>%
+  summarize(mean = n / n.total,
+            ci_lower = binom.bayes(n, n.total)$lower,
+            ci_upper = binom.bayes(n, n.total)$upper) %>%
+  ungroup()
+
+ms_fake <- cbind(expand.grid(true_state=levels(ms$true_state),goal=levels(ms$goal),positivity=levels(ms$positivity), utterance=levels(ms$utterance)))
+                 # , mean=NA, ci_lower=NA, ci_upper=NA)
+  
+ms_data <- 
+  # rbind(data.frame(ms), data.frame(ms_fake)) %>%
+  left_join(data.frame(ms_fake), data.frame(ms)) %>%
+  mutate(true_state = fct_recode(true_state,
+                                 "0" = "heart0", 
+                                 "1" = "heart1",
+                                 "2" = "heart2",
+                                 "3" = "heart3"),
+         utterance = fct_relevel(utterance, 
+                                 "terrible", "bad", "good", "amazing"),
+         goal = fct_relevel(goal, "informative", "social", "both"),
+         # goal = fct_recode(goal,
+         #                   "want to be informative" = "informative",
+         #                   "want to make listener feel good" = "social",
+         #                   "want both" = "both"),
+         positivity = fct_recode(positivity,
+                                 "not" = "neg",
+                                 "yes" = "no_neg"),
+         positivity = fct_relevel(positivity, "yes")) %>%
+  mutate(prob = ifelse(!is.na(mean), mean, 0)) %>%
+  select(-mean) %>%
+  mutate(model = "NA") %>%
+  mutate(source = "data")
+
+save(ms_data, file=here("02_analysis/01_data/speaker_production.RData"))
+
+# ggplot(data=ms.all, aes(x=positivity, y=mean, fill=utterance)) +
+#   geom_bar(stat="identity", position=position_dodge()) +
+#   facet_grid(goal~true_state) +
+#   xlab("no negation (It was ~) vs negation (It wasn't ~) ") +
+#   ylab("proportion chosen") +
+#   # ggtitle("What would the speaker say given their goals?") +
+#   geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper),position="dodge") +
+#   geom_hline(yintercept=.1, lty=2) +
+#   scale_fill_discrete(guide = guide_legend(title = "word"))
+
+plot_utt <- ggplot(data=ms.all %>% 
+         # filter(!is.na(mean)) %>%
+         # mutate(mean = ifelse(!is.na(mean), mean, 0)) %>%
+         mutate(positivity = fct_relevel(positivity, "It wasn't~")), 
+       aes(x=utterance, y=mean, color = positivity, group = positivity)) +
+  geom_line()+
+  facet_grid(goal~true_state, labeller=labeller(goal = label_both)) +
+  xlab("") +
+  # xlab("no negation (It was ~) vs negation (It wasn't ~) ") +
+  ylab("proportion chosen") +
+  geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position=position_dodge(width = 0.1)) +
+  geom_hline(yintercept=.125, lty=2) +
+  ylim(0,1)+
+  scale_color_solarized()+
+  ggthemes::theme_few()+
+  labs(color="") +
+  theme(axis.text.x = element_text(angle = 45, vjust=0.5),
+        legend.position = "bottom")
+  # ggtitle("Speaker production - Data only")
+
+ggsave("speaker_production_utt.png", plot = plot_utt, width = 7, height = 5,
+       path = here::here("02_analysis/03_figs"))
+
+plot_utt
+
+ms.all.4pred <- ms.all
+
+```
+
+```{r}
+ms2 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal) %>%
+  summarise(n.total=n())
+
+ms3 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal, positivity) %>%
+  summarize(n = n())
+
+ms <- left_join(ms2, ms3) %>%
+  group_by(true_state, goal, positivity) %>%
+  summarize(mean = n / n.total,
+            ci_lower = binom.bayes(n, n.total)$lower,
+            ci_upper = binom.bayes(n, n.total)$upper) 
+
+ms_fake <- cbind(expand.grid(true_state=levels(ms$true_state),goal=levels(ms$goal),positivity=levels(ms$positivity)), mean=NA, ci_lower=NA, ci_upper=NA)
+  
+ms.all <- rbind(data.frame(ms), data.frame(ms_fake)) %>%
+  mutate(true_state = fct_recode(true_state,
+                                 "0" = "heart0", 
+                                 "1" = "heart1",
+                                 "2" = "heart2",
+                                 "3" = "heart3"),
+         goal = fct_relevel(goal, "informative", "social", "both"),
+         positivity = fct_recode(positivity,
+                                 "not" = "neg",
+                                 "yes" = "no_neg"),
+         positivity = fct_relevel(positivity, "yes")) %>%
+  rename(prob = mean) %>%
+  mutate(model = "NA", source = "data") %>%
+  filter(!is.na(prob), positivity == "not") %>%
+  select(-positivity)
+
+ms_data_neg <- ms.all
+
+save(ms_data_neg, file=here("02_analysis/01_data/speaker_production_neg.RData"))
+```
+
+```{r}
+speaker_production_neg <- ms.all %>%  
+  filter(!is.na(mean)) %>%
+  filter(positivity == "not") %>%
+ggplot(., 
+         # filter(positivity == "not"),
+       aes(x=true_state, y=mean, 
+           # linetype = positivity, 
+           color=goal, 
+           group=goal)) +
+           # group=interaction(goal, positivity))) +
+  geom_line(stat="identity", position=position_dodge()) +
+  xlab("true state") +
+  ylab("proportion negation") +
+  geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position=position_dodge(width=.05)) +
+  # scale_colour_discrete(guide = guide_legend(title = "utterance type")) +
+  theme_few()+
+  scale_color_solarized()
+  # ggtitle("Speaker production: Compare neg (\"not\") vs. no neg (\"yes\")")
+
+ggsave("speaker_production_neg.png", plot = speaker_production_neg, width = 5.5, height = 3,
+       path = here::here("02_analysis/03_figs"))
+```
+
+compare between 4 preds and 5 preds.
+
+```{r}
+# d.utterance <- read.csv("../data/speaker.csv")
+
+# d <- d.utterance %>%
+# d <- read.csv(file=here("02_analysis/01_data/speaker_production.csv")) %>%
+#   separate(utterance, into = c("positivity", "utterance"), sep = "_") %>%
+#   mutate(true_state = as.factor(true_state),
+#          goal = as.factor(goal),
+#          positivity = as.factor(positivity),
+#          utterance = as.factor(utterance)
+#           )
+# 
+
+ms2 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal) %>%
+  summarise(n.total=n())
+
+ms3 <- d %>%
+  filter(!is.na(positivity), !is.na(utterance)) %>% # why is there NA?
+  group_by(true_state, goal, positivity, utterance) %>%
+  summarize(n = n())
+
+ms <- left_join(ms2, ms3) %>%
+  group_by(true_state, goal, positivity, utterance) %>%
+  summarize(mean = n / n.total,
+            ci_lower = binom.bayes(n, n.total)$lower,
+            ci_upper = binom.bayes(n, n.total)$upper) 
+  
+ms_fake <- expand.grid(true_state=levels(ms$true_state),
+                             goal=levels(ms$goal),
+                             positivity=levels(ms$positivity), 
+                             utterance=levels(ms$utterance))
+
+ms.all <- left_join(data.frame(ms_fake),data.frame(ms))
+
+ms.all[is.na(ms.all)] <- 0
+
+ms.all %<>%
+  mutate(utterance = fct_relevel(utterance, 
+                                 "terrible", "bad", "okay", "good", "amazing"),
+         goal = fct_relevel(goal, 
+                            "informative", "social", "both"))
+
+ms.all.5pred <- ms.all
+
+ms.all <-
+  rbind(filter(ms.all.5pred, goal=="both") %>%
+          mutate(data = "5pred"),
+        ms.all.4pred %>%
+          mutate(data = "4pred") %>%
+          mutate(true_state = factor(true_state, labels = c(1, 2, 4, 5)),
+                 goal = factor(goal, labels = c("informative", "social", "both"))))
+
+ms.all %<>%
+  mutate(positivity = fct_relevel(positivity, "yes", "not"))
+
+ggplot(data=filter(ms.all,!is.na(mean)), aes(x=utterance, y=mean, fill=positivity, group = positivity, color = positivity)) +
+  geom_line()+
+  facet_grid(data~true_state) +
+  xlab("no negation (It was ~) vs negation (It wasn't ~) ") +
+  ylab("proportion chosen") +
+  geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position="dodge") +
+  geom_hline(yintercept=.1, lty=2) +
+  ylim(0,1)+
+  scale_color_solarized()+
+  ggthemes::theme_few()+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+# literal semantics
+
+```{r, fig.width = 10, fig.height = 4}
+d <- read.csv("../../analysis/data/literalSemantics.csv") %>%
+  mutate(utterance = fct_relevel(utterance, "terrible", "bad", "good", "amazing"))
+
+# goal_prob ~ true_state + utterance + goal
+ms <- d %>%
+  group_by(positivity, state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(positivity, state, utterance) %>%
+  multi_boot_standard(col = "judgment") %>%
+  mutate(judgment = mean)
+  # mutate(data = "4pred")
+```
+
+```{r echo = FALSE, fig.width = 12, fig.height = 4}
+qplot(state, judgment, 
+      colour = positivity,
+      data=ms) + 
+  geom_line(aes(group=positivity)) +
+  facet_grid(.~utterance) +
+  xlab("state (0=worst)") +
+  ylab("proportion of\n acceptances") +
+  # ggtitle("Literal semantics") +
+  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
+  # scale_color_discrete(guide_legend(title="")) +
+  theme_few() +
+  
+  scale_color_solarized() +
+  theme(legend.position = "bottom", 
+        legend.title = element_blank()) +
+  geom_hline(yintercept = .5, lty=2)
+      # theme(axis.text=element_text(size=14),
+      #   axis.title=element_text(size=14,face="bold"),
+      #   strip.text.x=element_text(size=14,face="bold"),
+      #   strip.text.y=element_text(size=14,face="bold"),
+      #   legend.text=element_text(size=13))
+
+
+# ms
+```
+
+```{r}
+ms.5pred <- read_csv("../data/literalSemantics_wNeg.csv") %>%
+  mutate(positivity = factor(as.numeric(grepl("yes", utterance)),
+                             levels = c(1, 0),
+                             labels = c("it was ___", "it wasn't ___"))) %>%
+  mutate(utterance = substring(utterance, 5)) %>%
+  mutate(utterance = ordered(utterance, 
+                             levels = c("terrible", "bad", "okay", "good", "amazing"))) %>%
+  mutate(state = as.factor(state))  %>%
+  group_by(positivity, state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(positivity, state, utterance) %>%
+  multi_boot_standard(column = "judgment") %>%
+  mutate(judgment = mean) %>%
+  mutate(data = "5pred")
+
+ms.4pred <- ms %>% 
+  ungroup() %>%
+  mutate(state = factor(state, labels = c(1, 2, 4, 5)))
+
+ms.all <- rbind(as.data.frame(ms.4pred), as.data.frame(ms.5pred)) %>%
+    mutate(utterance = factor(utterance, 
+                             levels = c("terrible", "bad", "okay", "good", "amazing"))) %>%
+    mutate(state = factor(state, levels = c(1:5)))
+
+qplot(state, judgment,
+      colour = positivity,
+      data=ms.all) +
+  geom_line(aes(group=positivity)) +
+  facet_grid(data~utterance) +
+  xlab("state (1=worst)") +
+  ylab("proportion \n acceptances") +
+  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
+  scale_color_solarized(breaks=c("it was ~", "it wasn't ~")) +
+  ggthemes::theme_few(base_size = 9)+
+  theme(legend.title = element_blank()) +
+  geom_hline(yintercept=0.5, lty=2)
+```
+
+# stats
+
+```{r}
+# lmer to look at neg ~ state * goal
+library(lme4)
+ms_glmer <- d %>%
+  mutate(positivity = factor(positivity, labels = c(0,1))) %>%
+  mutate(positivity = as.numeric(as.character(positivity))) %>%
+  mutate(true_state = as.numeric(substr(true_state, 6, 6)))
+  # mutate(goal = factor(goal, levels = c("both", "informative", "social")))
+  # filter(true_state < 3)
+summary(glmer(data=ms_glmer, positivity ~ true_state * goal * (true_state + goal |subid), family=binomial))
+```
+
+```{r}
+# brms
+load(here("02_analysis/01_data", "brms_polite.Rds"))
+# brms_pol <- brm(data=ms_glmer %>%
+#                   mutate(goal = relevel(goal, ref = "both")) %>%
+#                   mutate(true_state = scale(true_state)),
+#                 positivity ~ true_state * goal + (true_state + goal |subid) + (true_state + goal | item), family="bernoulli")
+
+summary(brms_pol)
+```
+

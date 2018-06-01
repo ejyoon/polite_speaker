@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "323Q6SJS8IGIEOV9URXI9QUBD9MFHD",
+ "WorkerId": "cb2b97d3af4beba99bf607be5c1b8149",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:44:19.000Z",
+ "AcceptTime": "2018-05-11T00:39:28.000Z",
+ "SubmitTime": "2018-05-11T00:44:19.000Z",
+ "ApprovalTime": "2018-05-11T01:44:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 2,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "recital",
+    "review",
+    "cake",
+    "app",
+    "dance",
+    "painting",
+    "song",
+    "monologue",
+    "poem",
+    "film",
+    "cookie",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword0",
+    "keyword1",
+    "keyword1",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword1",
+    "keyword0",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "To see how people would perceive the statements whether helpful and/or informative."
+   ],
+   "goal_thoughts": [
+    "No"
+   ],
+   "expt_gen": [
+    "No"
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3K3R2QNK8B3EI0AGR44PI9XQ4JT9UG",
+ "WorkerId": "b3d1875b5d01b59f5b4d950f56896580",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T02:32:01.000Z",
+ "AcceptTime": "2018-05-11T00:35:10.000Z",
+ "SubmitTime": "2018-05-11T01:32:01.000Z",
+ "ApprovalTime": "2018-05-11T02:32:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "film",
+    "app",
+    "cake",
+    "presentation",
+    "song",
+    "painting",
+    "dance",
+    "cookie",
+    "recital",
+    "review",
+    "poem",
+    "solo"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "This experiment seemed to explore how people choose to word themselves to express their sentiments about something. It may or may not be persuaded by how they feel about someone. It may also be affected by whether they want to avoid hurting someone's feelings or not in some cases."
+   ],
+   "goal_thoughts": [
+    "It is possible some people express themselves a bit creatively with words. So, if they tell someone, \"It wasn't terrible,\" they may be insinuating it was an okay end result. Some people are sarcastic as well!"
+   ],
+   "expt_gen": [
+    "Thanks for this experiment. Good luck with your research!"
+   ],
+   "numTrials": 15
+  }
+ }
+}

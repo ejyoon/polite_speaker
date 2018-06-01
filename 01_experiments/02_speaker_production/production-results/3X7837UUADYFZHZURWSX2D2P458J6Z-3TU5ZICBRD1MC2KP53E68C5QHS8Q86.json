@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3TU5ZICBRD1MC2KP53E68C5QHS8Q86",
+ "WorkerId": "4b7b8cf72f5255b4a8c3d070bb786e92",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T03:13:55.000Z",
+ "AcceptTime": "2018-05-11T02:07:30.000Z",
+ "SubmitTime": "2018-05-11T02:13:55.000Z",
+ "ApprovalTime": "2018-05-11T03:14:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "presentation",
+    "painting",
+    "recital",
+    "monologue",
+    "poem",
+    "app",
+    "dance",
+    "song",
+    "cake",
+    "cookie",
+    "film",
+    "review"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword4",
+    "keyword3",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword0",
+    "keyword3",
+    "keyword3",
+    "keyword3",
+    "keyword0",
+    "keyword3",
+    "keyword1"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Evaluating others with constructive criticism"
+   ],
+   "goal_thoughts": [
+    "No, not at all."
+   ],
+   "expt_gen": [
+    "Interesting study."
+   ],
+   "numTrials": 15
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3LRLIPTPEQ9EKNF9PWEN8HZC8ADAKZ",
+ "WorkerId": "701da59b64cb5dbaee94949f362cd22f",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:48:41.000Z",
+ "AcceptTime": "2018-05-11T00:41:26.000Z",
+ "SubmitTime": "2018-05-11T00:48:41.000Z",
+ "ApprovalTime": "2018-05-11T01:48:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 3,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "dance",
+    "film",
+    "cake",
+    "poem",
+    "song",
+    "monologue",
+    "presentation",
+    "cookie",
+    "review",
+    "recital",
+    "painting"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword1",
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword3",
+    "keyword1",
+    "keyword3",
+    "keyword4"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "ENGLISH"
+   ],
+   "expt_aim": [
+    "JUDGING WHAT PEOPLE SAY AND NOT WHAT I THOUGHT PEOPLE WOULD SAY"
+   ],
+   "goal_thoughts": [
+    "YES"
+   ],
+   "expt_gen": [
+    "NO"
+   ],
+   "numTrials": 15
+  }
+ }
+}

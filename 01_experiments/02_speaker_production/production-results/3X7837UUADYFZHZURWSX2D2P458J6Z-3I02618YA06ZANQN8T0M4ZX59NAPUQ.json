@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3I02618YA06ZANQN8T0M4ZX59NAPUQ",
+ "WorkerId": "1930085d723a65d7e8b9e7cef784532b",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:50:08.000Z",
+ "AcceptTime": "2018-05-11T00:34:04.000Z",
+ "SubmitTime": "2018-05-11T00:50:08.000Z",
+ "ApprovalTime": "2018-05-11T01:50:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "recital",
+    "solo",
+    "poem",
+    "painting",
+    "cake",
+    "app",
+    "presentation",
+    "film",
+    "cookie",
+    "song",
+    "review",
+    "monologue"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1",
+    "heart3",
+    "heart0",
+    "heart2",
+    "heart1"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "1",
+    "0"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword0",
+    "keyword1",
+    "keyword3",
+    "keyword1",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "social",
+    "social",
+    "social",
+    "social",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "How people make judgements but judgements that involve emoticons "
+   ],
+   "goal_thoughts": [
+    "None"
+   ],
+   "expt_gen": [
+    "None"
+   ],
+   "numTrials": 15
+  }
+ }
+}

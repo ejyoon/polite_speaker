@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3570Y55XZPJAEJHTFB7ODBPQ4H9GYG",
+ "WorkerId": "0a0ab01c1f9e5c66bc65d11792561915",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-10T11:07:44.000Z",
+ "AcceptTime": "2018-05-10T09:39:21.000Z",
+ "SubmitTime": "2018-05-10T10:07:44.000Z",
+ "ApprovalTime": "2018-05-10T11:07:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 1,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "poem",
+    "film",
+    "app",
+    "monologue",
+    "recital",
+    "cookie",
+    "song",
+    "presentation",
+    "painting",
+    "solo",
+    "dance",
+    "cake"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2",
+    "heart0",
+    "heart1",
+    "heart3",
+    "heart2"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "1"
+   ],
+   "posneg": [
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg0"
+   ],
+   "keyword": [
+    "keyword1",
+    "keyword1",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword3",
+    "keyword0",
+    "keyword1",
+    "keyword4",
+    "keyword3"
+   ],
+   "people": [],
+   "goal": [
+    "both",
+    "both",
+    "both",
+    "both",
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Feedback and how to give it based on fact or feeling"
+   ],
+   "goal_thoughts": [
+    "No"
+   ],
+   "expt_gen": [
+    "Thank you."
+   ],
+   "numTrials": 15
+  }
+ }
+}

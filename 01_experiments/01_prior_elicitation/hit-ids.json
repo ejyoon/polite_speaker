@@ -1,0 +1,268 @@
+{
+ "production": [
+  {
+   "HIT": {
+    "HITId": "3D5G8J4N5A4USAA04YE9GB5XJ2NTV6",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-11T17:18:07.672Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 9,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-18T17:18:07.672Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 9,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  },
+  {
+   "HIT": {
+    "HITId": "3HFWPF5AK9J911V2VO3DNBHSQZH3SV",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-11T17:18:08.506Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 9,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-18T17:18:08.506Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 9,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  },
+  {
+   "HIT": {
+    "HITId": "3HKIF5DF6YXSQYBRHXA6PA1B2GXG95",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-11T17:18:09.337Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 9,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-18T17:18:09.337Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 9,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  },
+  {
+   "HIT": {
+    "HITId": "3DA79LNS59VAG18HKO83XGDESIV3TK",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-11T17:18:10.147Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 9,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-18T17:18:10.147Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 9,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  },
+  {
+   "HIT": {
+    "HITId": "3IHWR4LC7DD68KYC2T4VAQJGXN78I0",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-11T17:18:11.113Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 9,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-18T17:18:11.113Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 9,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  },
+  {
+   "HIT": {
+    "HITId": "38DCH97KHH289ZIE656V8IJG4EKJQC",
+    "HITTypeId": "3UWUAQCPMGQGYR1T6D7N8J4K8MGC5F",
+    "HITGroupId": "3ZA8T98ZB5871DMLMOJF98NRZSRFTX",
+    "CreationTime": "2018-05-21T02:58:51.922Z",
+    "Title": "Quick study to judge what people think",
+    "Description": "A simple task of judging what someone thought about some performance (takes ~7 minutes)",
+    "Question": "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n  <ExternalURL>https://langcog.stanford.edu/expts/EJY/polgrice/L2_J_wNeg/negimp_prior_3star.html</ExternalURL>\n  <FrameHeight>450</FrameHeight>\n</ExternalQuestion>",
+    "Keywords": "Game, fun, sentences, conversation, meaning, goals",
+    "HITStatus": "Assignable",
+    "MaxAssignments": 6,
+    "Reward": "0.85",
+    "AutoApprovalDelayInSeconds": 3600,
+    "Expiration": "2018-05-25T02:58:51.922Z",
+    "AssignmentDurationInSeconds": 3600,
+    "QualificationRequirements": [
+     {
+      "QualificationTypeId": "000000000000000000L0",
+      "Comparator": "GreaterThanOrEqualTo",
+      "IntegerValues": [
+       85
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     },
+     {
+      "QualificationTypeId": "00000000000000000071",
+      "Comparator": "EqualTo",
+      "LocaleValues": [
+       {
+        "Country": "US"
+       }
+      ],
+      "RequiredToPreview": false,
+      "ActionsGuarded": "Accept"
+     }
+    ],
+    "HITReviewStatus": "NotReviewed",
+    "NumberOfAssignmentsPending": 0,
+    "NumberOfAssignmentsAvailable": 6,
+    "NumberOfAssignmentsCompleted": 0
+   }
+  }
+ ]
+}

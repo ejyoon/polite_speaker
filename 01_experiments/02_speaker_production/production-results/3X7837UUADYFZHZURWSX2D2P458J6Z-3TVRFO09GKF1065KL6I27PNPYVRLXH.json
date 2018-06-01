@@ -1,0 +1,134 @@
+{
+ "AssignmentId": "3TVRFO09GKF1065KL6I27PNPYVRLXH",
+ "WorkerId": "bfdaf5152da8cbc00e59294f22622e8c",
+ "HITId": "3X7837UUADYFZHZURWSX2D2P458J6Z",
+ "AssignmentStatus": "Approved",
+ "AutoApprovalTime": "2018-05-11T01:56:01.000Z",
+ "AcceptTime": "2018-05-11T00:47:41.000Z",
+ "SubmitTime": "2018-05-11T00:56:01.000Z",
+ "ApprovalTime": "2018-05-11T01:56:53.000Z",
+ "answers": {
+  "data": {
+   "expt": "polgrice_speaker_3starfinal",
+   "cond": 4,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "knowledge": "unknown",
+   "domain": [
+    "presentation_pr",
+    "cookie_pr",
+    "poem_pr",
+    "solo",
+    "monologue",
+    "film",
+    "presentation",
+    "dance",
+    "cake",
+    "cookie",
+    "recital",
+    "app",
+    "painting",
+    "review",
+    "poem"
+   ],
+   "state": [
+    "heart2",
+    "heart1",
+    "heart0",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3",
+    "heart1",
+    "heart2",
+    "heart0",
+    "heart3"
+   ],
+   "utterance": [
+    "practice1",
+    "practice2",
+    "practice3"
+   ],
+   "judgment": [
+    "1",
+    "0",
+    "0"
+   ],
+   "posneg": [
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1",
+    "posneg0",
+    "posneg1"
+   ],
+   "keyword": [
+    "keyword3",
+    "keyword3",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword1",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword0",
+    "keyword4",
+    "keyword0"
+   ],
+   "people": [],
+   "goal": [
+    "informative",
+    "informative",
+    "informative",
+    "informative",
+    "both",
+    "both",
+    "both",
+    "both",
+    "social",
+    "social",
+    "social",
+    "social"
+   ],
+   "language": [
+    "English"
+   ],
+   "expt_aim": [
+    "Studying how the participants would create sincere and disingenuous feedback given the scenario?"
+   ],
+   "goal_thoughts": [
+    "To not look bad, to say something socially acceptable"
+   ],
+   "expt_gen": [
+    "Everything in the survey worked well."
+   ],
+   "numTrials": 15
+  }
+ }
+}

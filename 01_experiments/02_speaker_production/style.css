@@ -1,0 +1,264 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Palatino Linotype, Bookman Antiqua, Palatino, serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.slide {
+    text-align: center;
+	width: 90%;
+	height: 90%;
+	display: none;
+	position: absolute;
+	margin: 0;
+	margin-left: 3%;
+	padding: 1% 2% 1% 2%;
+}
+
+input, select, button {font-family: Georgia, serif; font-size: 14px;}
+
+button {
+  background: url(images/button-gradient.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 29px;
+  min-width: 70px;
+}
+button:active {
+  border-left: 1px solid #c9c9c9;
+  border-top: 1px solid #c9c9c9;
+  background: none;
+  background-color: #c9c9c9;
+}
+
+button[disabled] {
+  background: url(zen-button.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  cursor: not-allowed;
+}
+
+#logo-text {
+  font-weight: bold;
+}
+
+
+.block-text {
+  width: 500px;
+  font-family: Arial, sans-serif;
+  text-align: justify;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  line-height:1.2em;
+}
+
+#legal {
+  margin: 0 auto;
+  margin-top: 1.5em;
+  font-size: 0.8em;
+}
+
+#statement {
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  margin-top: 1em;
+  text-align: center;
+  line-height: 24px;
+}
+
+/*
+#question{
+    margin: 0 auto;
+    margin-top: 1em;
+    font-size: 18px;
+    text-align: center;
+}
+*/
+
+#type {
+    margin: 0 auto;
+    margin-top: 8em;
+    font-size: 18px;
+    text-align: center;
+}
+
+#instructions {
+  text-align: center;
+}
+
+#scenario {
+    text-align: center;
+}
+
+#description {
+    margin: 0 auto;
+    margin-top: 1em;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+#scale {
+    margin: 0 auto;
+    margin-top: 1em;
+    font-size: 16px;
+    text-align: center;
+    line-height:26px;
+}
+
+td {
+  text-align: center;
+  width: 60px;
+/*  font-size: 14px;*/
+}
+
+#form {
+    text-align: center;
+}
+
+#infoQ, #typeEst {
+    font-size: 16px;
+    margin-top: 1em;
+}
+
+#opt {
+    margin: 0 auto;
+    margin-top: 3em;
+    font-size: 16px;
+    text-align: center;
+    line-height: 26px;
+}
+
+.progress_white{
+    
+    text-align: right;
+    margin-top:0.5em;
+    
+}
+
+.progress_white span{
+    position:relative;
+    top: -6px;
+    text-align: center;
+    margin-right: 1em;  
+    color: transparent;
+}
+
+.bar-wrapper{
+    height:20px;
+    width:200px;
+    border:1px solid #000000;
+    display:inline-block;
+    text-align: right;
+    
+}
+
+.bar{
+    position:relative;
+    height:100%;
+    width:0px;
+    background-color:green;
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.slider_table .slider_target{
+    width:140px;
+	text-align: right;
+}
+
+.slider_table .left {
+/*	display: inline;*/
+	text-align: left;
+/*	float: left;*/
+}
+
+.slider_table .right {
+/*	display: inline;*/
+	text-align: right;
+/*	float: right;*/
+}
+
+#slider0 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider0 .ui-slider-handle {
+               background: #FAFAFA; }
+
+/*
+#slider0 { width: 12px;
+               height: 200px;
+               position: relative;
+               margin: 5px; }
+#slider0 .ui-slider-handle {
+               background: #FAFAFA; }
+*/
+
+#slider1 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider1 .ui-slider-handle {
+               background: #FAFAFA; }
+
+#slider2 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider2 .ui-slider-handle {
+               background: #FAFAFA; }
+
+
+#slider3 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider3 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider4 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider4 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider5 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider5 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider6 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider6 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider7 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider7 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider8 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider8 .ui-slider-handle {
+               background: #FAFAFA; }
+#slider9 { width: 300px;
+               height: 12px;
+               position: relative;
+               margin: 12px; }
+#slider9 .ui-slider-handle {
+               background: #FAFAFA; }
