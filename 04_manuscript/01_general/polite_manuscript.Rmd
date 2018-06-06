@@ -48,7 +48,16 @@ output            : papaja::apa6_pdf
 
 \newcommand{\mht}[1]{{\textcolor{Blue}{[mht: #1]}}}
 
-```{r load_packages, include = FALSE}
+
+
+```{r include_packages, include = FALSE}
+# check to see if user has packages. otherwise, install them...
+list.of.packages <- c("papaja", "tidyverse", "binom", "rwebppl",
+                      "jsonlite", "coda", "magrittr", "ggthemes",
+                      "forcats")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 library(papaja)
 library(tidyverse)
