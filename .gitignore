@@ -10,3 +10,8 @@
 manuscript/*.pdf
 zz*/
 zz/
+.Rproj.user
+04_manuscript/01_general/polite_manuscript_cache/
+04_manuscript/01_general/polite_manuscript.pdf
+04_manuscript/01_general/polite_manuscript.tex
+*.DS_Store
