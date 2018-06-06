@@ -44,6 +44,10 @@ class             : "man"
 output            : papaja::apa6_pdf
 ---
 
+\definecolor{Blue}{RGB}{10,100,200}
+
+\newcommand{\mht}[1]{{\textcolor{Blue}{[mht: #1]}}}
+
 ```{r load_packages, include = FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 library(papaja)
@@ -104,8 +108,6 @@ ms_neg <- rbind(ms_data_neg,
 
 ```
 
-\usepackage{color}
-\newcommand{\mht}[1]{\textcolor{green}{[mht: #1]}}
 
 
 
@@ -403,8 +405,7 @@ comp_tab <- data.frame("Model" = c("model: \ninformative only", "model: \nsocial
   rename("Variance \nexplained" = "Variance",
          "log BF" = "logBF")
 
-apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes factors (with the marginal likelihood for the full model as the denominator).
-")
+apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of the full model, in comparison to each of the alternatives.")
 ```
 
 Predictions from the full polite speaker model showed a very strong fit to participants’ utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
