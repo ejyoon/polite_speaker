@@ -45,7 +45,9 @@ output            : papaja::apa6_pdf
 ---
 
 \definecolor{Blue}{RGB}{10,100,200}
+\definecolor{Red}{RGB}{255,0,0}
 
+\newcommand{\red}[1]{{\textcolor{Red}{#1}}}
 \newcommand{\mht}[1]{{\textcolor{Blue}{[mht: #1]}}}
 
 
@@ -314,7 +316,7 @@ Rather than eschewing one of their goals to increase utility along a single dime
 
 To connect these behavioral data more directly to our model, we built a Bayesian data analytic model to integrate out the parameters of the RSA model (e.g., the condition-specific goal-weights for the speaker) and provide a principled way to incorporate judgments about the literal meanings of the utterances into our model’s predictions [@lee2014; see Supplementary Materials]. 
 Using an independent sample of *N*=51 participants, we measured judgments of how well different utterances apply to each of the levels on the heart scale (e.g., to what extent is “terrible” true of 2 out of 3 hearts?). 
-These measurements are used in the Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$ (see Supplementary Materials for literal semantic results; see our pre-registered model, hypothesis, and procedure at FIXME).
+These measurements are used in the Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$ (see Supplementary Materials for literal semantic results; see our pre-registered model, hypothesis, and procedure at \red{FIXME}).
 
 ```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals. Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp <- ms_utt %>%  
@@ -462,14 +464,26 @@ This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to E
 
 ### Literal semantic task
 
-We probed judgments of literal meanings of the target words assumed by our model and used in all our experiments. 51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. We used 13 different context items in which someone evaluated a performance of some kind. For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color). The question of interest was ”Do you think Ann thought the presentation was / wasn’t X?” and participants responded by choosing either “no” or “yes.” The target could be one of five possible words: terrible, bad, good, and amazing, giving rise to ten different possible utterances (with negation or no negation). Each participant read 32 scenarios, depicting every possible combination of states and utterances. The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. For this and the subsequent experiment, we analyzed the data by collapsing across context items.
-For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight. Meanings of the words as judged by participants were as one would expect (see Figure S1). We used the fraction of participants that endorsed utterance w for state s to set informative priors to infer posterior credible values of the literal meanings from data in the speaker production experiment.
+We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
+51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
+We used thirteen different context items in which a speaker evaluated a performance of some kind. 
+For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
+The question of interest was "Do you think Ann thought the presentation was / wasn’t X?" and participants responded by choosing either “no” or “yes.” 
+The target could be one of four possible words: *terrible*, *bad*, *good*, and *amazing*, giving rise to eight different possible utterances (with negation or no negation). 
+Each participant read 32 scenarios, depicting every possible combination of states and utterances. 
+The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. 
+For this and the speaker production experiment, we analyzed the data by collapsing across context items.
+For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
+Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
+<!-- We used the posterior distribution over the semantic weight of utterance $w$ for state $s$ to set informative priors to infer posterior credible values of the literal meanings from data in the speaker production experiment. -->
 
 ### Speaker production task
 
-202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (see Fig. 2). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts). Each participant read 12 scenarios, depicting every possible
-combination of goals (3) and states (4). The order of context items was randomized, and there were a maximum of two repeats of each context item per participant.
-Each scenario was followed by a question that read, ”If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?” Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between It was vs. It wasn’t and the other for choosing among terrible, bad, good, and amazing.
+202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (see Fig. 2). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts; Figure\ \@ref(fig:screenshot)). 
+Each participant read twelve scenarios, depicting every possible combination of the three goals and four states. 
+The order of context items was randomized, and there were a maximum of two repeats of each context item per participant.
+Each scenario was followed by a question that read, "If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?" 
+Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between *It was* vs. *It wasn’t* and the other for choosing among *terrible*, *bad*, *good*, and *amazing.*
 
 ## Supplementary Text
 
@@ -484,7 +498,7 @@ apa_table(brm.tab, caption= "Predictor mean estimates with standard deviation an
 
 We used Bayesian linear mixed-effects models [`brms` package in R; @R-brms] using crossed random effects of true state and goal with maximal random effects structure [@gelman2006data; @barr2013random].
 
-### Model fitting and inferred parameters
+### Polite RSA model fitting and inferred parameters
 
 ```{r phi, results = 'asis'}
 load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
@@ -529,10 +543,15 @@ colnames(other_tab) <- c("Model", "Cost of negation", "Speaker optimality")
 apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker optimality parameters for all model variants.")
 ```
 
-In the speaker production task, participants were told what speakers’ intentions were (e.g., wanted to make Bob feel good). 
-We assume that the intention descriptions conveyed the weight mixtures $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
-We put uninformative priors on each of these mixtures ($\phi$ ~ $Uniform(0,1)$) and inferred their credible values separately for each goal condition ("wanted to X") using Bayesian data analytic techniques [@lee2014]. 
-We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. The inferred values of weight mixtures for each model variant (with different $\phi$ components) and other parameters are shown in Table \@ref(tab:phi) and Table \@ref(tab:otherParams) respectively.
+In the speaker production task, participants were told the speakers’ intentions (e.g., wanted to make Bob feel good). 
+We assume that the intention descriptions conveyed some mixture of weights $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
+We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to X"; *social*, *informative*, or *both*).
+In addition, the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
+We put priors over these parameters that were consistent with those used for similar models in this model class: \red{SPEAKER OPTIMALITY PRIORS}.
+Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
+We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
+We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
+The inferred values of weight mixtures for each model variant (with different $\phi$ components) and other parameters are shown in Table \@ref(tab:phi) and Table \@ref(tab:otherParams), respectively.
 
 \newpage
 
