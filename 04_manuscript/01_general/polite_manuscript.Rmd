@@ -54,30 +54,30 @@ output            : papaja::apa6_pdf
 
 ```{r include_packages, include = FALSE}
 # check to see if user has packages. otherwise, install them...
-list.of.packages <- c("papaja", "tidyverse", "binom", "rwebppl",
-                      "jsonlite", "coda", "magrittr", "ggthemes",
-                      "forcats")
+list.of.packages <- c("papaja", "tidyverse", "rwebppl",
+                      "jsonlite", "magrittr", "ggthemes",
+                      "forcats", "here")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 library(papaja)
 library(tidyverse)
-library(binom)
+# library(binom)
 library(rwebppl)
 library(jsonlite)
-library(coda)
+# library(coda)
 library(magrittr)
 library(ggthemes)
 library(forcats)
 library(langcog)
-library(gridExtra)
-library(grid)
+# library(gridExtra)
+# library(grid)
 library(here)
-library(RColorBrewer)
+# library(RColorBrewer)
 library(lme4)
 library(brms)
-library(directlabels)
+# library(directlabels)
 library(BayesFactor)
 
 estimate_mode <- function(s) {
@@ -143,13 +143,13 @@ The face-based framework for polite language use provides an intuitive and appea
 It is not obvious how to quantify a face threat in a given situation (e.g., how much of the listener’s positive face will be damaged by hearing “your poem was terrible”),
 or how social and informational motivations will trade off in the mind of a speaker (given that the poem recital was terrible, should the speaker say that the listener’s poem was “okay,” “not bad,” or “marvelous”?). 
 Further, the recursive nature of reasoning about face has not been formally addressed: 
-Speakers may choose particular strategies not only to preserve face genuinely, but also to be *seen* as doing so, hence appearing to be considerate and socially apt. 
+Speakers may choose particular strategies not only to preserve the listener's face genuinely, but also to be *seen* as doing so, hence appearing to be considerate and socially apt and saving their own face. 
 
 To address these challenges, we develop a utility-theoretic quantitative model for understanding polite speech, in a unified framework to quantify tradeoffs between different goals that a speaker may have. 
 In our model, speakers attempt to maximize a set of competing utilities: 
 an informational utility, derived via classical, effective information transmission; 
-a social utility, derived by being kind and providing positive affect to others; \mht{is there a way of describing the social utility and presentational in terms of "face"?}
-and a self-presentational utility, derived by appearing in a particular way to other agents. 
+a social utility, derived by being kind and providing positive affect to others, thereby saving the listener's face; 
+and a self-presentational utility, derived by appearing in a particular way to other agents and saving the speaker's own face. 
 Speakers then can choose between different utterances on the basis of their expected utility. 
 The lie that a poem "was good" provides social utility by making its writer feel good, but does not inform about the true state of the world. 
 Further, if the writer suspects that it was in fact terrible, the speaker runs the risk of being seen as uncooperative. 
@@ -547,7 +547,8 @@ In the speaker production task, participants were told the speakers’ intention
 We assume that the intention descriptions conveyed some mixture of weights $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
 We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to X"; *social*, *informative*, or *both*).
 In addition, the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
-We put priors over these parameters that were consistent with those used for similar models in this model class: \red{SPEAKER OPTIMALITY PRIORS}.
+$\lambda_{S_1}$ was 1, and $\lambda_{S_2}$ was inferred from the data: 
+We put a prior that was consistent with those used for similar models in this model class: $\lambda_{S_2}$ ~ $Uniform(0,20)$.
 Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
 We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 

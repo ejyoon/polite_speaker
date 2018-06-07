@@ -1,0 +1,187 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset129 AppleSDGothicNeo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww14200\viewh15320\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u8212 \u8212 \
+\
+People speak politely, at the risk of misrepresenting information. \
+Beyond merely saying \'a1\'b0thanks\'a1\'b1 or \'a1\'b0please\'a1\'b1, \
+people communicate their message indirectly (\'a1\'b0Do you like this dress?\'a1\'b1 \'a1\'b0Well, I love the other one.\'a1\'b1) \
+or even convey false information (\'a1\'b0The dress looks great!\'a1\'b1). \
+\
+\
+We propose that production of polite speech is based on a principled tradeoff \
+between goals of exchanging information and managing relationships with others. \
+\
+\
+Based on a utility-theoretic approach within a probabilistic modeling framework, \
+we define an informational utility and two relational utilities (other-oriented and self-oriented) \
+representing speakers\'a1\'af potential goals. \
+\
+\
+Our model generated predictions for speaker production of polite speech \
+across varying speaker goals and different true states of the world, \
+and was able to capture key patterns of human production data in a simple case study. \
+\
+\
+We show that the current model is most successful among all variants of the model containing a subset of the three utilities,\
+in support of the view that polite speakers consider all of informational and self- and other-oriented relational goals. \
+\
+\
+Our formalization of speaker goal tradeoffs leading to polite language represents an advance in understanding of human speech.\
+\
+\uc0\u8212 \u8212 \
+\
+\
+We don\'a1\'aft always say what is on our mind. \
+Imagine your friend is wearing a hideous dress and asks you, \'a1\'b0How does my new dress look?\'a1\'b1 \
+The most informative answer might be \'a1\'b0It looks terrible.\'a1\'b1 \
+Yet a friend might be more likely to lie and say \'a1\'b0It looks good\'a1\'b1 or carefully remark \'a1\'b0I love the other one.\'a1\'b1 \
+These polite responses are nevertheless misleading or even outright false, \
+violating basic expectations about the nature of linguistic communication (@grice, @brown). \
+Why and when do speakers speak politely, \
+deviating from producing the most direct, truthful utterance possible? \
+\
+\
+\'bb\'e7\'b6\'f7\'b5\'e9\'c0\'ba \'b0\'a1\'c0\'e5 \'c1\'f7\'c1\'a2\'c0\'fb\'c0\'ce \'c7\'a5\'c7\'f6\'c0\'cc \'be\'c6\'b4\'d1 \'b0\'a3\'c1\'a2\'c0\'fb\'c0\'ce, \'bd\'c9\'c1\'f6\'be\'ee \'b0\'d1\'c0\'b8\'b7\'ce \'ba\'b8\'b1\'e2\'bf\'a1 \'c6\'b2\'b8\'b0 \'b8\'de\'bd\'c3\'c1\'f6\'b7\'ce \'c1\'a4\'ba\'b8\'b8\'a6 \'c0\'fc\'c7\'cf\'b0\'ef \'c7\'cf\'c1\'f6\'b8\'b8, \
+\'bd\'c5\'b1\'e2\'c7\'cf\'b0\'d4\'b5\'b5 \'bb\'f3\'b4\'eb\'b9\'e6\'c0\'ba \'c8\'ad\'c0\'da\'c0\'c7 \'c0\'c7\'b5\'b5\'b8\'a6 \'c1\'a4\'c8\'ae\'c8\'f7 \'be\'cb\'be\'c6\'c2\'f7\'b8\'b0\'b4\'d9. \
+They infer that some means \'a1\'b0some but not all\'a1\'b1\'a1\'a6\
+And that it took thousand years to get a table probably means it took them about an hour but they were pretty angry about it.\
+\'c0\'cc\'b7\'b1 \'bd\'c4\'c0\'b8\'b7\'ce, with the assumption of informativity as speaker\'a1\'afs goal, \
+Listeners derive the speaker\'a1\'afs intended meaning with the assumption that\
+The speaker was trying to be informative about different dimensions of the world than what the literal meanings convey,\
+Such as the speaker\'a1\'afs affect, their epistemic state, and their productive constraints causing them to prefer to speak with fewer words.\
+\
+However, sometimes speaker\'a1\'afs goals are non-informational. \
+Rather than to transfer information about the world to the other person,\
+Speaker\'a1\'afs ultimate goal could be to build, maintain, or improve her relationships with the people she speaks and interacts with. \
+In such cases, the speaker may think less about efficient transfer of truthful information,\
+But rather about making the other person feel good about themselves,\
+Or presenting the speaker herself as a nice, helpful person,\
+Such that the listener will appreciate the quality of the relationship with the speaker.\
+\
+We present a computational model of polite speech that explains speakers\'a1\'af choices as a balance between speakers\'a1\'af conflicting informational and relational goals. \
+\
+\uc0\u8212 \u8212 \
+\
+We don\'a1\'aft always say what is on our mind. \
+(Examples\'a1\'a6)\
+Why do people say things that are polite? \
+\
+Theories on language argued that speakers are \'a1\'b0cooperative\'a1\'b1, but polite speech seemingly violates that.\
+But polite speakers can be seen to be cooperative in their want to save other\'a1\'afs and their own face (@brown).\
+We propose that speakers produce speech based on a principled tradeoff between informational and relational goals,\
+Which we specify within a computational model.\
+\
+We looked at a simple case study where speakers are asked to produce an utterance in a potentially face-threatening context.\
+We ask if people will predict different utterances based on the true state and the speaker\'a1\'afs goal, \
+varying on the extent to which the speaker wants to prioritize informativity, or prosociality, or balance between both.\
+\
+Assumptions of the model:\
+1) speaker and listener go through recursive reasoning\
+2) speaker is assumed to speak approximately optimally given some utility\
+\
+Simple literal listener thinks about literal meaning of utterance.\
+Speaker thinks about this Lit, and sees true state, and thinks about her utilities:\
+1) informational\
+2) prosocial\
+Pragmatic listener thinks about S, and tries to infer the true state and speaker\'a1\'afs utilities.\
+Pragmatic speaker thinks about L, and sees true state, and thinks about her utilities:\
+Same #1 and #2, plus\
+3) self-presentational\
+\
+Can the model of a speaker who considers the true state and all three utilities successfully capture people\'a1\'afs predictions for production of polite speech?\
+\
+We did an experiment, and tested our model, compared against its variants with a subset of the utilities,\
+And confirmed that our model indeed captures the subtleties of people\'a1\'afs judgments the best.\
+\
+Method: We tested adult participants online, \
+They read scenarios, (descriptions of speaker\'a1\'afs goals and true states,)\
+And they gave their prediction for the most likely utterance.\
+\
+Procedure:\
+\
+\uc0\u8212 \u8212 \
+\
+\
+\
+Why do people say things that are polite? \
+\
+Theories on language argued that speakers are \'a1\'b0cooperative\'a1\'b1, but polite speech seemingly violates that.\
+But polite speakers can be seen to be cooperative in their want to save other\'a1\'afs and their own face (@brown).\
+We propose that speakers produce speech based on a principled tradeoff between informational and relational goals,\
+Which we specify within a computational model.\
+\
+We looked at a simple case study where speakers are asked to produce an utterance in a potentially face-threatening context.\
+We ask if people will predict different utterances based on the true state and the speaker\'a1\'afs goal, \
+varying on the extent to which the speaker wants to prioritize informativity, or prosociality, or balance between both.\
+\
+Assumptions of the model:\
+1) speaker and listener go through recursive reasoning\
+2) speaker is assumed to speak approximately optimally given some utility\
+\
+Simple literal listener thinks about literal meaning of utterance.\
+Speaker thinks about this Lit, and sees true state, and thinks about her utilities:\
+1) informational\
+2) prosocial\
+Pragmatic listener thinks about S, and tries to infer the true state and speaker\'a1\'afs utilities.\
+Pragmatic speaker thinks about L, and sees true state, and thinks about her utilities:\
+Same #1 and #2, plus\
+3) self-presentational\
+\
+Can the model of a speaker who considers the true state and all three utilities successfully capture people\'a1\'afs predictions for production of polite speech?\
+\
+We did an experiment, and tested our model, compared against its variants with a subset of the utilities,\
+And confirmed that our model indeed captures the subtleties of people\'a1\'afs judgments the best.\
+\
+Method: We tested adult participants online, \
+They read scenarios, (descriptions of speaker\'a1\'afs goals and true states,)\
+And they gave their prediction for the most likely utterance.\
+\
+Procedure:\
+\
+
+\f1\b\fs28 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\'97\'97\
+\
+\
+Polite speech emerges from the tradeoff between informational and relational goals\
+
+\b0 \
+
+\b We don\'92t always say what is on our mind. \
+
+\b0 Imagine your friend is wearing a hideous dress and asks you, \'93How does my new dress look?\'94 \
+The most informative answer might be \'93It looks terrible.\'94 \
+Yet a friend might be more likely to lie and say \'93It looks good\'94 or carefully remark \'93I love the other one.\'94 \
+These polite responses are nevertheless misleading or even outright false, \
+violating basic expectations about the nature of linguistic communication (@grice, @brown). \
+Why and when do speakers deviate from producing the most direct, truthful utterance possible? \
+We present a computational model of polite speech \
+that explains speakers\'92 choices as a balance between speakers\'92 conflicting informational and relational goals. \
+\
+
+\b Language is a versatile tool for both information exchange and social rapport. \
+
+\b0 On one hand, much language use can be seen as efficient information transfer \
+between a a sender and a receiver in a particular context (1\'963). \
+Informativity then is an integral assumption of language use, \
+on which speakers rely to convey more than what their spoken words literally suggest (4, 5). \
+On the other hand, language performs important social roles, \
+whereby people make contact with others and form relationships (6, 7). \
+Language users tend to speak in a manner that abides by expectations of the community (8), \
+promoting a sense of social solidarity. \
+Thus, epistemic and social functions of language translate to \
+speakers\'92 goals to be informative and social in their language use.\
+\
+But maximizing on both informativity and social goals is difficult, as they often conflict with each other.\
+\
+We focused on a prominent case study of this conflict: \
+polite speech, in which people try to preserve other people\'92s feelings by softening their potentially harsh message, \
+reflects the compromise between informative and social goals in conflict. }
