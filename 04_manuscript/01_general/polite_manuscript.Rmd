@@ -586,7 +586,8 @@ qplot(state, judgment,
 
 ```{r utterance, echo=FALSE, out.width = "\\textwidth", fig.pos = "!h", fig.height=6, fig.cap="Experimental results (solid lines) and fitted predictions from the full model (dashed lines) for speaker production. Proportion of utterances chosen (utterance type – direct vs. indirect – in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\\% confidence intervals for the data and 95\\% highest density intervals for the model. Black dotted line represents the chance level."}
 plot.utt <- ggplot(data=ms_utt %>%
-                     filter(source == "data" | model == "full"), 
+                     filter(source == "data" | model == "full") %>%
+                     mutate(positivity = fct_relevel(positivity, "not")), 
        aes(x=utterance, y=prob, group = interaction(positivity, source), colour = positivity, linetype = source)) +
   geom_line()+
   facet_grid(goal~true_state, labeller = labeller(goal = label_both)) +
