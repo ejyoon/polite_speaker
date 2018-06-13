@@ -144,13 +144,12 @@ Being polite, or conveying information in a false or indirect manner in
 deference to someone else's feelings, seemingly contradicts an important
 goal of a cooperative speaker: information transfer. In this work, we
 show that polite speech emerges from a set of competing goals: to be
-informative, to be kind and provide positive value to others, and to be
-self-presentational and \emph{appear} helpful. We formalize this
-tradeoff between speaker's competing goals using a utility-theoretic
-model, and show the model is able to predict people's polite speech
-production judgments. Our extension of formal theories of language to
-account for speakers' social goals represents an advance in
-understanding of human speech.
+informative, to be kind, and to \emph{appear} helpful or kind. We
+formalize this tradeoff between speaker's competing goals using a
+utility-theoretic model, and show the model is able to predict people's
+polite speech production judgments. Our extension of formal theories of
+language to account for speakers' social goals represents an advance in
+understanding of human language use.
 \end{sciabstract}
 
 % In setting up this template for *Science* papers, we've used both
@@ -176,8 +175,8 @@ Such utterances are puzzling for standard views of language use, which
 see communication as the transfer of information from a sender to a
 receiver \cite{buhler1934, shannon1948, jakobson1960, frank2012}. Under
 information-based views, the transfer ought to be efficient and
-accurate: The speaker should choose a succinct utterance from which the
-listener can recover their intended meaning  \cite{grice1975, searle1975},
+accurate: The speaker should choose a succinct utterance  to convey
+what the speaker knows \cite{grice1975, searle1975},
 and the information transferred should be accurate and truthful to the
 extent that the speaker knows or believes to be true. Polite speech --
 like the examples above -- violates these basic expectations about the
@@ -191,28 +190,24 @@ as well as informational, concerns. These concerns are sometimes
 expressed as sets of polite maxims \cite{leech1983} or social norms \cite{ide1989}, 
 but the most influential account of politeness relies on the
 notion of \enquote{face} to motivate deviations \cite{brown1987, goffman1967}. 
-On this theory, speakers seek to be liked,
+On this theory, interactants seek to be liked,
 approved, and related to (\enquote{positive face}) as well as maintain
-both their and the listeners' freedom to act (\enquote{negative face}).
+their freedom to act (\enquote{negative face}).
 Both inefficient indirect speech and untruthful lies in communication
 are then the result of speakers' strategic choices relative to possible
 face threats.
 
 The face-based framework for polite language use provides an intuitive
-and appealing explanation of many types of polite speech, but theorizing
-at level of the abstract notions like \enquote{face} does not make
-quantitative predictions in any individual circumstance nor constrain
-how an artificial agent should go about making polite requests,
-conveying negative evaluations, or delivering bad news. It is not
-obvious how to quantify a face threat in a given situation (e.g., how
-much of the listener's positive face will be damaged by hearing
-\enquote{your poem was terrible}), or how social and informational
-motivations will trade off in the mind of a speaker (given that the poem
-recital was terrible, should the speaker say that the listener's poem
-was \enquote{okay,} \enquote{not bad,} or \enquote{marvelous}?).
-Further, the recursive nature of reasoning about face has not been
-formally addressed: Speakers may choose particular strategies not only
-to preserve the listener's face genuinely, but also to be \emph{seen} as
+and appealing explanation of many types of polite speech, but it does
+not precisely define the competing communicative goals trade off with
+one another. For example, it is unclear when the desire to save face
+will motivate statements that are outright false (\enquote{Your cake is
+delicious!}) versus indirect (\enquote{It could use a bit of salt}), and
+when face-saving should be prioritized over other concerns (e.g.,
+helpful information transfer).\\
+Further, presentational goals related to face have not been formally
+addressed: Speakers may choose particular strategies not only to
+preserve the listener's face genuinely, but also to be \emph{seen} as
 doing so, hence appearing to be considerate and socially apt and saving
 their own face.
 
@@ -225,10 +220,10 @@ model for understanding polite speech, in a unified framework to
 quantify tradeoffs between different goals that a speaker may have. In
 our model, speakers attempt to maximize a set of competing utilities: an
 informational utility, derived via classical, effective information
-transmission; a social utility, derived by being kind and providing
+transmission; a social utility, derived by being kind to provide
 positive affect to others, thereby saving the listener's face; and a
 self-presentational utility, derived by appearing in a particular way to
-other agents and saving the speaker's own face. Speakers then can choose
+other agents and thus saving the speaker's own face. Speakers then can choose
 between different utterances on the basis of their expected utility. The
 lie that a poem \enquote{was good} provides social utility by making its
 writer feel good, but does not inform about the true state of the world.
@@ -285,9 +280,8 @@ utterance \(w\) based on the true state of the world \(s\) (i.e., the
 rating truly deserved by Bob's recital) and a set of goal weights
 \(\hat{\phi}\), each of which determines how much speaker Ann
 prioritizes a particular goal compared to other possible goals. Speaker
-Ann then chooses utterances depending on their expected utility,
-specifically as a softmax which interpolates between maximizing and
-probability matching (via the parameter \(\lambda_{S_2}\); \cite{goodman2013}:
+Ann's production decision is softmax, which interpolates between maximizing
+and probability matching (via the parameter \(\lambda_{S_2}\); \cite{goodman2013}):
 
 \[P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})])\].
 
