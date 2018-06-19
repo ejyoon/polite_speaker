@@ -372,9 +372,9 @@ in our example) feelings toward some performance or product (e.g., poem
 recital; \emph{true state}), which were shown on a scale from zero to
 three hearts (e.g., one out of three hearts). We manipulated the
 speaker's \emph{goal} across trials: to be \emph{informative}
-(\enquote{give accurate and informative feedback}); to be \emph{social}
+(\enquote{give accurate and informative feedback}); to be \emph{kind}
 (\enquote{to make the listener feel good}); or to be \emph{both}
-informative and social at the same time. We hypothesized that each of
+informative and kind at the same time. We hypothesized that each of
 the three goals will represent a tradeoff between the three utilities in
 our model described above (their inferred values are available in the
 Supplementary Materials). In a single trial, each scenario was followed
@@ -398,15 +398,15 @@ predictions. Error bars represent 95\% confidence intervals for the data
 
 Our primary behavioral hypothesis was that speakers who found themselves
 describing bad states (e.g., Bob's performance was bad) and who had
-goals to be both informative and social would produce more indirect,
+goals to be both informative and kind would produce more indirect,
 negative utterances (e.g., \enquote{It wasn't terrible}). Such indirect
 speech acts serve to save the listener's face while also conveying a
 vague estimate of the true state. This prediction was confirmed: a
 Bayesian mixed-effects model predicting negation as a function of true
-state and goal yielded an interaction such that a speaker with both
-informational and social goals produced more negation in worse states
-compared to a speaker with only the informational goal (\emph{M} =
--1.33, {[}-1.69, -0.98{]}) and social goal (\emph{M} = -0.50, {[}-0.92,
+state and goal yielded an interaction such that a speaker with both goals to be 
+informative and kind produced more negation in worse states
+compared to a speaker with only the goal to be informative (\emph{M} =
+-1.33, {[}-1.69, -0.98{]}) and goal to be kind (\emph{M} = -0.50, {[}-0.92,
 -0.07{]}).
 
 To connect these behavioral data more directly to our model, we
@@ -415,7 +415,7 @@ incorporated them into our model's predictions. Using an independent
 sample of \emph{N}=51 participants, we measured judgments of how well
 different utterances apply to each of the levels on the heart scale
 (e.g., to what extent is \enquote{terrible} true of 2 out of 3 hearts?).
-These measurements were used in the Bayesian data analysis to
+These measurements were used in a Bayesian data analysis to
 approximate the semantics of the words as interpreted by the literal
 listener agent \(L_0\) (see Supplementary Materials for literal semantic
 results). Then we used a Bayesian analytic technique \cite{lee2014} 
@@ -479,7 +479,7 @@ data were the highest for the full model (see Table
 \ref{tab:comparisonTable} and Figure \ref{fig:comparison}). In
 particular, only the full model captured the participants' preference
 for negation in the condition in which the speaker had both goals to be
-informative and social about truly bad states, as hypothesized. The full
+informative and kind about truly bad states, as hypothesized. The full
 model was superior to: the model with social and presentational
 utilities, which predicted outright false statements (\enquote{It was
 good}); the model with informational and social utilities, which
@@ -515,28 +515,25 @@ could be considered prosocial in certain cultural contexts; more
 generally, the mapping from states to utilities may be more complex than
 we have considered). Our formal modeling approach with systematic
 behavior measurements provides an avenue towards understanding the vast
-range of politeness practices found across languages. Further,
-politeness is just one of the ways that language use deviates from pure
-information transfer. When we flirt, insult, boast, and empathize, we
-balance information transmission with the goal to affect others'
-feelings or present particular views of ourselves. A similar utility
-structure to the one we employed here could give insights into these
-behaviors as well.
+range of politeness practices found across languages.
 
-The formalization of the presentational utility is especially meaningful
-in that it begins to precisely define self-oriented motivations behind
-polite speech and other related behaviors. To the best of our knowledge,
-previous theories of politeness have not explained how the motivations
-of the other- vs.~self-oriented concerns are related or how they trade
-off to inform the speaker's utterance choices. In our current model, the
-self-oriented concern stems from an other-oriented concern, as the
-speaker wants to appear to care about the other person's face or access
-to knowledge. The model then makes precise predictions about how the
-speaker considering both of these concerns will choose her utterances.
-This work then can be extended to not only other speech acts, but also a
-wide range of behaviors that can be modeled as utility-driven inference
-in a social context \cite{baker2017rational, hamlin2013mentalistic} where agents need to
-take into account concerns about both self and others.
+Our work extends previous models of language beyond standard
+informational utilities to address social and self-presentational
+concerns. Previous theories of language use have not explained how
+informational versus social concerns trade off to inform the speaker's
+utterance choices. Thus, this work represents a key theoretical advance
+exploring how Gricean informational cooperativity interacts with other
+social goals. The current work opens up important communicative
+behaviors to formal modeling. Politeness is just one of the ways that
+language use deviates from pure information transfer; When we flirt,
+insult, boast, and empathize, we balance information transmission with
+the goal to affect others' feelings or present particular views of
+ourselves. A similar utility structure to our model could give insights
+into these speech acts and a wide range of behaviors that can be modeled
+as utility-driven inference in a social context \cite{baker2017rational, hamlin2013mentalistic} 
+where agents need to take into account concerns about both self
+and others.
+
 
 In sum, this work takes a concrete step toward quantitative models of
 the nuances of human speech. And it moves us closer to courteous
@@ -572,8 +569,6 @@ MCF.
 % In the example below, Refs. 4-10 were cited only in the SM.     
 
 \section*{Supplementary materials}
-
-%\ejy{SM sections and figures should be restructured...}
 
 \subsection*{Materials and Methods}\label{materials-and-methods}
 
@@ -745,7 +740,7 @@ intention descriptions conveyed some mixture of weights \(\phi_{epi}\),
 \(\phi_{soc}\), \(\phi_{pres}\), and \(\phi_{S_1}\) that the speaker was
 using. We put uninformative priors on the unnormalized mixture weights
 (\(\phi\) \textasciitilde{} \(Uniform(0,1)\)) separately for each goal
-condition (\enquote{wanted to X}; \emph{social}, \emph{informative}, or
+condition (\enquote{wanted to be X}; \emph{informative}, \emph{kind}, or
 \emph{both}). In addition, the full model has two global parameters: the
 speaker's soft-max parameter \(\lambda_{S_2}\) and soft-max paramater of
 the hypothetical speaker that the pragmatic listener reasons about
@@ -787,7 +782,7 @@ respectively.
 \end{figure}
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{polite_manuscript_files/figure-latex/comparisonAll-1} \caption{Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart and speaker with informative (top), social (middle), and both goals (bottom). Gray dotted line indicates chance level at 12.5\%.}\label{fig:comparisonAll}
+\includegraphics[width=\textwidth]{polite_manuscript_files/figure-latex/comparisonAll-1} \caption{Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart and speaker with a goal to be informative (top), kind (middle), or both (bottom). Gray dotted line indicates chance level at 12.5\%.}\label{fig:comparisonAll}
 \end{figure}
 
 \begin{figure}[!h]

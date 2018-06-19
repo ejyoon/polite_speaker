@@ -215,16 +215,16 @@ Intuitively, if Bob’s performance was good, Ann’s utilities align to lead he
 By saying “[Your poem] was amazing,” Ann is simultaneously being truthful, kind, and appearing both and truthful and kind.
 If Bob’s performance was poor, however, Ann is in a bind: 
 Ann could be kind and say "It was great", but she does so at the cost of conveying the wrong information to Bob (e.g., if he mistakenly infers Ann’s goal to be truthful and hence believes that his recital was actually good).
-Worse yet, Bob could infer that Ann is “just being nice,” inferring her goal to be social, and discount her comment as uninformative. 
+Worse yet, Bob could infer that Ann is “just being nice”, and think of her as a dishonest, unhelpful speaker. 
 Alternatively, she could say the truth (“It was bad”), but then Bob would think Ann didn’t care about him. 
 What is a socially-aware speaker to do? 
 Our model predicts that indirect speech – like “It wasn’t bad” – helps navigate Ann’s dilemma. 
-It conveys some true information (e.g., literally it was the worst it could have been) while being sufficiently open-ended to spare Bob’s feelings. 
-Further, by incurring the slightly higher cost involved in producing another word, Bob could reason that Ann had reasons for not saying a simpler alternative like “It was good” and and that she must have taken his feelings into account in her utterance. 
+It conveys some true information (e.g., literally it wasn't the worst it could have been) while being sufficiently open-ended to spare Bob’s feelings. 
+Further, by incurring the slightly higher cost involved in producing another word, Bob could reason that Ann had reasons for not saying a simpler alternative like “It was good” and that she must have taken his feelings into account in her utterance. 
 
 We made a direct test of our model by instantiating the example above in an online experiment (*N* = 202; see our pre-registered model, hypothesis, and procedure at \url{https://github.com/ejyoon/polite_speaker}). 
 Participants read scenarios in which we provided information about the speaker’s (Ann’s, in our example) feelings toward some performance or product (e.g., poem recital; *true state*), which were shown on a scale from zero to three hearts (e.g., one out of three hearts). 
-We manipulated the speaker’s *goal* across trials: to be *informative*  (“give accurate and informative feedback”); to be *social* (“to make the listener feel good”); or to be *both* informative and social at the same time. 
+We manipulated the speaker’s *goal* across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“to make the listener feel good”); or to be *both* informative and kind at the same time. 
 We hypothesized that each of the three goals will represent a tradeoff between the three utilities in our model described above (their inferred values are available in the Supplementary Materials). 
 In a single trial, each scenario was followed by a question that asked for the most likely utterance by Ann. Participants selected one of eight possible utterances, by choosing between *It was* vs. *It wasn’t* and then among *terrible*, *bad*, *good*, and *amazing.* 
 
@@ -248,7 +248,8 @@ ms_var <- ms_utt %>%
   mutate(positivity = fct_recode(positivity, 
                                "It was ~" = "yes",
                                "It wasn't ~" = "not"),
-         positivity = fct_relevel(positivity, "It was ~"))
+         positivity = fct_relevel(positivity, "It was ~"),
+         goal = fct_recode(goal, "kind" = "social"))
 
 plot_var <- ggplot(ms_var,
        aes(x = model_prob, y = data_prob)) +
@@ -298,23 +299,23 @@ brm.tab <- as.data.frame(summary(brms_pol)$fixed) %>%
 brm.tab$Predictor <- c("Intercept",
                       "True state",
                       "Goal: Informative",
-                      "Goal: Social",
+                      "Goal: Kind",
                       "True state * Informative",
-                      "True state * Social"
+                      "True state * Kind"
                       )
 rownames(brm.tab) <- NULL
 brm.tab <- brm.tab[,c(5,1:4)]
 ```
 
-Our primary behavioral hypothesis was that speakers who found themselves describing bad states (e.g., Bob’s performance was bad) and who had goals to be both informative and social would produce more indirect, negative utterances (e.g., “It wasn’t terrible”). 
+Our primary behavioral hypothesis was that speakers who found themselves describing bad states (e.g., Bob’s performance was bad) and who had goals to be both informative and kind would produce more indirect, negative utterances (e.g., “It wasn’t terrible”). 
 Such indirect speech acts serve to save the listener’s face while also conveying a vague estimate of the true state. 
-This prediction was confirmed: a Bayesian mixed-effects model predicting negation as a function of true state and goal yielded an interaction such that a speaker with both informational and social goals produced more negation in worse states compared to a speaker with only the informational goal (*M* = `r brm.tab$Mean[5]`, [`r brm.tab$"95% CI-Lower"[5]`, `r brm.tab$"95% CI-Upper"[5]`]) and social goal (*M* = `r brm.tab$Mean[6]`, [`r brm.tab$"95% CI-Lower"[6]`, `r brm.tab$"95% CI-Upper"[6]`]). 
+This prediction was confirmed: a Bayesian mixed-effects model predicting negation as a function of true state and goal yielded an interaction such that a speaker with both goals to be informative and kind produced more negation in worse states compared to a speaker with only the goal to be informative (*M* = `r brm.tab$Mean[5]`, [`r brm.tab$"95% CI-Lower"[5]`, `r brm.tab$"95% CI-Upper"[5]`]) and goal to be kind (*M* = `r brm.tab$Mean[6]`, [`r brm.tab$"95% CI-Lower"[6]`, `r brm.tab$"95% CI-Upper"[6]`]). 
 
 To connect these behavioral data more directly to our model, we separately obtained literal meaning judgments about the utterances and incorporated them into our model's predictions. Using an independent sample of *N*=51 participants, we measured judgments of how well different utterances apply to each of the levels on the heart scale (e.g., to what extent is “terrible” true of 2 out of 3 hearts?). 
-These measurements were used in the Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$ (see Supplementary Materials for literal semantic results). 
+These measurements were used in a Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$ (see Supplementary Materials for literal semantic results). 
 Then we used a Bayesian analytic technique [@lee2014] to infer the parameters of the model (e.g., the speaker's utility weights in each goal condition; see Supplementary Materials for inferred parameters).
 
-```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals. Gray dotted line indicates chance level at 12.5\\%."}
+```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp <- ms_utt %>%  
   mutate(model = case_when(
     model == "NA" ~ "Human data", 
@@ -418,7 +419,7 @@ apa_table(comp_tab, caption = "Comparison of variance explained for each model v
 Predictions from the full polite speaker model showed a very strong fit to participants’ utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
 We also compared the predictions of our model with model variants containing different subsets of the three utilities in the full model (Figure 3; see Supplemental Materials: Model Comparison).
 Both the variance explained and the marginal likelihood of the observed data were the highest for the full model (see Table \@ref(tab:comparisonTable) and Figure \@ref(fig:comparison)).
-In particular, only the full model captured the participants’ preference for negation in the condition in which the speaker had both goals to be informative and social about truly bad states, as hypothesized. 
+In particular, only the full model captured the participants’ preference for negation in the condition in which the speaker had both goals to be informative and kind about truly bad states, as hypothesized. 
 The full model was superior to: the model with social and presentational utilities, which predicted outright false statements (“It was good”); the model with informational and social utilities, which predicted truthful statements “It was terrible” and “It wasn’t amazing” (that is semantically true when the poem was terrible); and to the model with informative and presentational utilities, which predicted that the speaker was equally likely to be truthful (“It was terrible”) or presentational ("It wasn't terrible").
 Thus, all three utilities -- informational, social, and presentational -- were required to fully explain participants’ choices.
 
@@ -430,18 +431,20 @@ Managing listeners’ inferences is a fundamental task for a socially conscious 
 Following @brown1987, cross-cultural differences in politeness could be a product of different weightings within the same utility structure. 
 It is also possible, however, that culture affects the value function $V$ that maps states of the world onto subjective values for the listener (e.g., pointing out bad states could be considered prosocial in certain cultural contexts; more generally, the mapping from states to utilities may be more complex than we have considered).
 Our formal modeling approach with systematic behavior measurements provides an avenue towards understanding the vast range of politeness practices found across languages.
-Further, politeness is just one of the ways that language use deviates from pure information transfer.
-When we flirt, insult, boast, and empathize, we balance information transmission with the goal to affect others’ feelings or present particular views of ourselves. 
-A similar utility structure to the one we employed here could give insights into these behaviors as well. 
 
-The formalization of the presentational utility is especially meaningful in that it begins to precisely define self-oriented motivations behind polite speech and other related behaviors. 
-To the best of our knowledge, previous theories of politeness have not explained how the motivations of the other- vs. self-oriented concerns are related or how they trade off to inform the speaker’s utterance choices. 
-In our current model, the self-oriented concern stems from an other-oriented concern, as the speaker wants to appear to care about the other person’s face or access to knowledge. 
-The model then makes precise predictions about how the speaker considering both of these concerns will choose her utterances. 
-This work then can be extended to not only other speech acts, but also a wide range of behaviors that can be modeled as utility-driven inference in a social context [@baker2017rational; @hamlin2013mentalistic] where agents need to take into account concerns about both self and others.
+Our work extends previous models of language beyond standard informational utilities
+ to address social and self-presentational concerns.
+Previous theories of language use have not explained how informational versus social concerns trade off to inform the speaker’s utterance choices. 
+Thus, this work represents a key theoretical advance exploring how Gricean informational cooperativity interacts with other social goals.
+The current work opens up important communicative behaviors to formal modeling. 
+Politeness is just one of the ways that language use deviates from pure information transfer;
+When we flirt, insult, boast, and empathize, we balance information transmission with the goal to affect others’ feelings or present particular views of ourselves. 
+A similar utility structure to our model could give insights into these speech acts and a wide range of behaviors that can be modeled as utility-driven inference in a social context [@baker2017rational; @hamlin2013mentalistic] where agents need to take into account concerns about both self and others.
+
 
 In sum, this work takes a concrete step toward quantitative models of the nuances of human speech. 
 And it moves us closer to courteous computation – to computers that communicate with tact.
+
 
 # Acknowledgments
 
@@ -536,7 +539,7 @@ apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker
 
 In the speaker production task, participants were told the speakers’ intentions (e.g., wanted to make Bob feel good). 
 We assume that the intention descriptions conveyed some mixture of weights $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
-We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to X"; *social*, *informative*, or *both*).
+We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to be X"; *kind*, *informative*, or *both*).
 In addition, the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
 $\lambda_{S_1}$ was 1, and $\lambda_{S_2}$ was inferred from the data: 
 We put a prior that was consistent with those used for similar models in this model class: $\lambda_{S_2}$ ~ $Uniform(0,20)$.
@@ -589,7 +592,14 @@ qplot(state, judgment,
 ```{r utterance, echo=FALSE, out.width = "\\textwidth", fig.pos = "!h", fig.height=6, fig.cap="Experimental results (solid lines) and fitted predictions from the full model (dashed lines) for speaker production. Proportion of utterances chosen (utterance type – direct vs. indirect – in different colors and words shown on x-axis) given the true states (columns) and speaker goals (rows). Error bars represent 95\\% confidence intervals for the data and 95\\% highest density intervals for the model. Black dotted line represents the chance level."}
 plot.utt <- ggplot(data=ms_utt %>%
                      filter(source == "data" | model == "full") %>%
-                     mutate(positivity = fct_relevel(positivity, "not")), 
+                     mutate(positivity = fct_relevel(positivity, "not"),
+                            true_state = fct_recode(true_state,
+                                                    "0 heart" = "0", 
+                                                    "1 heart" = "1", 
+                                                    "2 hearts" = "2", 
+                                                    "3 hearts" = "3" 
+                                                    ),
+                            goal = fct_recode(goal, "kind" = "social")), 
        aes(x=utterance, y=prob, group = interaction(positivity, source), colour = positivity, linetype = source)) +
   geom_line()+
   facet_grid(goal~true_state, labeller = labeller(goal = label_both)) +
@@ -611,7 +621,7 @@ plot.utt
 #        path = here::here("02_analysis/03_figs"))
 ```
 
-```{r comparisonAll, echo=FALSE, out.width = "\\textwidth", fig.pos = "!h", fig.width=11, fig.height=7, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart and speaker with informative (top), social (middle), and both goals (bottom). Gray dotted line indicates chance level at 12.5\\%."}
+```{r comparisonAll, echo=FALSE, out.width = "\\textwidth", fig.pos = "!h", fig.width=11, fig.height=7, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart and speaker with a goal to be informative (top), kind (middle), or both (bottom). Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp.all <- ms_utt %>%  
   mutate(model = case_when(
     model == "NA" ~ "Human data", 
@@ -627,7 +637,9 @@ plot.comp.all <- ms_utt %>%
   mutate(positivity = fct_recode(positivity,
                                  "It was ~" = "yes",
                                  "It wasn't ~" = "not"),
-         positivity = fct_relevel(positivity, "It wasn't ~")) %>%
+         positivity = fct_relevel(positivity, "It wasn't ~"),
+         goal = fct_recode(goal, "kind" = "social") 
+         ) %>%
   filter(true_state == "0") %>%
   ggplot(., 
        aes(x=utterance, y=prob, fill=positivity, 
@@ -636,7 +648,7 @@ plot.comp.all <- ms_utt %>%
            colour = positivity)) +
   geom_hline(yintercept=.125, lty=2, color="gray") +
   geom_line()+
-  facet_grid(goal~model) +
+  facet_grid(goal~model, labeller = labeller(goal = label_both)) +
   xlab("utterance") +
   geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position="dodge") +
   ylim(0,.7)+
