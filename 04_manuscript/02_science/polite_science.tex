@@ -150,8 +150,8 @@ understanding of human language use.
 %%%%% Introduction %%%%%%%
 %%%%%%%%%%%%%%%%%%
 
-We don't always say what we're thinking. Although \enquote{close the
-window!} could be sufficient, we say \enquote{can you please\ldots{}?}
+We don't always say what we're thinking. \enquote{Close the
+window!} could be sufficient, but we add \enquote{can you please\ldots{}?}
 or \enquote{would you mind\ldots{}?} Rather than telling an
 uncomfortable truth, we lie (\enquote{Your dress looks great!}) and
 prevaricate (\enquote{Your poem was so appropriate to the occasion}).
@@ -163,37 +163,34 @@ accurate: The speaker should choose a succinct utterance  to convey
 what the speaker knows \cite{grice1975, searle1975},
 and the information transferred should be accurate and truthful 
 to the extent of the speaker's knowledge. Polite speech --
-like the examples above -- violates these basic expectations about the
-nature of communication: It is typically inefficient and
-underinformative, and sometimes even outright false. So why are we
+like the examples above -- violates these basic expectations: It is inefficient,
+underinformative, and sometimes outright false. So why are we
 polite?
 
 Theories of politeness explain deviations from optimal information
 transfer in language by assuming that speakers take into account social,
-as well as informational, concerns. These concerns are sometimes
-expressed as sets of polite maxims \cite{leech1983} or social norms \cite{ide1989}, 
-but the most influential account of politeness relies on the
-notion of \enquote{face} to motivate deviations \cite{brown1987, goffman1967}. 
-On this theory, interactants seek to be liked,
-approved, and related to (\enquote{positive face}) as well as maintain
-their freedom to act (\enquote{negative face}).
-Both inefficient indirect speech and untruthful lies in communication
-are then the result of speakers' strategic choices relative to possible
-face threats.
+as well as informational, concerns. 
+The most influential account of politeness relies on the notion of \emph{face} to motivate deviations \cite{brown1987, goffman1967}, though these concerns have also been described as polite maxims \cite{leech1983} or social norms \cite{ide1989}. 
+On face-based framework for polite language, interactants seek to be liked,
+approved, and related to (\emph{positive face}) as well as maintain
+their freedom to act (\emph{negative face}).
+Though intuitively appealing, the theory is not clear when face saving should yield indirect (e.g., \enquote{Your cake could use a bit of salt}) vs. false (\enquote{It's tasty}) statements and when face should be prioritized over other concerns (e.g., helpful information transfer).
+Further, a mutually-understood notion of face introduces additional complexity:  Speakers may choose particular strategies not only to preserve the listener's face genuinely, but also to be \emph{seen} as doing so, hence appearing to be considerate and socially apt and saving their own face---a presentational goal.
+What is needed is a theory of the communicative goals and how they trade off. 
 
-The face-based framework for polite language use provides an intuitive
-and appealing explanation of many types of polite speech, but it does
-not precisely define how competing communicative goals trade off with
-one another. For example, it is unclear when the desire to save face
-will motivate statements that are outright false (\enquote{Your cake is
-delicious!}) versus indirect (\enquote{It could use a bit of salt}), and
-when face-saving should be prioritized over other concerns (e.g.,
-helpful information transfer).\\
-Further, presentational goals related to face have not been formally
-addressed: Speakers may choose particular strategies not only to
-preserve the listener's face genuinely, but also to be \emph{seen} as
-doing so, hence appearing to be considerate and socially apt and saving
-their own face.
+%The theory, however, does not articulate how these communicative goals should trade off with
+%one another. 
+%For example, it is unclear when the desire to save face
+%will motivate statements that are outright false (\enquote{Your cake is
+%delicious!}) versus indirect (\enquote{It could use a bit of salt}), and
+%when face-saving should be prioritized over other concerns (e.g.,
+%helpful information transfer).
+%Both inefficient indirect speech and untruthful lies in communication
+%are then the result of speakers' strategic choices relative to possible
+%face threats.
+%The face-based framework for polite language use provides an intuitive
+%and appealing explanation of many types of polite speech, but it
+
 
 %%%%%%%%%%%%%%%%%%
 %%%%%% Model %%%%%%%
@@ -375,9 +372,8 @@ utterances apply to each of the levels on the heart scale (e.g., to what
 extent is \enquote{terrible} true of 2 out of 3 hearts?). These
 measurements were used to approximate the semantics of the words as
 interpreted by the literal listener \(L_0\). 
-Then we used a Bayesian analytic technique \cite{lee2014} 
-to infer the parameters of
-the model (e.g., the speaker's utility weights in each goal condition;
+We built a Bayesian statistical model \cite{lee2014} to infer the parameters of
+the RSA model (e.g., the speaker's utility weights in each goal condition;
 see Supplementary Materials).
 
 \begin{figure}
@@ -437,7 +433,14 @@ particular, only the full model captured the participants' preference
 for negation in the condition in which the speaker had both goals to be
 informative and kind about truly bad states, as hypothesized. Thus, all
 three utilities -- informational, social, and presentational -- were
-required to fully explain participants' choices.
+required to fully explain participants' utterance choices.
+
+The actual parameter values inferred for the full model (Table S2) provide additional insight into how polite language use operates. 
+\emph{Being nice} requires equal weights on all three utilities, indicating that Gricean informativity needs to be part of language use even when that is explicitly not the goal. 
+\emph{Being informative} pushes the weight on kindness close to zero, but the weight on \emph{appearing kind} stays high, indicating that speakers are expected to manage their own face even when they are not considering other's. 
+Speakers who are \emph{nice and informative} emphasize honesty slightly more than kindness. 
+In all cases the presentational utilities actually have greatest weight, indicating perhaps that appearing honest and kind is more important than being so!
+
 
 %%%%%%%%%%%%%%%%%%
 %%%%% Implications %%%%%%%
