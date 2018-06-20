@@ -125,7 +125,7 @@ Rather than telling an uncomfortable truth, we lie (“Your dress looks great!�
 Such utterances are puzzling for standard views of language use, which see communication as the transfer of information from a sender to a receiver [@buhler1934; @jakobson1960; @shannon1948; @frank2012]. 
 Under information-based views, the transfer ought to be efficient and accurate: 
 The speaker should choose a succinct utterance to convey what the speaker knows [@grice1975; @searle1975], 
-and the information transferred should be accurate and truthful to the extent that the speaker knows or believes to be true. 
+and the information transferred should be accurate and truthful to the extent of the speaker's knowledge. 
 Polite speech – like the examples above – violates these basic expectations about the nature of communication: 
 It is typically inefficient and underinformative, and sometimes even outright false. 
 So why are we polite? 
@@ -137,7 +137,7 @@ On this theory, interactants seek to be liked, approved, and related to (“posi
 Both inefficient indirect speech and untruthful lies in communication are then the result of speakers’ strategic choices relative to possible face threats.
 
 The face-based framework for polite language use provides an intuitive and appealing explanation of many types of polite speech, 
-but it does not precisely define the competing communicative goals trade off with one another.
+but it does not precisely define how competing communicative goals trade off with one another.
 For example, it is unclear when the desire to save face will motivate statements that are outright false ("Your cake is delicious!") versus indirect ("It could use a bit of salt"), 
 and when face-saving should be prioritized over other concerns (e.g., helpful information transfer).  
 Further, presentational goals related to face have not been formally addressed: 
@@ -149,10 +149,8 @@ an informational utility, derived via classical, effective information transmiss
 a social utility, derived by being kind to provide positive affect to others, thereby saving the listener's face; 
 and a self-presentational utility, derived by appearing in a particular way to other agents and thus saving the speaker's own face. 
 Speakers then can choose between different utterances on the basis of their expected utility. 
-The lie that a poem "was good" provides social utility by making its writer feel good, but does not inform about the true state of the world. 
 
-Informational, social, and self-presentational utilities are weighed within a Rational Speech Act (RSA) model. 
-RSA models take a probabilistic approach to pragmatic reasoning in language [@frank2012; @goodman2016]: 
+The utilities are weighed within a Rational Speech Act (RSA) model that takes a probabilistic approach to pragmatic reasoning in language [@frank2012; @goodman2016]: 
 Speakers are modeled as agents who choose utterances by reasoning about their effects on a listener relative to their cost, 
 while listeners are modeled as inferring interpretations by reasoning about speakers and their goals. 
 This class of models has been effective in understanding a wide variety of complex linguistic behaviors, including vagueness [@lassiter2017adjectival], hyperbole [@kao2014], and irony [@kao2015], among others. 
@@ -171,8 +169,7 @@ $S_2$ reasons about what utterance to say to $L_1$ by considering the set of uti
 namely, whether an utterance results in $L_1$ gaining information, feeling positively, or judging $S_2$ to be either informative or kind (Figure \@ref(fig:model)). 
 
 We evaluate our model by predicting human utterance choices in situations where polite language use is expected. 
-Imagine Bob recited his poem and is ignorant of the quality of his poem recital; 
-he asks Ann how well he did. 
+Imagine Bob recited his poem and asks Ann how well he did. 
 Ann (the pragmatic speaker $S_2$) produces an utterance $w$ based on the true state of the world $s$ (i.e., the rating truly deserved by Bob’s recital) and a set of goal weights $\hat{\phi}$, 
 each of which determines how much speaker Ann prioritizes a particular goal compared to other possible goals. 
 Ann's production decision is softmax, which interpolates between maximizing and probability matching [via the parameter $\lambda_{S_2}$; @goodman2013]:
@@ -212,10 +209,10 @@ Finally, utterances that are more complex incur a greater cost, $C(w)$ – captu
 In our work, utterances with negation (e.g., “not terrible”) are assumed to be slightly more costly than their equivalents with no negation (given by a parameter inferred from data; see Supplemental Materials). 
 
 Intuitively, if Bob’s performance was good, Ann’s utilities align to lead her to say something positive. 
-By saying “[Your poem] was amazing,” Ann is simultaneously being truthful, kind, and appearing both and truthful and kind.
+By saying “[Your poem] was amazing,” Ann is simultaneously being truthful, kind, and appearing both truthful and kind.
 If Bob’s performance was poor, however, Ann is in a bind: 
-Ann could be kind and say "It was great", but she does so at the cost of conveying the wrong information to Bob (e.g., if he mistakenly infers Ann’s goal to be truthful and hence believes that his recital was actually good).
-Worse yet, Bob could infer that Ann is “just being nice”, and think of her as a dishonest, unhelpful speaker. 
+Ann could be kind and say "It was great", but she does so at the cost of conveying the wrong information to Bob if he believes her to be truthful.
+Or, worse yet, Bob could infer that Ann is “just being nice”, and think of her as a dishonest, unhelpful speaker. 
 Alternatively, she could say the truth (“It was bad”), but then Bob would think Ann didn’t care about him. 
 What is a socially-aware speaker to do? 
 Our model predicts that indirect speech – like “It wasn’t bad” – helps navigate Ann’s dilemma. 
@@ -223,9 +220,9 @@ It conveys some true information (e.g., literally it wasn't the worst it could h
 Further, by incurring the slightly higher cost involved in producing another word, Bob could reason that Ann had reasons for not saying a simpler alternative like “It was good” and that she must have taken his feelings into account in her utterance. 
 
 We made a direct test of our model by instantiating the example above in an online experiment (*N* = 202; see our pre-registered model, hypothesis, and procedure at \url{https://github.com/ejyoon/polite_speaker}). 
-Participants read scenarios in which we provided information about the speaker’s (Ann’s, in our example) feelings toward some performance or product (e.g., poem recital; *true state*), which were shown on a scale from zero to three hearts (e.g., one out of three hearts). 
+Participants read scenarios in which we provided information about the speaker’s (Ann’s, in our example) feelings toward some performance or product (e.g., poem recital; *true state*), which were shown on a scale from zero to three hearts. 
 We manipulated the speaker’s *goal* across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“to make the listener feel good”); or to be *both* informative and kind at the same time. 
-We hypothesized that each of the three goals will represent a tradeoff between the three utilities in our model described above (their inferred values are available in the Supplementary Materials). 
+We hypothesized that each of the three goals will represent a tradeoff between the three utilities in our model described above (see Supplementary Materials for their inferred values). 
 In a single trial, each scenario was followed by a question that asked for the most likely utterance by Ann. Participants selected one of eight possible utterances, by choosing between *It was* vs. *It wasn’t* and then among *terrible*, *bad*, *good*, and *amazing.* 
 
 ```{r data_bayes_factor}
@@ -307,13 +304,13 @@ rownames(brm.tab) <- NULL
 brm.tab <- brm.tab[,c(5,1:4)]
 ```
 
-Our primary behavioral hypothesis was that speakers who found themselves describing bad states (e.g., Bob’s performance was bad) and who had goals to be both informative and kind would produce more indirect, negative utterances (e.g., “It wasn’t terrible”). 
+Our primary behavioral hypothesis was that speakers describing bad states (e.g., Bob’s performance was bad) with goals to be both informative and kind would produce more indirect, negative utterances (e.g., “It wasn’t terrible”). 
 Such indirect speech acts serve to save the listener’s face while also conveying a vague estimate of the true state. 
 This prediction was confirmed: a Bayesian mixed-effects model predicting negation as a function of true state and goal yielded an interaction such that a speaker with both goals to be informative and kind produced more negation in worse states compared to a speaker with only the goal to be informative (*M* = `r brm.tab$Mean[5]`, [`r brm.tab$"95% CI-Lower"[5]`, `r brm.tab$"95% CI-Upper"[5]`]) and goal to be kind (*M* = `r brm.tab$Mean[6]`, [`r brm.tab$"95% CI-Lower"[6]`, `r brm.tab$"95% CI-Upper"[6]`]). 
 
 To connect these behavioral data more directly to our model, we separately obtained literal meaning judgments about the utterances and incorporated them into our model's predictions. Using an independent sample of *N*=51 participants, we measured judgments of how well different utterances apply to each of the levels on the heart scale (e.g., to what extent is “terrible” true of 2 out of 3 hearts?). 
-These measurements were used in a Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$ (see Supplementary Materials for literal semantic results). 
-Then we used a Bayesian analytic technique [@lee2014] to infer the parameters of the model (e.g., the speaker's utility weights in each goal condition; see Supplementary Materials for inferred parameters).
+These measurements were used in a Bayesian data analysis to approximate the semantics of the words as interpreted by the literal listener agent $L_0$. 
+Then we used a Bayesian analytic technique [@lee2014] to infer the parameters of the model (e.g., the speaker's utility weights in each goal condition; see Supplementary Materials for literal semantic results and inferred parameters).
 
 ```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp <- ms_utt %>%  

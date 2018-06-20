@@ -123,22 +123,6 @@ informative and kind}
 
 % Place your abstract within the special {sciabstract} environment.
 
-%\begin{sciabstract}
-%Conveying information in a false or indirect manner in consideration of
-%listeners' wants (i.e.~being polite) seemingly contradicts an important
-%goal of communication: information transfer. We model production
-%of polite speech in which speakers deviate from being maximally
-%informative for social reasons. We show that speakers produce polite
-%speech due to their desires to be helpful -- both epistemically (convey
-%the true state to the listener) and socially (make the listener feel
-%good) -- and to \emph{appear} helpful. We formalize this tradeoff
-%between speaker's goals within a probabilistic model and show the model
-%is able to predict people's polite speech production judgments. Our
-%extension of formal language modeling frameworktheories of language to account for speakers' social
-%goals represents an advance in understanding of human speech.
-%\end{sciabstract}
-
-
 \begin{sciabstract}
 Being polite, or conveying information in a false or indirect manner in
 deference to someone else's feelings, seemingly contradicts an important
@@ -177,8 +161,8 @@ receiver \cite{buhler1934, shannon1948, jakobson1960, frank2012}. Under
 information-based views, the transfer ought to be efficient and
 accurate: The speaker should choose a succinct utterance  to convey
 what the speaker knows \cite{grice1975, searle1975},
-and the information transferred should be accurate and truthful to the
-extent that the speaker knows or believes to be true. Polite speech --
+and the information transferred should be accurate and truthful 
+to the extent of the speaker's knowledge. Polite speech --
 like the examples above -- violates these basic expectations about the
 nature of communication: It is typically inefficient and
 underinformative, and sometimes even outright false. So why are we
@@ -199,7 +183,7 @@ face threats.
 
 The face-based framework for polite language use provides an intuitive
 and appealing explanation of many types of polite speech, but it does
-not precisely define the competing communicative goals trade off with
+not precisely define how competing communicative goals trade off with
 one another. For example, it is unclear when the desire to save face
 will motivate statements that are outright false (\enquote{Your cake is
 delicious!}) versus indirect (\enquote{It could use a bit of salt}), and
@@ -224,12 +208,9 @@ transmission; a social utility, derived by being kind to provide
 positive affect to others, thereby saving the listener's face; and a
 self-presentational utility, derived by appearing in a particular way to
 other agents and thus saving the speaker's own face. Speakers then can choose
-between different utterances on the basis of their expected utility. The
-lie that a poem \enquote{was good} provides social utility by making its
-writer feel good, but does not inform about the true state of the world.
+between different utterances on the basis of their expected utility. 
 
-Informational, social, and self-presentational utilities are weighed
-within a Rational Speech Act (RSA) model. RSA models take a
+The utilities are weighed within a Rational Speech Act (RSA) model that takes a
 probabilistic approach to pragmatic reasoning in language \cite{frank2012, goodman2016}: 
 Speakers are modeled as agents
 who choose utterances by reasoning about their effects on a listener
@@ -274,7 +255,7 @@ judging \(S_2\) to be either informative or kind (Figure
 
 We evaluate our model by predicting human utterance choices in
 situations where polite language use is expected. Imagine Bob recited
-his poem and is ignorant of the quality of his poem recital; he asks Ann
+his poem and asks Ann
 how well he did. Ann (the pragmatic speaker \(S_2\)) produces an
 utterance \(w\) based on the true state of the world \(s\) (i.e., the
 rating truly deserved by Bob's recital) and a set of goal weights
@@ -343,20 +324,20 @@ Intuitively, if Bob's performance was good, Ann's utilities align to
 lead her to say something positive. By saying \enquote{{[}Your poem{]}
 was amazing,} Ann is simultaneously being truthful, kind, and appearing
 both and truthful and kind. If Bob's performance was poor, however, Ann
-is in a bind: Ann could be kind and say \enquote{It was great}, but she
-does so at the cost of conveying the wrong information to Bob (e.g., if
-he mistakenly infers Ann's goal to be truthful and hence believes that
-his recital was actually good). Worse yet, Bob could infer that Ann is
-\enquote{just being nice,} inferring her goal to be social, and discount
-her comment as uninformative. Alternatively, she could say the truth
+is in a bind:
+ Ann could be kind and say \enquote{It was great}, but she does so 
+ at the cost of conveying the wrong information to Bob if he believes 
+ her to be truthful. Or, worse yet, Bob could infer that Ann is
+\enquote{just being nice,} and think of her as a dishonest, unhelpful speaker. 
+Alternatively, she could say the truth
 (\enquote{It was bad}), but then Bob would think Ann didn't care about
 him. What is a socially-aware speaker to do? Our model predicts that
 indirect speech -- like \enquote{It wasn't bad} -- helps navigate Ann's
-dilemma. It conveys some true information (e.g., literally it was the
+dilemma. It conveys some true information (e.g., literally it wasn't the
 worst it could have been) while being sufficiently open-ended to spare
 Bob's feelings. Further, by incurring the slightly higher cost involved
 in producing another word, Bob could reason that Ann had reasons for not
-saying a simpler alternative like \enquote{It was good} and and that she
+saying a simpler alternative like \enquote{It was good} and that she
 must have taken his feelings into account in her utterance.
 
 %%%%%%%%%%%%%%%%%%
@@ -364,20 +345,18 @@ must have taken his feelings into account in her utterance.
 %%%%%%%%%%%%%%%%%%
 
 We made a direct test of our model by instantiating the example above in
-an online experiment (\emph{N} = 202; see our pre-registered model,
-hypothesis, and procedure at
-\url{https://github.com/ejyoon/polite_speaker}). Participants read
+an online experiment (\emph{N} = 202). Participants read
 scenarios in which we provided information about the speaker's (Ann's,
 in our example) feelings toward some performance or product (e.g., poem
 recital; \emph{true state}), which were shown on a scale from zero to
-three hearts (e.g., one out of three hearts). We manipulated the
+three hearts. We manipulated the
 speaker's \emph{goal} across trials: to be \emph{informative}
 (\enquote{give accurate and informative feedback}); to be \emph{kind}
 (\enquote{to make the listener feel good}); or to be \emph{both}
 informative and kind at the same time. We hypothesized that each of
 the three goals will represent a tradeoff between the three utilities in
-our model described above (their inferred values are available in the
-Supplementary Materials). In a single trial, each scenario was followed
+our model described above (see Supplementary Materials for their inferred values). 
+In a single trial, each scenario was followed
 by a question that asked for the most likely utterance by Ann.
 Participants selected one of eight possible utterances, by choosing
 between \emph{It was} vs. \emph{It wasn't} and then among
@@ -396,10 +375,9 @@ predictions. Error bars represent 95\% confidence intervals for the data
 (horizontal).}
 \end{figure}
 
-Our primary behavioral hypothesis was that speakers who found themselves
-describing bad states (e.g., Bob's performance was bad) and who had
-goals to be both informative and kind would produce more indirect,
-negative utterances (e.g., \enquote{It wasn't terrible}). Such indirect
+Our primary behavioral hypothesis was that speakers describing bad states 
+(e.g., Bob?s performance was bad) with goals to be both informative and kind 
+would produce more indirect, negative utterances (e.g., \enquote{It wasn't terrible}). Such indirect
 speech acts serve to save the listener's face while also conveying a
 vague estimate of the true state. This prediction was confirmed: a
 Bayesian mixed-effects model predicting negation as a function of true
@@ -417,11 +395,10 @@ different utterances apply to each of the levels on the heart scale
 (e.g., to what extent is \enquote{terrible} true of 2 out of 3 hearts?).
 These measurements were used in a Bayesian data analysis to
 approximate the semantics of the words as interpreted by the literal
-listener agent \(L_0\) (see Supplementary Materials for literal semantic
-results). Then we used a Bayesian analytic technique \cite{lee2014} 
+listener agent \(L_0\). Then we used a Bayesian analytic technique \cite{lee2014} 
 to infer the parameters of the model (e.g., the
 speaker's utility weights in each goal condition; see Supplementary
-Materials for inferred parameters).
+Materials for literal semantic results and inferred parameters).
 
 \begin{figure}
 \centering
@@ -558,10 +535,16 @@ computation -- to computers that communicate with tact.
 
 
 \section*{Acknowledgments}
-This work was supported by NSERC PGS Doctoral scholarship
+\emph{Funding}: This work was supported by NSERC PGS Doctoral scholarship
 PGSD3-454094-2014 to EJY, NSF Graduate Research Fellowship DGE-114747 to
 MHT, ONR grant N00014-13-1-0788 to NDG, and NSF grant BCS 1456077 to
-MCF.
+MCF. 
+\emph{Author contributions}: E.J.Y., M.H.T., N.D.G., and M.C.F. designed research; 
+E.J.Y. and M.H.T. performed research; E.J.Y. and M.H.T. analyzed data; and E.J.Y., M.H.T., N.D.G., and M.C.F. wrote the paper.
+\emph{Competing interests}: The authors declare no conflict of interest.
+\emph{Data and materials availability}: Our pre-registered model,
+hypothesis, and procedure, as well as all of our data and analyses are available at
+\url{https://github.com/ejyoon/polite_speaker}.
 
 %Here you should list the contents of your Supplementary Materials -- below is an example. 
 %You should include a list of Supplementary figures, Tables, and any references that appear only in the SM. 
