@@ -151,8 +151,9 @@ understanding of human language use.
 %%%%%%%%%%%%%%%%%%
 
 We don't always say what we're thinking. \enquote{Close the
-window!} could be sufficient, but we add \enquote{can you please\ldots{}?}
-or \enquote{would you mind\ldots{}?} Rather than telling an
+window!} could be sufficient, but instead we add \enquote{can you please\ldots{}?}
+or \enquote{would you mind\ldots{}?} 
+Rather than tell an
 uncomfortable truth, we lie (\enquote{Your dress looks great!}) and
 prevaricate (\enquote{Your poem was so appropriate to the occasion}).
 Such utterances are puzzling for standard views of language use, which
@@ -171,12 +172,12 @@ Theories of politeness explain deviations from optimal information
 transfer in language by assuming that speakers take into account social,
 as well as informational, concerns. 
 The most influential account of politeness relies on the notion of \emph{face} to motivate deviations \cite{brown1987, goffman1967}, though these concerns have also been described as polite maxims \cite{leech1983} or social norms \cite{ide1989}. 
-On face-based framework for polite language, interactants seek to be liked,
+Under the face-based framework for polite language, interactants seek to be liked,
 approved, and related to (\emph{positive face}) as well as maintain
 their freedom to act (\emph{negative face}).
-Though intuitively appealing, the theory is not clear when face saving should yield indirect (e.g., \enquote{Your cake could use a bit of salt}) vs. false (\enquote{It's tasty}) statements and when face should be prioritized over other concerns (e.g., helpful information transfer).
+Though intuitively appealing, the theory does not describe when face saving should yield indirect (e.g., \enquote{Your cake could use a bit of salt}) vs. false (\enquote{It's tasty}) statements nor when face should be prioritized over other concerns (e.g., helpful information transfer).
 Further, a mutually-understood notion of face introduces additional complexity:  Speakers may choose particular strategies not only to preserve the listener's face genuinely, but also to be \emph{seen} as doing so, hence appearing to be considerate and socially apt and saving their own face---a presentational goal.
-What is needed is a theory of the communicative goals and how they trade off. 
+What is needed is a theory of these communicative goals and how they trade off. 
 
 %The theory, however, does not articulate how these communicative goals should trade off with
 %one another. 
@@ -203,7 +204,7 @@ utilities: an informational utility, derived via classical, effective
 information transmission; a social utility, derived by being kind and
 saving the listener's face; and a self-presentational utility, derived
 by appearing in a particular way to save the speaker's own face.
-Speakers then choose between different utterances on the basis of their
+Speakers then choose utterances on the basis of their
 expected utility.
 
 The utilities are weighed within a Rational Speech Act (RSA) model that
@@ -216,9 +217,7 @@ of models has been effective in understanding a wide variety of complex
 linguistic behaviors \cite{lassiter2017adjectival, kao2014, kao2015}, and, 
 more broadly, the idea that human social cognition can
 be approximated via reasoning about others as rational agents who act to
-maximize their subjective utility \cite{baker2009action}, a
-hypothesis which has found support in a wide variety of work with both
-adults and children \cite{jara2016naive, liu2017ten}.
+maximize their subjective utility \cite{baker2009action} has found a wide variety of empirical support in studies with both adults and children \cite{jara2016naive, liu2017ten}.
 
 %\begin{figure}
 %\includegraphics[width=6.23in]{fig/model} \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
@@ -234,34 +233,33 @@ adults and children \cite{jara2016naive, liu2017ten}.
 
 
 RSA models are defined recursively such that speakers reason about
-listeners, and vice versa. By convention this recursion is indexed such
-that a pragmatic listener \(L_1\) reasons about what intended meaning
-and goals would have led a speaker \(S_1\) to produce a particular
-utterance. Then \(S_1\) reasons about a \enquote{literal listener}
-\(L_0\), modeled as attending only to the literal meanings of words
-(rather than their pragmatic implications), and hence grounds the
-recursion. The target of our current work is a model of a polite speaker
+listeners, and vice versa. By convention, we index this recursion such that a pragmatic listener \(L_1\) reasons about the intended meaning
+and goals a speaker \(S_1\) would have had in order to produce a particular
+utterance. 
+\(S_1\) produces utterances by reasoning about a \enquote{literal listener} \(L_0\), modeled as attending only to the literal meanings of words
+(rather than their pragmatic implications), hence grounding the
+recursion. 
+The target of this work is a model of a polite speaker
 \(S_2\): \(S_2\) reasons about what utterance to say to \(L_1\) by
 considering the set of utilities described above (Figure
-@ref(fig:model)).
+\ref{fig:model}).
 
-We evaluate our model by predicting human utterance choices in
-situations where polite language use is expected. Imagine Bob recited
-his poem and asks Ann how well he did. Ann (\(S_2\)) produces an
-utterance \(w\) based on the true state of the world \(s\) (i.e., the
-rating truly deserved by Bob's recital) and a set of goal weights
-\(\hat{\phi}\), that determines how much Ann prioritizes each goal.
+We test our model by its ability to predict human utterance choices in situations where polite language use is expected. Imagine Bob recites a poem he wrote and asks Ann for her opinion. 
+Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \(s\) (i.e., the rating truly deserved by Bob's recital) and a set of goal weights
+\(\hat{\phi}\), that determine how Ann prioritizes each goal.
 Ann's production decision is softmax, which interpolates between
 maximizing and probability matching (\(\lambda_{S_2}\); \cite{goodman2013}):
 
 \[P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})])\].
 
-What goals must the speaker consider to arrive at a polite utterance? We
-consider three utilities: informational, social, and presentational. The
+We consider three goals that the speaker could consider to arrive at a polite utterance: informational, social, and presentational. 
+The
 total utility of an utterance is the weighted combination of the three
-utilities minus the utterance cost \(C(w)\):
+utilities minus the utterance cost \(C(w)\), which captures the general pressure towards economy in speech:
 
-\[U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \phi_{pres} \cdot U_{pres}(w; s) - C(w)\].
+\[U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \phi_{pres} \cdot U_{pres}(w; s) - C(w)\]
+
+\noindent In this work, utterances with negation (e.g., \enquote{not terrible}) are assumed to be slightly costlier than their equivalents with no negation.
 
 The first utility term is a standard \emph{informational utility}
 (\(U_{inf}\)), which represents the speaker's desire to be epistemically
@@ -269,15 +267,13 @@ helpful. The informational utility captures the amount of information a
 literal listener (\(L_0\)) would still not know about the world state
 after hearing the speaker's utterance:
 \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
-
 Second, we define the \emph{social utility} (\(U_{soc}\)) as the value
-\(V(s)\), or expected subjective utility, to the listener of the state
-inferred given the utterance:
+\(V(s)\), or expected subjective utility, of the state implied to the listener by the utterance:
 \(U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]\). This value
 captures the idea that listeners want to hear that they are in a good
 state of the world (e.g., Bob would prefer that his poem was good).
 
-If listeners try to infer the goals that a speaker is entertaining
+If listeners are uncertain and try to infer the goals that a speaker is entertaining
 (e.g., social vs.~informational), speakers may choose utterances in
 order to convey that they had certain goals in mind. The third and the
 most novel component of our model, \emph{presentational utility}
@@ -286,39 +282,27 @@ listener to have a particular goal in mind (e.g., to be kind). Formally,
 
 \[U_{pres}(w) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w)\].
 
-The speaker considers the beliefs of listener \(L_1\), who hears an
-utterance and jointly infers both the speaker's utilities and the true
-state of the world:
+\noindent In order to define this term, the speaker must consider that the listener \(L_1\) reasons about the speaker's utilities together with the true state of the world:
 
 \[P_{L_1}(s, \hat{\phi} | w) \propto P_{S_1}(w | s, \hat{\phi}) \cdot P(s) \cdot p(\hat{\phi})\].
 
-This presentational utility is higher-order in that it can only be
-defined for a speaker thinking about a listener who evaluates a speaker.
-(i.e., it can be defined for \(S_2\), but not \(S_1\).)
+\noindent This presentational utility $U_{pres}$ is of a higher-order than the other utilities in that it can only be
+defined for a speaker thinking about a listener who evaluates a speaker (i.e., it can be defined for \(S_2\), but not \(S_1\)).
 
-Finally, more complex utterances incur a greater cost, \(C(w)\) --
-capturing the general pressure towards economy in speech. In our work,
-utterances with negation (e.g., \enquote{not terrible}) are assumed to
-be slightly costlier than their equivalents with no negation.
 
-Intuitively, if Bob's performance was good, Ann's utilities align toward
-a positive utterance. By saying \enquote{{[}Your poem{]} was amazing,}
-Ann is simultaneously being truthful, kind, and appearing both truthful
-and kind. If Bob's performance was poor, however, Ann is in a bind: Ann
-could be kind and say \enquote{It was great}, but at the cost of
-conveying the wrong information to Bob if he believes her to be
-truthful. Or, worse yet, Bob could infer Ann is \enquote{just being
-nice}, and think of her as a dishonest, unhelpful speaker.
-Alternatively, she could say the truth (\enquote{It was bad}), but then
+Intuitively, if Bob's performance was good, Ann's utilities align towards producing a positive utterance. By saying \enquote{{[}Your poem{]} was amazing,}
+Ann is simultaneously being truthful, kind, and appearing both truthful and kind. 
+If Bob's performance was poor, however, Ann is in a bind: Ann could be kind and say \enquote{It was great}, but at the cost of conveying the wrong information to Bob if he believes her to be truthful. 
+Worse yet, Bob could infer Ann is \enquote{just being
+nice}, but is otherwise an unhelpful speaker.
+Alternatively, Ann could say the truth (\enquote{It was bad}), but then
 Bob would think Ann didn't care about him. What is a socially-aware
 speaker to do? Our model predicts that indirect speech -- like
 \enquote{It wasn't bad} -- helps navigate Ann's dilemma. It conveys some
 true information (e.g., literally it wasn't the worst it could have
 been) while being sufficiently open-ended to spare Bob's feelings.
 Further, by incurring the slightly higher cost involved in producing
-negation, Bob could reason that Ann had reasons for not saying a simpler
-alternative like \enquote{It was good} and that she must have taken his
-feelings into account in her utterance.
+negation, Ann provides a signal that she has Bob's feelings in mind: Why else not say the simpler \enquote{It was good}?
 
 %%%%%%%%%%%%%%%%%%
 %%%%% Human data %%%%%%%
