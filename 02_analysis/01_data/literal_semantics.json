@@ -6,7 +6,7 @@
     "posterior_b2": 2,
     "MAP": 0.8438,
     "cred_low": 0.75,
-    "cred_upper": 0.9375
+    "cred_upper": 0.9219
   },
   {
     "state": 0,
@@ -33,7 +33,7 @@
     "posterior_b2": 47,
     "MAP": 0.0469,
     "cred_low": 0,
-    "cred_upper": 0.1094
+    "cred_upper": 0.0938
   },
   {
     "state": 0,
@@ -95,7 +95,7 @@
     "posterior_b1": 47,
     "posterior_b2": 3,
     "MAP": 0.875,
-    "cred_low": 0.7812,
+    "cred_low": 0.7969,
     "cred_upper": 0.9531
   },
   {
@@ -104,7 +104,7 @@
     "posterior_b1": 23,
     "posterior_b2": 27,
     "MAP": 0.4375,
-    "cred_low": 0.3125,
+    "cred_low": 0.3277,
     "cred_upper": 0.5625
   },
   {
@@ -122,7 +122,7 @@
     "posterior_b1": 46,
     "posterior_b2": 4,
     "MAP": 0.8125,
-    "cred_low": 0.7188,
+    "cred_low": 0.7031,
     "cred_upper": 0.9062
   },
   {
@@ -149,7 +149,7 @@
     "posterior_b1": 39,
     "posterior_b2": 11,
     "MAP": 0.6719,
-    "cred_low": 0.5625,
+    "cred_low": 0.5469,
     "cred_upper": 0.7812
   },
   {
@@ -167,7 +167,7 @@
     "posterior_b1": 3,
     "posterior_b2": 47,
     "MAP": 0.0781,
-    "cred_low": 0.0156,
+    "cred_low": 0.0312,
     "cred_upper": 0.1562
   },
   {
@@ -203,7 +203,7 @@
     "posterior_b1": 48,
     "posterior_b2": 2,
     "MAP": 0.9219,
-    "cred_low": 0.8438,
+    "cred_low": 0.8594,
     "cred_upper": 0.9844
   },
   {
@@ -230,7 +230,7 @@
     "posterior_b1": 45,
     "posterior_b2": 5,
     "MAP": 0.8125,
-    "cred_low": 0.7031,
+    "cred_low": 0.7188,
     "cred_upper": 0.9062
   },
   {
@@ -240,7 +240,7 @@
     "posterior_b2": 48,
     "MAP": 0.0469,
     "cred_low": 0,
-    "cred_upper": 0.1094
+    "cred_upper": 0.0938
   },
   {
     "state": 3,

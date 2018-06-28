@@ -14,17 +14,16 @@ library(tidyverse); library(binom); library(langcog); library(here); library(jso
 # speaker production
 
 ```{r warning=FALSE, message=FALSE}
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-raw.data.path <- "../../experiments/speaker_production/production-results/"
+raw.data.path <- "01_experiments/02_speaker_production/production-results/"
 
 ## LOOP TO READ IN FILES
 all.data <- data.frame()
-files <- dir(raw.data.path,pattern="*.json")
+files <- dir(here(raw.data.path),pattern="*.json")
 
 for (file.name in files) {
   
   ## these are the two functions that are most meaningful
-  json_file <- readLines(paste(raw.data.path,file.name,sep=""))
+  json_file <- readLines(here(paste(raw.data.path,file.name,sep="")))
   json_file_str = paste(json_file, collapse = "")
   json_file_str = gsub(",}", "}", json_file_str)
   jso = jsonlite::fromJSON(json_file_str)
@@ -127,11 +126,12 @@ ms <- d %>%
   mutate(subid = factor(subid, labels = c(1:length(levels(subid))))) %>%
   select(subid, item, goal, true_state, utterance)
 
-write.csv(d,
-                         file=here("analysis/data/speakerProduction.csv"), # CHANGE FILE NAME AS NEEDED
+# write to csv
+write.csv(d,                       file=here("02_analysis/01_data/speaker_production.csv"), # CHANGE FILE NAME AS NEEDED
           row.names=FALSE)
 
-write(toJSON(ms, pretty=TRUE), here("analysis/data/speaker_data.json"))
+# write to json
+write(toJSON(ms, pretty=TRUE), here("02_analysis/01_data/speaker_production.json"))
 
 ```
 
@@ -153,17 +153,16 @@ library(here)
 ```
 
 ```{r}
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-raw.data.path <- "../../experiments/prior_elicitation/production-results/"
+raw.data.path <- "01_experiments/01_prior_elicitation/production-results/"
 
 ## LOOP TO READ IN FILES
 all.data <- data.frame()
-files <- dir(raw.data.path,pattern="*.json")
+files <- dir(here(raw.data.path),pattern="*.json")
 
 for (file.name in files) {
   
   ## these are the two functions that are most meaningful
-  json_file <- readLines(paste(raw.data.path,file.name,sep=""))
+  json_file <- readLines(here(paste(raw.data.path,file.name,sep="")))
   json_file_str = paste(json_file, collapse = "")
   json_file_str = gsub(",}", "}", json_file_str)
   json_file_str = gsub(",}", "}", json_file_str)
@@ -244,7 +243,8 @@ d1 <- all.data %>%
   select(-mean, -ci_lower, -ci_upper)
 d <- left_join(d0, d1)
 
-write(toJSON(d, pretty=TRUE), "../../analysis/data/literal_semantics_3heart.json")
+# write to json
+write(toJSON(d, pretty=TRUE), here("02_analysis/01_data/literal_semantics.json"))
 ```
 
 ```{r}
@@ -275,8 +275,8 @@ levels(d$positivity) <- c("it was ___", "it wasn't ___")
 
 levels(d$subid)
 
-write.csv(d,
-                         file="../../analysis/data/literalSemantics.csv", # CHANGE FILE NAME AS NEEDED
+# write to csv
+write.csv(d,                file=here("02_analysis/01_data/literal_semantics.csv"), # CHANGE FILE NAME AS NEEDED
           row.names=FALSE)
 
 ```

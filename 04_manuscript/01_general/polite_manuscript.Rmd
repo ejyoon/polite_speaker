@@ -63,21 +63,15 @@ if(length(new.packages)) install.packages(new.packages)
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 library(papaja)
 library(tidyverse)
-# library(binom)
 library(rwebppl)
 library(jsonlite)
-# library(coda)
 library(magrittr)
 library(ggthemes)
 library(forcats)
 library(langcog)
-# library(gridExtra)
-# library(grid)
 library(here)
-# library(RColorBrewer)
 library(lme4)
 library(brms)
-# library(directlabels)
 library(BayesFactor)
 
 estimate_mode <- function(s) {
@@ -444,7 +438,6 @@ The order of context items was randomized, and there were a maximum of four repe
 For this and the speaker production experiment, we analyzed the data by collapsing across context items.
 For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
 Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
-<!-- We used the posterior distribution over the semantic weight of utterance $w$ for state $s$ to set informative priors to infer posterior credible values of the literal meanings from data in the speaker production experiment. -->
 
 ### Speaker production task
 
@@ -592,8 +585,8 @@ plot.utt <- ggplot(data=ms_utt %>%
 
 plot.utt
 
-# ggsave("speaker_production_utt_wMod.png", plot = plot.utt, width = 7, height = 5,
-#        path = here::here("02_analysis/03_figs"))
+ggsave("speaker_production_utt_wMod.png", plot = plot.utt, width = 7, height = 5,
+       path = here::here("02_analysis/03_figs"))
 ```
 
 ```{r comparisonAll, echo=FALSE, out.width = "\\textwidth", fig.pos = "!h", fig.width=11, fig.height=7, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart and speaker with a goal to be informative (top), kind (middle), or both (bottom). Gray dotted line indicates chance level at 12.5\\%."}
@@ -636,8 +629,8 @@ plot.comp.all <- ms_utt %>%
 
 plot.comp.all
 
-# ggsave("model_comparisons_all.png", plot = plot.comp.all, width = 11, height = 4,
-#        path = here::here("02_analysis/03_figs"))
+ggsave("model_comparisons_all.png", plot = plot.comp.all, width = 11, height = 4,
+       path = here::here("02_analysis/03_figs"))
 
 ```
 
@@ -654,7 +647,6 @@ plot.neg <- ms_neg %>%
     model == "full" ~ "model: \ninformative, \nsocial, \npresentational" 
   ),
   model = fct_relevel(model, "model: \ninformative only", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformative, \nsocial", "model: \ninformative, \npresentational", "model: \ninformative, \nsocial, \npresentational")) %>%
-  # filter(positive == "not") %>%
   ggplot(., 
        aes(x=true_state, y=prob, color = goal, group=goal)) +
   geom_line(stat="identity", position=position_dodge()) +
