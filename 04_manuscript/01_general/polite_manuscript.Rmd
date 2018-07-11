@@ -54,11 +54,14 @@ output            : papaja::apa6_pdf
 
 ```{r include_packages, include = FALSE}
 # check to see if user has packages. otherwise, install them...
-list.of.packages <- c("papaja", "tidyverse", "rwebppl",
+list.of.packages <- c("tidyverse", "brms", "BayesFactor",
                       "jsonlite", "magrittr", "ggthemes",
                       "forcats", "here")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
+
+if (!require("papaja")) devtools::install_github("crsh/papaja")
+if (!require("rwebppl")) devtools::install_github("mhtess/rwebppl")
 
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 library(papaja)
@@ -225,7 +228,10 @@ ms_var <- ms_utt %>%
   spread(new, value) %>%
   mutate(positivity = fct_recode(positivity, 
                                "It was ~" = "yes",
-                               "It wasn't ~" = "not"),
+                               "It wasn't ~" = "not",
+                               "It was ~" = "It was~",
+                               "It wasn't ~" = "It wasn't~"
+                               ),
          positivity = fct_relevel(positivity, "It was ~"),
          goal = fct_recode(goal, "kind" = "social"))
 
