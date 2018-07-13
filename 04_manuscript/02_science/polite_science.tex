@@ -259,7 +259,7 @@ Bob might think Ann didn't care about him. In this dilemma, our model predicts t
 %%%%% Human data %%%%%%%
 %%%%%%%%%%%%%%%%%%
 
-We tested our model in an online experiment (\emph{N} = 202).
+We tested our model in a pre-registered online experiment (\emph{N} = 202).
 Participants read scenarios with information about the speaker's
 feelings toward some performance or product (e.g., poem recital;
 \emph{true state}), on a scale from zero to three hearts. The speaker's \emph{goals} varied across trials: to be \emph{informative}
@@ -308,12 +308,12 @@ Predictions from the full polite speaker model showed a very strong fit to parti
 
 We also compared the predictions of our model to its variants containing subsets of the three utilities in the full model. Both the variance explained and the marginal likelihood of the observed data were the highest for the full model (Table \ref{tab:comparisonTable}).
 Only the full model captured the participants' preference for negation in the condition in which the speaker had both goals to be informative and kind about truly bad states, as hypothesized (Figure \ref{fig:comparison}). All three utilities -- informational, social, and presentational -- were required to fully explain participants' utterance choices.
+The utility weights inferred for the full model (Table  \ref{tab:phi}) provide additional insight into how polite language use operates: our condition manipulation altered the balance between these weights, but all utilities played a role in all conditions.
 
-The utility weights inferred for the full model (Table  \ref{tab:phi}) provide additional insight into how polite language use operates. 
-\emph{Being kind} requires equal weights on all three utilities, indicating that Gricean informativity needs to be part of language use even when it is explicitly not the goal. 
-\emph{Being informative} pushes the weight on social utility close to zero, but the weight on \emph{appearing kind} stays high, indicating that speakers are expected to manage their own face even when they are not considering others'. 
-\emph{Kind and informative} speakers emphasize honesty slightly more than kindness. 
-In all cases, however, the presentational utilities have greatest weight, indicating perhaps that appearing honest and kind is more important than actually being so!
+% \emph{Being kind} requires equal weights on all three utilities, indicating that Gricean informativity needs to be part of language use even when it is explicitly not the goal.
+% \emph{Being informative} pushes the weight on social utility close to zero, but the weight on \emph{appearing kind} stays high, indicating that speakers are expected to manage their own face even when they are not considering others'.
+% \emph{Kind and informative} speakers emphasize honesty slightly more than kindness.
+% In all cases, however, the presentational utilities have greatest weight, indicating perhaps that appearing honest and kind is more important than actually being so!
 
 \begin{figure}
 \centering
@@ -368,14 +368,18 @@ presentational & 0.97 & 1.00\\
 % It is also possible, however, that culture affects the mapping between the world states and subjective values for the listener.
 % Our formal modeling approach with systematic behavior measurements can help understand the vast range of politeness practices found across languages.
 To precisely estimate choice behavior, our experiment abstracted away from
-natural interactions in a number of ways. Real-life Anns have access to a potentially infinite range of utterances to manage the same tradeoff (\enquote{It's hard to write a good poem}, \enquote{That
+natural interactions in a number of ways. Real speakers have access to a potentially infinite range of utterances to manage the tradeoffs in our experiment (\enquote{It's hard to write a good poem}, \enquote{That
 metaphor was so relatable!}). Under our framework, each utterance will have strengths and weaknesses relative to the speaker's goals. Computation in an unbounded model presents technical challenges \cite{goodman2016} (perhaps paralleling the difficulty human speakers feel in finding the right thing to say in a difficult situation).
 
 %Our work extends previous models of language beyond standard informational utilities to address social and self-presentational concerns.
 %Previous theories of language use have not explained how informational versus social concerns trade off to inform the speaker's utterance choices.
 
-For a socially conscious speaker, managing listeners' inferences is a fundamental task. Inspired by the theory of politeness as face management \cite{brown1987}, our model takes a step towards capturing this process. Our model may be extended to capture how cross-cultural differences in politeness emerge: as a product of different weightings within the same utility structure, or different mappings between world states and values. Also, politeness is only one of the ways that language use deviates from pure information transfer. By considering utility-driven inferences in a social context \cite{baker2017rational, hamlin2013mentalistic},
-our approach here could give insights into a wide range of social behaviors. When we flirt, insult, boast, and empathize, we balance information transmission with the goal to affect others' feelings or present particular views of ourselves. A key contribution of our work is to show how self-presentational motives can be integrated with other concerns. Further, a formal account of politeness moves us closer to courteous computation -- to computers that communicate with tact.
+For a socially-conscious speaker, managing listeners' inferences is a fundamental task. Inspired by the theory of politeness as face management \cite{brown1987}, our model takes a step towards understanding it.
+By considering utility-driven inferences in a social context \cite{baker2017rational, hamlin2013mentalistic},
+our approach here could give insights into a wide range of social behaviors beyond speech. And by experimenting with different utility weights and value functions, our model could provide a framework for understanding systematic cross-cultural differences in what counts as polite.
+
+Politeness is only one of the ways that language use deviates from pure information transfer. When we flirt, insult, boast, and empathize, we also balance being informative with goals to affect others' feelings and present particular views of ourselves. Our work shows how social and self-presentational motives can be integrated with other concerns more generally, opening up the possibility for a broader theory of social language. Further, a formal account of politeness moves us closer to courteous computation -- to computers that can communicate with tact.
+
 
 %In sum, this work takes a concrete step toward quantitative models of the nuances of human speech.
 % Your references go at the end of the main text, and before the
@@ -398,8 +402,8 @@ our approach here could give insights into a wide range of social behaviors. Whe
 \section*{Acknowledgments}
 All authors designed research and wrote the paper;
 E.J.Y. and M.H.T. performed research and analyzed data.
-Our pre-registered model,
-hypothesis, procedure, data and analyses are available at
+Our model,
+preregistration of hypotheses, procedure, data, and analyses are available at
 \url{https://github.com/ejyoon/polite_speaker}.
 The authors declare no conflict of interest.
 This work was supported by NSERC PGS Doctoral scholarship
@@ -411,6 +415,7 @@ MCF.
 %You should include a list of Supplementary figures, Tables, and any references that appear only in the SM.
 %Note that the reference numbering continues from the main text to the SM.
 % In the example below, Refs. 4-10 were cited only in the SM.
+\newpage
 
 \section*{Supplementary materials}
 
@@ -542,15 +547,15 @@ Model & \multicolumn{1}{c}{goal} & \multicolumn{1}{c}{$\phi_{inf}$} & \multicolu
 informational, social, presentational & both & 0.36 & 0.11 & 0.54 & 0.36\\
 informational, social, presentational & informative & 0.36 & 0.02 & 0.62 & 0.49\\
 informational, social, presentational & kind & 0.25 & 0.31 & 0.44 & 0.37\\
-informational, presentational & both & 0.64 & NA & 0.36 & 0.17\\
-informational, presentational & informative & 0.77 & NA & 0.23 & 0.33\\
-informational, presentational & kind & 0.66 & NA & 0.34 & 0.04\\
-informational, social & both & 0.54 & 0.46 & NA & NA\\
-informational, social & informative & 0.82 & 0.18 & NA & NA\\
-informational, social & kind & 0.39 & 0.61 & NA & NA\\
-social, presentational & both & NA & 0.38 & 0.62 & 0.55\\
-social, presentational & informative & NA & 0.35 & 0.65 & 0.75\\
-social, presentational & kind & NA & 0.48 & 0.52 & 0.66\\
+informational, presentational & both & 0.64 & - & 0.36 & 0.17\\
+informational, presentational & informative & 0.77 & - & 0.23 & 0.33\\
+informational, presentational & kind & 0.66 & - & 0.34 & 0.04\\
+informational, social & both & 0.54 & 0.46 & - & -\\
+informational, social & informative & 0.82 & 0.18 & - & -\\
+informational, social & kind & 0.39 & 0.61 & - & -\\
+social, presentational & both & - & 0.38 & 0.62 & 0.55\\
+social, presentational & informative & - & 0.35 & 0.65 & 0.75\\
+social, presentational & kind & - & 0.48 & 0.52 & 0.66\\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
