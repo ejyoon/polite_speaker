@@ -1,5 +1,5 @@
 ---
-title             : "Polite speech emerges from competing pressures to be (and look) informative and kind"
+title             : "Polite speech emerges from competing social goals"
 shorttitle        : "Modeling polite speech"
 
 author: 
@@ -304,15 +304,15 @@ Then we used a Bayesian analytic technique [@lee2014] to infer the parameters of
 plot.comp <- ms_utt %>%  
   mutate(model = case_when(
     model == "NA" ~ "Human data", 
-    model == "inf" ~ "model: \ninformative only", 
+    model == "inf" ~ "model: \ninformational \nonly", 
     model == "soc" ~ "model: \nsocial only", 
     model == "pres" ~ "model: \npresentational \nonly", 
-    model == "inf_pres" ~ "model: \ninformative, \npresentational", 
-    model == "inf_soc" ~ "model: \ninformative, \nsocial", 
+    model == "inf_pres" ~ "model: \ninformational, \npresentational", 
+    model == "inf_soc" ~ "model: \ninformational, \nsocial", 
     model == "soc_pres" ~ "model: \nsocial, \npresentational", 
-    model == "full" ~ "model: \ninformative, \nsocial, \npresentational" 
+    model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
   ),
-  model = fct_relevel(model, "model: \ninformative only", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformative, \nsocial", "model: \ninformative, \npresentational", "model: \ninformative, \nsocial, \npresentational")) %>%
+  model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
   mutate(positivity = fct_recode(positivity,
                                  "It was ~" = "yes",
                                  "It wasn't ~" = "not"),
@@ -390,7 +390,7 @@ bf_list_rounded <- rapply(bf_list, function(x) round(x, digits=2))
 ```
 
 ```{r comparisonTable, results = 'asis'}
-comp_tab <- data.frame("Model" = c("model: \ninformative only", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformative, \nsocial", "model: \ninformative, \npresentational", "model: \ninformative, \nsocial, \npresentational"), 
+comp_tab <- data.frame("Model" = c("model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational"), 
                        "Variance" = 
                          c(cor2_inf, cor2_soc, cor2_pres, cor2_socpres, 
                            cor2_infsoc, cor2_infpres, cor2_infsocpres), 
@@ -477,13 +477,13 @@ phi_tab <- d_phi_s %>%
   mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
   ungroup() %>%
     mutate(model = case_when(
-    model == "inf" ~ "informative only", 
+    model == "inf" ~ "ninformational only", 
     model == "soc" ~ "social only", 
     model == "pres" ~ "presentational only", 
-    model == "InfPres" ~ "informative, presentational", 
-    model == "InfSoc" ~ "informative, social", 
+    model == "InfPres" ~ "ninformational, presentational", 
+    model == "InfSoc" ~ "ninformational, social", 
     model == "SocPres" ~ "social, presentational", 
-    model == "Full" ~ "informative, social, presentational" 
+    model == "Full" ~ "ninformational, social, presentational" 
   )) %>%
   select(model, goal, informative, social, Selfpres, s1)
 
@@ -495,13 +495,13 @@ apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all mod
 ```{r otherParams, results='asis'}
 other_tab <- d_other_s %>%
     mutate(model = case_when(
-    model == "inf" ~ "informative only", 
+    model == "inf" ~ "ninformational only", 
     model == "soc" ~ "social only", 
     model == "pres" ~ "presentational only", 
-    model == "inf_pres" ~ "informative, presentational", 
-    model == "inf_soc" ~ "informative, social", 
+    model == "inf_pres" ~ "ninformational, presentational", 
+    model == "inf_soc" ~ "ninformational, social", 
     model == "soc_pres" ~ "social, presentational", 
-    model == "full" ~ "informative, social, presentational" 
+    model == "full" ~ "ninformational, social, presentational" 
   )) %>%
   mutate(param = round(param, digits=2)) %>%
   spread(parameter, param)
@@ -599,15 +599,15 @@ ggsave("speaker_production_utt_wMod.png", plot = plot.utt, width = 7, height = 5
 plot.comp.all <- ms_utt %>%  
   mutate(model = case_when(
     model == "NA" ~ "Human data", 
-    model == "inf" ~ "model: \ninformative only", 
+    model == "inf" ~ "model: \ninformational \nonly", 
     model == "soc" ~ "model: \nsocial only", 
     model == "pres" ~ "model: \npresentational \nonly", 
-    model == "inf_pres" ~ "model: \ninformative, \npresentational", 
-    model == "inf_soc" ~ "model: \ninformative, \nsocial", 
+    model == "inf_pres" ~ "model: \ninformational, \npresentational", 
+    model == "inf_soc" ~ "model: \ninformational, \nsocial", 
     model == "soc_pres" ~ "model: \nsocial, \npresentational", 
-    model == "full" ~ "model: \ninformative, \nsocial, \npresentational" 
+    model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
   ),
-  model = fct_relevel(model, "model: \ninformative only", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformative, \nsocial", "model: \ninformative, \npresentational", "model: \ninformative, \nsocial, \npresentational")) %>%
+  model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
   mutate(positivity = fct_recode(positivity,
                                  "It was ~" = "yes",
                                  "It wasn't ~" = "not"),
@@ -644,15 +644,15 @@ ggsave("model_comparisons_all.png", plot = plot.comp.all, width = 11, height = 4
 plot.neg <- ms_neg %>%  
   mutate(model = case_when(
     model == "NA" ~ "Human data", 
-    model == "inf" ~ "model: \ninformative only", 
+    model == "inf" ~ "model: \ninformational \nonly", 
     model == "soc" ~ "model: \nsocial only", 
     model == "pres" ~ "model: \npresentational \nonly", 
-    model == "inf_pres" ~ "model: \ninformative, \npresentational", 
-    model == "inf_soc" ~ "model: \ninformative, \nsocial", 
+    model == "inf_pres" ~ "model: \ninformational, \npresentational", 
+    model == "inf_soc" ~ "model: \ninformational, \nsocial", 
     model == "soc_pres" ~ "model: \nsocial, \npresentational", 
-    model == "full" ~ "model: \ninformative, \nsocial, \npresentational" 
+    model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
   ),
-  model = fct_relevel(model, "model: \ninformative only", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformative, \nsocial", "model: \ninformative, \npresentational", "model: \ninformative, \nsocial, \npresentational")) %>%
+  model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
   ggplot(., 
        aes(x=true_state, y=prob, color = goal, group=goal)) +
   geom_line(stat="identity", position=position_dodge()) +
