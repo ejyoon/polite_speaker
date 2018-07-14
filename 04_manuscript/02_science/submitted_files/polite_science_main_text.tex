@@ -160,7 +160,7 @@ approved, and related to (\emph{positive face}) as well as to maintain
 their freedom to act (\emph{negative face}).
 Though intuitively appealing, the theory does not describe when face should be prioritized over other concerns (e.g., information transfer) nor when face-saving should yield indirect (e.g., \enquote{Your cake could use a bit of salt}) vs. false (\enquote{It's tasty}) statements.
 Further, a mutually-understood notion of face introduces additional complexity: Speakers sometimes may not want to preserve the listener's face genuinely but only to be \emph{seen} as doing so, hence appearing to be socially apt and saving their own face, which may lead to a different decision from that based on genuine desires to be kind or informative.
-What is needed is a theory of these goals and how they trade off.
+What is needed is a precise theory of these goals and how they trade off.
 
 %The theory, however, does not articulate how these communicative goals should trade off with
 %one another.
@@ -217,7 +217,7 @@ We evaluate our model on its ability to predict human utterance choices in situa
 Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \(s\) (the rating Bob's recital deserved) and a set of goal weights
 \(\hat{\phi}\), that determine how Ann prioritizes each goal.
 Ann's production decision is softmax, which interpolates between
-maximizing and probability matching (\(\lambda_{S_2}\); \cite{goodman2013}):
+maximizing and probability matching (via parameter \(\lambda_{S_2}\); \cite{goodman2013}):
 \[P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot U_{total}(w; s; \hat{\phi}; \phi_{S_{1}}))\]
 
 We consider three goals that the speaker weighs to arrive at a polite utterance: informational, social, and presentational.
@@ -225,7 +225,7 @@ The total utility of an utterance is the weighted combination of the three
 utilities minus the utterance cost \(C(w)\), which captures the general pressure towards economy in speech \cite{goodman2015}:
 \[U_{total}(w; s; \hat{\phi}; \phi_{S_{1}}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \phi_{pres} \cdot U_{pres}(w; \phi_{S_{1}}) - C(w)\]
 
-\noindent Utterances with negation (e.g., \enquote{not terrible}) are longer and thus assumed to be slightly costlier than their unnegated equivalents.
+\noindent where \(\hat{\phi}\) indicates the relative importance of the speaker's three goals (\(\phi_{inf}\), \(\phi_{soc}\), and \(\phi_{pres}\)). Utterances with negation (e.g., \enquote{not terrible}) are longer and thus assumed to be slightly costlier than their unnegated equivalents.
 
 First, the \emph{informational utility}
 (\(U_{inf}\)), represents the speaker's desire to be epistemically
