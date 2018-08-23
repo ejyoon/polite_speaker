@@ -117,7 +117,7 @@
 % Place your abstract within the special {sciabstract} environment.
 
 \begin{sciabstract}
-Language is a remarkably efficient tool for information transfer. Yet to be polite, speakers often behave in ways that are at odds with this goal, making statements that are imprecise or even outright false. Why? We show that polite speech emerges from competing goals: to be informative, to be kind, and to \emph{appear} to be both of these. We formalize this tradeoff using a probabilistic model of speakers' utterance choice, which predicts human judgments with high accuracy. This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language.
+Language is a remarkably efficient tool for information transfer. Yet to be polite, speakers often behave in ways that are at odds with this goal, making statements that are inefficient, imprecise, or even outright false. Why? We show that polite speech emerges from competing goals: to be informative, to be kind, and to \emph{appear} to be both of these. We formalize this tradeoff using a probabilistic model of speakers' utterance choice, which predicts human judgments with high accuracy. This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language.
 \end{sciabstract}
 
 % In setting up this template for *Science* papers, we've used both
@@ -215,7 +215,7 @@ considering the set of utilities described above (Figure
 
 We evaluate our model on its ability to predict human utterance choices in situations where polite language use is expected. Imagine Bob recites a poem he wrote and asks Ann for her opinion.
 Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \(s\) (the rating Bob's recital deserved) and a set of goal weights
-\(\hat{\phi}\), that determine how Ann prioritizes each goal.
+\(\hat{\phi}\) that determine how Ann prioritizes each goal.
 Ann's production decision is softmax, which interpolates between
 maximizing and probability matching (via parameter \(\lambda_{S_2}\); \cite{goodman2013}):
 \[P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot U_{total}(w; s; \hat{\phi}; \phi_{S_{1}}))\]
@@ -244,7 +244,7 @@ order to convey that they had certain goals in mind. The third and the most nove
 listener to have a particular goal in mind. Formally,
 \[U_{pres}(w; \phi_{S_{1}}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w)\]
 
-\noindent To define this term, the speaker has a particular set of goal-weights to convey $\phi_{S_{1}}$ and must consider that the listener \(L_1\) reasons about the speaker's goal-weights together with the true state of the world:
+\noindent To define this term, the speaker has a weighting of informational vs. social goals to convey ($\phi_{S_{1}}$) and must consider that the listener \(L_1\) reasons about the speaker's goal-weights together with the true state of the world:
 \[P_{L_1}(s, \phi_{S_{1}}| w) \propto P_{S_1}(w | s, \phi_{S_{1}}) \cdot P(s) \cdot P(\phi_{S_{1}})\]
 
 \noindent The presentational utility $U_{pres}$ is of a higher order than the other utilities: it can be defined only for \(S_2\), but not \(S_1\).
