@@ -24,7 +24,8 @@ affiliation:
     institution   : "Corresponding author."
 
 author_note: |
-  FIXME.
+  All authors designed research and wrote the paper; E.J.Y. and M.H.T. performed research and analyzed data. The authors declare no conflict of interest. This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to EJY, NSF Graduate Research Fellowship DGE-114747 to MHT, ONR grant N00014-13-1-0788 to NDG, and NSF grant BCS 1456077 to MCF.
+
 
 abstract: |
   Language is a remarkably efficient tool for information transfer. Yet to be polite, speakers often behave in ways that are at odds with this goal, making statements that are inefficient, imprecise, or even outright false. Why? We show that polite speech emerges from competing goals: to be informative, to be kind, and to *appear* to be both of these. We formalize this tradeoff using a probabilistic model of speakers’ utterance choice, which predicts human judg- ments with high accuracy. This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language.
@@ -66,7 +67,7 @@ if(length(new.packages)) install.packages(new.packages)
 if (!require("papaja")) devtools::install_github("crsh/papaja")
 if (!require("rwebppl")) devtools::install_github("mhtess/rwebppl")
 
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T, out.width = "\\textwidth", fig.pos = "!h")
 library(papaja)
 library(tidyverse)
 library(rwebppl)
@@ -137,7 +138,7 @@ Both inefficient indirect speech and untruthful lies in communication are then t
 
 The face-based framework for polite language use provides an intuitive and appealing explanation of many types of polite speech, 
 but it does not precisely define how competing communicative goals trade off with one another.
-For example, it is unclear when face-saving should be prioritized over other concerns (e.g., helpful information transfer) and when the desire to save face will motivate statements that are outright false ("Your cake is delicious!") versus indirect ("It could use a bit of salt").  
+For example, it is unclear when face-saving should be prioritized over other concerns (e.g., helpful information transfer) and when the desire to save face will motivate statements that are outright false ("Your cake is delicious!") versus indirect ("It could use a bit of salt").
 Further, a mutually-understood notion of face introduces additional complexity: Speakers sometimes may not want to preserve the listener’s face genuinely but only to be *seen* as doing so, hence appearing to be socially apt and saving their own face, which may lead to a different decision from that based on genuine desires to be kind or informative. What is needed is a precise theory of these goals and how they trade off.
 
 To address these challenges, we develop a utility-theoretic model to quantify tradeoffs between different goals that a polite speaker may have. 
@@ -219,13 +220,12 @@ BF_full_vs_one <- model1bf1/model3bf1
 BF_main_vs_one <- model2bf1/model3bf1
 ```
 
-```{r variance, echo=FALSE, fig.cap="Full distribution of human responses vs. model predictions. Error bars represent 95\\% confidence intervals for the data (vertical) and 95% highest density intervals for the model (horizontal)."}
+```{r variance, echo=FALSE, fig.cap="Full distribution of human responses vs. model predictions. Error bars represent 95\\% confidence intervals for the data (vertical) and 95\\% highest density intervals for the model (horizontal)."}
 ms_var <- ms_utt %>%
   filter(source == "data" | model == "full") %>%
   select(-model) %>%
   gather(var, value, ci_lower:prob, -source, -true_state) %>%
   unite(new, c(source, var)) %>%
-  spread(new, value) %>%
   mutate(positivity = fct_recode(positivity, 
                                "It was ~" = "yes",
                                "It wasn't ~" = "not",
@@ -233,7 +233,8 @@ ms_var <- ms_utt %>%
                                "It wasn't ~" = "It wasn't~"
                                ),
          positivity = fct_relevel(positivity, "It was ~"),
-         goal = fct_recode(goal, "kind" = "social"))
+         goal = fct_recode(goal, "kind" = "social")) %>%
+  spread(new, value)
 
 plot_var <- ggplot(ms_var,
        aes(x = model_prob, y = data_prob)) +
@@ -413,9 +414,20 @@ For a socially-conscious speaker, managing listeners’ inferences is a fundamen
 Inspired by the theory of politeness as face management [@brown1987], our model takes a step towards understanding it.
 Our work extends previous models of language beyond standard informational utilities to address social and self-presentational concerns. Previous theories of language use have not explained how informational versus social concerns trade off to inform the speaker’s utterance choices. Thus, this work represents a key theoretical advance exploring how informational cooperativity interacts with other social goals.
 By considering utility-driven inferences in a social context [@baker2017rational; @hamlin2013mentalistic] where agents need to take into account concerns about both self and others, 
-our approach here could give insights into a wide range of social behaviors beyond speech. 
+our approach here could give insights into a wide range of social behaviors beyond speech.
 
-By experimenting with different utility weights and value functions, our model could also provide a framework for understanding systematic cross-cultural differences in what counts as polite. 
+The model presented here relates to other work done in game-theoretic pragmatics. 
+@vanRooy2003 uses a game-theoretic analysis of polite requests (“Could you possibly take me home?”) to argue the purpose of polite language is to align the preferences of interlocutors. 
+Our notion of social utility $U_{soc}$ and presentational utility $U_{pres}$ is similar in that they motivate speakers to signal worlds that make the listener feel good. 
+@vanRooy2003’s analysis, however, relies on the notion that polite language is costly (in a social way e.g., by reducing one’s social status or incurring social debt to one’s conversational partner) but it’s not clear how the polite behaviors explored in our experiments (not polite requests) would incur any cost to speaker or listener. 
+Our model derives its predictions by construing the speaker utility as a collection of possible goals (here, epistemic, social, and presentational goals). The speech-acts themselves are not costly.
+In @pinker2008's model, human communication is assumed to involve a mixture of cooperation *and* conflict: 
+indirect speech then allows for plausible deniability that is in self-interest but goes against the interest of the addressee. 
+In contrast, our work builds on existing classic theories of polite speech as primarily cooperative [@grice1975; @brown1987] rather than based on both cooperation and conflict.
+We have shown that a separate notion of plausible deniability may not be needed, as indirect speech in our specific case comes from both a goal to be helpful and a desire to look good.
+Our work is able to capture different linguistic nuances involved in this process of reasoning about different goals that speakers have. 
+
+By experimenting with different utility weights and value functions, our model could provide a framework for understanding systematic cross-cultural differences in what counts as polite. 
 For example, following @brown1987, cross-cultural differences in politeness could be a product of different weightings within the same utility structure. 
 It is also possible, however, that culture affects the value function $V$ that maps states of the world onto subjective values for the listener (e.g., the mapping from states to utilities may be more complex than we have considered). 
 Our formal modeling approach with systematic behavior measurements provides an avenue towards understanding the vast range of politeness practices found across languages.
@@ -431,11 +443,9 @@ This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to E
 
 \newpage
 
-# Supplemental Materials
+# Methods
 
-## Materials and Methods 
-
-### Literal semantic task
+## Literal semantic task
 
 We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
 51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
@@ -449,7 +459,7 @@ For this and the speaker production experiment, we analyzed the data by collapsi
 For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
 Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
 
-### Speaker production task
+## Speaker production task
 
 202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (see Fig. 2). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts; Figure\ \@ref(fig:screenshot)). 
 Each participant read twelve scenarios, depicting every possible combination of the three goals and four states. 
@@ -457,12 +467,12 @@ The order of context items was randomized, and there were a maximum of two repea
 Each scenario was followed by a question that read, "If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?" 
 Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between *It was* vs. *It wasn’t* and the other for choosing among *terrible*, *bad*, *good*, and *amazing.*
 
-## Supplementary Text
+# Supplementary Information
 
-### Data analysis
+## Data analysis
 We used `r cite_r("politeness.bib")` for all our analyses.
 
-### Full statistics on human data
+## Full statistics on human data
 
 ```{r brmTab, results="asis"}
 apa_table(brm.tab, caption= "Predictor mean estimates with standard deviation and 95% credible interval information for a Bayesian linear mixed-effects model predicting negation production based on true state and speaker goal (with both-goal as the reference level).")
@@ -470,7 +480,7 @@ apa_table(brm.tab, caption= "Predictor mean estimates with standard deviation an
 
 We used Bayesian linear mixed-effects models [`brms` package in R; @R-brms] using crossed random effects of true state and goal with maximal random effects structure [@gelman2006data; @barr2013random].
 
-### Polite RSA model fitting and inferred parameters
+## Model fitting and inferred parameters
 
 ```{r phi, results = 'asis'}
 load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
@@ -525,8 +535,6 @@ Finally, we incorporate the literal semantics data into the RSA model by maintai
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
 We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
 The inferred values of weight mixtures for each model variant (with different $\phi$ components) and other parameters are shown in Table \@ref(tab:phi) and Table \@ref(tab:otherParams), respectively.
-
-\newpage
 
 ## Supplemental Figures 
 
@@ -673,13 +681,12 @@ plot.neg
 ggsave("speaker_production_neg_wMod.png", plot = plot.neg, width = 7, height = 3,
        path = here::here("02_analysis/03_figs"))
 ```
-.
+
+## Data Availability
+
+Our model, preregistration of hypotheses, procedure, data, and analyses are available at \url{https://github.com/ejyoon/polite_speaker}. 
 
 \newpage
-\newpage
-\newpage
-\pagebreak
-
 
 # References
 ```{r create_r-references}
