@@ -373,27 +373,30 @@ ml_inf <- fromJSON(here("03_model/02_model_comparison/02_output/ais-s2_trueInf_3
 ml_soc <- fromJSON(here("03_model/02_model_comparison/02_output/ais-s2_trueSoc_3heart_step150000_sample4_chain3.json"), flatten = TRUE, simplifyDataFrame = TRUE)[,1]
 ml_pres <- fromJSON(here("03_model/02_model_comparison/02_output/ais-s2_selfPres_3heart_step150000_sample4_chain3.json"), flatten = TRUE, simplifyDataFrame = TRUE)[,1]
 
-bf_full_vs_infpres <- mean(ml_infsocpres) - mean(ml_infpres)
-bf_full_vs_infsoc <- mean(ml_infsocpres) - mean(ml_infsoc)
-bf_full_vs_socpres <- mean(ml_infsocpres) - mean(ml_socpres)
-bf_full_vs_inf <- mean(ml_infsocpres) - mean(ml_inf)
-bf_full_vs_soc <- mean(ml_infsocpres) - mean(ml_soc)
-bf_full_vs_pres <- mean(ml_infsocpres) - mean(ml_pres)
+bf_full_vs_infpres <- mean(ml_infpres) - mean(ml_infsocpres)
+bf_full_vs_infsoc <- mean(ml_infsoc) - mean(ml_infsocpres)
+bf_full_vs_socpres <- mean(ml_socpres) - mean(ml_infsocpres)
+bf_full_vs_inf <- mean(ml_inf) - mean(ml_infsocpres)
+bf_full_vs_soc <- mean(ml_soc) - mean(ml_infsocpres)
+bf_full_vs_pres <- mean(ml_pres) - mean(ml_infsocpres)
 
-bf_list <- list(bf_full_vs_inf, bf_full_vs_soc, bf_full_vs_pres,  bf_full_vs_socpres, bf_full_vs_infsoc, bf_full_vs_infpres, 1)
+bf_list <- list(bf_full_vs_inf, bf_full_vs_soc, bf_full_vs_pres,  bf_full_vs_socpres, bf_full_vs_infsoc, bf_full_vs_infpres)
 bf_list_rounded <- rapply(bf_list, function(x) round(x, digits=2))
+bf_list_rounded_rev <- rev(append(bf_list_rounded, "--"))
 ```
 
 ```{r comparisonTable, results = 'asis'}
-comp_tab <- data.frame("Model" = c("model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational"), 
-                       "Variance" = 
-                         c(cor2_inf, cor2_soc, cor2_pres, cor2_socpres, 
-                           cor2_infsoc, cor2_infpres, cor2_infsocpres), 
-                       "logBF" = bf_list_rounded) %>%
+model_list = rev(c("model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational"))
+variance_list = rev(c(cor2_inf, cor2_soc, cor2_pres, cor2_socpres, 
+                           cor2_infsoc, cor2_infpres, cor2_infsocpres))
+
+comp_tab <- data.frame("Model" = model_list, 
+                       "Variance" = variance_list, 
+                       "logBF" = bf_list_rounded_rev) %>%
   rename("Variance \nexplained" = "Variance",
          "log BF" = "logBF")
 
-apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of the full model, in comparison to each of the alternatives.")
+apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of alternative model in comparison.")
 ```
 
 Next, to connect the behavioral data to our model, we inferred the parameters of the RSA model (e.g., the speaker’s utility weights in each goal condition; see Supplementary Materials) via a Bayesian data analysis [@lee2014]. 
