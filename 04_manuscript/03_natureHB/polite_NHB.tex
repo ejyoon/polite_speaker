@@ -115,13 +115,6 @@
           \textsuperscript{†} These authors contributed equally to this work.  }
 
   \authornote{
-    All authors designed research and wrote the paper; E.J.Y. and M.H.T.
-    performed research and analyzed data. The authors declare no conflict of
-    interest. This work was supported by NSERC PGS Doctoral scholarship
-    PGSD3-454094-2014 to EJY, NSF Graduate Research Fellowship DGE-114747 to
-    MHT, ONR grant N00014-13-1-0788 to NDG, and NSF grant BCS 1456077 to
-    MCF.
-    
     Correspondence concerning this article should be addressed to Erica J.
     Yoon, 450 Serra Mall, Bldg. 420, Rm. 290, Stanford, CA 94305. E-mail:
     \href{mailto:ejyoon@stanford.edu}{\nolinkurl{ejyoon@stanford.edu}}
@@ -306,7 +299,7 @@ The first utility term is a standard \emph{informational utility}
 (\(U_{inf}\)), which represents the speaker's desire to be epistemically
 helpful. The informational utility captures the amount of information a
 literal listener (\(L_0\)) would still not know about the world state
-after hearing the speaker's utterance:
+\(s\) after hearing the speaker's utterance \(w\) (i.e., surprisal):
 \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
 
 For aspects of the world with affective consequences for the listener
@@ -349,6 +342,16 @@ capturing the general pressure towards economy in speech. In our work,
 utterances with negation (e.g., \enquote{not terrible}) are assumed to
 be slightly costlier than their equivalents with no negation (inferred
 from data; see Supplementary Information).
+
+Within our experimental domain, we assume there are four possible states
+of the world corresponding to the value placed on a particular referent
+(e.g., the presentation the speaker is commenting on):
+\(S = {s_1,...,s_5}\). We further assume a uniform prior distribution
+over possible states of the world. The set of utterances is
+\{\emph{terrible}, \emph{bad}, \emph{good}, \emph{amazing}, \emph{not
+terrible}, \emph{not bad}, \emph{not good}, and \emph{not amazing}\}. We
+implemented this model using the probabilistic programming language
+WebPPL (Goodman \& Stuhlmüller, 2014).
 
 Intuitively, if Bob's performance was good, Ann's utilities align toward
 a positive utterance. By saying \enquote{{[}Your poem{]} was amazing,}
@@ -421,24 +424,24 @@ explained} & \multicolumn{1}{c}{log BF}\\
 model: 
 informational, 
 social, 
-presentational & NA & --\\
+presentational & 0.97 & --\\
 model: 
 informational, 
-presentational & NA & -11.14\\
+presentational & 0.96 & -11.14\\
 model: 
 informational, 
-social & NA & -25.06\\
+social & 0.92 & -25.06\\
 model: 
 social, 
-presentational & NA & -864\\
+presentational & 0.23 & -864\\
 model: 
 presentational 
-only & NA & -873.83\\
+only & 0.23 & -873.83\\
 model: 
-social only & NA & -885.52\\
+social only & 0.22 & -885.52\\
 model: 
 informational 
-only & NA & -274.89\\
+only & 0.83 & -274.89\\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
@@ -625,6 +628,22 @@ side-by-side, one for choosing between \emph{It was} vs. \emph{It
 wasn't} and the other for choosing among \emph{terrible}, \emph{bad},
 \emph{good}, and \emph{amazing.}
 
+\subsection{Data availability}\label{data-availability}
+
+Our model, preregistration of hypotheses, procedure, data, and analyses
+are available at \url{https://github.com/ejyoon/polite_speaker}.
+
+\section{Author information}\label{author-information}
+
+\subsection{Author contributions}\label{author-contributions}
+
+All authors designed research and wrote the paper; E.J.Y. and M.H.T.
+performed research and analyzed data.
+
+\subsection{Competing interests}\label{competing-interests}
+
+The authors declare no conflict of interest.
+
 \section{Supplementary Information}\label{supplementary-information}
 
 \subsection{Data analysis}\label{data-analysis}
@@ -693,15 +712,15 @@ parameters}\label{model-fitting-and-inferred-parameters}
 \toprule
 Model & \multicolumn{1}{c}{goal} & \multicolumn{1}{c}{$\phi_{inf}$} & \multicolumn{1}{c}{$\phi_{soc}$} & \multicolumn{1}{c}{$\phi_{pres}$} & \multicolumn{1}{c}{$\phi_{S_1}$}\\
 \midrule
-ninformational, social, presentational & both & 0.36 & 0.11 & 0.54 & 0.36\\
-ninformational, social, presentational & informative & 0.36 & 0.02 & 0.62 & 0.49\\
-ninformational, social, presentational & social & 0.25 & 0.31 & 0.44 & 0.37\\
-ninformational, presentational & both & 0.64 & NA & 0.36 & 0.17\\
-ninformational, presentational & informative & 0.77 & NA & 0.23 & 0.33\\
-ninformational, presentational & social & 0.66 & NA & 0.34 & 0.04\\
-ninformational, social & both & 0.54 & 0.46 & NA & NA\\
-ninformational, social & informative & 0.82 & 0.18 & NA & NA\\
-ninformational, social & social & 0.39 & 0.61 & NA & NA\\
+informational, social, presentational & both & 0.36 & 0.11 & 0.54 & 0.36\\
+informational, social, presentational & informative & 0.36 & 0.02 & 0.62 & 0.49\\
+informational, social, presentational & social & 0.25 & 0.31 & 0.44 & 0.37\\
+informational, presentational & both & 0.64 & NA & 0.36 & 0.17\\
+informational, presentational & informative & 0.77 & NA & 0.23 & 0.33\\
+informational, presentational & social & 0.66 & NA & 0.34 & 0.04\\
+informational, social & both & 0.54 & 0.46 & NA & NA\\
+informational, social & informative & 0.82 & 0.18 & NA & NA\\
+informational, social & social & 0.39 & 0.61 & NA & NA\\
 social, presentational & both & NA & 0.38 & 0.62 & 0.55\\
 social, presentational & informative & NA & 0.35 & 0.65 & 0.75\\
 social, presentational & social & NA & 0.48 & 0.52 & 0.66\\
@@ -719,10 +738,10 @@ social, presentational & social & NA & 0.48 & 0.52 & 0.66\\
 \toprule
 Model & \multicolumn{1}{c}{Cost of negation} & \multicolumn{1}{c}{Speaker optimality}\\
 \midrule
-ninformational only & 1.58 & 8.58\\
-ninformational, presentational & 1.89 & 2.93\\
-ninformational, social & 1.11 & 3.07\\
-ninformational, social, presentational & 2.64 & 4.47\\
+informational only & 1.58 & 8.58\\
+informational, presentational & 1.89 & 2.93\\
+informational, social & 1.11 & 3.07\\
+informational, social, presentational & 2.64 & 4.47\\
 presentational only & 2.58 & 9.58\\
 social only & 1.73 & 7.23\\
 social, presentational & 2.49 & 5.29\\
@@ -759,10 +778,7 @@ mixtures for each model variant (with different \(\phi\) components) and
 other parameters are shown in Table \ref{tab:phi} and Table
 \ref{tab:otherParams}, respectively.
 
-\subsection{Data Availability}\label{data-availability}
-
-Our model, preregistration of hypotheses, procedure, data, and analyses
-are available at \url{https://github.com/ejyoon/polite_speaker}.
+\newpage
 
 \subsection{Supplemental Figures}\label{supplemental-figures}
 
@@ -897,6 +913,10 @@ Sciences}, \emph{20}(11), 818--829.
 Goodman, N. D., \& Stuhlmüller, A. (2013). Knowledge and implicature:
 Modeling language understanding as social cognition. \emph{Topics in
 Cognitive Science}, \emph{5}(1), 173--184.
+
+\hypertarget{ref-dippl}{}
+Goodman, N. D., \& Stuhlmüller, A. (2014). The Design and Implementation
+of Probabilistic Programming Languages. \url{http://dippl.org}.
 
 \hypertarget{ref-grice1975}{}
 Grice, H. P. (1975). Logic and conversation. In P. Cole \& J. L. Morgan

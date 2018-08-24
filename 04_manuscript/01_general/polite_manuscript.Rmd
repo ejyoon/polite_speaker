@@ -358,14 +358,15 @@ ms_var_comp <- ms_utt %>%
     model == "NA" ~ "data", 
     TRUE ~ as.character(model)
   )) %>%
-  select(-source) %>%
-  gather(var, value, prob, -model, -true_state) %>%
-  unite(new, model) %>%
-  spread(new, value) %>%
   mutate(positivity = fct_recode(positivity, 
                                "It was ~" = "yes",
-                               "It wasn't ~" = "not"),
-         positivity = fct_relevel(positivity, "It was ~"))
+                               "It wasn't ~" = "not",
+                               "It was ~" = "It was~",
+                               "It wasn't ~" = "It wasn't~"
+                               ),
+         positivity = fct_relevel(positivity, "It was ~")) %>%
+  select(-source) %>%
+  spread(model, prob)
 
 cor2_inf = with(ms_var_comp, cor(data, inf))^2
 cor2_soc = with(ms_var_comp, cor(data, soc))^2
