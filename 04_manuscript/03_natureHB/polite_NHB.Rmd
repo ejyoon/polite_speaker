@@ -324,9 +324,12 @@ plot.comp <- ms_utt %>%
     model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
   ),
   model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
-  mutate(positivity = fct_recode(positivity,
-                                 "It was ~" = "yes",
-                                 "It wasn't ~" = "not"),
+  mutate(positivity = fct_recode(positivity, 
+                               "It was ~" = "yes",
+                               "It wasn't ~" = "not",
+                               "It was ~" = "It was~",
+                               "It wasn't ~" = "It wasn't~"
+                               ),
          positivity = fct_relevel(positivity, "It wasn't ~")) %>%
   filter(goal == "both", true_state == "0") %>%
   ggplot(., 
