@@ -420,8 +420,39 @@ Next, to connect the behavioral data to our model, we inferred the parameters of
 To approximate the semantics of the words as interpreted by the literal listener $L_0$, we obtained literal meaning judgments from an independent group of participants (*N*=51). 
 Predictions from the full polite speaker model showed a very strong fit to participants’ utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
 
+```{r phi, results = 'asis'}
+load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
+load(here("03_model/01_posterior_predictives/03_output_processed/other_param_summary.RData"))
+
+phi_tab <- d_phi_s %>%
+  mutate_at(vars(informative:social), as.numeric) %>%
+  mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
+  ungroup() %>%
+    mutate(model = case_when(
+    model == "inf" ~ "informational only", 
+    model == "soc" ~ "social only", 
+    model == "pres" ~ "presentational only", 
+    model == "InfPres" ~ "informational, presentational", 
+    model == "InfSoc" ~ "informational, social", 
+    model == "SocPres" ~ "social, presentational", 
+    model == "Full" ~ "informational, social, presentational" 
+  )) %>%
+  select(model, goal, informative, social, Selfpres, s1)
+
+colnames(phi_tab) <- c("Model", "goal", "$\\phi_{inf}$", "$\\phi_{soc}$", "$\\phi_{pres}$", "$\\phi_{S_1}$")
+
+apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all model variants with more than one utility.")
+```
+
 We also compared the predictions of our model to its variants containing subsets of the three utilities in the full model. Both the variance explained and the marginal likelihood of the observed data were the highest for the full model (Table \@ref(tab:comparisonTable)).
-Only the full model captured the participants’ preference for negation in the condition in which the speaker had both goals to be informative and kind about truly bad states, as hypothesized (Figure \@ref(fig:comparison)). All three utilities – informational, social, and presentational – were required to fully explain participants’ utterance choices. The utility weights inferred for the full model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates: our condition manipulation altered the balance between these weights, but all utilities played a role in all conditions.
+Only the full model captured the participants’ preference for negation in the condition in which the speaker had both goals to be informative and kind about truly bad states, as hypothesized (Figure \@ref(fig:comparison)). All three utilities – informational, social, and presentational – were required to fully explain participants’ utterance choices. 
+
+The utility weights inferred for the full model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates: 
+\emph{Being kind} requires equal weights on all three utilities, indicating that Gricean informativity needs to be part of language use even when it is explicitly not the goal. 
+\emph{Being informative} pushes the weight on social utility close to zero, but the weight on \emph{appearing kind} stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'. 
+\emph{Kind and informative} speakers emphasize informativity slightly more than kindness. 
+In all cases, however, the presentational utilities have greatest weight, which may suggest that appearing honest and kind is more important than actually being so!
+Overall then, our condition manipulation altered the balance between these weights, but all utilities played a role in all conditions.
 
 Politeness is a puzzle for purely informational accounts of language use. Incorporating social motivations can provide an explanatory framework, but such intuitions have been resistant to formalization or precise testing. To overcome this issue, we created a utility-theoretic model of language use that captured the interplay between competing informational, social, and presentational goals. A preregistered experimental test of the model confirmed its ability to capture human judgments, unlike comparison models that used only a subset of the full utility structure. 
 
@@ -439,7 +470,8 @@ The model presented here relates to other work done in game-theoretic pragmatics
 Our notion of social utility $U_{soc}$ and presentational utility $U_{pres}$ is similar in that they motivate speakers to signal worlds that make the listener feel good. 
 @vanRooy2003’s analysis, however, relies on the notion that polite language is costly (in a social way e.g., by reducing one’s social status or incurring social debt to one’s conversational partner) but it’s not clear how the polite behaviors explored in our experiments (not polite requests) would incur any cost to speaker or listener. 
 Our model derives its predictions by construing the speaker utility as a collection of possible goals (here, epistemic, social, and presentational goals). The speech-acts themselves are not costly.
-In @pinker2008's model, human communication is assumed to involve a mixture of cooperation *and* conflict: 
+
+In another game-theoretic approach by @pinker2008, human communication is assumed to involve a mixture of cooperation *and* conflict: 
 indirect speech then allows for plausible deniability that is in self-interest but goes against the interest of the addressee. 
 In contrast, our work builds on existing classic theories of polite speech as primarily cooperative [@grice1975; @brown1987] rather than based on both cooperation and conflict.
 We have shown that a separate notion of plausible deniability may not be needed, as indirect speech in our specific case comes from both a goal to be helpful and a desire to look good.
@@ -551,30 +583,6 @@ apa_table(brm.tab, caption= "Predictor mean estimates with standard deviation an
 We used Bayesian linear mixed-effects models [`brms` package in R; @R-brms] using crossed random effects of true state and goal with maximal random effects structure [@gelman2006data; @barr2013random].
 
 ## Model fitting and inferred parameters
-
-```{r phi, results = 'asis'}
-load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
-load(here("03_model/01_posterior_predictives/03_output_processed/other_param_summary.RData"))
-
-phi_tab <- d_phi_s %>%
-  mutate_at(vars(informative:social), as.numeric) %>%
-  mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
-  ungroup() %>%
-    mutate(model = case_when(
-    model == "inf" ~ "informational only", 
-    model == "soc" ~ "social only", 
-    model == "pres" ~ "presentational only", 
-    model == "InfPres" ~ "informational, presentational", 
-    model == "InfSoc" ~ "informational, social", 
-    model == "SocPres" ~ "social, presentational", 
-    model == "Full" ~ "informational, social, presentational" 
-  )) %>%
-  select(model, goal, informative, social, Selfpres, s1)
-
-colnames(phi_tab) <- c("Model", "goal", "$\\phi_{inf}$", "$\\phi_{soc}$", "$\\phi_{pres}$", "$\\phi_{S_1}$")
-
-apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all model variants with more than one utility.")
-```
 
 ```{r otherParams, results='asis'}
 other_tab <- d_other_s %>%

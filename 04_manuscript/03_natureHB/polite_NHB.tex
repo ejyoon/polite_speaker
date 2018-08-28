@@ -458,6 +458,32 @@ literal meaning judgments from an independent group of participants
 very strong fit to participants' utterance choices (\(r^2\)(96) = 0.97;
 Figure \ref{fig:variance}).
 
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:phi}Inferred phi parameters from all model variants with more than one utility.}
+\begin{tabular}{llllll}
+\toprule
+Model & \multicolumn{1}{c}{goal} & \multicolumn{1}{c}{$\phi_{inf}$} & \multicolumn{1}{c}{$\phi_{soc}$} & \multicolumn{1}{c}{$\phi_{pres}$} & \multicolumn{1}{c}{$\phi_{S_1}$}\\
+\midrule
+informational, social, presentational & both & 0.36 & 0.11 & 0.54 & 0.36\\
+informational, social, presentational & informative & 0.36 & 0.02 & 0.62 & 0.49\\
+informational, social, presentational & social & 0.25 & 0.31 & 0.44 & 0.37\\
+informational, presentational & both & 0.64 & NA & 0.36 & 0.17\\
+informational, presentational & informative & 0.77 & NA & 0.23 & 0.33\\
+informational, presentational & social & 0.66 & NA & 0.34 & 0.04\\
+informational, social & both & 0.54 & 0.46 & NA & NA\\
+informational, social & informative & 0.82 & 0.18 & NA & NA\\
+informational, social & social & 0.39 & 0.61 & NA & NA\\
+social, presentational & both & NA & 0.38 & 0.62 & 0.55\\
+social, presentational & informative & NA & 0.35 & 0.65 & 0.75\\
+social, presentational & social & NA & 0.48 & 0.52 & 0.66\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{center}
+\end{table}
+
 We also compared the predictions of our model to its variants containing
 subsets of the three utilities in the full model. Both the variance
 explained and the marginal likelihood of the observed data were the
@@ -466,9 +492,20 @@ full model captured the participants' preference for negation in the
 condition in which the speaker had both goals to be informative and kind
 about truly bad states, as hypothesized (Figure \ref{fig:comparison}).
 All three utilities -- informational, social, and presentational -- were
-required to fully explain participants' utterance choices. The utility
-weights inferred for the full model (Table \ref{tab:phi}) provide
-additional insight into how polite language use operates: our condition
+required to fully explain participants' utterance choices.
+
+The utility weights inferred for the full model (Table \ref{tab:phi})
+provide additional insight into how polite language use operates:
+\emph{Being kind} requires equal weights on all three utilities,
+indicating that Gricean informativity needs to be part of language use
+even when it is explicitly not the goal. \emph{Being informative} pushes
+the weight on social utility close to zero, but the weight on
+\emph{appearing kind} stays high, suggesting that speakers are expected
+to manage their own face even when they are not considering others'.
+\emph{Kind and informative} speakers emphasize informativity slightly
+more than kindness. In all cases, however, the presentational utilities
+have greatest weight, which may suggest that appearing honest and kind
+is more important than actually being so! Overall then, our condition
 manipulation altered the balance between these weights, but all
 utilities played a role in all conditions.
 
@@ -522,18 +559,20 @@ explored in our experiments (not polite requests) would incur any cost
 to speaker or listener. Our model derives its predictions by construing
 the speaker utility as a collection of possible goals (here, epistemic,
 social, and presentational goals). The speech-acts themselves are not
-costly. In Pinker, Nowak, and Lee (2008)'s model, human communication is
-assumed to involve a mixture of cooperation \emph{and} conflict:
-indirect speech then allows for plausible deniability that is in
-self-interest but goes against the interest of the addressee. In
-contrast, our work builds on existing classic theories of polite speech
-as primarily cooperative (Brown \& Levinson, 1987; Grice, 1975) rather
-than based on both cooperation and conflict. We have shown that a
-separate notion of plausible deniability may not be needed, as indirect
-speech in our specific case comes from both a goal to be helpful and a
-desire to look good. Our work is able to capture different linguistic
-nuances involved in this process of reasoning about different goals that
-speakers have.
+costly.
+
+In another game-theoretic approach by Pinker, Nowak, and Lee (2008),
+human communication is assumed to involve a mixture of cooperation
+\emph{and} conflict: indirect speech then allows for plausible
+deniability that is in self-interest but goes against the interest of
+the addressee. In contrast, our work builds on existing classic theories
+of polite speech as primarily cooperative (Brown \& Levinson, 1987;
+Grice, 1975) rather than based on both cooperation and conflict. We have
+shown that a separate notion of plausible deniability may not be needed,
+as indirect speech in our specific case comes from both a goal to be
+helpful and a desire to look good. Our work is able to capture different
+linguistic nuances involved in this process of reasoning about different
+goals that speakers have.
 
 By experimenting with different utility weights and value functions, our
 model could provide a framework for understanding systematic
@@ -703,32 +742,6 @@ with maximal random effects structure (Barr, Levy, Scheepers, \& Tily,
 
 \subsection{Model fitting and inferred
 parameters}\label{model-fitting-and-inferred-parameters}
-
-\begin{table}[tbp]
-\begin{center}
-\begin{threeparttable}
-\caption{\label{tab:phi}Inferred phi parameters from all model variants with more than one utility.}
-\begin{tabular}{llllll}
-\toprule
-Model & \multicolumn{1}{c}{goal} & \multicolumn{1}{c}{$\phi_{inf}$} & \multicolumn{1}{c}{$\phi_{soc}$} & \multicolumn{1}{c}{$\phi_{pres}$} & \multicolumn{1}{c}{$\phi_{S_1}$}\\
-\midrule
-informational, social, presentational & both & 0.36 & 0.11 & 0.54 & 0.36\\
-informational, social, presentational & informative & 0.36 & 0.02 & 0.62 & 0.49\\
-informational, social, presentational & social & 0.25 & 0.31 & 0.44 & 0.37\\
-informational, presentational & both & 0.64 & NA & 0.36 & 0.17\\
-informational, presentational & informative & 0.77 & NA & 0.23 & 0.33\\
-informational, presentational & social & 0.66 & NA & 0.34 & 0.04\\
-informational, social & both & 0.54 & 0.46 & NA & NA\\
-informational, social & informative & 0.82 & 0.18 & NA & NA\\
-informational, social & social & 0.39 & 0.61 & NA & NA\\
-social, presentational & both & NA & 0.38 & 0.62 & 0.55\\
-social, presentational & informative & NA & 0.35 & 0.65 & 0.75\\
-social, presentational & social & NA & 0.48 & 0.52 & 0.66\\
-\bottomrule
-\end{tabular}
-\end{threeparttable}
-\end{center}
-\end{table}
 
 \begin{table}[tbp]
 \begin{center}
