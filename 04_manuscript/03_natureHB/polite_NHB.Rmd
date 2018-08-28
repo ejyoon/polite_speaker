@@ -427,6 +427,7 @@ load(here("03_model/01_posterior_predictives/03_output_processed/other_param_sum
 phi_tab <- d_phi_s %>%
   mutate_at(vars(informative:social), as.numeric) %>%
   mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
+  replace(., is.na(.), "--") %>%  
   ungroup() %>%
     mutate(model = case_when(
     model == "inf" ~ "informational only", 
