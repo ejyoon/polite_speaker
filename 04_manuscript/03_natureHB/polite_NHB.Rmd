@@ -30,8 +30,8 @@ abstract: |
 
 
   
-keywords          : "keywords"
-wordcount         : "X"
+keywords          : "Politeness; computational modeling; commmunicative goals; pragmatics"
+wordcount         : "3500"
 
 bibliography      : ["politeness.bib"]
 
@@ -615,8 +615,7 @@ $\lambda_{S_1}$ was 1, and $\lambda_{S_2}$ was inferred from the data:
 We put a prior that was consistent with those used for similar models in this model class: $\lambda_{S_2}$ ~ $Uniform(0,20)$.
 Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
-We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
-The inferred values of weight mixtures for each model variant (with different $\phi$ components) and other parameters are shown in Table \@ref(tab:phi) and Table \@ref(tab:otherParams), respectively.
+We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. Negation cost and speaker optimality parameters are shown in Table \@ref(tab:otherParams).
 
 \newpage
 
