@@ -3,6 +3,7 @@
 
 
 \usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{graphics}
 
 \templatetype{main_style_file} % Choose template 
 % {pnasresearcharticle} = Template for a two-column research article
@@ -153,7 +154,7 @@ adults and children (e.g., Jara-Ettinger, Gweon, Schulz, \& Tenenbaum,
 2016; Liu, Ullman, Tenenbaum, \& Spelke, 2017).
 
 \begin{figure*}[!h]
-\includegraphics[width=\textwidth]{fig/model} \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
+\includegraphics[width=0.6\textwidth]{fig/model} \centering \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
 \end{figure*}
 
 RSA models are defined recursively such that speakers reason about
@@ -353,8 +354,11 @@ very strong fit to participants' utterance choices (\(r^2\)(96) = 0.97;
 Figure \ref{fig:variance}).
 
 \begin{table}[tbp]
+%\resizebox{\columnwidth}{!}{
 \begin{center}
 \begin{threeparttable}
+%\centering
+%\resizebox{\columnwidth}{!}{%
 \caption{\label{tab:phi}Inferred phi parameters from all model variants with more than one utility.}
 \begin{tabular}{llllll}
 \toprule
@@ -376,6 +380,7 @@ social, presentational & social & -- & 0.48 & 0.52 & 0.66\\
 \end{tabular}
 \end{threeparttable}
 \end{center}
+%}
 \end{table}
 
 We also compared the predictions of our model to its variants containing
@@ -524,13 +529,15 @@ standard Beta-Binomial model). Meanings of the words as judged by
 participants were as one would expect (Figure ~\ref{fig:litsem}).
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{fig/litsem-1} \caption{Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\% confidence intervals.}\label{fig:litsem}
+\includegraphics[width=\columnwidth]{fig/litsem-1}
+\centering \caption{Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\% confidence intervals.}\label{fig:litsem}
 \end{figure}
 
 \subsection*{Speaker production task}\label{speaker-production-task}
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{fig/screenshot} \caption{Example of a trial in the speaker production task.}\label{fig:screenshot}
+\includegraphics[width=\columnwidth]{fig/screenshot} 
+\caption{Example of a trial in the speaker production task.}\label{fig:screenshot}
 \end{figure}
 
 202 participants with IP addresses in the United States were recruited
