@@ -4,6 +4,8 @@
 
 \usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
 \usepackage{graphics}
+\usepackage{amsmath}
+
 
 \templatetype{main_style_file} % Choose template 
 % {pnasresearcharticle} = Template for a two-column research article
@@ -179,15 +181,22 @@ Ann's production decision is softmax, which interpolates between
 maximizing and probability matching (via \(\lambda_{S_2}\); Goodman \&
 Stuhlmüller, 2013):
 
-\[P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})])\].
+\begin{equation}
+P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})]).
+\end{equation} 
 
 What goals must the speaker consider to arrive at a polite utterance? We
 consider three utilities: informational, social, and presentational. The
 total utility of an utterance is the weighted combination of the three
 utilities minus the utterance cost \(C(w)\):
 
-\[U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \phi_{pres} \cdot U_{pres}(w; s) - C(w)\].
+\begin{equation}
+\begin{split}
+U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \\ \phi_{pres} \cdot U_{pres}(w; s) - C(w). 
+\end{split}
+\end{equation}
 
+\par
 The first utility term is a standard \emph{informational utility}
 (\(U_{inf}\)), which represents the speaker's desire to be epistemically
 helpful. The informational utility captures the amount of information a
@@ -217,15 +226,21 @@ The speaker gains presentational utility when her listener believes she
 has certain goals -- that she is trying to be informative or kind.
 Formally,
 
-\[U_{pres}(w) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w)\].
+\begin{equation}
+U_{pres}(w) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).
+\end{equation}
 
+\noindent
 To define this term, the speaker has a weighting of informational
 vs.~social goals to convey (\(\phi_{S_1}\)) and must consider the
 beliefs of listener L1, who hears an utterance and jointly infers both
 the speaker's utilities and the true state of the world:
 
-\[P_{L_1}(s, \hat{\phi} | w) \propto P_{S_1}(w | s, \hat{\phi}) \cdot P(s) \cdot p(\hat{\phi})\].
+\begin{equation}
+P_{L_1}(s, \hat{\phi} | w) \propto P_{S_1}(w | s, \hat{\phi}) \cdot P(s) \cdot p(\hat{\phi}).
+\end{equation}
 
+\noindent
 This presentational utility is higher-order in that it can only be
 defined for a speaker thinking about a listener who evaluates a speaker
 (i.e., it can be defined for \(S_2\), but not \(S_1\)).
