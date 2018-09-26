@@ -47,7 +47,6 @@
   \keywords{politeness $|$ computational modeling $|$ communicative goals$|$ pragmatics}
 
 \begin{abstract}
-<<<<<<< HEAD
 Language is a remarkably efficient tool for transmitting information. 
 Yet human speakers make statements that are inefficient, imprecise, or even contrary to their beliefs, all in the service of being polite.
 What rational machinery underlies polite language use?
@@ -55,17 +54,7 @@ Here, we show that polite speech emerges from the competition of informational, 
 We formalize this tradeoff using a probabilistic model of utterance production, which predicts human choices with high
 quantitative accuracy.
 This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language use.
-=======
-Language is a remarkably efficient tool for information transfer. Yet to
-be polite, speakers often behave in ways that are at odds with this
-goal, making statements that are inefficient, imprecise, or even
-outright false. Why? We show that polite speech emerges from competing
-goals: to be informative, to be kind, and to \emph{appear} to be both of
-these. We formalize this tradeoff using a probabilistic model of
-speakers' utterance choice, which predicts human judgments with high
-accuracy. This utility-theoretic approach to speech acts takes a step
-towards explaining the richness and subtlety of social language.
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
+
 \end{abstract}
 
 \dates{This manuscript was compiled on \today}
@@ -83,7 +72,6 @@ Although \emph{close the window!} could be effective message, we dawdle by addin
 or \emph{would you mind\ldots{}?} 
 Rather than tell an uncomfortable truth, socially-aware speakers lie (\emph{Your dress looks great!}) and
 prevaricate (\emph{Your poem was so appropriate to the occasion}).
-<<<<<<< HEAD
 Such language use is puzzling for classical views of language as information transfer (Bühler, 1934; Frank \& Goodman, 2012; Jakobson, 1960; Shannon,
 1948). On these views, transfer ought to be efficient and accurate: The
 speaker chooses a succinct utterance to convey their beliefs
@@ -158,87 +146,6 @@ hypothesis which has found empirical support in a wide variety of work with both
 adults and children (e.g., Jara-Ettinger, Gweon, Schulz, \& Tenenbaum,
 2016; Liu, Ullman, Tenenbaum, \& Spelke, 2017).
  
-=======
-Such utterances are puzzling for standard views of language use, which
-see communication as the transfer of information from a sender to a
-receiver \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On these views, transfer ought to be efficient and accurate: The
-speaker should choose a succinct utterance to convey what the speaker
-knows \cite{grice1975, searle1975}, and the information transferred
-should be accurate and truthful to the extent of the speaker's
-knowledge. Polite speech -- like the examples above -- violates these
-basic expectations about the nature of communication: It is typically
-inefficient and underinformative, and sometimes even outright false. Yet
-language users, including even young children, spontaneously produce
-requests in polite forms \cite{axia1985, clark1980}, and speakers use politeness strategies even while arguing,
-preventing unnecessary offense to their interactants \cite{holtgraves1997}.
-So why are we polite?
-
-
-Theories of politeness explain deviations from optimal information
-transfer in language by assuming that speakers take into account social,
-as well as informational, concerns. These concerns are sometimes
-expressed as sets of polite maxims \cite{leech1983} or social norms \cite{ide1989}, 
-but the most influential account of politeness relies on the
-notion of \emph{face} to motivate deviations \cite{brown1987, goffman1967}. 
-On this theory, interactants seek to be liked,
-approved, and related to (\emph{positive face}) as well as maintain
-their freedom to act (\emph{negative face}). If the speaker's
-intended meaning contains no threat to the listener's face, then the
-speaker will choose to convey the meaning in an explicit and efficient
-manner (putting it \emph{on the record}). As the degree of
-face-threat becomes more severe, however, a speaker will choose to be
-polite by producing more indirect utterances. Both inefficient indirect
-speech and untruthful lies in communication are then the result of
-speakers' strategic choices relative to possible face threats.
-
-The face-based framework for polite language use provides an intuitive
-and appealing explanation of many types of polite speech, but it does
-not precisely define how competing communicative goals trade off with
-one another. For example, it is unclear when face-saving should be
-prioritized over helpful information transfer, and when the desire to
-save face will motivate statements that are outright false
-(\emph{Your cake is delicious!}) versus indirect (\emph{It could
-use a bit of salt}). Concretely, such theorizing does not constrain how
-an artificial agent like a robot should go about making polite requests,
-conveying negative evaluations, or delivering bad news. Further, a
-mutually-understood notion of face introduces additional complexity:
-Speakers sometimes may not want to preserve the listener's face
-genuinely but only to be \emph{seen as} doing so, hence appearing to be
-socially apt and saving their own face, which may lead to a different
-decision from that based on genuine desires to be kind or informative.
-What is needed is a precise theory of these goals and how they trade
-off.
-
-To address these challenges, we develop a utility-theoretic model to
-quantify tradeoffs between different goals that a polite speaker may
-have. In our model, speakers attempt to maximize a set of competing
-utilities: an informational utility, derived via classical, effective
-information transmission; a social utility, derived by being kind and
-saving the listener's face; and a self-presentational utility, derived
-by appearing in a particular way to save the speaker's own face.
-Speakers then can choose between different utterances on the basis of
-their expected utility (including their cost to utter, approximated by
-the length of the utterance). The lie that a poem was great provides
-social utility by making its writer feel good, but does not inform about
-the true state of the world. Further, if the writer suspects that it was
-in fact terrible, the speaker runs the risk of being seen as
-uncooperative.
-
-The utilities are weighed within a Rational Speech Act (RSA) model that
-takes a probabilistic approach to pragmatic reasoning in language \cite{frank2012, goodman2016}: Speakers are modeled as
-agents who choose utterances by reasoning about their effects on a
-listener relative to their cost, while listeners are modeled as
-inferring interpretations by reasoning about speakers and their goals.
-This class of models has been effective in understanding a wide variety
-of complex linguistic behaviors, including vagueness \cite{lassiter2017adjectival}, hyperbole \cite{kao2014}, and irony
-\cite{kao2015}, among others. More broadly, RSA models provide a
-instantiation for language of the idea that human social cognition can
-be approximated via reasoning about others as rational agents who act to
-maximize their subjective utility \cite{baker2009action}, a
-hypothesis which has found support in a wide variety of work with both
-adults and children (e.g., cite{jara2016naive, liu2017ten}).
-
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
 \begin{figure*}[!h]
 \includegraphics[width=0.6\textwidth]{fig/model} \centering \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
 \end{figure*}
@@ -269,7 +176,6 @@ Stuhlmüller, 2013):
 P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})]).
 \end{equation} 
 
-<<<<<<< HEAD
 We posit that a speaker's utility contains three distinct components: informational, social, and presentational. The
 total utility of an utterance is the weighted combination of the three component utilities minus the utterance cost \(C(w)\):
 
@@ -286,45 +192,6 @@ Speakers who optimize for informational utility produce accurate and informative
 If a listener is uncertain how their particular speaker is weighing the competing goals to be honest vs. kind, they might try to infer the weighting (e.g., ``was she just being nice?''). 
 But then a sophisticated speakers can produce utterances in order to appear as if they had certain goals in mind (i.e., a self-presentational goal). 
 The extent to which the speaker \emph{appears} to the listener to have a particular goal in mind (e.g., to be kind) is the utterance's \emph{presentational utility} (\(U_{pres}\)) and is the most novel component of our model.
-=======
-What goals must the speaker consider to arrive at a polite utterance? We
-consider three utilities: informational, social, and presentational. The
-total utility of an utterance is the weighted combination of the three
-utilities minus the utterance cost \(C(w)\):
-
-\begin{equation}
-\begin{split}
-U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \\ \phi_{pres} \cdot U_{pres}(w; s) - C(w). 
-\end{split}
-\end{equation}
-
-\par
-The first utility term is a standard \emph{informational utility}
-(\(U_{inf}\)), which represents the speaker's desire to be epistemically
-helpful. The informational utility captures the amount of information a
-literal listener (\(L_0\)) would still not know about the world state
-\(s\) after hearing the speaker's utterance \(w\) (i.e., surprisal):
-\(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
-
-For aspects of the world with affective consequences for the listener
-(e.g., Bob and his poem recital), we assume speakers produce utterances
-that make listeners feel like they are in a good state. The second
-utility term is a \emph{social utility} (\(U_{soc}\)), which we define
-as the expected subjective utility \(V(s)\) of the state implied to the
-listener by the utterance:
-\(U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]\). In our
-experimental domain, states are explicit ratings, so we use a positive
-linear value function \(V\) to capture the idea that listeners want to
-hear that they are in a good state of the world (e.g., Bob prefers that
-his poem was good).
-
-If listeners try to infer the goals that a speaker is entertaining
-(e.g., social vs.~informational), speakers may choose utterances in
-order to convey that they had certain goals in mind. The third and the
-most novel component of our model, \emph{presentational utility}
-(\(U_{pres}\)), captures the extent to which the speaker \emph{appears}
-to the listener to have a particular goal in mind (e.g., to be kind).
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
 The speaker gains presentational utility when her listener believes she
 has particular goals -- that she is trying to be informative or kind.
 Formally,
@@ -333,31 +200,17 @@ Formally,
 U_{pres}(w) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).
 \end{equation}
 
-<<<<<<< HEAD
 The speaker conveys a weighting of informational
 vs.~social goals (\(\phi_{S_1}\)) by considering the
 beliefs of listener L1, who hears an utterance and jointly infers
-=======
-\noindent
-To define this term, the speaker has a weighting of informational
-vs.~social goals to convey (\(\phi_{S_1}\)) and must consider the
-beliefs of listener L1, who hears an utterance and jointly infers both
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
 the speaker's utilities and the true state of the world:
 
 \begin{equation}
 P_{L_1}(s, \hat{\phi} | w) \propto P_{S_1}(w | s, \hat{\phi}) \cdot P(s) \cdot p(\hat{\phi}).
 \end{equation}
 
-<<<<<<< HEAD
 This presentational utility is the highest-order term of the model, defined only for a speaker thinking about a listener who evaluates a speaker
 (i.e., defined for \(S_2\), but not \(S_1\)).
-=======
-\noindent
-This presentational utility is higher-order in that it can only be
-defined for a speaker thinking about a listener who evaluates a speaker
-(i.e., it can be defined for \(S_2\), but not \(S_1\)).
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
 
 Finally, more complex utterances incur a greater cost, \(C(w)\) --
 capturing the general pressure towards economy in speech. In our work,
@@ -484,18 +337,6 @@ In sum, the full collection of informational, social, and presentational were
 required to fully explain participants' utterance choices.
 
 
-<<<<<<< HEAD
-=======
-Next, to connect the behavioral data to our model, we inferred the
-parameters of the RSA model (e.g., the speaker's utility weights in each
-goal condition; see Supplementary Information) via a Bayesian data
-analysis \cite{lee2014}. To approximate the semantics
-of the words as interpreted by the literal listener \(L_0\), we obtained
-literal meaning judgments from an independent group of participants
-(\emph{N}=51). Predictions from the full polite speaker model showed a
-very strong fit to participants' utterance choices (\(r^2\)(96) = 0.97;
-Figure \ref{fig:variance}).
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
 
 \begin{table}[tbp]
 %\resizebox{\columnwidth}{!}{
@@ -566,7 +407,6 @@ technical challenges (perhaps paralleling the difficulty human speakers
 feel in finding the right thing to say in a difficult situation; see \cite{goodman2016}).
 
 For a socially-conscious speaker, managing listeners' inferences is a
-<<<<<<< HEAD
 fundamental task. Our model builds upon the theory of politeness as face
 management (Brown \& Levinson, 1987) and takes a step towards
 understanding it more fully. Our work extends previous models of language beyond
@@ -619,56 +459,7 @@ A joint cooperative and conflicting relationship was thought necessary for indir
 %that make the listener feel good. 
 
 Utility weights and value functions in our model could provide a framework for understanding systematic
-cross-cultural differences in what counts as polite. Cross-cultural differences in
-=======
-fundamental task. Inspired by the theory of politeness as face
-management \cite{brown1987}, our model takes a step towards
-understanding it. Our work extends previous models of language beyond
-standard informational utilities to address social and
-self-presentational concerns. Previous theories of language use have not
-explained how informational versus social concerns trade off to inform
-the speaker's utterance choices. Thus, this work represents a key
-theoretical advance exploring how informational cooperativity interacts
-with other social goals. By considering utility-driven inferences in a
-social context \cite{baker2017rational, hamlin2013mentalistic} where agents need to take
-into account concerns about both self and others, our approach here
-could give insights into a wide range of social behaviors beyond speech.
-
-The model presented here relates to other work done in game-theoretic
-pragmatics. Van Rooy (2003) \cite{vanRooy2003} uses a game-theoretic analysis of polite
-requests (\emph{Could you possibly take me home?}) to argue the
-purpose of polite language is to align the preferences of interlocutors.
-Our notion of social utility \(U_{soc}\) and presentational utility
-\(U_{pres}\) is similar in that they motivate speakers to signal worlds
-that make the listener feel good. Van Rooy (2003)'s analysis, however,
-relies on the notion that polite language is costly (in a social way
-e.g., by reducing one's social status or incurring social debt to one's
-conversational partner) but it's not clear how the polite behaviors
-explored in our experiments (not polite requests) would incur any cost
-to speaker or listener. Our model derives its predictions by construing
-the speaker utility as a collection of possible goals (here, epistemic,
-social, and presentational goals). The speech-acts themselves are not
-costly.
-
-In another game-theoretic approach by Pinker, Nowak, and Lee (2008) \cite{pinker2008},
-human communication is assumed to involve a mixture of cooperation
-\emph{and} conflict: indirect speech then allows for plausible
-deniability that is in self-interest but goes against the interest of
-the addressee. In contrast, our work builds on existing classic theories
-of polite speech as primarily cooperative \cite{brown1987, goffman1967} 
-rather than based on both cooperation and conflict. We have
-shown that a separate notion of plausible deniability may not be needed,
-as indirect speech in our specific case comes from both a goal to be
-helpful and a desire to look good. Our work is able to capture different
-linguistic nuances involved in this process of reasoning about different
-goals that speakers have.
-
-By experimenting with different utility weights and value functions, our
-model could provide a framework for understanding systematic
-cross-cultural differences in what counts as polite. For example,
-following Brown and Levinson (1987) \cite{brown1987}, cross-cultural differences in
->>>>>>> 7d80b8e365e0faf85fb7def37163ead4b110bd89
-politeness could be a product of different weightings within the same
+cross-cultural differences in what counts as polite. Cross-cultural differences in politeness could be a product of different weightings within the same
 utility structure. Alternatively, culture could affect
 the value function \(V\) that maps states of the world onto subjective
 values for the listener (e.g., the mapping from states to utilities may
