@@ -35,7 +35,7 @@
 \leadauthor{Yoon, Tessler} 
 
 % Please add here a significance statement to explain the relevance of your work
-\significancestatement{Politeness violates the standard model of language use as a tool for information transfer. Here, we formalize how politeness emerges in language use through a balance between three potentially conflicting goals: an informational goal, a social goal (\emph{be nice}), and a self-presentational goal (\emph{look nice}).  We present a pre-registered, quantitative test of our model, finding all three speech production goals are necessary to explain the nuances of the utterance choices of our participants. This formal work introduces a quantitative understanding of social language use more broadly, and presents a computational perspective on courtesy, to machines that talk with tact.}
+\significancestatement{Politeness violates the standard model of language use as a tool for information transfer. Here, we formalize how politeness emerges in language use through a balance between three potentially conflicting goals: an informational goal (\emph{be informative}), a social goal (\emph{be nice}), and a self-presentational goal (\emph{look nice}).  We present a pre-registered, quantitative test of our model, finding all three speech production goals are necessary to explain the nuances of the utterance choices of our participants. This formal work introduces a quantitative understanding of social language use more broadly, and presents a computational perspective on courtesy, to machines that talk with tact.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{Please provide details of author contributions here.}
@@ -72,20 +72,18 @@ Although \emph{close the window!} could be effective message, we dawdle by addin
 or \emph{would you mind\ldots{}?} 
 Rather than tell an uncomfortable truth, socially-aware speakers lie (\emph{Your dress looks great!}) and
 prevaricate (\emph{Your poem was so appropriate to the occasion}).
-Such language use is puzzling for classical views of language as information transfer (Bühler, 1934; Frank \& Goodman, 2012; Jakobson, 1960; Shannon,
-1948). On these views, transfer ought to be efficient and accurate: The
+Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On these views, transfer ought to be efficient and accurate: The
 speaker chooses a succinct utterance to convey their beliefs
-knows (Grice, 1975; Searle, 1975), and the information transferred
+knows \cite{grice1975, searle1975}, and the information transferred
 is ideally accurate and truthful to the extent of the speaker's
 knowledge. Polite speech violates these
 basic expectations about the nature of communication: It is typically
 inefficient and underinformative, and sometimes even outright false. Yet even young speakers of a language spontaneously produce
-requests in polite forms (Axia \& Baroni, 1985; e.g., Clark \& Schunk,
-1980), and adults use politeness strategies while arguing,
-preventing unnecessary offense to their interactants (Holtgraves, 1997).
+requests in polite forms \cite{axia1985, clark1980}, and adults use politeness strategies while arguing,
+preventing unnecessary offense to their interactants \cite{holtgraves1997}.
 
 If politeness only gets in the way of effective information transfer, why be polite?
-Clearly, we have social concerns, and most linguistic theories assume such a mechanism of action, couched as either polite maxims (Leech, 1983), social norms (Ide, 1989), or aspects of a speaker and/or listener's identity referred as \emph{face} (Brown \& Levinson, 1987; Goffman, 1967).
+Clearly, we have social concerns, and most linguistic theories assume such a mechanism of action, couched as either polite maxims \cite{leech1983}, social norms \cite{ide1989}, or aspects of a speaker and/or listener's identity referred as \emph{face} \cite{brown1987, goffman1967}.
 This latter theory predicts that when a speaker's intended meaning contains a threat to the listener's self-image (and potentially the speaker's image), her messages will be less direct, less efficient, and possibly untruthful. 
 But how does a speaker decide to be indirect (\emph{Your pie could use a bit of salt}) vs. false (\emph{It's delicious!}), and when should they tell the truth?
 Additionally, how does the possibility of a speaker maintaining their own image in the mind of the listener enter into the calculation?
@@ -134,17 +132,16 @@ Further, if the baker suspects that it was in fact terrible, the speaker runs th
 %approved, and related to (\emph{positive face}) as well as maintain
 %their freedom to act (\emph{negative face}). If the 
 
-The speaker's utilities are weighed within a probabilistic model of pragmatic reasoning within the Rational Speech Act (RSA) framework (Frank \& Goodman, 2012; Goodman \& Frank, 2016): Speakers are modeled as
+The speaker's utilities are weighed within a probabilistic model of pragmatic reasoning within the Rational Speech Act (RSA) framework \cite{frank2012, goodman2016}: Speakers are modeled as
 agents who choose utterances by reasoning about their effects on a
 listener relative to their cost, while listeners infer the meaning of an utterance by reasoning about speakers and their goals.
-This model class has provided a quantitative understanding of a wide variety of complex linguistic behaviors, including vagueness (Lassiter \& Goodman, 2017), hyperbole (Kao, Wu, Bergen, \& Goodman, 2014), and irony
-(Kao \& Goodman, 2015), among others. 
+This model class has provided a quantitative understanding of a wide variety of complex linguistic behaviors, including vagueness \cite{lassiter2017adjectival}, hyperbole \cite{kao2014}, and irony
+\cite{kao2015}, among others. 
 In this framework, language use builds on the idea that human social cognition can
 be approximated via reasoning about others as rational agents who act to
-maximize their subjective utility (Baker, Saxe, \& Tenenbaum, 2009), a
+maximize their subjective utility \cite{baker2009action}, a
 hypothesis which has found empirical support in a wide variety of work with both
-adults and children (e.g., Jara-Ettinger, Gweon, Schulz, \& Tenenbaum,
-2016; Liu, Ullman, Tenenbaum, \& Spelke, 2017).
+adults and children (e.g., \cite{jara2016naive, liu2017ten}).
  
 \begin{figure*}[!h]
 \includegraphics[width=0.6\textwidth]{fig/model} \centering \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
@@ -169,8 +166,7 @@ Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \
 rating, in her mind, truly deserved by Bob's pie) and a set of goal weights
 \(\hat{\phi}\), that determines how much Ann prioritizes each of the three possible goals.
 Ann's production decision is softmax, which interpolates between
-maximizing and probability matching (via \(\lambda_{S_2}\); Goodman \&
-Stuhlmüller, 2013):
+maximizing and probability matching (via \(\lambda_{S_2}\); \cite{goodman2013}):
 
 \begin{equation}
 P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi})]).
@@ -179,13 +175,17 @@ P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[
 We posit that a speaker's utility contains three distinct components: informational, social, and presentational. The
 total utility of an utterance is the weighted combination of the three component utilities minus the utterance cost \(C(w)\):
 
-\[U_{total}(w; s; \hat{\phi}) = \phi_{info} \cdot U_{info}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \phi_{pres} \cdot U_{pres}(w; s) - C(w)\].
+\begin{equation}
+\begin{split}
+U_{total}(w; s; \hat{\phi}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w; s) + \\ \phi_{pres} \cdot U_{pres}(w; s) - C(w). 
+\end{split}
+\end{equation}
 
 %Aspects of the world with affective consequences for the listener (e.g., Bob and his pie) influence the social utilities in the model. 
 Foremost, we define \emph{social utility} as the expected subjective utility \(V(s)\) of the state implied to the
 listener by the utterance: \(U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]\). 
 The subjective utility function \(V(s)\) could vary by culture and context; we test our model when states are explicit ratings (e.g., on a 4-pt scale) and we assume a positive linear value relationship between states and values \(V\) to model a listener's preference to be in a highly rated state (e.g., Bob would prefer to have made a 4-star pie rather than a 1-star pie).
-At the same time, a speaker may desire to be epistemically helpful, modeled as standard \emph{informational utility} (\(U_{info}\)).
+At the same time, a speaker may desire to be epistemically helpful, modeled as standard \emph{informational utility} (\(U_{inf}\)).
 The informational utility indexes the amount of information a literal listener (\(L_0\)) would still not know about the state of the world \(s\) after hearing the speaker's utterance \(w\) (i.e., surprisal; e.g., how likely is Bob to guess Ann's actual opinion of the pie): \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
 Speakers who optimize for informational utility produce accurate and informative utterances while those who optimize for social utility produce utterances that make the listener feel good.
 
@@ -323,7 +323,7 @@ only & 0.83 & -274.89\\
 \end{threeparttable}
 \end{center}
 \end{table}
-The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using a Bayesian data analysis model (M. D. Lee \& Wagenmakers, 2014; see Supplementary Information)
+The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using a Bayesian data analysis model (\cite{lee2014}; see Supplementary Information)
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
 (\emph{N}=51). 
 The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices (\(r^2\)(96) = 0.97; Figure \ref{fig:variance}).
@@ -408,22 +408,21 @@ feel in finding the right thing to say in a difficult situation; see \cite{goodm
 
 For a socially-conscious speaker, managing listeners' inferences is a
 fundamental task. Our model builds upon the theory of politeness as face
-management (Brown \& Levinson, 1987) and takes a step towards
+management \cite{brown1987} and takes a step towards
 understanding it more fully. Our work extends previous models of language beyond
 standard informational utilities to address social and
 self-presentational concerns. Previous theories of language use have not
 explained how informational versus social concerns trade off to inform
 the speaker's utterance choices. This work breaks through to exploring how informational cooperativity interacts
 with other social goals, and our approach can provide insight into a wide range of social behaviors beyond speech by considering utility-driven inferences in a
-social context (Baker, Jara-Ettinger, Saxe, \& Tenenbaum, 2017; Hamlin,
-Ullman, Tenenbaum, Goodman, \& Baker, 2013) where agents need to take
+social context \cite{baker2017rational, hamlin2013mentalistic} where agents need to take
 into account concerns about both self and others.
 
-Previous game-theoretic analyses of politeness have either required some social cost to an utterance (e.g., by reducing one's social status or incurring social debt to one's conversational partner; Van Rooy, 2003) or a separate notion of plausible deniability (Pinker, Nowak, and Lee, 2008).
+Previous game-theoretic analyses of politeness have either required some social cost to an utterance (e.g., by reducing one's social status or incurring social debt to one's conversational partner; \cite{vanRooy2003}) or a separate notion of plausible deniability \cite{pinker2008}.
 The necessary kind of utterance cost would involve higher-order reasoning about others, and may be able to be defined in terms the more basic social and self-presentational goals we formalize here. 
 A separate notion of plausible deniability may not be need either.
 Maintaining plausible deniability is in one's own self-interest (e.g., for controversial viewpoints or covert deception) and; goes against the interest of the addressee.
-A joint cooperative and conflicting relationship was thought necessary for indirect speech(Pinker, Nowak, and Lee, 2008), but here we show indirectness arising from purely cooperative goals, which address different aspects of a general utility structure. 
+A joint cooperative and conflicting relationship was thought necessary for indirect speech \cite{pinker2008}, but here we show indirectness arising from purely cooperative goals, which address different aspects of a general utility structure. 
 
 %balance cooperation and conflict between interlocutors (e.g., in deception), which characterized human politeness intuitions 
 %Here we show indirectness arising from purely cooperative goals, which address different aspects of a general utility structure.
