@@ -8,6 +8,7 @@
 *.synctex.gz
 *.docx
 manuscript/*.pdf
+04_manuscript/04_pnas/*.pdf
 zz*/
 zz/
 .Rproj.user

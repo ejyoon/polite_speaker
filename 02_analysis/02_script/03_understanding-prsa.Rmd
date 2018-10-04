@@ -23,7 +23,7 @@ library(here)
 ```{r languageUtils}
 language <- '
 var cost_yes = 1;
-var cost_neg = 3;
+var cost_neg = 2;
 
 var isNegation = function(utt){
   return (utt.split("_")[0] == "not")
@@ -68,16 +68,16 @@ var statePrior = function(){
   return uniformDraw(states);
 };
 
-var speakerOptimality = 5;
+var speakerOptimality = 2.5;
 
 var round = function(x){
 	return Math.round(x * 100) / 100
 }
 
 // var phiWeights = [1, 1, 1, 1, 1, 1, 1, 1, 1]
-var weightBins = [0.1, 0.3, 0.5, 0.7, 0.9]
+// var weightBins = [0.1, 0.3, 0.5, 0.7, 0.9]
 
-// var weightBins = map(round, _.range(0,1, 0.05))
+var weightBins = map(round, _.range(0,1, 0.05))
 var phiWeights = repeat(weightBins.length, function(){1})
 
 var StatePrior = Categorical({vs: states, ps:[1,1,1,1]})
@@ -120,7 +120,7 @@ var listener1 = cache(function(utterance) {
   Infer({method: "enumerate"}, function(){
 
    var phi = categorical ({vs: weightBins, ps: phiWeights})
-    var state = sample(StatePrior)
+   var state = sample(StatePrior)
 
    var S1 = speaker1(state, phi)
    observe(S1, utterance)
@@ -344,19 +344,21 @@ rs.l1.tidy <- data.frame(rs.l1) %>% gather(utt_state, prob) %>%
   separate(utt_state, into = c("positive", "utt", "state", "phi"), sep  = "_") %>%
   mutate(positive = factor(positive, levels = c("yes", "not")),
          positive = fct_recode(positive, 
-                               "It was ~" = "yes",
-                               "It wasn't ~" = "not"),
+                               "it was __" = "yes",
+                               "it was NOT __" = "not"),
          utt = factor(utt, levels = c(
            "terrible",
            "bad",
            "good",
            "amazing"
          )),
-         phi = as.numeric(phi) / 100,
-         phi = 1 - phi
+         phi = as.numeric(phi) / 100
   )
-  
+```
 
+joint posterior
+
+```{r}
 fig.l1 <- ggplot(rs.l1.tidy, aes ( x = state, y = phi, fill = prob))+
   geom_tile(colour = "grey95") + 
   scale_fill_gradient(low = "black", high = "gold")+
@@ -369,6 +371,76 @@ fig.l1 <- ggplot(rs.l1.tidy, aes ( x = state, y = phi, fill = prob))+
 fig.l1
 # ggsave("img/l1.pdf", width = 8, height = 4)
 ```
+
+marginal posterior on phi
+
+```{r}
+rs.l1.tidy.phi <- rs.l1.tidy %>%
+  group_by(positive, utt, phi) %>%
+  summarize(prob = sum(prob))
+
+
+fig.marginal.phi.l1 <- ggplot(rs.l1.tidy.phi %>%
+         filter(utt %in% c("terrible", "amazing")),
+       aes( x = phi, y = prob, group = phi, fill = positive) )+
+  geom_bar(position = position_dodge(), stat = 'identity', color = 'black',
+           alpha =0.8)+
+  scale_y_continuous(limits = c(0, 0.11), breaks = c(0, 0.1))+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0,  1))+#,
+                     #labels = c("epistemic", "social"))+
+  facet_grid(positive~utt, scales = 'free')+
+  # scale_fill_manual(values =  rev(brewer.pal(5,"RdBu")))+
+  # scale_fill_manual(values =  brewer.pal(4,"RdBu"))+
+  scale_fill_solarized()+
+  guides(fill = F)+
+  theme_few()+
+  theme(#axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        strip.text.y = element_text(angle = 0))+
+  ylab("probability mass")+
+  xlab("inferred speaker's relative informational utility")
+
+fig.marginal.phi.l1
+```
+
+```{r}
+rs.l1.tidy.state <- rs.l1.tidy %>%
+  group_by(positive, utt, state) %>%
+  summarize(prob = sum(prob))
+
+fig.marginal.state.l1 <- ggplot(rs.l1.tidy.state %>%
+         filter(utt %in% c("terrible", "amazing")),
+       aes( x = state, y = prob, group = state, fill = positive) )+
+  geom_bar(position = position_dodge(), stat = 'identity', color = 'black')+
+  scale_y_continuous(limits = c(0, 0.7), breaks = c(0, 0.3, 0.6))+
+  #scale_x_continuous(limits = c(0, 1), breaks = c(0,  1))+#,
+                     #labels = c("epistemic", "social"))+
+  facet_grid(positive~utt, scales = 'free')+
+  # scale_fill_manual(values =  rev(brewer.pal(5,"RdBu")))+
+  # scale_fill_manual(values =  brewer.pal(4,"RdBu"))+
+  scale_fill_solarized()+
+  guides(fill = F)+
+  theme_few()+
+  theme(#axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        strip.text.y = element_blank())+
+  ylab("probability mass")+
+  xlab("inferred state (number of hearts)")
+
+fig.marginal.state.l1
+```
+
+
+```{r fig.width=8}
+cowplot::plot_grid(
+  fig.marginal.state.l1,
+  fig.marginal.phi.l1,
+  nrow = 1,
+  rel_widths = c(1, 1.3),
+  labels = c("A", "B")
+)
+
+ggsave("../../04_manuscript/04_pnas/fig/L1_inferences.png", width = 8, height = 5)
+```
+
 
 ```{r}
 fig.l1 <- ggplot(rs.l1.tidy,
