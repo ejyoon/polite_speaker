@@ -77,7 +77,7 @@ var round = function(x){
 // var phiWeights = [1, 1, 1, 1, 1, 1, 1, 1, 1]
 // var weightBins = [0.1, 0.3, 0.5, 0.7, 0.9]
 
-var weightBins = map(round, _.range(0,1, 0.05))
+var weightBins = map(round, _.range(0.05,1, 0.05))
 var phiWeights = repeat(weightBins.length, function(){1})
 
 var StatePrior = Categorical({vs: states, ps:[1,1,1,1]})
@@ -208,6 +208,7 @@ map(function(S1_phi){
         map(function(social_phi){
             map(function(informative_phi){
                 map(function(s){
+                  display(s + " " + S1_phi + " " +  selfpres_phi+ " " +  social_phi + " " +  informative_phi)
                   var speakProbs = speaker2(s, S1_phi, selfpres_phi, social_phi, informative_phi)
                   var uttObj = _.fromPairs(map(function(u){
                     [u, Math.exp(speakProbs.score(u))]
@@ -217,9 +218,9 @@ map(function(S1_phi){
                                           phi_social: normalize([selfpres_phi, social_phi, informative_phi])[1], 
                                           phi_informative: normalize([selfpres_phi, social_phi, informative_phi])[2]})
                 }, states)
-            }, weightBins)
-        }, weightBins)
-    }, weightBins)
+            }, [0])
+        }, [0])
+    }, [1])
 }, weightBins)
 )
 '
@@ -429,17 +430,7 @@ fig.marginal.state.l1
 ```
 
 
-```{r fig.width=8}
-cowplot::plot_grid(
-  fig.marginal.state.l1,
-  fig.marginal.phi.l1,
-  nrow = 1,
-  rel_widths = c(1, 1.3),
-  labels = c("A", "B")
-)
 
-ggsave("../../04_manuscript/04_pnas/fig/L1_inferences.png", width = 8, height = 5)
-```
 
 
 ```{r}
@@ -493,6 +484,57 @@ rs.s2.tidy <- rs.s2 %>%
       phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & (phi_S1 == 0.3) ~ "look both",
       TRUE ~ "NA"))) %>%
   mutate(goal = factor(goal, levels = c("be truly informative", "be truly social", "be truly both", "look informative","look social", "look both","NA")))
+```
+
+#### self presentational utility speaker
+
+```{r}
+fig.marginal.self_pres.s2 <- rs.s2 %>%
+  filter(state == 0, phi_S1 %in% c(0.05, 0.25, 0.5, 0.75, 0.95)) %>%
+  #filter(state == 0, phi_S1 %in% c(0.05, 0.25, 0.35, 0.4, 0.45, 0.95)) %>%
+  select(-phi_social, -phi_selfpres, -phi_informative, -state) %>%
+  gather(utt, prob, -phi_S1) %>%
+  separate(utt, into = c("positive", "utterance")) %>%
+  mutate(positive = factor(positive, levels = c("yes", "not"),
+                           labels = c("It was__", "It was NOT__")),
+         utterance = factor(utterance, levels = c("terrible", "bad", "good", "amazing"))) %>%
+  ggplot(., aes( x = utterance, color = positive, y = prob, group = positive))+
+  geom_line()+
+    # geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
+  # facet_grid(goal~state, labeller=label_both, switch = "y")+
+  facet_wrap(~phi_S1, nrow = 1)+
+  scale_color_manual(values=c("#268bd2", "#dc322f"))+
+  theme_few()+
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        strip.text.y = element_text(angle = 180),
+        legend.title = element_blank(),
+        legend.position = "bottom",
+        title = element_text(size = 8),
+        axis.title.y = element_text(size = 11))+
+  scale_y_continuous(limits = c(0, 0.75), breaks = c(0, 0.75), position = "left")+
+  ggtitle("Self-presentational mixture (0 = fully social; 1 = fully informational)")+
+  ylab("Self-presentational speaker\nproduction probability")
+
+fig.marginal.self_pres.s2
+```
+
+```{r fig.width=8}
+cowplot::plot_grid(
+  cowplot::plot_grid(
+    fig.marginal.state.l1,
+    fig.marginal.phi.l1,
+    nrow = 1,
+    rel_widths = c(1, 1.3),
+    labels = c("A", "B")
+  ),
+  fig.marginal.self_pres.s2,
+  nrow = 2, 
+  rel_heights = c(1.1, 1),
+  labels = c("", "C")
+)
+
+ggsave("../../04_manuscript/04_pnas/fig/L1_inferences_wS2pres.png", width = 8, height = 7)
 ```
 
 #### S2 static
