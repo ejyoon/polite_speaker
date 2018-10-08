@@ -398,7 +398,7 @@ fig.marginal.phi.l1 <- ggplot(rs.l1.tidy.phi %>%
   theme(#axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
         strip.text.y = element_text(angle = 0))+
   ylab("probability mass")+
-  xlab("inferred speaker's relative informational utility")
+  xlab(expression("inferred speaker's relative informational utility (" * phi1[S[1]] * ")"))
 
 fig.marginal.phi.l1
 ```
@@ -489,9 +489,14 @@ rs.s2.tidy <- rs.s2 %>%
 #### self presentational utility speaker
 
 ```{r}
-fig.marginal.self_pres.s2 <- rs.s2 %>%
+fig.marginal.self_pres.s2_0 <- rs.s2 %>%
   filter(state == 0, phi_S1 %in% c(0.05, 0.25, 0.5, 0.75, 0.95)) %>%
   #filter(state == 0, phi_S1 %in% c(0.05, 0.25, 0.35, 0.4, 0.45, 0.95)) %>%
+  mutate(phi_S1 = as.factor(as.character(phi_S1)))
+
+levels(fig.marginal.self_pres.s2_0$phi_S1) <- c(expression(phi1[S[1]] * " = 0.05"), expression(phi1[S[1]] * " = 0.25"), expression(phi1[S[1]] * " = 0.5"), expression(phi1[S[1]] * " = 0.75"), expression(phi1[S[1]] * " = 0.95"))
+
+fig.marginal.self_pres.s2 <- fig.marginal.self_pres.s2_0 %>% 
   select(-phi_social, -phi_selfpres, -phi_informative, -state) %>%
   gather(utt, prob, -phi_S1) %>%
   separate(utt, into = c("positive", "utterance")) %>%
@@ -502,7 +507,7 @@ fig.marginal.self_pres.s2 <- rs.s2 %>%
   geom_line()+
     # geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
   # facet_grid(goal~state, labeller=label_both, switch = "y")+
-  facet_wrap(~phi_S1, nrow = 1)+
+  facet_grid(.~phi_S1, labeller = label_parsed)+
   scale_color_manual(values=c("#268bd2", "#dc322f"))+
   theme_few()+
   theme(axis.title.x = element_blank(),
@@ -513,7 +518,7 @@ fig.marginal.self_pres.s2 <- rs.s2 %>%
         title = element_text(size = 8),
         axis.title.y = element_text(size = 11))+
   scale_y_continuous(limits = c(0, 0.75), breaks = c(0, 0.75), position = "left")+
-  ggtitle("Self-presentational mixture (0 = fully social; 1 = fully informational)")+
+  # ggtitle("Self-presentational mixture (0 = fully social; 1 = fully informational)")+
   ylab("Self-presentational speaker\nproduction probability")
 
 fig.marginal.self_pres.s2
