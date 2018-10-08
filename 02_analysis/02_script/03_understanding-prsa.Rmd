@@ -345,8 +345,8 @@ rs.l1.tidy <- data.frame(rs.l1) %>% gather(utt_state, prob) %>%
   separate(utt_state, into = c("positive", "utt", "state", "phi"), sep  = "_") %>%
   mutate(positive = factor(positive, levels = c("yes", "not")),
          positive = fct_recode(positive, 
-                               "it was __" = "yes",
-                               "it was NOT __" = "not"),
+                               "it was ~" = "yes",
+                               "it wasn't ~" = "not"),
          utt = factor(utt, levels = c(
            "terrible",
            "bad",
@@ -496,7 +496,7 @@ fig.marginal.self_pres.s2 <- rs.s2 %>%
   gather(utt, prob, -phi_S1) %>%
   separate(utt, into = c("positive", "utterance")) %>%
   mutate(positive = factor(positive, levels = c("yes", "not"),
-                           labels = c("It was__", "It was NOT__")),
+                           labels = c("It was ~", "It wasn't ~")),
          utterance = factor(utterance, levels = c("terrible", "bad", "good", "amazing"))) %>%
   ggplot(., aes( x = utterance, color = positive, y = prob, group = positive))+
   geom_line()+
