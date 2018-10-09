@@ -71,14 +71,14 @@ Although \emph{close the window!} could be effective message, we dawdle by addin
 or \emph{would you mind\ldots{}?}
 Rather than tell an uncomfortable truth, socially-aware speakers lie (\emph{Your dress looks great!}) and
 prevaricate (\emph{Your poem was so appropriate to the occasion}).
-Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speaker are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally accurate and truthful to the extent of a speaker's knowledge. Polite speech violates these
+Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally accurate and truthful to the extent of a speaker's knowledge. Polite speech violates these
 basic expectations about the nature of communication: It is typically
 inefficient and underinformative, and sometimes even outright false. Yet even young speakers of a language spontaneously produce
 requests in polite forms \cite{axia1985}, and adults use politeness strategies while arguing,
 preventing unnecessary offense to their interactants \cite{holtgraves1997}.
 
 If politeness only gets in the way of effective information transfer, why be polite?
-Clearly, we have social concerns, and most linguistic theories assume utterance choices are motivated by these concerns, couched as either polite maxims \cite{leech1983}, social norms \cite{ide1989}, or aspects of a speaker and/or listener's identity, known as \emph{face} \cite{brown1987, goffman1967}.
+Clearly, there are social concerns, and most linguistic theories assume utterance choices are motivated by these concerns, couched as either polite maxims \cite{leech1983}, social norms \cite{ide1989}, or aspects of a speaker and/or listener's identity, known as \emph{face} \cite{brown1987, goffman1967}.
 Face-based theories predict that when a speaker's intended meaning contains a threat to the listener's face or self-image (and potentially the speaker's face), her messages will be less direct, less efficient, and possibly untruthful.
 How this socially-aware calculation unfolds, however, is not well understood.
 When should a speaker decide to say something false (\emph{Your poem was great!}) rather than just be indirect (\emph{Some of the metaphors were tricky to understand.})?
@@ -129,8 +129,8 @@ Further, if the writer suspects that the poem was in fact terrible, the speaker 
 %their freedom to act (\emph{negative face}). If the
 
 The speaker's utilities are weighed within a probabilistic model of pragmatic reasoning: the Rational Speech Act (RSA) framework \cite{frank2012, goodman2016}. Speakers are modeled as
-agents who choose utterances by reasoning about their effects on a
-listener, while listeners infer the meaning of an utterance by reasoning about speakers and their goals.
+agents who choose utterances by reasoning about their potential effects on a
+listener, while listeners infer the meaning of an utterance by reasoning about speakers and what goals could have led them to produce their utterances.
 This model class has provided a quantitative understanding of a wide variety of complex linguistic behaviors, including vagueness \cite{lassiter2017adjectival}, hyperbole \cite{kao2014}, and irony
 \cite{kao2015}, among others.
 In this framework, language use builds on the idea that human social cognition can
@@ -149,7 +149,7 @@ and goals would have led a speaker \(S_1\) to produce a particular
 utterance. Then \(S_1\) reasons about a \emph{literal listener}
 \(L_0\), who is modeled as attending only to the literal meanings of words
 (rather than their pragmatic implications), and hence grounds the
-recursion.
+recursion (see Materials and Methods for definitions of $L_0$ and $S_1$).
 The target of our current work is a model of a polite speaker \(S_2\)
 who reasons about what to say to \(L_1\) by
 considering informational, social, and self-presentational goals (Figure
@@ -188,9 +188,9 @@ Speakers who optimize for informational utility produce accurate and informative
 
 If a listener is uncertain how their particular speaker is weighing the competing goals to be honest vs. kind (i.e., informational vs. social), they might try to infer the weighting (e.g., ``was she just being nice?'').
 But then a sophisticated speaker can produce utterances in order to appear \emph{as if} they had certain goals in mind (i.e., a self-presentational goal).
-The extent to which the speaker \emph{appears} to the listener to have a particular goal in mind \(\phi_{S_1}\) (e.g., to be kind) is the utterance's \emph{presentational utility} (\(U_{pres}\)) and is the most novel component of our model.
+The extent to which the speaker \emph{appears} to the listener to have a particular goal in mind (e.g., to be kind) is the utterance's \emph{presentational utility} (\(U_{pres}\)) and is the most novel component of our model.
 The speaker gains presentational utility when her listener believes she
-has particular goals, represented by a mixture weighting \(\phi_{S_1}\) between trying to be informative vs. kind.
+has particular goals, represented by a mixture weighting \(\phi_{S_1}\) between trying to be genuinely informative vs. kind.
 Formally,
 
 \begin{equation}
@@ -208,8 +208,8 @@ P_{L_1}(s, \phi_{S_1} | w) \propto P_{S_1}(w | s, \phi_{S_1}) \cdot P(s) \cdot P
 
 The presentational utility is the highest-order term of the model, defined only for a speaker thinking about a listener who evaluates a speaker
 (i.e., defined for \(S_2\), but not \(S_1\)).
-Only the social and informational utilities are defined for the \(S_1\)) speaker (via reasoning about \(L_0\)); thus, \(S_1\)'s utility weightings can be represented by a single number, the mixture parameter \(\phi_{S_1}\).
-Definitions for \(S_1\) and  \(L_0\) otherwise mirror those of  \(S_2\) and  \(L_1\) and can be found in the Supplementary Information.
+Only the social and informational utilities are defined for the \(S_1\) speaker (via reasoning about \(L_0\)); thus, \(S_1\)'s utility weightings can be represented by a single number, the mixture parameter \(\phi_{S_1}\).
+Definitions for \(S_1\) and  \(L_0\) otherwise mirror those of  \(S_2\) and  \(L_1\) and can be found in the Materials and Methods section.
 
 Finally, more complex utterances incur a greater cost, \(C(w)\) --
 capturing the general pressure towards economy in speech. In our work,
@@ -225,7 +225,7 @@ over possible states of the world. The set of utterances is
 \{\emph{terrible}, \emph{bad}, \emph{good}, \emph{amazing}, \emph{not
 terrible}, \emph{not bad}, \emph{not good}, and \emph{not amazing}\}. We
 implemented this model using the probabilistic programming language
-WebPPL \cite{dippl}.
+WebPPL \cite{dippl} and a demo can be found at \url{http://forestdb.org/models/politeness.html}.
 
 
 
@@ -491,11 +491,11 @@ courteous computation -- to machines that can talk with tact.
 
 \matmethods{
 
-\subsection*{Model}\label{model}
+\subsection*{Model details}\label{model}
 
-Let $u$ be an utterance, and $s$ be the true state of the world. 
-There are five possible states of the world corresponding to the value placed on a particular referent (e.g., rating deserved by the presentation the speaker is commenting on, akin to a Yelp rating): $S = {s_{1}, ..., s_{5}}$. 
-We assume a uniform prior distribution over possible states of the world. 
+%Let $u$ be an utterance, and $s$ be the true state of the world. 
+%There are five possible states of the world corresponding to the value placed on a particular referent (e.g., rating deserved by the presentation the speaker is commenting on, akin to a Yelp rating): $S = {s_{1}, ..., s_{5}}$. 
+%We assume a uniform prior distribution over possible states of the world. 
 %The states have subjective numerical values $V(s_{i}) = \alpha \cdot i$, where $\alpha$ is a free parameter. $[\![ w ]\!]$ corresponds to the lexical meaning of the utterance $w$ (e.g., "good") when applied to state $s$. 
 %We gather independent ratings for these literal meanings.
 
@@ -506,9 +506,9 @@ P_{L_0}(s | w) \propto [\![ w ]\!] (s) * P(s).
 \end{equation}
 
 \noindent where $[\![ w ]\!](s)$ is the truth-functional denotation of the utterance
-$w$ (i.e. the utterance?s literal meaning): It is a function
-that maps world-states s to Boolean truth values. The literal
-meaning is used to update the literal listener?s prior beliefs
+$w$ (i.e. the utterance's literal meaning): It is a function
+that maps world-states $s$ to Boolean truth values. The literal
+meaning is used to update the literal listener's prior beliefs
 over world states $P(s)$.
 
 %The \emph{speaker} $S_1$ considers two utilities: informational utility, or 
@@ -521,7 +521,7 @@ over world states $P(s)$.
 The \emph{speaker} $S_1$ chooses utterances approximately optimally given a utility function, which can be decomposed into two components. 
 First, informational utility ($U_{inf}$) is the amount of information a literal listener $L_0$ would still not know about world state $s$ after hearing a speaker's utterance $w$. 
 Second, social utility ($U_{soc}$) is the expected subjective utility of the state inferred given the utterance $w$. 
-The expected subjective utility is related to the intrinsic value of the state. 
+%The expected subjective utility is related to the intrinsic value of the state. 
 The utility of an utterance subtracts the cost $c(w)$ from the weighted combination of the social and epistemic utilities. 
 
 \begin{equation}
@@ -536,36 +536,36 @@ U(w; s; \phi_{S_1}) = \phi_{S_1} \cdot \ln(P_{L_0}(s \mid w)) + \\ (1 - \phi_{S_
 P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[U(w; s; \phi_{S_1})])
 \end{equation}
 
-\noindent The \emph{pragmatic listener} ($L_1$) jointly infers the state $s$ and the speaker's utility weight mixture of the speaker $\phi_{S_1}$:
-
-\begin{equation} 
-P_{L_1}(s, \phi_{S_1} \mid w) \propto P_{S_1}(w \mid s, \phi_{S_1})\cdot P(s) \cdot P( \phi_{S_1}).
-\end{equation}
-
-The \emph{pragmatic speaker} $S_2$ then considers three utility components: informational, social, and presentational. The
-total utility $U_{total}$ of an utterance is thus the weighted combination of the three component utilities minus the utterance cost \(C(w)\):
-
-\begin{equation}
-\begin{split}
-U_{total}(w; s; \hat{\phi}; \phi_{S_1}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \\ \phi_{pres} \cdot U_{pres}(w; \phi_{S_1}) - C(w).
-\end{split}
-\end{equation}
-
-where the utilities are defined as:
-
-\begin{equation}
-U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]
-\end{equation}
-
-\begin{equation}
-U_{inf}(w) = \ln(P_{L_1}(s | w)), 
-\end{equation}
-
-and
-
-\begin{equation}
-U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).
-\end{equation}
+%\noindent The \emph{pragmatic listener} ($L_1$) jointly infers the state $s$ and the speaker's utility weight mixture of the speaker $\phi_{S_1}$:
+%
+%\begin{equation} 
+%P_{L_1}(s, \phi_{S_1} \mid w) \propto P_{S_1}(w \mid s, \phi_{S_1})\cdot P(s) \cdot P( \phi_{S_1}).
+%\end{equation}
+%
+%The \emph{pragmatic speaker} $S_2$ then considers three utility components: informational, social, and presentational. The
+%total utility $U_{total}$ of an utterance is thus the weighted combination of the three component utilities minus the utterance cost \(C(w)\):
+%
+%\begin{equation}
+%\begin{split}
+%U_{total}(w; s; \hat{\phi}; \phi_{S_1}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \\ \phi_{pres} \cdot U_{pres}(w; \phi_{S_1}) - C(w).
+%\end{split}
+%\end{equation}
+%
+%where the utilities are defined as:
+%
+%\begin{equation}
+%U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]
+%\end{equation}
+%
+%\begin{equation}
+%U_{inf}(w) = \ln(P_{L_1}(s | w)), 
+%\end{equation}
+%
+%and
+%
+%\begin{equation}
+%U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).
+%\end{equation}
 
 
 %The speaker $S_2$ choose utterances approximately optimally given a utility function, which is decomposed into three components. First, the informative utility is the amount of information that a literal listener would still not know about world state $s$ after hearing a speaker's utterance $w$ (i.e. \emph{surprisal}):
