@@ -50,7 +50,7 @@
 Language is a remarkably efficient tool for transmitting information.
 Yet human speakers make statements that are inefficient, imprecise, or even contrary to their own beliefs, all in the service of being polite.
 What rational machinery underlies polite language use?
-Here, we show that polite speech emerges from the competition of informational, social, and self-presentational (i.e., \emph{appearing} informational or social) goals.
+Here, we show that polite speech emerges from the competition of three communicative goals: convey information, be kind, and present oneself in a good light.
 We formalize this tradeoff using a probabilistic model of utterance production, which predicts human utterance choices in socially-sensitive situations with high quantitative accuracy.
 This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language use.
 
@@ -67,15 +67,14 @@ This utility-theoretic approach to speech acts takes a step towards explaining t
 
 
 \dropcap{W}e rarely say exactly what's on our mind.
-Although \emph{close the window!} could be effective message, we dawdle by adding \emph{can you please\ldots{}?}
+Although \emph{close the window!} could be an effective message, we dawdle by adding \emph{can you please\ldots{}?}
 or \emph{would you mind\ldots{}?}
 Rather than tell an uncomfortable truth, socially-aware speakers lie (\emph{Your dress looks great!}) and
 prevaricate (\emph{Your poem was so appropriate to the occasion}).
-Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally accurate and truthful to the extent of a speaker's knowledge. Polite speech violates these
+Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally truthful to the extent of a speaker's knowledge. Polite speech violates these
 basic expectations about the nature of communication: It is typically
 inefficient and underinformative, and sometimes even outright false. Yet even young speakers of a language spontaneously produce
-requests in polite forms \cite{axia1985}, and adults use politeness strategies while arguing,
-preventing unnecessary offense to their interactants \cite{holtgraves1997}.
+requests in polite forms \cite{axia1985}, and adults use politeness strategies while arguing \cite{holtgraves1997}.
 
 If politeness only gets in the way of effective information transfer, why be polite?
 Clearly, there are social concerns, and most linguistic theories assume utterance choices are motivated by these concerns, couched as either polite maxims \cite{leech1983}, social norms \cite{ide1989}, or aspects of a speaker and/or listener's identity, known as \emph{face} \cite{brown1987, goffman1967}.
@@ -92,7 +91,7 @@ information transmission; social utility---derived by being kind and
 saving the listener's face; and self-presentational utility---derived
 by appearing in a particular way to save the speaker's own face.
 Speakers then produce an utterance on the basis of
-its expected utility (including their cost to utter).
+its expected utility (including their cost to speak).
 The lie that a poem was great provides social utility by making the writer feel good, but does not provide information about the true state of the world.
 Further, if the writer suspects that the poem was in fact terrible, the speaker runs the risk of being seen as uncooperative.
 
@@ -128,7 +127,7 @@ Further, if the writer suspects that the poem was in fact terrible, the speaker 
 %approved, and related to (\emph{positive face}) as well as maintain
 %their freedom to act (\emph{negative face}). If the
 
-The speaker's utilities are weighed within a probabilistic model of pragmatic reasoning: the Rational Speech Act (RSA) framework \cite{frank2012, goodman2016}. Speakers are modeled as
+We assume that speakers' utilities are weighed within a probabilistic model of pragmatic reasoning: the Rational Speech Act (RSA) framework \cite{frank2012, goodman2016}. Speakers are modeled as
 agents who choose utterances by reasoning about their potential effects on a
 listener, while listeners infer the meaning of an utterance by reasoning about speakers and what goals could have led them to produce their utterances.
 This model class has provided a quantitative understanding of a wide variety of complex linguistic behaviors, including vagueness \cite{lassiter2017adjectival}, hyperbole \cite{kao2014}, and irony
@@ -140,11 +139,11 @@ hypothesis which has found empirical support in a wide variety of work with both
 adults and children (e.g., \cite{jara2016naive, liu2017ten}).
 
 \begin{figure*}[!h]
-\includegraphics[width=0.6\textwidth]{fig/model} \centering \caption{Diagram of the model: The pragmatic speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
+\includegraphics[width=0.6\textwidth]{fig/model} \centering \caption{Diagram of the model: The polite speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance.}\label{fig:model}
 \end{figure*}
 
 RSA models are defined recursively such that speakers \(S\)  reason about
-listeners  \(L\), and vice versa. We use convention in indexing and say a pragmatic listener \(L_1\) reasons about what intended meaning
+listeners  \(L\), and vice versa. We use a standard convention in indexing and say a pragmatic listener \(L_1\) reasons about what intended meaning
 and goals would have led a speaker \(S_1\) to produce a particular
 utterance. Then \(S_1\) reasons about a \emph{literal listener}
 \(L_0\), who is modeled as attending only to the literal meanings of words
@@ -183,10 +182,10 @@ pragmatic listener by the utterance: \(U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w
 The subjective utility function \(V(s)\) could vary by culture and context; we test our model when states are explicit ratings (e.g., on a 4-point scale) and we assume a positive linear value relationship between states and values \(V\) to model a listener's preference to be in a highly rated state (e.g., Bob would prefer to have written a poem deserving 4 points rather than 1 point).
 
 At the same time, a speaker may desire to be epistemically helpful, modeled as standard \emph{informational utility} (\(U_{inf}\)).
-The informational utility indexes the amount of information the listener (\(L_1\)) would still not know about the state of the world \(s\) after hearing the speaker's utterance \(w\) (i.e., surprisal; e.g., how likely is Bob to guess Ann's actual opinion of the poem): \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
+The informational utility indexes the utterance's \emph{surprisal}, or amount of information the listener (\(L_1\)) would still not know about the state of the world \(s\) after hearing the speaker's utterance \(w\) (e.g., how likely is Bob to guess Ann's actual opinion of the poem): \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
 Speakers who optimize for informational utility produce accurate and informative utterances while those who optimize for social utility produce utterances that make the listener feel good.
 
-If a listener is uncertain how their particular speaker is weighing the competing goals to be honest vs. kind (i.e., informational vs. social), they might try to infer the weighting (e.g., ``was she just being nice?'').
+If a listener is uncertain how their particular speaker is weighing the competing goals to be honest vs. kind (informational vs. social utilities), they might try to infer the weighting (e.g., ``was she just being nice?'').
 But then a sophisticated speaker can produce utterances in order to appear \emph{as if} they had certain goals in mind (i.e., a self-presentational goal).
 The extent to which the speaker \emph{appears} to the listener to have a particular goal in mind (e.g., to be kind) is the utterance's \emph{presentational utility} (\(U_{pres}\)) and is the most novel component of our model.
 The speaker gains presentational utility when her listener believes she
@@ -251,6 +250,8 @@ WebPPL \cite{dippl} and a demo can be found at \url{http://forestdb.org/models/p
 
 \section*{Results}
 
+\subsection*{Model behavior}
+
 The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Figure \ref{fig:L1inferences}A) and the speaker's goals (Figure \ref{fig:L1inferences}B).
 Upon hearing \emph{{[}Your poem{]} was terrible} (Fig.~\ref{fig:L1inferences} top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
 \emph{It was amazing} is more ambiguous (Fig.~\ref{fig:L1inferences} top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
@@ -264,6 +265,7 @@ The desire to appear as someone concerned with telling the truth while also cari
 Such indirect speech acts are sufficiently open-ended to include the
 possibility that the poem was good, but the avoidance of a more direct utterance (e.g., \emph{good}) provides the listener with a way to recover the true state (e.g., the poem was mediocre) by way of reasoning that the speaker cares about his feelings by not saying the blunt truth.
 
+\subsection*{Experimental findings}
 We made a direct, fully pre-registered test of our speaker production model and its performance in comparison to a range of alternative models, by instantiating our running example in an online experiment (\emph{N} = 202).
 Participants read scenarios with information on the speaker's (Ann's,
 in our example) feelings toward some performance or product (e.g., a poem
@@ -305,7 +307,7 @@ dimension, participants chose utterances that jointly satisfied their
 conflicting goals by producing indirect, polite speech.
 
 \begin{figure*}[!h]
-\includegraphics[width=\textwidth]{fig/comparison-1} \caption{Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\%.}\label{fig:comparison}
+\includegraphics[width=\textwidth]{fig/comparison-1} \caption{Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dashed line indicates chance level at 12.5\%.}\label{fig:comparison}
 \end{figure*}
 
 \begin{table}[tbp]
@@ -342,7 +344,7 @@ only & 0.83 & -274.89\\
 \begin{center}
 \begin{threeparttable}
 %\centering
-\caption{\label{tab:phi}Inferred phi parameters from all model variants with more than one utility.}
+\caption{\label{tab:phi}Maximum A-Posteriori (MAP) estimates of phi parameters from all model variants with more than one utility.}
 %\begin{tabular}{llllll}
 \begin{tabularx}{\columnwidth}{llllll}
 \toprule
@@ -383,18 +385,19 @@ In sum, the full collection of informational, social, and presentational were
 required to fully explain participants' utterance choices.
 
 The utility weights inferred for the three-utility model (Table \ref{tab:phi})
-provide additional insight into how polite language use operates:
+provide additional insight into how polite language use operates in our experimental context and possibly beyond:
 \emph{Being kind} requires equal weights on all three utilities,
-indicating that Gricean informativity needs to be part of language use
+indicating that Gricean informativity is a part of language use
 even when it is explicitly not the goal.
 \emph{Being informative} pushes
 the weight on social utility close to zero, but the weight on
 \emph{appearing kind} stays high, suggesting that speakers are expected
 to manage their own face even when they are not considering others'.
 \emph{Kind and informative} speakers emphasize informativity slightly
-more than kindness. In all cases, however, the presentational utilities
-have greatest weight, which may suggest that appearing honest and kind
-is more important than actually being so! Overall then, our condition
+more than kindness. 
+In all cases, however, the presentational utilities
+have greatest weight, suggesting that managing the listener's inferences about oneself is a fundamental part of communication.
+ Overall then, our condition
 manipulation altered the balance between these weights, but all
 utilities played a role in all conditions.
 
@@ -409,7 +412,7 @@ experimental evidence that confirmed its ability to capture human
 judgments, unlike comparison models that used only a subset of the full
 utility structure.
 
-To precisely estimate choice behavior in the experiment,
+To estimate precisely choice behavior in the experiment,
 it was required to abstract away
 from natural interactions in a number of ways.
 Human speakers have access
@@ -478,15 +481,16 @@ values for the listener (e.g., the mapping from states to utilities may
 be nonlinear and involve reasoning about the future).
 Our formal modeling approach with systematic behavior measurements provides an avenue towards understanding the vast range of politeness practices found across languages.
 
-We flirt, insult, boast, and empathize by balancing informative transmissions with goals to affect others' feelings or
-present particular views of ourselves.
+
 Politeness is only one of the ways that language use deviates from purely
 informational transmission.
+We flirt, insult, boast, and empathize by balancing informative transmissions with goals to affect others' feelings or
+present particular views of ourselves.
 Our work shows how social and
 self-presentational motives are integrated with informational concerns more
 generally, opening up the possibility for a broader theory of social
 language.
-Finally, a formal account of politeness moves us closer to
+In addition, a formal account of politeness moves us closer to
 courteous computation -- to machines that can talk with tact.
 
 \matmethods{
