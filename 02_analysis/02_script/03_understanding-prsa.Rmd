@@ -392,7 +392,8 @@ fig.marginal.phi.l1 <- ggplot(rs.l1.tidy.phi %>%
   facet_grid(positive~utt, scales = 'free')+
   # scale_fill_manual(values =  rev(brewer.pal(5,"RdBu")))+
   # scale_fill_manual(values =  brewer.pal(4,"RdBu"))+
-  scale_fill_solarized(name="")+
+  scale_fill_ptol(name="") +
+  # scale_fill_solarized(name="")+
   # guides(fill = F)+
   theme_few()+
   theme(#axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
@@ -401,10 +402,11 @@ fig.marginal.phi.l1 <- ggplot(rs.l1.tidy.phi %>%
          strip.text.x = element_text(size=14),
        axis.text.x = element_text(hjust=-2),
         # strip.text.y = element_text(angle = 0),
-        text = element_text(size = 14.5)) +
+         legend.text = element_text(size=15),
+       text = element_text(size = 14.5)) +
 
-  ylab("Probability mass")+
-  xlab(expression("Inferred " * S[1] * "'s relative informational utility (" * phi1[S[1]] * ")"))
+  ylab("probability mass")+
+  xlab(expression("inferred " * S[1] * "'s relative informational utility (" * phi1[S[1]] * ")"))
 
 fig.marginal.phi.l1
 ```
@@ -424,7 +426,9 @@ fig.marginal.state.l1 <- ggplot(rs.l1.tidy.state %>%
   facet_grid(positive~utt, scales = 'free')+
   # scale_fill_manual(values =  rev(brewer.pal(5,"RdBu")))+
   # scale_fill_manual(values =  brewer.pal(4,"RdBu"))+
-  scale_fill_solarized()+
+  scale_fill_ptol() +
+  # scale_fill_solarized()+
+  
   guides(fill = F)+
   theme_few()+
   theme(#axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
@@ -433,8 +437,8 @@ fig.marginal.state.l1 <- ggplot(rs.l1.tidy.state %>%
         text = element_text(size = 14.5)
         )+
   
-  ylab("Probability mass")+
-  xlab("Inferred state (number of hearts)")
+  ylab("probability mass")+
+  xlab("inferred state (number of hearts)")
 
 fig.marginal.state.l1
 ```
@@ -511,14 +515,15 @@ fig.marginal.self_pres.s2 <- fig.marginal.self_pres.s2_0 %>%
   gather(utt, prob, -phi_S1) %>%
   separate(utt, into = c("positive", "utterance")) %>%
   mutate(positive = factor(positive, levels = c("yes", "not"),
-                           labels = c("It was ~", "It wasn't ~")),
+                           labels = c("it was ~", "it wasn't ~")),
          utterance = factor(utterance, levels = c("terrible", "bad", "good", "amazing"))) %>%
   ggplot(., aes( x = utterance, color = positive, y = prob, group = positive))+
   geom_line()+
     # geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
   # facet_grid(goal~state, labeller=label_both, switch = "y")+
   facet_grid(.~phi_S1, labeller = label_parsed)+
-  scale_color_manual(values=c("#268bd2", "#dc322f"), name="")+
+  scale_color_ptol(name="") +
+  # scale_color_manual(values=c("#268bd2", "#dc322f"), name="")+
   theme_few()+
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 14),
@@ -535,7 +540,7 @@ fig.marginal.self_pres.s2 <- fig.marginal.self_pres.s2_0 %>%
 
   scale_y_continuous(limits = c(0, 0.75), breaks = c(0, 0.75), position = "left")+
   # ggtitle("Self-presentational mixture (0 = fully social; 1 = fully informational)")+
-  ylab(expression("Presentational speaker\n production probability"))
+  ylab(expression("presentational speaker\n production probability"))
 
 fig.marginal.self_pres.s2
 ```

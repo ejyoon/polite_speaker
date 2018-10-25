@@ -311,7 +311,7 @@ Rather than eschewing one of their goals to increase utility along a single dime
 ```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp <- ms_utt %>%  
   mutate(model = case_when(
-    model == "NA" ~ "Human data", 
+    model == "NA" ~ "human data", 
     model == "inf" ~ "model: \ninformational \nonly", 
     model == "soc" ~ "model: \nsocial only", 
     model == "pres" ~ "model: \npresentational \nonly", 
@@ -322,9 +322,12 @@ plot.comp <- ms_utt %>%
   ),
   model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
   mutate(positivity = fct_recode(positivity,
-                                 "It was ~" = "yes",
-                                 "It wasn't ~" = "not"),
-         positivity = fct_relevel(positivity, "It wasn't ~")) %>%
+                                 "it was ~" = "yes",
+                                 "it wasn't ~" = "not",
+                                 "it was ~" = "It was~",
+                                 "it wasn't ~" = "It wasn't~"
+                                 ),
+         positivity = fct_relevel(positivity, "it was ~")) %>%
   filter(goal == "both", true_state == "0") %>%
   ggplot(., 
        aes(x=utterance, y=prob, fill=positivity, 
@@ -337,7 +340,8 @@ plot.comp <- ms_utt %>%
   xlab("utterance") +
   geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position="dodge") +
   ylim(0,.7)+
-  scale_color_solarized(guide=FALSE)+
+  scale_color_ptol(guide=FALSE) +
+  # scale_color_solarized(guide=FALSE)+
   ggthemes::theme_few(base_size = 15)+
   ylab("proportion chosen") +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
@@ -480,10 +484,10 @@ d <- read.csv(here("02_analysis/01_data/literal_semantics.csv")) %>%
 
 ms <- d %>%
   mutate(positivity = fct_recode(positivity,
-                                "It was ~ " = "it was ___",
-                                "It wasn't ~ " = "it wasn't ___"
+                                "it was ~ " = "it was ___",
+                                "it wasn't ~ " = "it wasn't ___"
                                 ),
-         positivity = fct_relevel(positivity, "It wasn't ~ ")) %>%
+         positivity = fct_relevel(positivity, "it was ~ ")) %>%
   group_by(positivity, state, utterance, subid) %>%
   summarize(
             judgment = mean(judgment, na.rm=TRUE)
@@ -501,10 +505,13 @@ qplot(state, judgment,
   ylab("proportion of\n acceptances") +
   geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
   theme_few(base_size = 16) +
-  scale_color_solarized() +
-  theme(legend.position = "bottom", 
-        legend.title = element_blank()) +
+  scale_color_ptol(name="")+
+  # scale_color_solarized() +
+  theme(legend.position = "bottom") +
   geom_hline(yintercept = .5, lty=2)
+
+ggsave("literal_semantics.png", width = 7, height = 3,
+       path = here::here("02_analysis/03_figs"))
 ```
 
 
