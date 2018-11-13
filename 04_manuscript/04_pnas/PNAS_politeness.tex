@@ -50,8 +50,8 @@
 Language is a remarkably efficient tool for transmitting information.
 Yet human speakers make statements that are inefficient, imprecise, or even contrary to their own beliefs, all in the service of being polite.
 What rational machinery underlies polite language use?
-Here, we show that polite speech emerges from the competition of three communicative goals: convey information, be kind, and present oneself in a good light.
-We formalize this tradeoff using a probabilistic model of utterance production, which predicts human utterance choices in socially-sensitive situations with high quantitative accuracy.
+Here, we show that polite speech emerges from the competition of three communicative goals: to convey information, to be kind, and to present oneself in a good light.
+We formalize this goal tradeoff using a probabilistic model of utterance production, which predicts human utterance choices in socially-sensitive situations with high quantitative accuracy, and we show that our full model is superior to its variants with subsets of the three goals.
 This utility-theoretic approach to speech acts takes a step towards explaining the richness and subtlety of social language use.
 
 \end{abstract}
@@ -186,7 +186,7 @@ The informational utility indexes the utterance's \emph{surprisal}, or amount of
 Speakers who optimize for informational utility produce accurate and informative utterances while those who optimize for social utility produce utterances that make the listener feel good.
 
 If a listener is uncertain how their particular speaker is weighing the competing goals to be honest vs. kind (informational vs. social utilities), they might try to infer the weighting (e.g., ``was she just being nice?'').
-But then a sophisticated speaker can produce utterances in order to appear \emph{as if} they had certain goals in mind (i.e., a self-presentational goal).
+But a sophisticated speaker can produce utterances in order to appear \emph{as if} they had certain goals in mind (i.e., a self-presentational goal).
 The extent to which the speaker \emph{appears} to the listener to have a particular goal in mind (e.g., to be kind) is the utterance's \emph{presentational utility} (\(U_{pres}\)) and is the most novel component of our model.
 The speaker gains presentational utility when her listener believes she
 has particular goals, represented by a mixture weighting \(\phi_{S_1}\) between trying to be genuinely informative vs. kind.
@@ -244,7 +244,7 @@ WebPPL \cite{dippl} and a demo can be found at \url{http://forestdb.org/models/p
 
 
 \begin{figure}[!h]
-\includegraphics[width=\columnwidth]{fig/L1_inferences_wS2pres} \centering \caption{Model behavior. Listener inferences about the true state (e.g., the rating truly deserved by the poem; A) and the speaker's utility weighting ($\phi_{S_1}$ or how informational vs. social the speaker is, where $\phi_{S_1}$ = 0 is fully social, and $\phi_{S_1}$ = 1 is fully informational; B) as a function of the utterance heard (facets). C: Purely self-presentational speaker production behavior as a function of the kind of speaker they wish to present themselves as (facets; relatively more informational vs. social as represented by $\phi_{S_1}$).}\label{fig:L1inferences}
+\includegraphics[width=\columnwidth]{fig/L1_inferences_wS2pres} \centering \caption{Model behavior. Listener inferences about the true state (e.g., the rating truly deserved by the poem; A) and the speaker's utility weighting ($\phi_{S_1}$ or how informational vs. social the speaker is, where $\phi_{S_1}$ = 0 is fully social, and $\phi_{S_1}$ = 1 is fully informational; B) as a function of the utterance heard (facets). C: Purely self-presentational speaker production behavior as a function of the kind of speaker they wish to present themselves as (facets; relatively more informational, e.g., $\phi_{S_1}$ = 0.05, vs. social as represented, e.g., $\phi_{S_1}$ = 0.95).}\label{fig:L1inferences}
 \end{figure}
 
 
