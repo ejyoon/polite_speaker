@@ -151,7 +151,7 @@ utterance. Then \(S_1\) reasons about a \emph{literal listener}
 recursion (see Materials and Methods for definitions of $L_0$ and $S_1$).
 The target of our current work is a model of a polite speaker \(S_2\)
 who reasons about what to say to \(L_1\) by
-considering informational, social, and self-presentational goals (Figure
+considering informational, social, and self-presentational goals (Fig.
 \ref{fig:model}).
 
 We evaluate our model on its ability to predict human utterance choices
@@ -218,7 +218,7 @@ from data; see Supplementary Information).
 
 Within our experimental domain, we assume there are four possible states
 of the world corresponding to the value placed on a particular referent
-(e.g., the poem the speaker is commenting on), represented in terms of numbers of hearts (Figure \ref{fig:model}):
+(e.g., the poem the speaker is commenting on), represented in terms of numbers of hearts (Fig. \ref{fig:model}):
 \(S = {s_0,...,s_3}\). Since the rating scale is relatively abstract, we assume a uniform prior distribution
 over possible states of the world. The set of utterances is
 \{\emph{terrible}, \emph{bad}, \emph{good}, \emph{amazing}, \emph{not
@@ -252,13 +252,13 @@ WebPPL \cite{dippl} and a demo can be found at \url{http://forestdb.org/models/p
 
 \subsection*{Model behavior}
 
-The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Figure \ref{fig:L1inferences}A) and the speaker's goals (Figure \ref{fig:L1inferences}B).
+The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Fig. \ref{fig:L1inferences}B).
 Upon hearing \emph{{[}Your poem{]} was terrible} (Fig.~\ref{fig:L1inferences}A and \ref{fig:L1inferences}B top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
 \emph{It was amazing} is more ambiguous (Fig.~\ref{fig:L1inferences}A and \ref{fig:L1inferences}B top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
 Negation makes the meanings less precise and introduces more uncertainty into the inference about the state: A listener who hears \emph{It wasn't amazing} sees it as a relatively kind way of saying that the poem was quite bad (0 or 1 hearts), inferring a balance of social and informational goals for the speaker (Fig.~\ref{fig:L1inferences}A and \ref{fig:L1inferences}B bottom-right).
 \emph{It wasn't terrible} is the most open-ended, leaving open the possibility that the poem was worthy of 0 hearts (i.e., \emph{it was terrible}) but conveying to the listener that the speaker cares about both informational and social goals, with a slight preference of towards being social (Fig.~\ref{fig:L1inferences}A and \ref{fig:L1inferences}B bottom-left). 
 
-The self-presentational utility guides the speaker \(S_2\) to care about how she will be viewed in the eyes of the listener \(L_1\) (Figure \ref{fig:L1inferences}C).
+The self-presentational utility guides the speaker \(S_2\) to care about how she will be viewed in the eyes of the listener \(L_1\) (Fig. \ref{fig:L1inferences}C).
 If the speaker wants to present herself as someone who is socially-minded (e.g., informational mixture or $\phi_{S_1}$ of 0.05), she should produce direct, positive utterances (e.g., \emph{amazing}).
 The best way to appear honest (e.g., informational mixture of 0.95) is to say direct, negative utterances (e.g., \emph{terrible}).
 The desire to appear as someone concerned with telling the truth while also caring about the listener's feelings (e.g., $\phi_{S_1}$ of 0.25) leads the speaker to produce indirect utterances (e.g., \emph{not terrible}).
@@ -295,7 +295,8 @@ states (e.g., Bob's poem deserved 0 hearts) with goals to be both
 informative and kind would produce more indirect, negative utterances
 (e.g., \emph{It wasn't terrible}). Such indirect speech acts both
 save the listener's face and provide some information about the
-true state, and thus, are the kind of thing that a socially-conscious speaker would say (Figure \ref{fig:L1inferences}).
+true state, and thus, are the kind of thing that a socially-conscious speaker would say (Fig. \ref{fig:L1inferences}).
+
 This prediction was confirmed: a Bayesian mixed-effects
 model predicts more negation as a function of true state and goal via
 an interaction such that a speaker with both goals to be informative and
@@ -351,17 +352,17 @@ only & 0.83 & -274.89\\
 model (utilities) & \multicolumn{1}{l}{goal} & \multicolumn{1}{c}{$\phi_{inf}$} & \multicolumn{1}{c}{$\phi_{soc}$} & \multicolumn{1}{c}{$\phi_{pres}$} & \multicolumn{1}{c}{$\phi_{S_1}$}\\
 \midrule
 inf, soc, pres & both & 0.36 & 0.11 & 0.54 & 0.36\\
-inf, soc, pres & informative & 0.36 & 0.02 & 0.62 & 0.49\\
-inf, soc, pres & social & 0.25 & 0.31 & 0.44 & 0.37\\
+ & informative & 0.36 & 0.02 & 0.62 & 0.49\\
+ & social & 0.25 & 0.31 & 0.44 & 0.37\\
 inf, pres & both & 0.64 & -- & 0.36 & 0.17\\
-inf, pres & informative & 0.77 & -- & 0.23 & 0.33\\
-inf, pres & social & 0.66 & -- & 0.34 & 0.04\\
+ & informative & 0.77 & -- & 0.23 & 0.33\\
+ & social & 0.66 & -- & 0.34 & 0.04\\
 inf, soc & both & 0.54 & 0.46 & -- & --\\
-inf, soc & informative & 0.82 & 0.18 & -- & --\\
-inf, soc & social & 0.39 & 0.61 & -- & --\\
+ & informative & 0.82 & 0.18 & -- & --\\
+ & social & 0.39 & 0.61 & -- & --\\
 soc, pres & both & -- & 0.38 & 0.62 & 0.55\\
-soc, pres & informative & -- & 0.35 & 0.65 & 0.75\\
-soc, pres & social & -- & 0.48 & 0.52 & 0.66\\
+ & informative & -- & 0.35 & 0.65 & 0.75\\
+ & social & -- & 0.48 & 0.52 & 0.66\\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}
@@ -374,26 +375,26 @@ soc, pres & social & -- & 0.48 & 0.52 & 0.66\\
 The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using a Bayesian data analysis model (\cite{lee2014}; see Supplementary Information)
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
 (\emph{N}=51).
-The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices (\(r^2\)(96) = 0.97; Figure \ref{fig:variance}).
+The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices (\(r^2\)(96) = 0.97; Fig. \ref{fig:variance}).
 We compared these to six model variants containing
 subsets of the three utilities in the full model.
 Both the variance explained and the marginal likelihood of the observed data were the
 highest for the full model (Table \ref{tab:comparisonTable}). Only the
 full model captured participants' preference for negation when the speaker wanted to be informative and kind
-about truly bad states, as hypothesized (Figure \ref{fig:comparison}).
+about truly bad states, as hypothesized (Fig. \ref{fig:comparison}).
 In sum, the full collection of informational, social, and presentational were
 required to fully explain participants' utterance choices.
 
 The utility weights inferred for the three-utility model (Table \ref{tab:phi})
 provide additional insight into how polite language use operates in our experimental context and possibly beyond:
-\emph{Being kind} requires equal weights on all three utilities,
-indicating that Gricean informativity is a part of language use
+\emph{Being kind} ("social") requires equal weights on all three utilities,
+indicating that informativity is a part of language use
 even when it is explicitly not the goal.
-\emph{Being informative} pushes
-the weight on social utility close to zero, but the weight on
-\emph{appearing kind} stays high, suggesting that speakers are expected
+\emph{Being informative} ("informative") pushes
+the weight on social utility ($\phi_{soc}$) close to zero, but the weight on 
+\emph{appearing kind} ($\phi_{pres}$) stays high, suggesting that speakers are expected
 to manage their own face even when they are not considering others'.
-\emph{Kind and informative} speakers emphasize informativity slightly
+\emph{Kind and informative} ("both") speakers emphasize informativity slightly
 more than kindness. 
 In all cases, however, the presentational utilities have greatest weight, 
 suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our  communicative task.
@@ -629,7 +630,7 @@ evaluated a performance of some kind. For example, in one of the
 contexts, Ann saw a presentation, and Ann's feelings toward the
 presentation (true state) were shown on a scale from zero to three
 hearts (e.g., two out of three hearts filled in red color; see
-Figure~\ref{fig:screenshot} for an example of the heart scale). The
+Fig.~\ref{fig:screenshot} for an example of the heart scale). The
 question of interest was \emph{Do you think Ann thought the
 presentation was / wasn't X?} and participants responded by choosing
 either \emph{no} or \emph{yes.} The target could be one of four
@@ -644,7 +645,7 @@ items. For each utterance-state pair, we computed the posterior
 distribution over the semantic weight (i.e., how consistent X utterance
 is with Y state) assuming a uniform prior over the weight (i.e., a
 standard Beta-Binomial model). Meanings of the words as judged by
-participants were as one would expect (Figure ~\ref{fig:litsem}).
+participants were as one would expect (Fig. ~\ref{fig:litsem}).
 
 \begin{figure}[!h]
 \includegraphics[width=0.9\columnwidth]{fig/litsem-1}
@@ -664,12 +665,12 @@ participants were as one would expect (Figure ~\ref{fig:litsem}).
 on Amazon's Mechanical Turk. As in the literal semantic task, we
 used scenarios in which a person (e.g., Bob) gave some performance and
 asked for another person (e.g., Ann)'s opinion on the performance
-(Figure ~\ref{fig:screenshot}). Additionally, we provided information on
+(Fig. ~\ref{fig:screenshot}). Additionally, we provided information on
 the speaker Ann's goal -- to make Bob feel good, or to give as accurate
 and informative feedback as possible, or both -- and the true state --
 how Ann actually felt about Bob's performance (e.g., two out of three
 hearts;
-Figure~\ref{fig:screenshot}). Each participant read 12 scenarios,
+Fig.~\ref{fig:screenshot}). Each participant read 12 scenarios,
 depicting every possible combination of the 3 goals and 4 states.
 The order of context items was randomized, and there were a maximum of
 two repeats of each context item per participant. Each scenario was
