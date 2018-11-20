@@ -3,7 +3,7 @@ Abstract: Language is a remarkably efficient tool for transmitting information. 
 
 The preprint of the manuscript is available [here](https://psyarxiv.com/93fyg).
 
-The preregistration of experiments and key hypotheses about behavioral data and model predictions can be viewed [here](https://osf.io/qmzfc/).
+The preregistration of experiments and key hypotheses about behavioral data and model predictions can be viewed [here](https://osf.io/tre7c/).
 
 ## structure of this repository
 
@@ -23,4 +23,4 @@ contains BDA model scripts and outputs, and other stat Rds files.
 
 ### 04_manuscript
 
-contains manuscript (see our preprint file in this repo [here](https://github.com/ejyoon/polite_speaker/blob/master/04_manuscript/02_pnas/PNAS_politeness.pdf) and uploaded on osf [here](https://psyarxiv.com/93fyg).
+contains manuscript (see our preprint file in this repo [here](https://github.com/ejyoon/polite_speaker/blob/master/04_manuscript/02_pnas/PNAS_politeness.pdf) and uploaded on osf [here](https://psyarxiv.com/93fyg)).
