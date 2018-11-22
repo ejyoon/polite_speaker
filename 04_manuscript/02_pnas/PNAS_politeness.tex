@@ -71,16 +71,17 @@ Although \emph{close the window!} could be an effective message, we dawdle by ad
 or \emph{would you mind\ldots{}?}
 Rather than tell an uncomfortable truth, socially-aware speakers lie (\emph{Your dress looks great!}) and
 prevaricate (\emph{Your poem was so appropriate to the occasion}).
-Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, jakobson1960, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally truthful to the extent of a speaker's knowledge. Polite speech violates these
+Such language use is puzzling for classical views of language as information transfer \cite{buhler1934, frank2012, shannon1948}. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs \cite{grice1975, searle1975}, and the information conveyed is ideally truthful to the extent of a speaker's knowledge. Polite speech violates these
 basic expectations about the nature of communication: It is typically
-inefficient and underinformative, and sometimes even outright false. Yet even young speakers of a language spontaneously produce
-requests in polite forms \cite{axia1985}, and adults use politeness strategies while arguing \cite{holtgraves1997}.
+inefficient and underinformative, and sometimes even outright false. Yet even young speakers spontaneously produce
+requests in polite forms \cite{axia1985}, and adults use politeness strategies while arguing \cite{holtgraves1997}, even though polite utterances may risk high-stakes misunderstandings \cite{bonnefon2011risk}. 
 
 If politeness only gets in the way of effective information transfer, why be polite?
 Clearly, there are social concerns, and most linguistic theories assume utterance choices are motivated by these concerns, couched as either polite maxims \cite{leech1983}, social norms \cite{ide1989}, or aspects of a speaker and/or listener's identity, known as \emph{face} \cite{brown1987, goffman1967}.
 Face-based theories predict that when a speaker's intended meaning contains a threat to the listener's face or self-image (and potentially the speaker's face), her messages will be less direct, less efficient, and possibly untruthful.
+Indeed, listeners readily assume speakers' intentions to be polite when interpreting utterances in face-threatening situations \cite{bonnefon2009}.
 How this socially-aware calculation unfolds, however, is not well understood.
-When should a speaker decide to say something false (\emph{Your poem was great!}) rather than just be indirect (\emph{Some of the metaphors were tricky to understand.})?
+When should a speaker decide to say something false (\emph{Your poem was great!} based on an example from \cite{bonnefon2009}) rather than just be indirect (\emph{Some of the metaphors were tricky to understand.})?
 How does a speaker's own self-image enter into the calculation?
 
 We propose a utility-theoretic solution to the problem of polite language use by quantifying the tradeoff between
@@ -122,8 +123,8 @@ who reasons about what to say to \(L_1\) by
 considering informational, social, and self-presentational goals (Fig.
 \ref{fig:model}).
 
-We evaluate our model on its ability to predict human utterance choices
-in situations where polite language use is expected to varying degrees.
+We evaluate our model's ability to predict human utterance choices
+in situations where polite language use is expected.
 Imagine Bob recited a poem and asked Ann how good it was.
 Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \(s\) (i.e., the
 rating, in her mind, truly deserved by Bob's poem) and a set of goal weights
@@ -136,7 +137,7 @@ P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[
 \end{equation}
 
 We posit that a speaker's utility contains three distinct components: informational, social, and presentational. The
-total utility $U_{total}$ of an utterance is thus the weighted combination of the three component utilities minus the utterance cost \(C(w)\):
+total utility $U_{total}$ of an utterance is thus the weighted combination of the three utilities minus the utterance cost \(C(w)\):
 
 \begin{equation}
 \begin{split}
@@ -180,7 +181,7 @@ Definitions for \(S_1\) and  \(L_0\) otherwise mirror those of  \(S_2\) and  \(L
 Finally, more complex utterances incur a greater cost, \(C(w)\) --
 capturing the general pressure towards economy in speech. In our work,
 utterances with negation (e.g., \emph{not terrible}) are assumed to
-be slightly costlier than their equivalents with no negation (and this cost differential is inferred
+be slightly costlier than their equivalents with no negation (this cost is inferred
 from data; see Supplementary Information).
 
 Within our experimental domain, we assume there are four possible states
@@ -241,11 +242,11 @@ then among \emph{terrible}, \emph{bad}, \emph{good}, and \emph{amazing.}
 \end{figure}
 
 Our primary behavioral hypothesis was that speakers describing bad
-states (e.g., Bob's poem deserved 0 hearts) with goals to be both
+states (e.g., poem deserving 0 hearts) with goals to be both
 informative and kind would produce more indirect, negative utterances
 (e.g., \emph{It wasn't terrible}). Such indirect speech acts both
 save the listener's face and provide some information about the
-true state, and thus, are the kind of thing that a socially-conscious speaker would say (Fig. \ref{fig:L1inferences}).
+true state, and thus, are what a socially-conscious speaker would say (Fig. \ref{fig:L1inferences}).
 This prediction was confirmed: a Bayesian mixed-effects
 model predicts more negation as a function of true state and goal via
 an interaction: A speaker with both goals to be informative and
@@ -254,7 +255,7 @@ only the goal to be informative (\emph{M} = -1.33, {[}-1.69, -0.98{]})
 and goal to be kind (\emph{M} = -0.50, {[}-0.92, -0.07{]}). Rather than
 eschewing one of their goals to increase utility along a single
 dimension, participants chose utterances that jointly satisfied their
-conflicting goals by producing indirect, polite speech.
+conflicting goals by producing indirect speech.
 
 \begin{figure*}[!h]
 \includegraphics[width=\textwidth]{fig/comparison-1} \caption{Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dashed line indicates chance level at 12.5\%.}\label{fig:comparison}
@@ -321,17 +322,17 @@ soc, pres & both & -- & 0.38 & 0.62 & 0.55\\
 
 
 
-The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using a Bayesian data analysis model (\cite{lee2014}; see Supplementary Information)
+The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis \cite{lee2014}.
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
 (\emph{N}=51).
 The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices (\(r^2\)(96) = 0.97; Fig. \ref{fig:variance}).
 We compared these to six model variants containing
 subsets of the three utilities in the full model.
-Both the variance explained and the marginal likelihood of the observed data were the
+Both the variance explained and marginal likelihood of the observed data were the
 highest for the full model (Table \ref{tab:comparisonTable}). Only the
 full model captured participants' preference for negation when the speaker wanted to be informative and kind
 about truly bad states, as hypothesized (Fig. \ref{fig:comparison}).
-In sum, the full collection of informational, social, and presentational were
+In sum, the full set of informational, social, and presentational were
 required to fully explain participants' utterance choices.
 
 The utility weights inferred for the three-utility model (Table \ref{tab:phi})
@@ -357,7 +358,7 @@ Incorporating social motivations adds a level of explanation, but so far such in
 We present a utility-theoretic model of language use that captures the interplay between competing
 informational, social, and presentational goals, and provide preregistered
 experimental evidence that confirmed its ability to capture human
-judgments, unlike comparison models that used only a subset of the full
+judgments, unlike comparison models with only a subset of the full
 utility structure.
 
 To estimate precisely choice behavior in the experiment,
@@ -395,7 +396,7 @@ be nonlinear and involve reasoning about the future).
 Our formal modeling approach with systematic behavior measurements provides an avenue towards understanding the vast range of politeness practices found across languages.
 
 
-Politeness is only one of the ways that language use deviates from purely
+Politeness is only one of the ways language use deviates from purely
 informational transmission.
 We flirt, insult, boast, and empathize by balancing informative transmissions with goals to affect others' feelings or
 present particular views of ourselves.
@@ -445,12 +446,12 @@ P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[
 We probed judgments of literal meanings of the target words assumed by
 our model and used in our main experiment. 51 participants with IP
 addresses in the United States were recruited on Amazon's Mechanical
-Turk. We used thirteen different context items in which a speaker
+Turk. We used 13 different context items in which a speaker
 evaluated a performance of some kind. For example, in one of the
-contexts, Ann saw a presentation, and Ann's feelings toward the
-presentation (true state) were shown on a scale from zero to three
+contexts, Ann read a poem, and Ann's feelings toward the
+poem (true state) were shown on a scale from zero to three
 hearts (e.g., two out of three hearts filled in red color; see
-Fig.~\ref{fig:screenshot} for an example of the heart scale). The
+Fig.~\ref{fig:screenshot} for an example). The
 question of interest was \emph{Do you think Ann thought the
 presentation was / wasn't X?} and participants responded by choosing
 either \emph{no} or \emph{yes.} The target could be one of four
@@ -469,7 +470,7 @@ participants were as one would expect (Fig. ~\ref{fig:litsem}).
 
 \begin{figure}[!h]
 \includegraphics[width=0.9\columnwidth]{fig/litsem-1}
-\centering \caption{Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\% confidence intervals.}\label{fig:litsem}
+\centering \caption{Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (facets) given the true state represented on a scale of hearts. Error bars represent 95\% confidence intervals.}\label{fig:litsem}
 \end{figure}
 
 \subsection*{Speaker production task}\label{speaker-production-task}
