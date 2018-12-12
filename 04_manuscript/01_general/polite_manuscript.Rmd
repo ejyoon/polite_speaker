@@ -118,6 +118,8 @@ ms_neg <- rbind(ms_data_neg,
 
 ```
 
+# Introduction
+
 We rarely say exactly what's on our mind.
 Although “close the window!” could be an effective message, we dawdle by adding “can you please...?” 
 or “would you mind...?” 
@@ -168,7 +170,7 @@ utterance. Then \(S_1\) reasons about a *literal listener*
 recursion (see Materials and Methods for definitions of $L_0$ and $S_1$).
 The target of our current work is a model of a polite speaker \(S_2\)
 who reasons about what to say to \(L_1\) by
-considering informational, social, and self-presentational goals  (Figure \@ref(fig:model)).
+considering informational, social, and self-presentational goals (Figure \@ref(fig:model)).
 
 We evaluate our model's ability to predict human utterance choices
 in situations where polite language use is expected.
@@ -203,29 +205,67 @@ Formally,
 
 $$U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w)$$.
 
-To define this term, the speaker has a weighting of informational vs. social goals to convey ($\phi_{S_1}$) and must consider the beliefs of listener L1, who hears an utterance and jointly infers both the speaker’s utilities and the true state of the world: 
+\noindent The speaker conveys a particular weighting of informational
+vs.~social goals (\(\phi_{S_1}\)) by considering the
+beliefs of listener \(L_1\), who hears an utterance and jointly infers
+the speaker's utilities and the true state of the world:
 
-$$P_{L_1}(s, \hat{\phi} | w) \propto P_{S_1}(w | s, \hat{\phi}) \cdot P(s) \cdot p(\hat{\phi})$$.
+$$P_{L_1}(s, \phi_{S_1} | w) \propto P_{S_1}(w | s, \phi_{S_1}) \cdot P(s) \cdot P(\phi_{S_1})$$.
 
-This presentational utility is higher-order in that it can only be defined for a speaker thinking about a listener who evaluates a speaker (i.e., it can be defined for $S_2$, but not $S_1$).
+\noindent The presentational utility is the highest-order term of the model, defined only for a speaker thinking about a listener who evaluates a speaker
+(i.e., defined for \(S_2\), but not \(S_1\)).
+Only the social and informational utilities are defined for the \(S_1\) speaker (via reasoning about \(L_0\)); thus, \(S_1\)'s utility weightings can be represented by a single number, the mixture parameter \(\phi_{S_1}\).
+Definitions for \(S_1\) and  \(L_0\) otherwise mirror those of  \(S_2\) and  \(L_1\) and can be found in the Materials and Methods section.
 
-Finally, more complex utterances incur a greater cost, $C(w)$ – capturing the general pressure towards economy in speech. 
-In our work, utterances with negation (e.g., “not terrible”) are assumed to be slightly costlier than their equivalents with no negation (inferred from data; see Supplementary Information). 
+Finally, more complex utterances incur a greater cost, \(C(w)\) --
+capturing the general pressure towards economy in speech. In our work,
+utterances with negation (e.g., *not terrible*) are assumed to
+be slightly costlier than their equivalents with no negation (this cost is inferred
+from data; see Supplementary Information).
+
+Within our experimental domain, we assume there are four possible states
+of the world corresponding to the value placed on a particular referent
+(e.g., the poem the speaker is commenting on), represented in terms of numbers of hearts (Figure \@ref(fig:model)):
+\(S = {s_0,...,s_3}\). Since the rating scale is relatively abstract, we assume a uniform prior distribution
+over possible states of the world. The set of utterances is \{*terrible*, *bad*, *good*, *amazing*, *not terrible*, *not bad*, *not good*, and *not amazing*\}. We
+implemented this model using the probabilistic programming language
+WebPPL [@dippl] and a demo can be found at \url{http://forestdb.org/models/politeness.html}.
+
+```{r L1inferences, fig.cap="Model behavior. Listener inferences about the true state (e.g., the rating truly deserved by the poem; A) and the speaker's utility weighting ($\\phi_{S_1}$ or how informational vs. social the speaker is, where $\\phi_{S_1}$ = 0 is fully social, and $\\phi_{S_1}$ = 1 is fully informational; B) as a function of the utterance heard (facets). C: Purely self-presentational speaker production behavior as a function of the kind of speaker they wish to present themselves as (facets; relatively more informational, e.g., $\\phi_{S_1}$ = 0.05, vs. social as represented, e.g., $\\phi_{S_1}$ = 0.95)."}
+knitr::include_graphics("fig/L1_inferences_wS2pres", dpi = 170)
+```
  
-Intuitively, if Bob’s performance was good, Ann’s utilities align toward a positive utterance. 
-By saying “[Your poem] was amazing,” Ann is simultaneously being truthful, kind, and appearing both truthful and kind. 
-If Bob’s performance was poor, however, Ann is in a bind: Ann could be kind and say "It was great", but at the cost of conveying the wrong information to Bob if he believes her to be truthful. 
-If he does not, he might infer Ann is “just being nice”, but is uninformative.
-Alternatively, she could say the truth (“It was bad”), but then Bob would think Ann didn’t care about him. 
-What is a socially-aware speaker to do? Our model predicts that indirect speech – like “It wasn’t bad” – helps navigate Ann’s dilemma. 
-Her statement is sufficiently vague to leave open the possibility that the poem was good, but her avoidance of the simpler and less costly “It was good” provides both an inference that the performance was mediocre and a signal that she cares about Bob’s feelings.
+# Results
 
-We made a direct, pre-registered test of our model by instantiating the example above in an online experiment (*N* = 202). 
-Participants read scenarios in which we provided information on the speaker’s (Ann’s, in our example) feelings toward some performance or product (e.g., poem recital; *true state*), on a scale from zero to three hearts (e.g., one out of three hearts). 
-For example, one trial read: “Imagine that Bob gave a poem recital, but he didn't know how good it was. Bob approached Ann, who knows a lot about poems, and asked "How was my poem?" 
-We also manipulated the speaker’s *goal* across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“make the listener feel good”); or to be *both* informative and kind simultaneously. 
-We hypothesized that each of the three goals will represent a tradeoff between the three utilities in our model (see Supplementary Information). 
-In a single trial, each scenario was followed by a question asking for the most likely utterance by Ann. Participants selected one of eight possible utterances, by choosing between *It was* vs. *It wasn’t* and then among *terrible*, *bad*, *good*, and *amazing.* 
+## Model behavior
+
+The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Figure \@ref(fig:L1inferences)B).
+Upon hearing \emph{{[}Your poem{]} was terrible} (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
+*It was amazing* is more ambiguous (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
+Negation makes the meanings less precise and introduces more uncertainty into the inference about the state: A listener who hears *It wasn't amazing* sees it as a relatively kind way of saying that the poem was quite bad (0 or 1 hearts), inferring a balance of social and informational goals for the speaker (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B bottom-right).
+*It wasn't terrible* is the most open-ended, leaving open the possibility that the poem was worthy of 0 hearts (i.e., *it was terrible*) but conveying to the listener that the speaker cares about both informational and social goals, with a slight preference of towards being social (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B bottom-left). 
+
+The self-presentational utility guides the speaker \(S_2\) to care about how she will be viewed in the eyes of the listener \(L_1\) (Figure \@ref(fig:L1inferences)C).
+If the speaker wants to present herself as someone who is socially-minded (e.g., informational mixture or $\phi_{S_1}$ of 0.05), she should produce direct, positive utterances (e.g., *amazing*).
+The best way to appear honest (e.g., informational mixture of 0.95) is to say direct, negative utterances (e.g., *terrible*).
+The desire to appear as someone concerned with telling the truth while also caring about the listener's feelings (e.g., $\phi_{S_1}$ of 0.25) leads the speaker to produce indirect utterances (e.g., *not terrible*).
+Such indirect speech acts are sufficiently open-ended to include the
+possibility that the poem was good, but the avoidance of a more direct utterance (e.g., *good*) provides the listener with a way to recover the true state (e.g., the poem was mediocre) by way of reasoning that the speaker cares about his feelings by not saying the blunt truth.
+
+## Experimental findings
+
+We made a direct, fully pre-registered test of our speaker production model and its performance in comparison to a range of alternative models, by instantiating our running example in an online experiment (*N* = 202).
+Participants read scenarios with information on the speaker's (Ann's,
+in our example) feelings toward some performance or product (e.g., a poem
+recital; *true state*), on a scale from zero to three hearts (e.g.,
+one out of three hearts). For example, one trial read: *Imagine that Bob gave a poem recital, but he didn't know how good it was. Bob approached Ann, who knows a lot about poems, and asked* ``How was my poem?''
+
+We manipulated the speaker's goals across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“make the listener feel good”); or to be *both* informative and kind simultaneously. We hypothesized that
+each of the three experimentally-induced goals would induce a different tradeoff between social and informational
+utilities in our model, as well as modulating the self-presentational component. In a single
+trial, each scenario was followed by a question asking for the most
+likely produced utterance by Ann. Participants selected one of eight possible
+utterances, by choosing between *It was* vs. *It wasn’t* and then among *terrible*, *bad*, *good*, and *amazing.* 
 
 ```{r data_bayes_factor}
 load(file=here("03_model/03_other_stat/bayesfactor_state_goal_interaction.Rds"))
@@ -309,10 +349,21 @@ rownames(brm.tab) <- NULL
 brm.tab <- brm.tab[,c(5,1:4)]
 ```
 
-Our primary behavioral hypothesis was that speakers describing bad states (e.g., Bob’s performance deserved 0 heart) with goals to be both informative and kind would produce more indirect, negative utterances (e.g., “It wasn’t terrible”). 
-Such indirect speech acts serve to save the listener’s face while also conveying a vague estimate of the true state. 
-This prediction was confirmed: a Bayesian mixed-effects model predicting negation as a function of true state and goal yielded an interaction such that a speaker with both goals to be informative and kind produced more negation in worse states compared to a speaker with only the goal to be informative (*M* = `r brm.tab$Mean[5]`, [`r brm.tab$"95% CI-Lower"[5]`, `r brm.tab$"95% CI-Upper"[5]`]) and goal to be kind (*M* = `r brm.tab$Mean[6]`, [`r brm.tab$"95% CI-Lower"[6]`, `r brm.tab$"95% CI-Upper"[6]`]). 
-Rather than eschewing one of their goals to increase utility along a single dimension, participants chose utterances that jointly satisfied their conflicting goals by producing indirect, polite speech. 
+
+Our primary behavioral hypothesis was that speakers describing bad
+states (e.g., poem deserving 0 hearts) with goals to be both
+informative and kind would produce more indirect, negative utterances
+(e.g., *It wasn't terrible*). Such indirect speech acts both
+save the listener's face and provide some information about the
+true state, and thus, are what a socially-conscious speaker would say (Figure \@ref(fig:L1inferences)).
+This prediction was confirmed: a Bayesian mixed-effects
+model predicts more negation as a function of true state and goal via
+an interaction: A speaker with both goals to be informative and
+kind produced more negation in worse states compared to a speaker with
+only the goal to be informative (*M* = `r brm.tab$Mean[5]`, [`r brm.tab$"95% CI-Lower"[5]`, `r brm.tab$"95% CI-Upper"[5]`]) and goal to be kind (*M* = `r brm.tab$Mean[6]`, [`r brm.tab$"95% CI-Lower"[6]`, `r brm.tab$"95% CI-Upper"[6]`]). Rather than
+eschewing one of their goals to increase utility along a single
+dimension, participants chose utterances that jointly satisfied their
+conflicting goals by producing indirect speech.
 
 ```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
 plot.comp <- ms_utt %>%  
@@ -410,7 +461,7 @@ bf_list_rounded_rev <- rev(append(bf_list_rounded, "--"))
 ```
 
 ```{r comparisonTable, results = 'asis'}
-model_list = rev(c("model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational"))
+model_list = rev(c("informational \nonly", "social only", "presentational \nonly", "social, \npresentational", "informational, \nsocial", "informational, \npresentational", "informational, \nsocial, \npresentational"))
 variance_list = rev(c(cor2_inf, cor2_soc, cor2_pres, cor2_socpres, 
                            cor2_infsoc, cor2_infpres, cor2_infsocpres))
 
@@ -423,44 +474,91 @@ comp_tab <- data.frame("Model" = model_list,
 apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of alternative model in comparison.")
 ```
 
-Next, to connect the behavioral data to our model, we inferred the parameters of the RSA model (e.g., the speaker’s utility weights in each goal condition; see Supplementary Information) via a Bayesian data analysis [@lee2014]. 
-To approximate the semantics of the words as interpreted by the literal listener $L_0$, we obtained literal meaning judgments from an independent group of participants (*N*=51). 
-Predictions from the full polite speaker model showed a very strong fit to participants’ utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
 
-We also compared the predictions of our model to its variants containing subsets of the three utilities in the full model. Both the variance explained and the marginal likelihood of the observed data were the highest for the full model (Table \@ref(tab:comparisonTable)).
-Only the full model captured the participants’ preference for negation in the condition in which the speaker had both goals to be informative and kind about truly bad states, as hypothesized (Figure \@ref(fig:comparison)). All three utilities – informational, social, and presentational – were required to fully explain participants’ utterance choices. The utility weights inferred for the full model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates: our condition manipulation altered the balance between these weights, but all utilities played a role in all conditions.
+The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis [@lee2014].
+To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
+(*N*=51).
+The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
+We compared these to six model variants containing
+subsets of the three utilities in the full model.
+Both the variance explained and marginal likelihood of the observed data were the
+highest for the full model (Table \@ref(tab:comparisonTable)). Only the
+full model captured participants' preference for negation when the speaker wanted to be informative and kind
+about truly bad states, as hypothesized (Figure \@ref(fig:comparison)).
+In sum, the full set of informational, social, and presentational were
+required to fully explain participants' utterance choices.
 
-Politeness is a puzzle for purely informational accounts of language use. Incorporating social motivations can provide an explanatory framework, but such intuitions have been resistant to formalization or precise testing. To overcome this issue, we created a utility-theoretic model of language use that captured the interplay between competing informational, social, and presentational goals. A preregistered experimental test of the model confirmed its ability to capture human judgments, unlike comparison models that used only a subset of the full utility structure. 
+The utility weights inferred for the three-utility model (Table \@ref(tab:phi))
+provide additional insight into how polite language use operates in our experimental context and possibly beyond:
+*Being kind* ("social") requires equal weights on all three utilities,
+indicating that informativity is a part of language use
+even when it is explicitly not the goal.
+*Being informative* ("informative") pushes
+the weight on social utility ($\phi_{soc}$) close to zero, but the weight on 
+*appearing kind* ($\phi_{pres}$) stays high, suggesting that speakers are expected
+to manage their own face even when they are not considering others'.
+*Kind and informative* ("both") speakers emphasize informativity slightly
+more than kindness. 
+In all cases, however, the presentational utilities have greatest weight, 
+suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our  communicative task.
+Overall then, our condition manipulation altered the balance between these weights, 
+but all utilities played a role in all conditions.
 
-To precisely estimate choice behavior, our experiment abstracted away from natural interactions in a number of ways. Real speakers have access to a potentially infinite range of utterances to manage the tradeoffs in our experiment (“It’s hard to write a good poem”, “That metaphor in the second stanza was so relatable!”). 
-Under our framework, each utterance will have strengths and weaknesses relative to the speaker’s goals, though computation in an unbounded model presents technical challenges [perhaps paralleling the difficulty human speakers feel in finding the right thing to say in a difficult situation; see @goodman2016].
+# Discussion
 
-For a socially-conscious speaker, managing listeners’ inferences is a fundamental task. 
-Inspired by the theory of politeness as face management [@brown1987], our model takes a step towards understanding it.
-Our work extends previous models of language beyond standard informational utilities to address social and self-presentational concerns. Previous theories of language use have not explained how informational versus social concerns trade off to inform the speaker’s utterance choices. Thus, this work represents a key theoretical advance exploring how informational cooperativity interacts with other social goals.
-By considering utility-driven inferences in a social context [@baker2017rational; @hamlin2013mentalistic] where agents need to take into account concerns about both self and others, 
-our approach here could give insights into a wide range of social behaviors beyond speech.
+\noindent Politeness is puzzling from an information-theoretic perspective.
+Incorporating social motivations adds a level of explanation, but so far such intuitions and observations have resisted both formalization and precise testing.
+We present a utility-theoretic model of language use that captures the interplay between competing
+informational, social, and presentational goals, and provide preregistered
+experimental evidence that confirmed its ability to capture human
+judgments, unlike comparison models with only a subset of the full
+utility structure.
 
-The model presented here relates to other work done in game-theoretic pragmatics. 
-@vanRooy2003 uses a game-theoretic analysis of polite requests (“Could you possibly take me home?”) to argue the purpose of polite language is to align the preferences of interlocutors. 
-Our notion of social utility $U_{soc}$ and presentational utility $U_{pres}$ is similar in that they motivate speakers to signal worlds that make the listener feel good. 
-@vanRooy2003’s analysis, however, relies on the notion that polite language is costly (in a social way e.g., by reducing one’s social status or incurring social debt to one’s conversational partner) but it’s not clear how the polite behaviors explored in our experiments (not polite requests) would incur any cost to speaker or listener. 
-Our model derives its predictions by construing the speaker utility as a collection of possible goals (here, epistemic, social, and presentational goals). The speech-acts themselves are not costly.
-In @pinker2008's model, human communication is assumed to involve a mixture of cooperation *and* conflict: 
-indirect speech then allows for plausible deniability that is in self-interest but goes against the interest of the addressee. 
-In contrast, our work builds on existing classic theories of polite speech as primarily cooperative [@grice1975; @brown1987] rather than based on both cooperation and conflict.
-We have shown that a separate notion of plausible deniability may not be needed, as indirect speech in our specific case comes from both a goal to be helpful and a desire to look good.
-Our work is able to capture different linguistic nuances involved in this process of reasoning about different goals that speakers have. 
+To estimate precisely choice behavior in the experiment,
+it was required to abstract away
+from natural interactions in a number of ways.
+Human speakers have access
+to a potentially infinite set of utterances to select from in order to manage the three-utility tradeoff (*It's hard to write a good poem*, *That metaphor in the second stanza was so relatable!*). In theory,
+each utterance will have strengths and weaknesses relative to the
+speaker's goals, though computation in an unbounded model presents
+technical challenges [perhaps paralleling the difficulty human speakers
+feel in finding the right thing to say in a difficult situation; see @goodman2016].
 
-By experimenting with different utility weights and value functions, our model could provide a framework for understanding systematic cross-cultural differences in what counts as polite. 
-For example, following @brown1987, cross-cultural differences in politeness could be a product of different weightings within the same utility structure. 
-It is also possible, however, that culture affects the value function $V$ that maps states of the world onto subjective values for the listener (e.g., the mapping from states to utilities may be more complex than we have considered). 
+For a socially-conscious speaker, managing listeners' inferences is a
+fundamental task. Our work extends previous models of language beyond
+standard informational utilities to address social and
+self-presentational concerns. Further, our model builds upon the theory of politeness as face
+management [@brown1987] and takes a step towards
+understanding the complex set of social concerns involved in face management.
+Our approach can provide insight into a wide range of social behaviors beyond speech by considering utility-driven inferences in a
+social context [@baker2017rational; @hamlin2013mentalistic] where agents need to take
+into account concerns about both self and others.
+
+Previous game-theoretic analyses of politeness have either required some social cost to an utterance (e.g., by reducing one's social status or incurring social debt to one's conversational partner; @vanRooy2003) or a separately-motivated notion of plausible deniability [@pinker2008].
+The kind of utterance cost for the first type of account would necessarily involve higher-order reasoning about other agents, and may be able to be defined in terms of the more basic social and self-presentational goals we formalize here.
+A separate notion of plausible deniability may not be needed to explain most politeness behavior, either.
+Maintaining plausible deniability is in one's own self-interest (e.g., due to controversial viewpoints or covert deception) and goes against the interests of the addressee; some amount of utility dis-alignment is presumed by these accounts. Politeness behavior appears present even in the absence of obvious conflict, however: in fact, you might be even more motivated to be polite to someone whose utilities are more aligned with yours (e.g., a friend). In our work here, we show that such behaviors can in fact arise from purely cooperative goals [@brown1987], though in cases of genuine conflict, plausible deniability likely plays a more central role in communication.
+
+Utility weights and value functions in our model could provide a framework for a quantitative understanding of systematic
+cross-cultural differences in what counts as polite. Cross-cultural differences in politeness could be a product of different weightings within the same
+utility structure. Alternatively, culture could affect
+the value function \(V\) that maps states of the world onto subjective
+values for the listener (e.g., the mapping from states to utilities may
+be nonlinear and involve reasoning about the future).
 Our formal modeling approach with systematic behavior measurements provides an avenue towards understanding the vast range of politeness practices found across languages.
 
-Politeness is only one of the ways that language use deviates from pure information transfer. 
-When we flirt, insult, boast, and empathize, we also balance being informative with goals to affect others’ feelings and present particular views of ourselves. 
-Our work shows how social and self-presentational motives can be integrated with other concerns more generally, opening up the possibility for a broader theory of social language. 
-Further, a formal account of politeness moves us closer to courteous computation – to computers that can communicate with tact.
+
+Politeness is only one of the ways language use deviates from purely
+informational transmission.
+We flirt, insult, boast, and empathize by balancing informative transmissions with goals to affect others' feelings or
+present particular views of ourselves.
+Our work shows how social and
+self-presentational motives are integrated with informational concerns more
+generally, opening up the possibility for a broader theory of social
+language.
+In addition, a formal account of politeness moves us closer to
+courteous computation -- to machines that can talk with tact.
+
 
 # Acknowledgments
 
@@ -468,11 +566,34 @@ This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to E
 
 \newpage
 
-# Methods
+# Supplementary Materials
+
+## Model details
+
+\noindent The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance to be true:
+
+$$P_{L_0}(s | w) \propto [\![ w ]\!] (s) * P(s).$$
+
+\noindent where $[\![ w ]\!](s)$ is the truth-functional denotation of the utterance
+$w$ (i.e. the utterance's literal meaning): It is a function
+that maps world-states $s$ to Boolean truth values. The literal
+meaning is used to update the literal listener's prior beliefs
+over world states $P(s)$.
+
+The *speaker* $S_1$ chooses utterances approximately optimally given a utility function, which can be decomposed into two components. 
+First, informational utility ($U_{inf}$) is the amount of information a literal listener $L_0$ would still not know about world state $s$ after hearing a speaker's utterance $w$. 
+Second, social utility ($U_{soc}$) is the expected subjective utility of the state inferred given the utterance $w$. 
+The utility of an utterance subtracts the cost $c(w)$ from the weighted combination of the social and epistemic utilities. 
+
+$$U(w; s; \phi_{S_1}) = \phi_{S_1} \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi_{S_1}) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$$
+
+\noindent The speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi_{S_1}$: 
+
+$$P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[U(w; s; \phi_{S_1})])$$.
 
 ## Literal semantic task
 
-We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
+\noindent We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
 51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
 We used thirteen different context items in which a speaker evaluated a performance of some kind. 
 For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
@@ -527,16 +648,14 @@ ggsave("literal_semantics.png", width = 7, height = 3,
 knitr::include_graphics("fig/screenshot.png", dpi = 130)
 ```
 
-202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (Figure \ \@ref(fig:screenshot)). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts; Figure\ \@ref(fig:screenshot)). 
+\noindent 202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (Figure \ \@ref(fig:screenshot)). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts; Figure\ \@ref(fig:screenshot)). 
 Each participant read twelve scenarios, depicting every possible combination of the three goals and four states. 
 The order of context items was randomized, and there were a maximum of two repeats of each context item per participant.
 Each scenario was followed by a question that read, "If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?" 
 Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between *It was* vs. *It wasn’t* and the other for choosing among *terrible*, *bad*, *good*, and *amazing.*
 
-# Supplementary Information
-
 ## Data analysis
-We used `r cite_r("politeness.bib")` for all our analyses.
+\noindent We used `r cite_r("politeness.bib")` for all our analyses.
 
 ## Full statistics on human data
 
@@ -555,15 +674,19 @@ load(here("03_model/01_posterior_predictives/03_output_processed/other_param_sum
 phi_tab <- d_phi_s %>%
   mutate_at(vars(informative:social), as.numeric) %>%
   mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
+  mutate_at(vars(informative:social), 
+            funs(dplyr::case_when(is.na(.) ~ "--",
+                                  TRUE ~ as.character(.)))) %>%
+  # mutate_if(is.numeric, function(x) ifelse(is.na(x), "--", x)) %>%
   ungroup() %>%
     mutate(model = case_when(
-    model == "inf" ~ "ninformational only", 
+    model == "inf" ~ "informational only", 
     model == "soc" ~ "social only", 
     model == "pres" ~ "presentational only", 
-    model == "InfPres" ~ "ninformational, presentational", 
-    model == "InfSoc" ~ "ninformational, social", 
+    model == "InfPres" ~ "informational, presentational", 
+    model == "InfSoc" ~ "informational, social", 
     model == "SocPres" ~ "social, presentational", 
-    model == "Full" ~ "ninformational, social, presentational" 
+    model == "Full" ~ "informational, social, presentational" 
   )) %>%
   select(model, goal, informative, social, Selfpres, s1)
 
