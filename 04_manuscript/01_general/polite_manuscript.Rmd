@@ -120,7 +120,7 @@ ms_neg <- rbind(ms_data_neg,
 
 # Introduction
 
-We rarely say exactly what's on our mind.
+\noindent We rarely say exactly what's on our mind.
 Although “close the window!” could be an effective message, we dawdle by adding “can you please...?” 
 or “would you mind...?” 
 Rather than tell an uncomfortable truth, socially-aware speakers lie (“Your dress looks great!”) and prevaricate (“Your poem was so appropriate to the occasion”).
@@ -181,12 +181,12 @@ rating, in her mind, truly deserved by Bob's poem) and a set of goal weights
 Ann's production decision is softmax, which interpolates between
 maximizing and probability matching [via $\lambda_{S_2}$; @goodman2013]:
 
-$$P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi}; \phi_{S_1})])$$.
+$$P_{S_2}(w | s, \hat{\phi}) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \hat{\phi}; \phi_{S_1})]).$$
 
 We posit that a speaker's utility contains three distinct components: informational, social, and presentational. The
 total utility $U_{total}$ of an utterance is thus the weighted combination of the three utilities minus the utterance cost \(C(w)\):
 
-$$U_{total}(w; s; \hat{\phi}; \phi_{S_1}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \phi_{pres} \cdot U_{pres}(w; \phi_{S_1}) - C(w)$$.
+$$U_{total}(w; s; \hat{\phi}; \phi_{S_1}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \phi_{pres} \cdot U_{pres}(w; \phi_{S_1}) - C(w).$$
 
 We define *social utility* \(U_{soc}(w)\) as the expected subjective utility of the state \(V(s)\) implied to the
 pragmatic listener by the utterance: \(U_{soc}(w) = \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)]\).
@@ -203,14 +203,14 @@ The speaker gains presentational utility when her listener believes she
 has particular goas, represented by a mixture weighting \(\phi_{S_1}\) between trying to be genuinely informative vs. kind.
 Formally,
 
-$$U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w)$$.
+$$U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).$$
 
 \noindent The speaker conveys a particular weighting of informational
 vs.~social goals (\(\phi_{S_1}\)) by considering the
 beliefs of listener \(L_1\), who hears an utterance and jointly infers
 the speaker's utilities and the true state of the world:
 
-$$P_{L_1}(s, \phi_{S_1} | w) \propto P_{S_1}(w | s, \phi_{S_1}) \cdot P(s) \cdot P(\phi_{S_1})$$.
+$$P_{L_1}(s, \phi_{S_1} | w) \propto P_{S_1}(w | s, \phi_{S_1}) \cdot P(s) \cdot P(\phi_{S_1}).$$
 
 \noindent The presentational utility is the highest-order term of the model, defined only for a speaker thinking about a listener who evaluates a speaker
 (i.e., defined for \(S_2\), but not \(S_1\)).
@@ -234,12 +234,78 @@ WebPPL [@dippl] and a demo can be found at \url{http://forestdb.org/models/polit
 ```{r L1inferences, fig.cap="Model behavior. Listener inferences about the true state (e.g., the rating truly deserved by the poem; A) and the speaker's utility weighting ($\\phi_{S_1}$ or how informational vs. social the speaker is, where $\\phi_{S_1}$ = 0 is fully social, and $\\phi_{S_1}$ = 1 is fully informational; B) as a function of the utterance heard (facets). C: Purely self-presentational speaker production behavior as a function of the kind of speaker they wish to present themselves as (facets; relatively more informational, e.g., $\\phi_{S_1}$ = 0.05, vs. social as represented, e.g., $\\phi_{S_1}$ = 0.95)."}
 knitr::include_graphics("fig/L1_inferences_wS2pres", dpi = 170)
 ```
+
+# Experiment 1: Semantic measurement and model setup
  
-# Results
+## Literal semantic task
+
+\noindent We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
+
+### Participants 
+
+51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
+
+### Design and Methods
+
+We used thirteen different context items in which a speaker evaluated a performance of some kind. 
+For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
+The question of interest was "Do you think Ann thought the presentation was / wasn’t X?" and participants responded by choosing either “no” or “yes.” 
+The target could be one of four possible words: *terrible*, *bad*, *good*, and *amazing*, giving rise to eight different possible utterances (with negation or no negation). 
+Each participant read 32 scenarios, depicting every possible combination of states and utterances. 
+The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. 
+
+### Behavioral results and discussion
+
+For this and the speaker production experiment, we analyzed the data by collapsing across context items.
+For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
+Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
+
+```{r litsem, echo=FALSE, fig.width = 10, fig.height = 4, out.width = "\\textwidth", fig.pos = "!h", fig.cap = "Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\\% confidence intervals."}
+d <- read.csv(here("02_analysis/01_data/literal_semantics.csv")) %>%
+  mutate(utterance = fct_relevel(utterance, "terrible", "bad", "good", "amazing"))
+
+ms <- d %>%
+  mutate(positivity = fct_recode(positivity,
+                                "it was ~ " = "it was ___",
+                                "it wasn't ~ " = "it wasn't ___"
+                                ),
+         positivity = fct_relevel(positivity, "it was ~ ")) %>%
+  group_by(positivity, state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(positivity, state, utterance) %>%
+  multi_boot_standard(col = "judgment") %>%
+  mutate(judgment = mean)
+
+qplot(state, judgment, 
+      colour = positivity,
+      data=ms) + 
+  geom_line(aes(group=positivity)) +
+  facet_grid(.~utterance) +
+  xlab("state (0=worst)") +
+  ylab("proportion of\n acceptances") +
+  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
+  theme_few(base_size = 16) +
+  scale_color_ptol(name="")+
+  # scale_color_solarized() +
+  theme(legend.position = "bottom") +
+  geom_hline(yintercept = .5, lty=2)
+
+ggsave("literal_semantics.png", width = 7, height = 3,
+       path = here::here("02_analysis/03_figs"))
+```
+
+
+
+
+```{r screenshot, fig.pos = "!h", fig.cap="Example of a trial in the speaker production task."}
+knitr::include_graphics("fig/screenshot.png", dpi = 130)
+```
 
 ## Model behavior
 
-The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Figure \@ref(fig:L1inferences)B).
+\noindent The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Figure \@ref(fig:L1inferences)B).
 Upon hearing \emph{{[}Your poem{]} was terrible} (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
 *It was amazing* is more ambiguous (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
 Negation makes the meanings less precise and introduces more uncertainty into the inference about the state: A listener who hears *It wasn't amazing* sees it as a relatively kind way of saying that the poem was quite bad (0 or 1 hearts), inferring a balance of social and informational goals for the speaker (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B bottom-right).
@@ -252,20 +318,34 @@ The desire to appear as someone concerned with telling the truth while also cari
 Such indirect speech acts are sufficiently open-ended to include the
 possibility that the poem was good, but the avoidance of a more direct utterance (e.g., *good*) provides the listener with a way to recover the true state (e.g., the poem was mediocre) by way of reasoning that the speaker cares about his feelings by not saying the blunt truth.
 
-## Experimental findings
 
-We made a direct, fully pre-registered test of our speaker production model and its performance in comparison to a range of alternative models, by instantiating our running example in an online experiment (*N* = 202).
-Participants read scenarios with information on the speaker's (Ann's,
+# Experiment 2: Speaker production task
+
+\noindent We made a direct, fully pre-registered test of our speaker production model and its performance in comparison to a range of alternative models, by instantiating our running example in an online experiment.
+
+## Participants
+
+\noindent 202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk.
+
+## Design and Methods
+
+\noindent As in the literal semantic task above, Participants read scenarios with information on the speaker's (Ann's,
 in our example) feelings toward some performance or product (e.g., a poem
 recital; *true state*), on a scale from zero to three hearts (e.g.,
-one out of three hearts). For example, one trial read: *Imagine that Bob gave a poem recital, but he didn't know how good it was. Bob approached Ann, who knows a lot about poems, and asked* ``How was my poem?''
-
-We manipulated the speaker's goals across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“make the listener feel good”); or to be *both* informative and kind simultaneously. We hypothesized that
+one out of three hearts). For example, one trial read: *Imagine that Bob gave a poem recital, but he didn't know how good it was. Bob approached Ann, who knows a lot about poems, and asked* ``How was my poem?'' 
+Additionally, we manipulated the speaker's goals across trials: to be *informative*  (“give accurate and informative feedback”); to be *kind* (“make the listener feel good”); or to be *both* informative and kind simultaneously. We hypothesized that
 each of the three experimentally-induced goals would induce a different tradeoff between social and informational
 utilities in our model, as well as modulating the self-presentational component. In a single
 trial, each scenario was followed by a question asking for the most
 likely produced utterance by Ann. Participants selected one of eight possible
 utterances, by choosing between *It was* vs. *It wasn’t* and then among *terrible*, *bad*, *good*, and *amazing.* 
+
+Each participant read twelve scenarios, depicting every possible combination of the three goals and four states. 
+The order of context items was randomized, and there were a maximum of two repeats of each context item per participant.
+Each scenario was followed by a question that read, "If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?" 
+Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between *It was* vs. *It wasn’t* and the other for choosing among *terrible*, *bad*, *good*, and *amazing.*
+
+## Behavioral results
 
 ```{r data_bayes_factor}
 load(file=here("03_model/03_other_stat/bayesfactor_state_goal_interaction.Rds"))
@@ -349,8 +429,7 @@ rownames(brm.tab) <- NULL
 brm.tab <- brm.tab[,c(5,1:4)]
 ```
 
-
-Our primary behavioral hypothesis was that speakers describing bad
+\noindent Our primary behavioral hypothesis was that speakers describing bad
 states (e.g., poem deserving 0 hearts) with goals to be both
 informative and kind would produce more indirect, negative utterances
 (e.g., *It wasn't terrible*). Such indirect speech acts both
@@ -474,8 +553,9 @@ comp_tab <- data.frame("Model" = model_list,
 apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of alternative model in comparison.")
 ```
 
+## Model results
 
-The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis [@lee2014].
+\noindent The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis [@lee2014].
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
 (*N*=51).
 The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
@@ -559,11 +639,6 @@ language.
 In addition, a formal account of politeness moves us closer to
 courteous computation -- to machines that can talk with tact.
 
-
-# Acknowledgments
-
-This work was supported by NSERC PGS Doctoral scholarship PGSD3-454094-2014 to EJY, NSF Graduate Research Fellowship DGE-114747 to MHT, ONR grant N00014-13-1-0788 to NDG, and NSF grant BCS 1456077 to MCF.
-
 \newpage
 
 # Supplementary Materials
@@ -589,70 +664,7 @@ $$U(w; s; \phi_{S_1}) = \phi_{S_1} \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi_{S_1
 
 \noindent The speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi_{S_1}$: 
 
-$$P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[U(w; s; \phi_{S_1})])$$.
-
-## Literal semantic task
-
-\noindent We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
-51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
-We used thirteen different context items in which a speaker evaluated a performance of some kind. 
-For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
-The question of interest was "Do you think Ann thought the presentation was / wasn’t X?" and participants responded by choosing either “no” or “yes.” 
-The target could be one of four possible words: *terrible*, *bad*, *good*, and *amazing*, giving rise to eight different possible utterances (with negation or no negation). 
-Each participant read 32 scenarios, depicting every possible combination of states and utterances. 
-The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. 
-For this and the speaker production experiment, we analyzed the data by collapsing across context items.
-For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
-Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
-
-```{r litsem, echo=FALSE, fig.width = 10, fig.height = 4, out.width = "\\textwidth", fig.pos = "!h", fig.cap = "Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\\% confidence intervals."}
-d <- read.csv(here("02_analysis/01_data/literal_semantics.csv")) %>%
-  mutate(utterance = fct_relevel(utterance, "terrible", "bad", "good", "amazing"))
-
-ms <- d %>%
-  mutate(positivity = fct_recode(positivity,
-                                "it was ~ " = "it was ___",
-                                "it wasn't ~ " = "it wasn't ___"
-                                ),
-         positivity = fct_relevel(positivity, "it was ~ ")) %>%
-  group_by(positivity, state, utterance, subid) %>%
-  summarize(
-            judgment = mean(judgment, na.rm=TRUE)
-          ) %>%
-  group_by(positivity, state, utterance) %>%
-  multi_boot_standard(col = "judgment") %>%
-  mutate(judgment = mean)
-
-qplot(state, judgment, 
-      colour = positivity,
-      data=ms) + 
-  geom_line(aes(group=positivity)) +
-  facet_grid(.~utterance) +
-  xlab("state (0=worst)") +
-  ylab("proportion of\n acceptances") +
-  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
-  theme_few(base_size = 16) +
-  scale_color_ptol(name="")+
-  # scale_color_solarized() +
-  theme(legend.position = "bottom") +
-  geom_hline(yintercept = .5, lty=2)
-
-ggsave("literal_semantics.png", width = 7, height = 3,
-       path = here::here("02_analysis/03_figs"))
-```
-
-
-## Speaker production task
-
-```{r screenshot, fig.pos = "!h", fig.cap="Example of a trial in the speaker production task."}
-knitr::include_graphics("fig/screenshot.png", dpi = 130)
-```
-
-\noindent 202 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. As in the literal semantic task above, we used scenarios in which a person (e.g., Bob) gave some performance and asked for another person (e.g., Ann)’s opinion on the performance (Figure \ \@ref(fig:screenshot)). Additionally, we provided information on the speaker Ann’s goal – to make Bob feel good, or to give as accurate and informative feedback as possible, or both – and the true state – how Ann actually felt about Bob’s performance (e.g., two out of three hearts, on a scale from zero to three hearts; Figure\ \@ref(fig:screenshot)). 
-Each participant read twelve scenarios, depicting every possible combination of the three goals and four states. 
-The order of context items was randomized, and there were a maximum of two repeats of each context item per participant.
-Each scenario was followed by a question that read, "If Ann wanted to make Bob feel good but not necessarily give informative feedback (or to give accurate and informative feedback but not necessarily make Bob feel good, or BOTH make Bob feel good AND give accurate and informative feedback), what would Ann be most likely to say?" 
-Participants indicated their answer by choosing one of the options on the two dropdown menus, side-by-side, one for choosing between *It was* vs. *It wasn’t* and the other for choosing among *terrible*, *bad*, *good*, and *amazing.*
+$$P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[U(w; s; \phi_{S_1})]).$$
 
 ## Data analysis
 \noindent We used `r cite_r("politeness.bib")` for all our analyses.
@@ -714,7 +726,7 @@ colnames(other_tab) <- c("Model", "Cost of negation", "Speaker optimality")
 apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker optimality parameters for all model variants.")
 ```
 
-In the speaker production task, participants were told the speakers’ intentions (e.g., wanted to make Bob feel good). 
+\noindent In the speaker production task, participants were told the speakers’ intentions (e.g., wanted to make Bob feel good). 
 We assume that the intention descriptions conveyed some mixture of weights $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
 We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to be X"; *kind*, *informative*, or *both*).
 In addition, the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
@@ -727,7 +739,7 @@ The inferred values of weight mixtures for each model variant (with different $\
 
 ## Data Availability
 
-Our model, preregistration of hypotheses, procedure, data, and analyses are available at \url{https://github.com/ejyoon/polite_speaker}. 
+\noindent Our model, preregistration of hypotheses, procedure, data, and analyses are available at \url{https://github.com/ejyoon/polite_speaker}. 
 
 ## Supplemental Figures
 
