@@ -33,6 +33,10 @@ abstract: |
 keywords          : "politeness, computational modeling, communicative goals, pragmatics"
 wordcount         : "X"
 
+header-includes:
+  - \usepackage{xcolor}
+
+
 bibliography      : ["politeness.bib"]
 
 figsintext        : yes
@@ -556,6 +560,7 @@ apa_table(comp_tab, caption = "Comparison of variance explained for each model v
 ## Model results
 
 \noindent The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis [@lee2014].
+\mht{note that currently the semantic measurement is as Expt. 1, so this next sentence doesn't make the appropriate refernece to it}
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
 (*N*=51).
 The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
