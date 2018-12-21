@@ -239,76 +239,8 @@ WebPPL [@dippl] and a demo can be found at \url{http://forestdb.org/models/polit
 knitr::include_graphics("fig/L1_inferences_wS2pres", dpi = 170)
 ```
 
-# Experiment 1: Semantic measurement and model setup
+# Model predictions
  
-## Literal semantic task
-
-\noindent We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
-
-### Participants 
-
-51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
-
-### Design and Methods
-
-We used thirteen different context items in which a speaker evaluated a performance of some kind. 
-For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
-The question of interest was "Do you think Ann thought the presentation was / wasn’t X?" and participants responded by choosing either “no” or “yes.” 
-The target could be one of four possible words: *terrible*, *bad*, *good*, and *amazing*, giving rise to eight different possible utterances (with negation or no negation). 
-Each participant read 32 scenarios, depicting every possible combination of states and utterances. 
-The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. 
-
-### Behavioral results and discussion
-
-For this and the speaker production experiment, we analyzed the data by collapsing across context items.
-For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
-Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
-
-```{r litsem, echo=FALSE, fig.width = 10, fig.height = 4, out.width = "\\textwidth", fig.pos = "!h", fig.cap = "Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\\% confidence intervals."}
-d <- read.csv(here("02_analysis/01_data/literal_semantics.csv")) %>%
-  mutate(utterance = fct_relevel(utterance, "terrible", "bad", "good", "amazing"))
-
-ms <- d %>%
-  mutate(positivity = fct_recode(positivity,
-                                "it was ~ " = "it was ___",
-                                "it wasn't ~ " = "it wasn't ___"
-                                ),
-         positivity = fct_relevel(positivity, "it was ~ ")) %>%
-  group_by(positivity, state, utterance, subid) %>%
-  summarize(
-            judgment = mean(judgment, na.rm=TRUE)
-          ) %>%
-  group_by(positivity, state, utterance) %>%
-  multi_boot_standard(col = "judgment") %>%
-  mutate(judgment = mean)
-
-qplot(state, judgment, 
-      colour = positivity,
-      data=ms) + 
-  geom_line(aes(group=positivity)) +
-  facet_grid(.~utterance) +
-  xlab("state (0=worst)") +
-  ylab("proportion of\n acceptances") +
-  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
-  theme_few(base_size = 16) +
-  scale_color_ptol(name="")+
-  # scale_color_solarized() +
-  theme(legend.position = "bottom") +
-  geom_hline(yintercept = .5, lty=2)
-
-ggsave("literal_semantics.png", width = 7, height = 3,
-       path = here::here("02_analysis/03_figs"))
-```
-
-
-
-
-```{r screenshot, fig.pos = "!h", fig.cap="Example of a trial in the speaker production task."}
-knitr::include_graphics("fig/screenshot.png", dpi = 130)
-```
-
-## Model behavior
-
 \noindent The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Figure \@ref(fig:L1inferences)B).
 Upon hearing \emph{{[}Your poem{]} was terrible} (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
 *It was amazing* is more ambiguous (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
@@ -322,10 +254,14 @@ The desire to appear as someone concerned with telling the truth while also cari
 Such indirect speech acts are sufficiently open-ended to include the
 possibility that the poem was good, but the avoidance of a more direct utterance (e.g., *good*) provides the listener with a way to recover the true state (e.g., the poem was mediocre) by way of reasoning that the speaker cares about his feelings by not saying the blunt truth.
 
-
-# Experiment 2: Speaker production task
+# Experiment: Speaker production task
 
 \noindent We made a direct, fully pre-registered test of our speaker production model and its performance in comparison to a range of alternative models, by instantiating our running example in an online experiment.
+
+```{r screenshot, fig.pos = "!h", fig.cap="Example of a trial in the speaker production task."}
+knitr::include_graphics("fig/screenshot.png", dpi = 130)
+```
+
 
 ## Participants
 
@@ -387,8 +323,8 @@ plot_var <- ggplot(ms_var,
   geom_abline(intercept = 0, slope = 1, linetype = 3) +
   geom_errorbar(aes(ymin=data_ci_lower,ymax=data_ci_upper), alpha = 0.3) +
   geom_errorbarh(aes(xmin=model_ci_lower,xmax=model_ci_upper), alpha = 0.3) +
-  xlab("Model posterior predictive") +
-  ylab("Human proportion responses") +
+  xlab("model posterior predictive") +
+  ylab("human proportion responses") +
   ylim(0,1) +
   xlim(0,1) +
   scale_y_continuous(breaks=c(0, 0.25, 0.5, 0.75, 1)) +
@@ -548,10 +484,10 @@ model_list = rev(c("informational \nonly", "social only", "presentational \nonly
 variance_list = rev(c(cor2_inf, cor2_soc, cor2_pres, cor2_socpres, 
                            cor2_infsoc, cor2_infpres, cor2_infsocpres))
 
-comp_tab <- data.frame("Model" = model_list, 
-                       "Variance" = variance_list, 
+comp_tab <- data.frame("model" = model_list, 
+                       "variance" = variance_list, 
                        "logBF" = bf_list_rounded_rev) %>%
-  rename("Variance \nexplained" = "Variance",
+  rename("variance \nexplained" = "variance",
          "log BF" = "logBF")
 
 apa_table(comp_tab, caption = "Comparison of variance explained for each model variant and log Bayes Factors quantifying evidence in favor of alternative model in comparison.")
@@ -560,9 +496,8 @@ apa_table(comp_tab, caption = "Comparison of variance explained for each model v
 ## Model results
 
 \noindent The model parameters (softmax parameters and each goal condition's utility weights) can be inferred from the behavioral data using Bayesian data analysis [@lee2014].
-\mht{note that currently the semantic measurement is as Expt. 1, so this next sentence doesn't make the appropriate refernece to it}
 To approximate the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\), we obtained literal meaning judgments from an independent group of participants
-(*N*=51).
+(See Supplmentary Materials: Literal semantic task section).
 The posterior predictions from the the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
 We compared these to six model variants containing
 subsets of the three utilities in the full model.
@@ -572,6 +507,34 @@ full model captured participants' preference for negation when the speaker wante
 about truly bad states, as hypothesized (Figure \@ref(fig:comparison)).
 In sum, the full set of informational, social, and presentational were
 required to fully explain participants' utterance choices.
+
+```{r phi, results = 'asis'}
+load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
+load(here("03_model/01_posterior_predictives/03_output_processed/other_param_summary.RData"))
+
+phi_tab <- d_phi_s %>%
+  mutate_at(vars(informative:social), as.numeric) %>%
+  mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
+  mutate_at(vars(informative:social), 
+            funs(dplyr::case_when(is.na(.) ~ "--",
+                                  TRUE ~ as.character(.)))) %>%
+  # mutate_if(is.numeric, function(x) ifelse(is.na(x), "--", x)) %>%
+  ungroup() %>%
+    mutate(model = case_when(
+    model == "inf" ~ "informational only", 
+    model == "soc" ~ "social only", 
+    model == "pres" ~ "presentational only", 
+    model == "InfPres" ~ "informational, presentational", 
+    model == "InfSoc" ~ "informational, social", 
+    model == "SocPres" ~ "social, presentational", 
+    model == "Full" ~ "informational, social, presentational" 
+  )) %>%
+  select(model, goal, informative, social, Selfpres, s1)
+
+colnames(phi_tab) <- c("model (utilities)", "goal", "$\\phi_{inf}$", "$\\phi_{soc}$", "$\\phi_{pres}$", "$\\phi_{S_1}$")
+
+apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all model variants with more than one utility.")
+```
 
 The utility weights inferred for the three-utility model (Table \@ref(tab:phi))
 provide additional insight into how polite language use operates in our experimental context and possibly beyond:
@@ -648,6 +611,65 @@ courteous computation -- to machines that can talk with tact.
 
 # Supplementary Materials
 
+## Literal semantic task
+
+\noindent We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
+
+### Participants 
+
+51 participants with IP addresses in the United States were recruited on Amazon’s Mechanical Turk. 
+
+### Design and Methods
+
+We used thirteen different context items in which a speaker evaluated a performance of some kind. 
+For example, in one of the contexts, Ann saw a presentation, and Ann’s feelings toward the presentation (true state) were shown on a scale from zero to three hearts (e.g., two out of three hearts filled in red color; see Figure\ \@ref(fig:screenshot) for an example of the heart scale). 
+The question of interest was "Do you think Ann thought the presentation was / wasn’t X?" and participants responded by choosing either “no” or “yes.” 
+The target could be one of four possible words: *terrible*, *bad*, *good*, and *amazing*, giving rise to eight different possible utterances (with negation or no negation). 
+Each participant read 32 scenarios, depicting every possible combination of states and utterances. 
+The order of context items was randomized, and there were a maximum of four repeats of each context item per participant. 
+
+### Behavioral results
+
+We analyzed the data by collapsing across context items.
+For each utterance-state pair, we computed the posterior distribution over the semantic weight (i.e., how consistent X utterance is with Y state) assuming a uniform prior over the weight (i.e., a standard Beta-Binomial model). 
+Meanings of the words as judged by participants were as one would expect (Figure \ \@ref(fig:litsem)). 
+
+```{r litsem, echo=FALSE, fig.width = 10, fig.height = 4, out.width = "\\textwidth", fig.pos = "!h", fig.cap = "Semantic measurement results. Proportion of acceptances of utterance types (shown in different colors) combined with target words (shown in different facets) given the true state represented on a scale of hearts. Error bars represent 95\\% confidence intervals."}
+d <- read.csv(here("02_analysis/01_data/literal_semantics.csv")) %>%
+  mutate(utterance = fct_relevel(utterance, "terrible", "bad", "good", "amazing"))
+
+ms <- d %>%
+  mutate(positivity = fct_recode(positivity,
+                                "it was ~ " = "it was ___",
+                                "it wasn't ~ " = "it wasn't ___"
+                                ),
+         positivity = fct_relevel(positivity, "it was ~ ")) %>%
+  group_by(positivity, state, utterance, subid) %>%
+  summarize(
+            judgment = mean(judgment, na.rm=TRUE)
+          ) %>%
+  group_by(positivity, state, utterance) %>%
+  multi_boot_standard(col = "judgment") %>%
+  mutate(judgment = mean)
+
+qplot(state, judgment, 
+      colour = positivity,
+      data=ms) + 
+  geom_line(aes(group=positivity)) +
+  facet_grid(.~utterance) +
+  xlab("state (0=worst)") +
+  ylab("proportion of\n acceptances") +
+  geom_errorbar(aes(ymin=ci_lower,ymax=ci_upper,width=.1)) +
+  theme_few(base_size = 16) +
+  scale_color_ptol(name="")+
+  # scale_color_solarized() +
+  theme(legend.position = "bottom") +
+  geom_hline(yintercept = .5, lty=2)
+
+ggsave("literal_semantics.png", width = 7, height = 3,
+       path = here::here("02_analysis/03_figs"))
+```
+
 ## Model details
 
 \noindent The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance to be true:
@@ -684,34 +706,6 @@ We used Bayesian linear mixed-effects models [`brms` package in R; @R-brms] usin
 
 ## Model fitting and inferred parameters
 
-```{r phi, results = 'asis'}
-load(here("03_model/01_posterior_predictives/03_output_processed/phi_summary.RData"))
-load(here("03_model/01_posterior_predictives/03_output_processed/other_param_summary.RData"))
-
-phi_tab <- d_phi_s %>%
-  mutate_at(vars(informative:social), as.numeric) %>%
-  mutate_if(is.numeric, function(x) round(x, digits=2)) %>%
-  mutate_at(vars(informative:social), 
-            funs(dplyr::case_when(is.na(.) ~ "--",
-                                  TRUE ~ as.character(.)))) %>%
-  # mutate_if(is.numeric, function(x) ifelse(is.na(x), "--", x)) %>%
-  ungroup() %>%
-    mutate(model = case_when(
-    model == "inf" ~ "informational only", 
-    model == "soc" ~ "social only", 
-    model == "pres" ~ "presentational only", 
-    model == "InfPres" ~ "informational, presentational", 
-    model == "InfSoc" ~ "informational, social", 
-    model == "SocPres" ~ "social, presentational", 
-    model == "Full" ~ "informational, social, presentational" 
-  )) %>%
-  select(model, goal, informative, social, Selfpres, s1)
-
-colnames(phi_tab) <- c("Model", "goal", "$\\phi_{inf}$", "$\\phi_{soc}$", "$\\phi_{pres}$", "$\\phi_{S_1}$")
-
-apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all model variants with more than one utility.")
-```
-
 ```{r otherParams, results='asis'}
 other_tab <- d_other_s %>%
     mutate(model = case_when(
@@ -731,16 +725,13 @@ colnames(other_tab) <- c("Model", "Cost of negation", "Speaker optimality")
 apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker optimality parameters for all model variants.")
 ```
 
-\noindent In the speaker production task, participants were told the speakers’ intentions (e.g., wanted to make Bob feel good). 
-We assume that the intention descriptions conveyed some mixture of weights $\phi_{epi}$, $\phi_{soc}$, $\phi_{pres}$, and $\phi_{S_1}$ that the speaker was using. 
-We put uninformative priors on the unnormalized mixture weights ($\phi$ ~ $Uniform(0,1)$) separately for each goal condition ("wanted to be X"; *kind*, *informative*, or *both*).
-In addition, the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
+\noindent Other than speaker goal mixture weights explained in the main text (shown in Table \@ref(tab:phi)), the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
 $\lambda_{S_1}$ was 1, and $\lambda_{S_2}$ was inferred from the data: 
 We put a prior that was consistent with those used for similar models in this model class: $\lambda_{S_2}$ ~ $Uniform(0,20)$.
 Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
 We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
-The inferred values of weight mixtures for each model variant (with different $\phi$ components) and other parameters are shown in Table \@ref(tab:phi) and Table \@ref(tab:otherParams), respectively.
+The inferred values of parameters are shown in Table \@ref(tab:otherParams).
 
 ## Data Availability
 
