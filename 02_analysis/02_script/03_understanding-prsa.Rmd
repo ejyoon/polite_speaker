@@ -76,8 +76,9 @@ var round = function(x){
 
 // var phiWeights = [1, 1, 1, 1, 1, 1, 1, 1, 1]
 // var weightBins = [0.1, 0.3, 0.5, 0.7, 0.9]
+var weightBins = [0.01, 0.3, 0.5, 0.7, 0.99]
 
-var weightBins = map(round, _.range(0.05,1, 0.05))
+// var weightBins = map(round, _.range(0.05,1, 0.05))
 var phiWeights = repeat(weightBins.length, function(){1})
 
 var StatePrior = Categorical({vs: states, ps:[1,1,1,1]})
@@ -218,9 +219,9 @@ map(function(S1_phi){
                                           phi_social: normalize([selfpres_phi, social_phi, informative_phi])[1], 
                                           phi_informative: normalize([selfpres_phi, social_phi, informative_phi])[2]})
                 }, states)
-            }, [0])
-        }, [0])
-    }, [1])
+            }, weightBins)
+        }, weightBins)
+    }, weightBins)
 }, weightBins)
 )
 '
@@ -312,7 +313,7 @@ mov.s1
 
 ```{r}
 fig.s1 <- rs.s1.tidy %>%
-  filter(phi %in% c(0.10, 0.30, 0.70)) %>%
+  filter(phi %in% c(0.10, 0.30, 0.50, 0.70)) %>%
   separate(utt, into = c("positive", "utterance")) %>%
   mutate(positive = factor(positive, levels = c("yes", "not")),
          positive = fct_recode(positive, 
@@ -400,7 +401,7 @@ fig.marginal.phi.l1 <- ggplot(rs.l1.tidy.phi %>%
         legend.position="top",
         strip.text.y = element_blank(),
          strip.text.x = element_text(size=14),
-       axis.text.x = element_text(hjust=-2),
+       # axis.text.x = element_text(hjust=-2),
         # strip.text.y = element_text(angle = 0),
          legend.text = element_text(size=15),
        text = element_text(size = 14.5)) +
@@ -492,13 +493,42 @@ rs.s2.tidy <- rs.s2 %>%
     goal = as.factor(case_when(
       phi_informative_bin == 0.9 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.1 ~ "be truly informative",  
       phi_informative_bin == 0.1 & phi_social_bin == 0.9 & phi_selfpres_bin == 0.1 ~ "be truly social",
-      (phi_informative_bin == 0.5 | phi_informative_bin == 0.3 | phi_informative_bin == 0.7) & (phi_social_bin == 0.5 | phi_social_bin == 0.7 | phi_social_bin == 0.3) & phi_selfpres_bin == 0.1 ~ "be truly both",
+      # (phi_informative_bin == 0.5 | phi_informative_bin == 0.3 | phi_informative_bin == 0.7) & (phi_social_bin == 0.5 | phi_social_bin == 0.7 | phi_social_bin == 0.3) & phi_selfpres_bin == 0.1 ~ "be truly both",
+      phi_informative_bin == 0.5 & phi_social_bin == 0.5 & phi_selfpres_bin == 0.1 & phi_S1 == 0.1  ~ "be truly both", 
       phi_informative_bin == 0.1 & phi_social_bin == 0.1 & (phi_selfpres_bin == 0.9 | phi_selfpres_bin == 0.7) & phi_S1 == 0.9  ~ "look informative", 
       phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & phi_S1 == 0.1 ~ "look social", 
       phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & (phi_S1 == 0.3) ~ "look both",
       TRUE ~ "NA"))) %>%
   mutate(goal = factor(goal, levels = c("be truly informative", "be truly social", "be truly both", "look informative","look social", "look both","NA")))
 ```
+
+```{r}
+fig.s2 <- rs.s2.tidy %>%
+  filter(goal != "NA") %>%
+  # filter(phi_social < 0.5, phi_informative < 0.5) %>%
+  # filter(phi_S1 %in% c(0.10, 0.30, 0.50, 0.70)) %>%
+  separate(utt, into = c("positive", "utterance")) %>%
+  mutate(positive = factor(positive, levels = c("yes", "not")),
+         positive = fct_recode(positive, 
+                              "It was ~" = "yes",
+                              "It wasn't ~" = "not"),
+         utterance = factor(utterance, levels = c("terrible", "bad", "good", "amazing")),
+         # phi_S1 = 1 - phi_S1
+         ) %>%
+  ggplot(., aes( x = utterance, fill = positive, y = prob))+
+  geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
+  facet_grid(goal~state, labeller = label_both)+
+  scale_fill_solarized()+
+  theme_few()+
+  theme(legend.position="top",
+        legend.title=element_blank(),
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        strip.text.y = element_text(angle = 0))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.25, 0.5, 0.75, 1))+
+  ylab("Speaker production probability")
+fig.s2
+```
+
 
 #### self presentational utility speaker
 
@@ -717,4 +747,33 @@ fig.s2.util <- ggplot(s2.util,
   ylab("Pragmatic speaker utilities") +
   xlab(NULL)
 fig.s2.util
+```
+
+```{r}
+
+fig.s2 <- ggplot(rs.s2.tidy %>%
+                   separate(utt, c("positive", "utt")) %>%
+                   
+                   mutate(utt = fct_relevel(utt, "terrible", "bad", "good", "amazing")) %>%
+                   mutate(positive = fct_relevel(positive, "yes")) %>%
+                   mutate(positive = fct_recode(positive, "it was ~" = "yes", "it wasn't ~" = "not")) %>%
+                   mutate(goal = case_when(phi_informative_bin == 0.9 ~ "informational", 
+                                           phi_social_bin == 0.9 ~ "social",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.01 ~ "presentational, \nsocial S1",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.3 ~ "presentational, \nboth-goal S1",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.99 ~ "presentational, \ninformative S1")) %>%
+                   mutate(goal = fct_relevel(goal, "informational", "social", "presentational, \ninformative S1", "presentational, \nsocial S1", "presentational, \nboth-goal S1")) %>%
+                   filter(!is.na(goal))
+                   # filter(phi_informative_bin == 0.9)
+                   , aes ( x = state, y = utt, fill = prob))+
+  geom_tile(colour = "grey95") + 
+  scale_fill_gradient(low = "white", high = "black")+
+  facet_grid(positive ~ goal)+
+  # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  guides(fill = F)+
+  ylab("utterance") +
+  theme_few()+
+  panel_border(remove = TRUE)
+fig.s2
+# ggsave("img/l1.pdf", width = 8, height = 4)
 ```
