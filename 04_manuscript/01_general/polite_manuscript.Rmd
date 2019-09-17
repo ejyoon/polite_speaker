@@ -44,7 +44,7 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : yes
-mask              : yes
+mask              : no
 
 class             : "man"
 output            : papaja::apa6_pdf
@@ -235,12 +235,8 @@ over possible states of the world. The set of utterances is \{*terrible*, *bad*,
 implemented this model using the probabilistic programming language
 WebPPL [@dippl] and a demo can be found at \url{http://forestdb.org/models/politeness.html}.
 
-```{r L1inferences, fig.cap="Model behavior. Listener inferences about the true state (e.g., the rating truly deserved by the poem; A) and the speaker's utility weighting ($\\phi_{S_1}$ or how informational vs. social the speaker is, where $\\phi_{S_1}$ = 0 is fully social, and $\\phi_{S_1}$ = 1 is fully informational; B) as a function of the utterance heard (facets). C: Purely self-presentational speaker production behavior as a function of the kind of speaker they wish to present themselves as (facets; relatively more informational, e.g., $\\phi_{S_1}$ = 0.05, vs. social as represented, e.g., $\\phi_{S_1}$ = 0.95)."}
-knitr::include_graphics("fig/L1_inferences_wS2pres", dpi = 170)
-```
-
 # Model predictions
- 
+
 The pragmatic listener model \(L_1\) draws complex inferences about both the true state of the world (Fig. \ref{fig:L1inferences}A) and the speaker's goals (Figure \@ref(fig:L1inferences)B).
 Upon hearing \emph{{[}Your poem{]} was terrible} (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-left), the listener infers the poem is probably truly terrible (i.e., worthy of zero hearts) and that the speaker has strong informational goals.
 *It was amazing* is more ambiguous (Figure \@ref(fig:L1inferences)A and \@ref(fig:L1inferences)B top-right): The poem could indeed be worthy of three hearts, but it is also plausible the speaker had strong social goals and the poem was mediocre. 
@@ -253,6 +249,197 @@ The best way to appear honest (e.g., informational mixture of 0.95) is to say di
 The desire to appear as someone concerned with telling the truth while also caring about the listener's feelings (e.g., $\phi_{S_1}$ of 0.25) leads the speaker to produce indirect utterances (e.g., *not terrible*).
 Such indirect speech acts are sufficiently open-ended to include the
 possibility that the poem was good, but the avoidance of a more direct utterance (e.g., *good*) provides the listener with a way to recover the true state (e.g., the poem was mediocre) by way of reasoning that the speaker cares about his feelings by not saying the blunt truth.
+
+```{r schematicPredictions}
+load(here("02_analysis/01_data/s2_schematic_predictions_v2.RData"))
+
+fig.marginal.utility.s2 <- rs.s2 %>%
+  mutate(utility = case_when(
+    phi_informative > 0.9 ~ "informational",
+    phi_social > 0.9 ~ "social",
+    phi_selfpres > 0.9 & phi_S1 == 0.25 ~ "presentational \n(both-goal)",
+    phi_selfpres > 0.9 & phi_S1 == 0.05 ~ "presentational \n(social)",
+    phi_selfpres > 0.9 & phi_S1 == 0.95 ~ "presentational \n(informative)",
+    phi_informative == phi_social & phi_selfpres < 0.1 ~ "inf, soc",
+    phi_informative == phi_selfpres & phi_social < 0.1  & phi_S1 == 0.25~ "inf, pres",
+    phi_social == phi_selfpres & phi_informative < 0.1  & phi_S1 == 0.25~ "soc, pres",
+    phi_informative == phi_social & phi_social == phi_selfpres  & phi_S1 == 0.25~ "inf, soc, pres",
+    TRUE ~ "NA"
+  )) %>%
+  mutate(utility = fct_relevel(utility, "informational", "social", "presentational \n(informative)", "presentational \n(social)", "presentational \n(both-goal)", "inf, soc", "inf, pres", "soc, pres", "inf, soc, pres")) %>%
+  filter(state == 0, utility != "NA") %>%
+  filter(utility %in% c("informational", "social", "presentational \n(informative)", "presentational \n(social)", "presentational \n(both-goal)")) %>%
+  # filter(state == 0, phi_S1 %in% c(0.05, 0.25, 0.5, 0.75, 0.95), phi_selfpres > 0.9) %>%
+  select(-phi_social, -phi_selfpres, -phi_informative, -state, -phi_S1) %>%
+  gather(utt, prob, -utility) %>%
+  separate(utt, into = c("positive", "utterance")) %>%
+  mutate(positive = factor(positive, levels = c("yes", "not"),
+                           labels = c("it was ~", "it wasn't ~")),
+         utterance = factor(utterance, levels = c("terrible", "bad", "good", "amazing"))) %>%
+  group_by(utility, positive, utterance) %>%
+  summarize(prob = mean(prob)) %>%
+  ggplot(., aes( x = utterance, color = positive, y = prob, group = positive))+
+  geom_line()+
+  facet_wrap(~utility, nrow = 1)+
+  scale_color_ptol() +
+  theme_few(base_size = 14)+
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        strip.text.y = element_text(angle = 180),
+        legend.title = element_blank(),
+        legend.position = "bottom",
+        # title = element_text(size = 8),
+        # axis.title.y = element_text(size = 11)
+        )+
+  # scale_y_continuous(limits = c(0, 0.75), breaks = c(0, 0.75), position = "left")+
+  # ggtitle("Self-presentational mixture (0 = fully social; 1 = fully informational)")+
+  ylab(expression("Schematic " * S[2] * "'s production probability"))
+
+rs.s2.tidy <- rs.s2 %>%
+  gather(utt, prob, -state, -phi_S1, -phi_informative, -phi_social, -phi_selfpres) %>% 
+  mutate(phi_selfpres_bin = as.numeric(as.character(cut(phi_selfpres, 
+                                                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                        labels = c(0.1, 0.3, 0.5, 0.7, 0.9)))),
+         phi_informative_bin = as.numeric(as.character(cut(phi_informative, 
+                                                           breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                           labels = c(0.1, 0.3, 0.5, 0.7, 0.9)))),
+         phi_social_bin = as.numeric(as.character(cut(phi_social, 
+                                                      breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                      labels = c(0.1, 0.3, 0.5, 0.7, 0.9))))) %>%
+  mutate( 
+    goal = as.factor(case_when(
+      phi_informative_bin == 0.9 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.1 ~ "be truly informative",  
+      phi_informative_bin == 0.1 & phi_social_bin == 0.9 & phi_selfpres_bin == 0.1 ~ "be truly social",
+      # (phi_informative_bin == 0.5 | phi_informative_bin == 0.3 | phi_informative_bin == 0.7) & (phi_social_bin == 0.5 | phi_social_bin == 0.7 | phi_social_bin == 0.3) & phi_selfpres_bin == 0.1 ~ "be truly both",
+      phi_informative_bin == 0.5 & phi_social_bin == 0.5 & phi_selfpres_bin == 0.1 & phi_S1 == 0.1  ~ "be truly both", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & (phi_selfpres_bin == 0.9 | phi_selfpres_bin == 0.7) & phi_S1 == 0.9  ~ "look informative", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & phi_S1 == 0.1 ~ "look social", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & (phi_S1 == 0.3) ~ "look both",
+      TRUE ~ "NA"))) %>%
+  mutate(goal = factor(goal, levels = c("be truly informative", "be truly social", "be truly both", "look informative","look social", "look both","NA")))
+
+rs.s2.tidy2 <- rs.s2.tidy %>%
+                   mutate(utt2 = utt) %>%
+                   mutate(utt = fct_recode(utt, "not amazing" = "not_amazing", 
+                                            "not terrible" = "not_terrible", 
+                                            "not good" = "not_good", 
+                                            "not bad" = "not_bad", 
+                                            "amazing" = "yes_amazing", 
+                                            "good" = "yes_good", 
+                                            "bad" = "yes_bad", 
+                                            "terrible" = "yes_terrible"),
+                          utt = fct_relevel(utt, "terrible", "bad", "good", "amazing", "not terrible", "not bad", "not good", "not amazing")) %>%
+                            
+                   separate(utt2, c("positive", "word")) %>%
+                   mutate(word = fct_relevel(word, "terrible", "bad", "good", "amazing")) %>%
+                   mutate(positive = fct_relevel(positive, "yes")) %>%
+                   mutate(positive = fct_recode(positive, "it was ~" = "yes", "it wasn't ~" = "not")) %>%
+                   mutate(goal = case_when(phi_informative_bin == 0.9 ~ "informational", 
+                                           phi_social_bin == 0.9 ~ "social",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.05 ~ "presentational \n(social S1)",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.25 ~ "presentational \n(both-goal S1)",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.95 ~ "presentational \n(informative S1)")) %>%
+                   mutate(goal = fct_relevel(goal, "informational", "social", "presentational \n(informative S1)", "presentational \n(social S1)", "presentational \n(both-goal S1)")) %>%
+                   filter(!is.na(goal))
+                   # filter(phi_informative_bin == 0.9)
+
+fig.s2 <- ggplot(rs.s2.tidy2, 
+                 aes ( x = state, y = utt, fill = prob))+
+  geom_tile(colour = "grey95") + 
+  scale_fill_gradient(low = "white", high = "orange")+
+  facet_grid(positive ~ goal, switch="y", scales = "free_y")+
+  guides(fill = F)+
+  ylab("utterance") +
+  xlab("true state") +
+    theme_few(base_size = 14) +
+  theme(
+    # axis.text.x = element_text(angle = 45, hjust=1),
+        # strip.text.x = element_text(angle = 180),
+        strip.text.y = element_blank()
+        )  
+```
+
+
+```{r comparison}
+
+plot.comp <- ms_utt %>%  
+  mutate(model = case_when(
+    model == "NA" ~ "human data", 
+    model == "inf" ~ "model: \ninformational \nonly", 
+    model == "soc" ~ "model: \nsocial only", 
+    model == "pres" ~ "model: \npresentational \nonly", 
+    model == "inf_pres" ~ "model: \ninformational, \npresentational", 
+    model == "inf_soc" ~ "model: \ninformational, \nsocial", 
+    model == "soc_pres" ~ "model: \nsocial, \npresentational", 
+    model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
+  ),
+  model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
+  mutate(positivity = fct_recode(positivity,
+                                 "it was ~" = "yes",
+                                 "it wasn't ~" = "not",
+                                 "it was ~" = "It was~",
+                                 "it wasn't ~" = "It wasn't~"
+                                 ),
+         positivity = fct_relevel(positivity, "it was ~")) %>%
+  filter(goal == "both", true_state == "0") %>%
+  ggplot(., 
+       aes(x=utterance, y=prob, fill=positivity, 
+           # group = interaction(positive, source), linetype = forcats::fct_rev(positive),
+           group = positivity,
+           colour = positivity)) +
+  geom_hline(yintercept=.125, lty=2, color="gray") +
+  geom_line()+
+  facet_grid(.~model) +
+  xlab("utterance") +
+  geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position="dodge") +
+  ylim(0,.7)+
+  scale_color_ptol(guide=FALSE) +
+  # scale_color_solarized(guide=FALSE)+
+  ggthemes::theme_few(base_size = 13)+
+  ylab("proportion chosen") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+        legend.position="bottom") +
+  guides(color=guide_legend(title=NULL))
+
+# plot.comp
+
+ggsave("model_comparisons.png", plot = plot.comp, width = 11, height = 4,
+       path = here::here("02_analysis/03_figs"))
+
+```
+
+
+
+```{r schematicPredictionsFig, fig.cap="Schematic predictions. Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
+schematic <- 
+  cowplot::plot_grid(
+  # cowplot::plot_grid(
+  #   fig.marginal.state.l1,
+  #   fig.marginal.phi.l1,
+  #   nrow = 1,
+  #   rel_widths = c(1, 1.2),
+  #   labels = c("A", "B")
+  # ),
+cowplot::plot_grid(
+  fig.s2,
+  nrow = 1, 
+  labels = c("", "A")),  
+cowplot::plot_grid(
+  fig.marginal.utility.s2,
+  nrow = 1, 
+    rel_widths = c(0.2, 1.2),
+  labels = c("", "B")), 
+cowplot::plot_grid(
+  plot.comp,
+  nrow = 1, 
+    rel_widths = c(0.2, 1.2),
+  labels = c("", "C")), 
+ncol=1
+)
+
+ggsave(schematic, file="../../04_manuscript/01_general/fig/L1_S2_schematic.png", width = 9, height = 11)
+knitr::include_graphics("fig/L1_S2_schematic", dpi = 170)
+```
 
 # Experiment: Speaker production task
 
@@ -382,52 +569,6 @@ eschewing one of their goals to increase utility along a single
 dimension, participants chose utterances that jointly satisfied their
 conflicting goals by producing indirect speech.
 
-```{r comparison, fig.width=11, fig.height=4, fig.cap="Comparison of predictions for proportion of utterances chosen by pragmatic speaker from possible model variants (left) and human data (rightmost) for average proportion of negation produced among all utterances, given true state of 0 heart (on a scale of 0 to 3) and speaker with both goals to be informative and kind. Gray dotted line indicates chance level at 12.5\\%."}
-plot.comp <- ms_utt %>%  
-  mutate(model = case_when(
-    model == "NA" ~ "human data", 
-    model == "inf" ~ "model: \ninformational \nonly", 
-    model == "soc" ~ "model: \nsocial only", 
-    model == "pres" ~ "model: \npresentational \nonly", 
-    model == "inf_pres" ~ "model: \ninformational, \npresentational", 
-    model == "inf_soc" ~ "model: \ninformational, \nsocial", 
-    model == "soc_pres" ~ "model: \nsocial, \npresentational", 
-    model == "full" ~ "model: \ninformational, \nsocial, \npresentational" 
-  ),
-  model = fct_relevel(model, "model: \ninformational \nonly", "model: \nsocial only", "model: \npresentational \nonly", "model: \nsocial, \npresentational", "model: \ninformational, \nsocial", "model: \ninformational, \npresentational", "model: \ninformational, \nsocial, \npresentational")) %>%
-  mutate(positivity = fct_recode(positivity,
-                                 "it was ~" = "yes",
-                                 "it wasn't ~" = "not",
-                                 "it was ~" = "It was~",
-                                 "it wasn't ~" = "It wasn't~"
-                                 ),
-         positivity = fct_relevel(positivity, "it was ~")) %>%
-  filter(goal == "both", true_state == "0") %>%
-  ggplot(., 
-       aes(x=utterance, y=prob, fill=positivity, 
-           # group = interaction(positive, source), linetype = forcats::fct_rev(positive),
-           group = positivity,
-           colour = positivity)) +
-  geom_hline(yintercept=.125, lty=2, color="gray") +
-  geom_line()+
-  facet_grid(.~model) +
-  xlab("utterance") +
-  geom_linerange(aes(ymin=ci_lower,ymax=ci_upper), position="dodge") +
-  ylim(0,.7)+
-  scale_color_ptol(guide=FALSE) +
-  # scale_color_solarized(guide=FALSE)+
-  ggthemes::theme_few(base_size = 15)+
-  ylab("proportion chosen") +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
-        legend.position="bottom") +
-  guides(color=guide_legend(title=NULL))
-
-plot.comp
-
-ggsave("model_comparisons.png", plot = plot.comp, width = 11, height = 4,
-       path = here::here("02_analysis/03_figs"))
-
-```
 
 ```{r comparisonVar}
 ms_var_comp <- ms_utt %>%
