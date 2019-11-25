@@ -302,7 +302,7 @@ fig.l0.heat <- ggplot(rs.l0.tidy %>%
         )  
 
 fig.l0.heat
-ggsave("../../04_manuscript/01_general/fig/l0_schematic.png", width = 2.5, height = 4)
+ggsave("../../04_manuscript/01_general/fig/l0_schematic.png", width = 3.5, height = 4)
 ```
 
 ### S1 viz
@@ -329,8 +329,10 @@ rs.s1.tidy <- rs.s1 %>%
                    mutate(positive = fct_relevel(positive, "yes")) %>%
                    mutate(positive = fct_recode(positive, "it was ~" = "yes", "it wasn't ~" = "not")) %>%
   mutate(goal = case_when(phi == 0.95 ~ "informational", 
-                        phi == 0.05 ~ "social",
-                        (phi == 0.25) ~ "both")) %>%
+                        phi == 0.05 ~ "social"
+                        # (phi == 0.25) ~ "both"
+                        )) %>%
+                   # mutate(goal = fct_relevel(goal, "informational", "social", "both")) %>%
                    mutate(goal = fct_relevel(goal, "informational", "social", "both")) %>%
                    filter(!is.na(goal))
 ```
@@ -363,7 +365,7 @@ fig.s1 <- ggplot(rs.s1.tidy,
   # panel_border(remove = TRUE)
   
 fig.s1
-ggsave("../../04_manuscript/01_general/fig/s1_utility_schematic_stateBottom.png", width = 6, height = 4)
+ggsave("../../04_manuscript/01_general/fig/s1_utility_schematic_stateBottom.png", width = 5, height = 4)
 ```
 
 
@@ -459,14 +461,14 @@ joint posterior
 
 ```{r ms-fig-l1}
 fig.l1 <- ggplot(rs.l1.tidy, 
-                 aes ( x = state, y = utt, fill = prob)
-                 # aes ( x = state, y = fi, fill = prob)
+                 # aes ( x = state, y = utt, fill = prob)
+                 aes ( x = state, y = factor(fi), fill = prob)
                  )+
   geom_tile(colour = "grey95") + 
   scale_fill_gradient(low = "white", high = "slateblue1")+
-  scale_y_discrete(expand=c(0.2, 0.2)) +
-  facet_grid(positive*utt ~ fi, switch="y", scales = "free_y", labeller = label_bquote(cols = phi1[S[1]] == .(as.numeric(fi))))+
-  # facet_wrap(. ~ utt, scales = "free_y", ncol=4)+
+  scale_y_discrete(expand=c(0.01, 0.01)) +
+  # facet_grid(positive*utt ~ fi, switch="y", scales = "free_y", labeller = label_bquote(cols = phi1[S[1]] == .(as.numeric(fi))))+
+  facet_wrap(. ~ utt, ncol=4)+
   # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.25, .5, .75, 1))+
   guides(fill = F)+
   ylab("speaker's relative informational utility \ninferred by pragmatic listener") +
@@ -482,8 +484,8 @@ theme_few()+
 
   # panel_border(remove = TRUE)
 fig.l1
-ggsave("../../04_manuscript/01_general/fig/l1_schematic.png", width = 8, height = 4)
-# ggsave("../../04_manuscript/01_general/fig/l1_schematic_v2.png", width = 8, height = 4)
+# ggsave("../../04_manuscript/01_general/fig/l1_schematic.png", width = 8, height = 4)
+ggsave("../../04_manuscript/01_general/fig/l1_schematic_v2.png", width = 8, height = 4)
 ```
 
 marginal posterior on phi
@@ -705,7 +707,10 @@ rs.s2.tidy2 <- rs.s2.tidy %>%
                                            phi_social_bin == 0.9 ~ "social",
                                            phi_selfpres_bin == 0.9 & phi_S1 == 0.05 ~ "presentational \n(social S1)",
                                            phi_selfpres_bin == 0.9 & phi_S1 == 0.25 ~ "presentational \n(both-goal S1)",
-                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.95 ~ "presentational \n(informative S1)")) %>%
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.95 ~ "presentational \n(informative S1)",
+                                           # phi_social_bin == 0.5 & phi_informative_bin == 0.5 ~ "informational \n and social",
+                                          phi_social_bin == 0.3 & phi_informative_bin == 0.3 & phi_selfpres_bin == 0.3 & phi_S1 == 0.25 ~ "informational, social \n and presentational")
+                          ) %>%
                    mutate(goal = fct_relevel(goal, "informational", "social", "presentational \n(informative S1)", "presentational \n(social S1)", "presentational \n(both-goal S1)")) %>%
                    filter(!is.na(goal))
                    # filter(phi_informative_bin == 0.9)
@@ -717,7 +722,7 @@ fig.s2 <- ggplot(rs.s2.tidy2,
                  aes ( x = state, y = utt, fill = prob))+
   geom_tile(colour = "grey95") + 
   # scale_fill_viridis(option="plasma") +
-  scale_fill_gradient(low = "white", high = "orange")+
+  scale_fill_gradient(low = "white", high = "red")+
   facet_grid(positive ~ goal, switch="y", scales = "free_y")+
   # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   guides(fill = F)+
@@ -740,7 +745,7 @@ fig.s2 <- ggplot(rs.s2.tidy2,
   # panel_border(remove = TRUE)
   
 fig.s2
-ggsave("../../04_manuscript/01_general/fig/s2_utility_schematic_stateBottom.png", width = 8, height = 4)
+ggsave("../../04_manuscript/01_general/fig/s2_utility_schematic_stateBottom.png", width = 10, height = 4)
 ```
 
 ```{r fig.width=8}
