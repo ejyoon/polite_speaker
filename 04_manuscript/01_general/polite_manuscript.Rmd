@@ -35,7 +35,7 @@ wordcount         : "3816"
 
 header-includes:
   - \usepackage{xcolor}
-
+  - \usepackage[skip=2pt,font=scriptsize]{caption}
 
 bibliography      : ["politeness.bib"]
 
@@ -124,57 +124,70 @@ ms_neg <- rbind(ms_data_neg,
 
 # Introduction
 
-We rarely say exactly what's on our mind.
-Although “close the window!” could be an effective message, we dawdle by adding “can you please...?” 
-or “would you mind...?” 
-Rather than tell an uncomfortable truth, socially-aware speakers lie (“Your dress looks great!”) and prevaricate (“Your poem was so appropriate to the occasion”).
-Such language use is puzzling for classical views of language as information transfer [@buhler1934; @jakobson1960; @shannon1948; @frank2012]. On the classical view, transfer ought to be efficient and accurate: Speakers are expected to choose succinct utterances to convey their beliefs  [@grice1975; @searle1975], and the information conveyed is ideally truthful to the extent of a speaker's knowledge. Polite speech violates these
-basic expectations about the nature of communication: It is typically
-inefficient and underinformative, and sometimes even outright false. Yet even young speakers spontaneously produce
-requests in polite forms [@axia1985], and adults use politeness strategies while arguing  [@holtgraves1997], even though polite utterances may risk high-stakes misunderstandings [@bonnefon2011risk]. 
+We don’t always say what's on our minds.
+Although “close the window!” could be sufficient, 
+we dawdle, adding “can you please...?” or “would you mind...?” 
+Rather than tell an uncomfortable truth, socially-aware speakers exaggerate (“Your dress looks great!”) and prevaricate (“Your poem was so appropriate to the occasion”).
+Such language use is puzzling for classical views of language as information transfer [@buhler1934; @jakobson1960; @shannon1948; @frank2012]. 
+On the classical view, transfer ought to be efficient and accurate: 
+Speakers are expected to choose succinct utterances to convey their beliefs [@grice1975; @searle1975], 
+and the information conveyed is ideally truthful to the extent of a speaker's knowledge. 
+Polite speech violates these basic expectations about the nature of communication: 
+It is typically inefficient and underinformative, and sometimes even outright false. 
+Yet even young speakers spontaneously produce requests in polite forms [@axia1985], and adults use politeness strategies pervasively -- even while arguing [@holtgraves1997], and
+even though polite utterances may risk high-stakes misunderstandings [@bonnefon2011risk].
 
 If politeness only gets in the way of effective information transfer, why be polite?
-Clearly, there are social concerns, and most linguistic theories assume utterance choices are motivated by these concerns, couched as either polite maxims  [@leech1983], social norms [@ide1989], or aspects of a speaker and/or listener's identity, known as *face* [@goffman1967; @brown1987].
+Clearly there are social concerns, and most linguistic theories assume speaker behavior is motivated by these concerns, 
+couched as either polite maxims [@leech1983], social norms [@ide1989], or aspects of a speaker and/or listener's identity, known as *face* [@goffman1967; @brown1987].
 Face-based theories predict that when a speaker's intended meaning contains a threat to the listener's face or self-image (and potentially the speaker's face), her messages will be less direct, less efficient, and possibly untruthful.
-Indeed, listeners readily assume speakers' intentions to be polite when interpreting utterances in face-threatening situations [@bonnefon2009].
+Indeed, when interpreting utterances in face-threatening situations, listeners readily assume that speakers intend to be polite [@bonnefon2009].
 How this socially-aware calculation unfolds, however, is not well understood.
-When should a speaker decide to say something false ("Your poem was great!" based on an example from @bonnefon2009) rather than just be indirect (\emph{Some of the metaphors were tricky to understand.})?
-How does a speaker's own self-image enter into the calculation?
+Adopting an example from @bonnefon2009, when should a speaker decide to say something false ("Your poem was great!" said of an actually-mediocre poem) rather than to tell the truth (“Your poem was bad”) or to be indirect (“Some of the metaphors were tricky to understand.”)?
+How do the speaker’s goals enter into the calculation?
 
+We propose a utility-theoretic solution to the problem of understanding polite language, in which speakers choose their utterance by attempting to maximize utilities that represent competing communicative goals.
+Under the classic pragmatic view of language production, speakers want to be informative and convey accurate information as efficiently as possible [@grice1975; @goodman2016]; this goal we call *informational utility*.
+In addition, speakers may want to be kind and make the listener feel good (i.e., save the listener’s face), for example, by stating positive remarks about the listener.
+We call this goal to be *prosocial utility*.
 
-We propose a utility-theoretic solution to the problem of polite language use by quantifying the tradeoff between
-competing communicative goals.
-In our model, speakers attempt to maximize utilities that represent their communicative goals:
-informational utility---derived via classical, effective
-information transmission; social utility---derived by being kind and
-saving the listener's face; and self-presentational utility---the most novel component of our model, 
-derived by appearing in a particular way to save the speaker's own face.
-Speakers then produce an utterance on the basis of
-its expected utility (including their cost to speak).
-The lie that a poem was great provides social utility by making the writer feel good, but does not provide information about the true state of the world.
-Further, if the writer suspects that the poem was in fact terrible, the speaker runs the risk of being seen as uncooperative.
+If a speaker wanted to be informative and kind, then she would ideally produce utterances that satisfy both goals. 
+The nuances of reality, however, can make it difficult to satisfy both goals.
+In particular, when what the true state of the world is of low value to the listener (e.g., the listener’s poem was terrible), informational and prosocial goals pull in opposite directions. 
+Informational utility could be maximized by stating the blunt truth (“your poem was terrible.”) but that would very likely hurt the listener’s feelings and threaten the listener’s self-image (low prosocial utility); 
+prosocial utility could be maximized through a white lie (“your poem was amazing”), but it would be misleading (low informational utility). 
+In such situations, it seems impossible to be both truthful and kind. A first contribution of our work here is to formalize the details of this tradeoff so that it can make contact with experimental data. 
 
-We assume that speakers' utilities are weighed within a probabilistic model of pragmatic reasoning: the Rational Speech Act (RSA) framework [@frank2012; @goodman2016]. 
-Speakers are modeled as agents who choose utterances by reasoning about their potential effects on a listener, while listeners infer the meaning of an utterance by reasoning about speakers and what goals could have led them to produce their utterances.
-This class of models has been effective in understanding a wide variety of complex linguistic behaviors, including vagueness [@lassiter2017adjectival], hyperbole [@kao2014], and irony [@kao2015], among others. 
-In this framework, language use builds on the idea that human social cognition can
+A second contribution of our work is to develop and test a new theoretical proposal, namely, that speakers may use indirect speech to present themselves positively when they are caught by the conflict between truthfulness and kindness. We propose that speakers may navigate their way out of this conflict by signalling to the listener that they care about both of the goals even though they are genuinely unable to fulfill them. We formalize this notion of *self-presentational utility* and show that it leads speakers to prefer more indirect speech, namely utterances that provide less information relative to their length than alternatives with a similar meaning. 
+
+We look at indirect speech in this paper through negated adjectival phrases (e.g., “It wasn’t bad”).  
+The relationship between negation and politeness is a topic of long-standing interest to linguists and psychologists [@stoffel190; @stern1937; @bolinger1972; @horn1989].
+Comprehending negation, as a logical operation, can be psychologically more complex than comprehending an unnegated assertion; negating assertions can result in difficulty in processing [@clark; see @nordmeyer for an underlying pragmatic explanation] as well as failure to recognize or recall the asserted content [@macdonald1989; @lea2002]. 
+Our interest in negation, however, is for its information-theoretic properties: Negating an assertion that has a specific meaning results in a meaning that is less precise and lower in informativity (e.g., negating “Alex has blue eyes” results in the statement that Alex has eyes that are some color other than blue”).
+In our paradigm, we use negation as a way of turning a relatively direct statement (“It was terrible”) into an indirect statement (“It wasn’t terrible”) whose interpretation includes some possibilities that are consistent with the original (the poem was not terrible, but it was still pretty bad). 
+
+Multifactorial, verbal theories -- like previous proposals regarding politeness -- are very difficult to relate directly to behavioral data. Therefore, to test our hypotheses about the factors underlying the production of polite language (what we refer to as its utility structure), we take a model comparison approach. We do this by formalizing the trade-off between different combinations of speakers' utilities in a class of probabilistic models of language use (the Rational Speech Act (RSA) framework; @frank2012; @goodman2016), with a particular focus on models with and without the self-presentational utility. In this framework, speakers are modeled as agents who choose utterances by reasoning about their potential effects on a listener, while listeners infer the meaning of an utterance by reasoning about speakers and what goals could have led them to produce their utterances.
+These models build on the idea that human social cognition can
 be approximated via reasoning about others as rational agents who act to
 maximize their subjective utility [@baker2009action], a hypothesis which has found support in a wide variety of work with both adults and children [e.g., @jara2016naive; @liu2017ten].
+Indeed, this class of pragmatic language models has been productively applied to understand a wide variety of complex linguistic behaviors, including vagueness [@lassiter2017adjectival], hyperbole [@kao2014], and irony [@kao2015], among others. 
 
-```{r model, fig.cap="Diagram of the model: The polite speaker observes the true state and determines her goal between three utilities (informational, social, and presentational), and produces an utterance."}
-knitr::include_graphics("fig/model.png", dpi = 170)
+```{r model, fig.pos = "h", fig.cap="Diagram of the model. Top: First-order polite speaker ($S_1$) produces an utterance by thinking about: (1) the true state of the world (i.e., how good a given performance was); (2) the reasoning of literal listener who updates his beliefs about the true state via the literal meanings of utterances (e.g., “not terrible” means approximately 1.5 heart out of 3 hearts) and their affective consequences for the listener; and (3) her goal of balancing informational and social utilities. Bottom: Second-order polite speaker ($S_2$) produces an utterance by thinking about (1) the true state; (2) the pragmatic listener who updates his beliefs about the true state and the first-order speaker $S_1$’s goal (via reasoning about the $S_1$ model); and (3) her goal of balancing informational, prosocial, and self-presentational utilities. Different utterances shown correspond to different weightings of the utility components."}
+knitr::include_graphics("fig/model.png", dpi = 160)
 ```
 
-RSA models are defined recursively such that speakers \(S\)  reason about
-listeners  \(L\), and vice versa. We use a standard convention in indexing and say a pragmatic listener \(L_1\) reasons about what intended meaning
+# Model
+
+RSA models are defined recursively such that speakers \(S\) reason about
+listeners \(L\), and vice versa. We use a standard convention in indexing and say a pragmatic listener \(L_1\) reasons about what intended meaning
 and goals would have led a speaker \(S_1\) to produce a particular
-utterance. Then \(S_1\) reasons about a *literal listener*
+utterance. \(S_1\) reasons about a *literal listener*
 \(L_0\), who is modeled as attending only to the literal meanings of words
 (rather than their pragmatic implications), and hence grounds the
-recursion.
+recursion (Figure \@ref(fig:model), top).
 The target of our current work is a model of a polite speaker \(S_2\)
 who reasons about what to say to \(L_1\) by
-considering informational, social, and self-presentational goals (Figure \@ref(fig:model)).
+considering some combination of informational, social, and self-presentational goals (Figure \@ref(fig:model), bottom).
 
 We evaluate our model's ability to predict human utterance choices
 in situations where polite language use is expected.
