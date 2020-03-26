@@ -195,11 +195,11 @@ Our experimental context involves a speaker (“Ann”) responding to the reques
 For instance, Bob recited a poem and asked Ann how good it was.
 Ann (\(S_2\)) produces an utterance \(w\) based on the true state of the world \(s\) (i.e., the
 rating, in her mind, truly deserved by Bob's poem) and a set of goal weights
-\(\omega\), that determines how much Ann prioritizes each of the three possible goals, as well as a goal weight to convey to the listener \(\phi_{S_1}\); more details below).
-Following standard practice in RSA models, Ann's production decision is softmax, which interpolates between choosing the maximum-utility utterance and probability matching [via speaker optimality parameter $\lambda_{S_2}$; @goodman2013]:
+\(\boldsymbol{\omega}\), that determines how much Ann prioritizes each of the three possible goals, as well as a goal weight to convey to the listener \(\phi\); more details below).
+Following standard practice in RSA models, Ann's production decision is softmax, which interpolates between choosing the maximum-utility utterance and probability matching [via speaker optimality parameter $\alpha$; @goodman2013]:
 
 \begin{equation}
-P_{S_2}(w | s, \omega) \propto \exp(\lambda_{S_2} \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \omega; \phi_{S_1})]). \label{eq:S2}
+P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp(\alpha \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \boldsymbol{\omega}; \phi)]). \label{eq:S2}
 \end{equation}
 
 
@@ -209,7 +209,7 @@ We take the total utility $U_{total}$ of an utterance to be the weighted combina
 
 
 \begin{equation}
-U_{total}(w; s; \hat{\phi}; \phi_{S_1}) = \phi_{inf} \cdot U_{inf}(w; s) + \phi_{soc} \cdot U_{soc}(w) + \phi_{pres} \cdot U_{pres}(w; \phi_{S_1}) - C(w). \label{eq:UTotal}
+U_{total}(w; s; \boldsymbol{\omega}; \phi) = \omega_{inf} \cdot U_{inf}(w; s) + \omega_{soc} \cdot U_{soc}(w) + \omega_{pres} \cdot U_{pres}(w; \phi) - C(w). \label{eq:UTotal}
 \end{equation}
 
 First, a speaker may desire to be epistemically helpful, modeled as standard *informational utility* (\(U_{inf}\)).
@@ -232,23 +232,23 @@ The extent to which the speaker *appears* to the listener to have a particular g
 Formally,
 
 \begin{equation}
-U_{pres}(w; \phi_{S_1}) = \ln(P_{L_1}(\phi_{S_1} \mid w)) = \ln \int_s P_{L_1}(s, \phi_{S_1} \mid w).
+U_{pres}(w; \phi) = \ln(P_{L_1}(\phi \mid w)) = \ln \int_s P_{L_1}(s, \phi \mid w).
 \end{equation}
 
 
 \noindent The speaker conveys a particular weighting of informational
-vs. social goals (\(\phi_{S_1}\)) by considering the
+vs. social goals (\(\phi\)) by considering the
 beliefs of listener \(L_1\), who hears an utterance and jointly infers
 the speaker's utilities and the true state of the world:
 
 \begin{equation}
-P_{L_1}(s, \phi_{S_1} | w) \propto P_{S_1}(w | s, \phi_{S_1}) \cdot P(s) \cdot P(\phi_{S_1}). \label{eq:L1}
+P_{L_1}(s, \phi | w) \propto P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi). \label{eq:L1}
 \end{equation}
 
 \noindent The presentational utility is the highest-order term of the model, defined only for a speaker thinking about a listener who evaluates a speaker
 (i.e., defined for the second-order speaker \(S_2\), but not the first-order speaker \(S_1\)). 
-Only the social and informational utilities are defined for the first-order \(S_1\) speaker (via reasoning about \(L_0\)); thus, \(S_1\)'s utility weightings can be represented by a single number, the mixture parameter \(\phi_{S_1}\).
-Definitions for \(S_1\) and \(L_0\) otherwise mirror those of \(S_2\) and \(L_1\) and we use the same speaker optimality parameter for S_1 as for S_2 for simplicity; these model definitions and predictions by these different listener and speaker models can be found in the Model Predictions section.
+Only the social and informational utilities are defined for the first-order \(S_1\) speaker (via reasoning about \(L_0\)); thus, \(S_1\)'s utility weightings can be represented by a single number, the mixture parameter \(\phi\).
+Definitions for \(S_1\) and \(L_0\) otherwise mirror those of \(S_2\) and \(L_1\) and we use the same speaker optimality parameter for \(S_1\) as for \(S_2\) for simplicity; these model definitions and predictions by these different listener and speaker models can be found in the Model Predictions section.
 
 Within our experimental domain, we assume there are four possible states
 of the world corresponding to the value placed on a particular referent
@@ -424,8 +424,8 @@ knitr::include_graphics("fig/schematic.png", dpi = 100)
 The behavior of the model can be understood through increasing levels of recursive reasoning. To ground the recursion, we have the literal listener model\(L_0\): a simple Bayesian agent who updates their prior beliefs over world states P(s) (assumed to be uniform) with the truth-functional denotation of the utterance $w$: $P_{L_0}(s | w) \propto [\![ w ]\!] (s) * P(s)$ (i.e. the utterance’s literal meaning). We assume soft-semantic meanings, which we elicit empirically in a separate experiment (N = 51, see Supplementary Materials). For example, the utterance “good” is compatible with both the 2- and 3-heart states, “not terrible” is also compatible with states 2- and 3-, though also to some extent with the 1-heart state (Figure \ref{fig:schematicPredictionsFig}, top left). 
 
 The first-order speaker $S_1$ chooses utterances given a utility function with two components defined in terms of the literal listener: informational and social utility. *Informational utility* (\(U_{inf}\)) is the amount of information about the world state conveyed to the literal listener $L_0$ by the utterance w; for example, the highest information utterance associated with the 2-heart state is “good”; the best way to describe the 0-heart state is “terrible” (Figure 2, top right; left facet). *Social utility* (\(U_{soc}\)) is the expected subjective utility of the world state inferred by the literal listener $L_0$ given the utterance w and does not depend on the true state.^[The independence between true state and social utility stems from the assumption of no shared beliefs between speaker and listener about the true state. This independence is a deliberate feature of our experimental setup, designed to best disambiguate the models proposed. In future work, it would be important to examine how shared beliefs about the true state and the speaker’s goals may influence the speaker’s utterance choice.] For instance, the highest social utility utterance is “amazing”, because it strongly implies that the listener is in the 3-heart state; negated negative utterances like “not bad” also have some degree of social utility, because they imply high heart states, albeit less directly (Figure \ref{fig:schematicPredictionsFig}, top right; right facet).. The speaker combines these utilities assuming some weighting $phi$ and subtracts the cost of the utterance (defined in terms of the length of the utterance) in order to arrive at an overall utility of an utterance for a state and a goal-weighting:
-$U(w; s; \phi_{S_1}) = \phi_{S_1} \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi_{S_1}) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$
-The speaker then chooses utterances $w$ softmax-optimally given the state s and his goal weight mixture \(\phi_{S_1}\).
+$U(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$
+The speaker then chooses utterances $w$ softmax-optimally given the state s and his goal weight mixture \(\phi\).
 
 The pragmatic listener model $L_1$ reasons jointly about both the true state of the world and the speaker’s goals (Fig. \ref{fig:schematicPredictionsFig}, middle). Upon hearing [You poem was] “amazing”, the listener faces a tough credit-assignment problem: The poem could indeed be worthy of three hearts, but it is also possible that the speaker had strong social goals and then no inference about the quality of the poem is warranted. Hearing [Your poem] was “terrible”, the inference is much easier: the poem is probably truly terrible (i.e., worthy of zero hearts) and the speaker probably does not have social goals. Negation makes the interpreted meanings less precise and hence, inferences about goals are also fuzzier: “not amazing” can be seen as a kind way of saying that the poem was worthy of 0 or 1 hearts, which satisfies some amount of both social and informational goals. “Not bad” is less clear: the speaker could be being nice and the poem was actually worthy of 0- or 1-hearts (i.e., it was bad) or the speaker could be being honest (i.e., it was not bad) and the poem was worth 2-hearts. 
 
@@ -575,9 +575,9 @@ phi_tab <- d_phi_s %>%
   )) %>%
   select(model, goal, informative, social, Selfpres, s1)
 
-colnames(phi_tab) <- c("model (utilities)", "goal", "$\\phi_{inf}$", "$\\phi_{soc}$", "$\\phi_{pres}$", "$\\phi_{S_1}$")
+colnames(phi_tab) <- c("model (utilities)", "goal", "$\\omega_{inf}$", "$\\omega_{soc}$", "$\\omega_{pres}$", "$\\phi$")
 
-apa_table(phi_tab, escape=FALSE, caption = "Inferred phi parameters from all model variants with more than one utility.")
+apa_table(phi_tab, escape=FALSE, caption = "Inferred goal weight ($\\omega_g$) and speaker-projected informativity-niceness weight ($\\phi$) parameters from all model variants with more than one utility.")
 ```
 
 ```{r bayesnet,  fig.pos = "!h", out.width="70%", fig.align="center", fig.cap="Graphical model representing our Bayesian data analytic approach. $S_2$ represents the RSA speaker model defined by Eq. 1, which is used to predict the production responses $d^{prod}$ of each participant $i$, for each state $s$ (number of hearts), for each utterance $w$, in each goal condition $g$. The RSA speaker model takes as input the literal meaning variables $\\theta$, which additionally are used to predict the literal meaning judgments $d^{lit}$ assuming a Bernoulli linking function. Additionally, the RSA model takes the speaker’s goal weights $\\omega$ and communicated social weight $\\phi$, which are inferred separately for each goal condition $g$. Finally, the RSA model uses two global free parameters: the cost of negation $c$ and the speaker’s rationality parameter $\\alpha$."}
@@ -651,7 +651,7 @@ apa_table(comp_tab, caption = "Comparison of variance explained for each model v
 We assume our experimental goal conditions (informative vs. kind vs. both) induce a set of weights over the utilities \(\boldsymbol{\omega}\) in participants’ utterance production model. In addition, the self-presentational utility is defined via a communicated social weight $\phi$ (i.e., the mixture of informative vs. social that the speaker is trying to project). The mapping from social situations into utility weights and communicated social weight is a complex mapping, which we do not attempt to model here; instead, we infer these parameters for each goal condition from the data. We additionally infer the literal meanings (i.e., the semantics) of the words as interpreted by the literal listener \(L_0\) with the additional constraint of the literal meaning judgments from an independent group of participants (See Supplementary Materials: Literal semantic task section). 
 Finally, the RSA model has two global free parameters: the softmax speaker optimality and utterance cost of negation from the data (Figure \@ref(fig:bayesnet)). 
 We implement this data analytic model for each of the alternative models and infer the parameters using Bayesian statistical inference [@lee2014].
-We use uninformative priors over ranges consistent with the prior literature on RSA models: $\theta_{s,w}^{lit} \sim \text{Uniform}(0, 1)$, $phi_g \sim \text{Uniform}(0, 1)$, $\omega_g \sim \text{Dirichlet}(1,1,1)$, $\alpha \sim \text{Uniform}(0, 20)$, $c \sim \text{Uniform}(1, 10)$.
+We use uninformative priors over ranges consistent with the prior literature on RSA models: $\theta_{s,w}^{lit} \sim \text{Uniform}(0, 1)$, $\phi_g \sim \text{Uniform}(0, 1)$, $\boldsymbol{\omega}_g \sim \text{Dirichlet}(1,1,1)$, $\alpha \sim \text{Uniform}(0, 20)$, $c \sim \text{Uniform}(1, 10)$.
 This analysis tells us which, if any, of these models can accomodate all of the patterns in the empirical data. 
 The posterior predictions from the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
 We compared these to six model variants containing subsets of the three utilities in the full model using Bayes Factors.
@@ -665,7 +665,7 @@ In sum, the full set of informational, social, and presentational were required 
 The utility weights inferred for the three-utility model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates in our experimental context and possibly beyond:
 *Being kind* ("social") requires not only weights on social and presentational utilities but equal weights on all three utilities, indicating that informativity is a part of language use
 even when it is explicitly not the goal.
-*Being informative* ("informative") pushes the weight on social utility ($\phi_{soc}$) close to zero, but the weight on *appearing kind* ($\phi_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'.
+*Being informative* ("informative") pushes the weight on social utility ($\omega_{soc}$) close to zero, but the weight on *appearing kind* ($\omega_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'.
 *Kind and informative* ("both") speakers emphasize informativity slightly
 more than kindness. 
 In all cases, however, the presentational utilities have greatest weight, suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our communicative task.
@@ -726,11 +726,11 @@ First, informational utility ($U_{inf}$) is the amount of information a literal 
 Second, social utility ($U_{soc}$) is the expected subjective utility of the state inferred given the utterance $w$. 
 The utility of an utterance subtracts the cost $c(w)$ from the weighted combination of the social and epistemic utilities. 
 
-$$U(w; s; \phi_{S_1}) = \phi_{S_1} \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi_{S_1}) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$$
+$$U(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$$
 
-\noindent The speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi_{S_1}$: 
+\noindent The speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi$: 
 
-$$P_{S_1}(w \mid s, \phi_{S_1}) \propto \mathrm{exp}(\lambda_{1} \cdot \mathbb{E}[U(w; s; \phi_{S_1})]).$$
+$$P_{S_1}(w \mid s, \phi) \propto \mathrm{exp}(\alpha \cdot \mathbb{E}[U(w; s; \phi)]).$$
 
 ## Literal semantic task
 
@@ -824,9 +824,8 @@ colnames(other_tab) <- c("Model", "Cost of negation", "Speaker optimality")
 apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker optimality parameters for all model variants.")
 ```
 
-Other than speaker goal mixture weights explained in the main text (shown in Table \@ref(tab:phi)), the full model has two global parameters: the speaker's soft-max parameter $\lambda_{S_2}$ and soft-max paramater of the hypothetical speaker that the pragmatic listener reasons about $\lambda_{S_1}$.
-$\lambda_{S_1}$ was 1, and $\lambda_{S_2}$ was inferred from the data: 
-We put a prior that was consistent with those used for similar models in this model class: $\lambda_{S_2}$ ~ $Uniform(0,20)$.
+Other than speaker goal mixture weights explained in the main text (shown in Table \@ref(tab:phi)), the full model has one global parameter: the speakers' (both $S_1$ and $S_2$) soft-max parameter, which we assume to be the same value $\alpha$ and infer from the data.
+We put a prior that was consistent with those used for similar models in this model class: $\alpha$ ~ $Uniform(0,20)$.
 Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
 We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
