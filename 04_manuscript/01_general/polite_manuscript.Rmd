@@ -228,7 +228,7 @@ has particular goals, represented by a mixture parameter \(\phi\) weighting the 
 A sophisticated speaker can then produce utterances in order to appear *as if* she had certain goals in mind, for example making the listener think that the speaker was being both kind and informative.
 Such a *self-presentational* goal may be the result of a speaker trying to save their own face (*I want the listener to see that I’m a decent person*) and can result in different speaker behavior depending on the intended, communicated goal of the speaker (e.g., *I want the listener to think I’m being honest* vs. *nice* vs. *both*)^[In principle, one could define a listener \(L_2\) who reasons about this clever speaker and tries to uncover the goals that the speaker was trying to convey to them; we think such reasoning is reserved for very special relationships and is unlikely to manifest in the more basic acts of polite language use that we study here.].
 
-The extent to which the speaker *appears* to the listener to have a particular goal in mind (e.g., to be kind) is the utterance's *presentational utility* (\(U_{pres}\)).
+The extent to which the speaker *projects* a particular goal to the listener (e.g., to be kind) is the utterance's *presentational utility* (\(U_{pres}\)).
 Formally,
 
 \begin{equation}
@@ -236,7 +236,7 @@ U_{pres}(w; \phi) = \ln(P_{L_1}(\phi \mid w)) = \ln \int_s P_{L_1}(s, \phi \mid 
 \end{equation}
 
 
-\noindent The speaker conveys a particular weighting of informational
+\noindent The speaker projects a particular weighting of informational
 vs. social goals (\(\phi\)) by considering the
 beliefs of listener \(L_1\), who hears an utterance and jointly infers
 the speaker's utilities and the true state of the world:
@@ -416,7 +416,7 @@ ggsave("model_comparisons.png", plot = plot.comp, width = 11, height = 4,
 
 ```
 
-```{r schematicPredictionsFig, fig.align="center", fig.pos = "!h", out.width = '80%', fig.cap="Model overview with schematic predictions. More saturated color indicates high probability (listener models) or high utility (speaker models). Top left: The literal listener $L_0$ posterior probability distribution over the true state (x-axis) given utterances (y-axis). Top right: Speaker $S_1$’s utility of utterances (y-axis) for different states (x-axis) given either the informational or social goal (facets); shown in color (orange indicates high utility and white indicates low utility). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances than favor higher valued states.  Middle: Politeness-aware pragmatic listener $L_1$’s joint posterior distribution over the true state (x-axis) and $S_1$ utility weighting (y-axis; higher value indicates greater weight on informational utility) given utterances (facets). Bottom: $S_2$’s utility of utterances (y-axis) for different states (x-axis) and different goals (facets). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances that signal high-valued states; three versions of self-presentational utility are shown, corresponding to whether the speaker wants to appear informative, social, and a balance. Only the balanced self-presentational speaker shows a preference for indirect speech. The bottom right-most facet shows $S_2$’s utterance preferences when they want to balance between the three utilities (informational, social, and presentational to appear both informative and kind)."}
+```{r schematicPredictionsFig, fig.align="center", fig.pos = "!h", out.width = '80%', fig.cap="Model overview with schematic predictions. More saturated color indicates high probability (listener models) or high utility (speaker models). Top left: The literal listener $L_0$ posterior probability distribution over the true state (x-axis) given utterances (y-axis). Top right: Speaker $S_1$’s utility of utterances (y-axis) for different states (x-axis) given either the informational or social goal (facets); shown in color (orange indicates high utility and white indicates low utility). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances than favor higher valued states.  Middle: Politeness-aware pragmatic listener $L_1$’s joint posterior distribution over the true state (x-axis) and $S_1$ utility weighting (y-axis; higher value indicates greater weight on informational utility) given utterances (facets). Bottom: $S_2$’s utility of utterances (y-axis) for different states (x-axis) and different goals (facets). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances that signal high-valued states; three versions of self-presentational utility are shown, corresponding to whether the speaker wants to project informativeness, kindness, and a balance. Only the balanced self-presentational speaker shows a preference for indirect speech. The bottom right-most facet shows $S_2$’s utterance preferences when they want to balance between the three utilities (informational, social, and presentational to project informativeness and kindness)."}
 knitr::include_graphics("fig/schematic.png", dpi = 100)
 ```
 
@@ -432,8 +432,8 @@ The pragmatic listener model $L_1$ reasons jointly about both the true state of 
 The second-order pragmatic speaker model ($S_2$) reasons about the pragmatic listener $L_1$ to decide which utterances to produce based on both the true state of the world and the speaker's goals (Figure \ref{fig:schematicPredictionsFig}, bottom). 
 The informational and social utilities of the second-order speaker mirror those of the first-order speaker: Direct utterances are more informative than those involving negation and utterances that signal many hearts are more prosocial.^[The second-order speaker informational utilities take into account the listener’s pragmatic inferences about the speaker’s goals. This only really affects the utility of “not terrible”, which has higher information for the 1-heart state because the pragmatic listener strongly infers that the utterance was produced for social reasons. That is, for the second-order speaker, the utterance “not terrible” is loaded in a way that other utterances are not.]
 The interesting novel behavior of this level of recursion comes from the different flavors of the self-presentational goal (Figure \ref{fig:schematicPredictionsFig}, bottom). 
-When the second-order pragmatic speaker wants to *appear* to be social (i.e., present themselves as someone who is kind) they even more strongly display the preference for utterances that signal positive states (i.e., they are over-the-top positive). .
-When the speaker wants to appear honest and informative, they take the exact opposite strategy, producing utterances that cannot be explained by virtue of social utility: direct, negative utterances (e.g., “it was terrible”).
+When the second-order pragmatic speaker wants to *project* kindness (i.e., appear prosocial) they even more strongly display the preference for utterances that signal positive states (i.e., they are over-the-top positive). .
+When the speaker wants to project honesty and informativeness, they take the exact opposite strategy, producing utterances that cannot be explained by virtue of social utility: direct, negative utterances (e.g., “it was terrible”).
 Finally, the speaker may present themselves in more subtle ways (e.g., intending to convey they are both kind and honest): This goal uniquely leads to the indirect, negative utterances (e.g., “not terrible”, “not bad”) having high utility. These utterances are literally incompatible with low-heart states, but are not highly informative; this unique combination is what gives rise to the subtle inference of a speaker who cares about both goals. 
 
 # Experiment: Speaker production task
@@ -665,7 +665,7 @@ In sum, the full set of informational, social, and presentational utilities were
 The utility weights inferred for the three-utility model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates in our experimental context and possibly beyond:
 *Being kind* ("social") requires not only weights on social and presentational utilities but equal weights on all three utilities, indicating that informativity is a part of language use
 even when it is explicitly not the goal.
-*Being informative* ("informative") pushes the weight on social utility ($\omega_{soc}$) close to zero, but the weight on *appearing kind* ($\omega_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'.
+*Being informative* ("informative") pushes the weight on social utility ($\omega_{soc}$) close to zero, but the weight on *projecting kindness* ($\omega_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'.
 *Kind and informative* ("both") speakers emphasize informativity slightly
 more than kindness. 
 In all cases, however, the presentational utilities have greatest weight, suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our communicative task.
@@ -713,7 +713,7 @@ A formal account of politeness may also move us closer to courteous computation 
 
 The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance to be true:
 
-$$P_{L_0}(s | w) \propto [\![ w ]\!] (s) * P(s).$$
+$$P_{L_0}(s | w) \propto [\![ w ]\!] (s) \cdot P(s).$$
 
 \noindent where $[\![ w ]\!](s)$ is the truth-functional denotation of the utterance
 $w$ (i.e. the utterance's literal meaning): It is a function

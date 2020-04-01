@@ -64,6 +64,33 @@
   }{$g \in \mathcal{G}$}
   }
   
+    	\node[] at (6, 5.5){\text{Data-analytic Priors}};
+	
+       \node[] at (6, 5){$ \alpha \sim \text{Uniform}(0, 20), $};
+      \node[] at (6,4.5) {$ c \sim \text{Uniform}(1, 10)$};
+\node[] at (6, 4){$\boldsymbol{\omega}_g \sim \text{Dirichlet}(1,1,1)$};
+\node[] at (5.9, 3.5){$\phi_g \sim \text{Uniform}(0, 1)$};
+\node[] at (5.8, 3){$\theta_{s,w}^{lit} \sim \text{Uniform}(0, 1)$};
+
+  
+   	\node[] at (6, 2){\text{Rational Speech Act model}};
+      \node[] at (5,1.5) {$P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp(\alpha \cdot \mathop{\mathbb{E}[U_{S_2}(w; s; \boldsymbol{\omega}; \phi)]})$};
+  	
+      \node[] at (6.5,1) {$U_{S_2}(w; s; \boldsymbol{\omega}; \phi) = \omega_{inf} \cdot \ln(P_{L_1}(s \mid w)) + \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + $};
+     
+     \node[] at (6.5, 0.5){$ \omega_{pres} \cdot (P_{L_1}(\phi \mid w))  - C(w)$};
+    \node[] at (4.95,-.1) {$ P_{L_1}(s, \phi \mid w) \propto P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi)$};
+
+	
+    \node[] at (4.95,-.1) {$ P_{L_1}(s, \phi \mid w) \propto P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi)$};
+  \node[] at (4.9,-0.6) {$  P_{S_1}(w \mid s, \phi) \propto \mathrm{exp}(\alpha \cdot \mathbb{E}[U_{S_1}(w; s; \phi)])$};
+  \node[] at (7.15,-1.1) {$  U_{S_1}(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w)$};
+  \node[] at (4.4, -1.6){$P_{L_0}(s | w) \propto \delta_{[\![ w ]\!] (s)} \cdot P(s)$};
+  \node[] at (5, -2.4){$\delta_{[\![ w ]\!] (s)}= \begin{cases}
+	1  &\mbox{if }[\![ w ]\!](s) = \texttt{T} \\ 
+	0  &\mbox{if } [\![ w ]\!](s) = \texttt{F}
+	\end{cases}$};
+  
 \end{tikzpicture}
 
     \end{tabular}
