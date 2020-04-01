@@ -715,10 +715,8 @@ The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance
 
 $$P_{L_0}(s | w) \propto [\![ w ]\!] (s) * P(s).$$
 
-\noindent where $[\![ w ]\!](s)$ is the truth-functional denotation of the utterance
-$w$ (i.e. the utterance's literal meaning): It is a function
-that maps world-states $s$ to Boolean truth values. The literal
-meaning is used to update the literal listener's prior beliefs
+\noindent where $\delta_{[\![ w ]\!] (s)}$ is the Kronecker delta function which uses to the truth-functional denotation of the utterance $[\![ w ]\!](s)$ to return a value of 1 if the utterance $w$ is true of the state $s$ and 0 otherwise. 
+The literal meaning is used to update the literal listener's prior beliefs
 over world states $P(s)$.
 
 The *speaker* $S_1$ chooses utterances approximately optimally given a utility function, which can be decomposed into two components. 
