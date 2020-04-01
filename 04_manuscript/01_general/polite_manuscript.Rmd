@@ -654,7 +654,10 @@ We implement this data analytic model for each of the alternative models and inf
 We use uninformative priors over ranges consistent with the prior literature on RSA models: $\theta_{s,w}^{lit} \sim \text{Uniform}(0, 1)$, $\phi_g \sim \text{Uniform}(0, 1)$, $\boldsymbol{\omega}_g \sim \text{Dirichlet}(1,1,1)$, $\alpha \sim \text{Uniform}(0, 20)$, $c \sim \text{Uniform}(1, 10)$.
 This analysis tells us which, if any, of these models can accomodate all of the patterns in the empirical data. 
 The posterior predictions from the three-utility polite speaker model (informational, social, presentational) showed a very strong fit to participants' actual utterance choices ($r^2$(96) = `r cor2_mainMod`; Figure \@ref(fig:variance)).
-We compared these to six model variants containing subsets of the three utilities in the full model using Bayes Factors.
+Other models (e.g., informational + presentational), however, show comparably high correlations to the full data set; correlations can be inflated through the presence of many 0s (or 1s) in the data set, which our data contains since certain utterance choices are implausible given a particular state and goal condition.
+<!-- each model is tasked with predicting the entire distribution of responses for each condition, there are many 0s in the data set which can inflate the correlations.  -->
+<!-- owing to the fact that. Correlations can be inflated  -->
+Thus, we compare model variants using a bonafide model comparison technique, Bayes Factors, which balance predictive accuracy with model complexity in quantifying the goodness of fit of a model.
 
 Bayes Factors compare the likelihood of the data under each model, averaging over the prior distribution of the model parameters; by averaging over the prior distribution over parameters, Bayes Factors penalize models with extra flexibility because increasing the flexibility of the model to fit more data sets decreases the average fit of the model to a particular data set [@lee2014], capturing the intuition that a theory that can predict anything predicts nothing. 
 That is, simply because a model has more parameters and can explain more of the variance in the data set does not entail that it will assign the highest marginal likelihood to the actual data.
