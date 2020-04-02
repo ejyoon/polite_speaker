@@ -36,6 +36,7 @@ wordcount         : "5685"
 header-includes:
   - \usepackage{xcolor}
   - \usepackage[skip=1pt,font=scriptsize]{caption}
+  - \usepackage{placeins}
 
 bibliography      : ["politeness.bib"]
 
@@ -160,11 +161,11 @@ In such situations, it seems impossible to be both truthful and kind. A first co
 
 A second contribution of our work is to develop and test a new theoretical proposal, namely, that speakers may use indirect speech to present themselves positively when they are caught by the conflict between truthfulness and kindness. We propose that speakers may navigate their way out of this conflict by signalling to the listener that they care about both  of the goals even though they are genuinely unable to fulfill them. We formalize this notion of *self-presentational utility* and show that it leads speakers to prefer more indirect speech, namely utterances that provide less information relative to their length than alternatives with a similar meaning. 
 
-We look at indirect speech in this paper through negated adjectival phrases (e.g., “It wasn’t bad”).  
+We look at indirect speech in this paper through negated adjectival phrases (e.g., “It wasn’t bad”). 
 The relationship between negation and politeness is a topic of long-standing interest to linguists and psychologists [@stoffel1901intensives; @stern1931meaning; @bolinger1972degree; @horn1989natural].
 Comprehending negation, as a logical operation, can be psychologically more complex than comprehending an unnegated assertion; negating assertions can result in difficulty in processing [@clark1972; see @nordmeyer2014 for an underlying pragmatic explanation] as well as failure to recognize or recall the asserted content [@macdonald1989; @lea2002]. 
 Our interest in negation, however, is for its information-theoretic properties: Negating an assertion that has a specific meaning results in a meaning that is less precise and lower in informativity (e.g., negating “Alex has blue eyes” results in the statement that Alex has eyes that are some color other than blue”).
-In our paradigm, we use negation as a way of turning a relatively direct statement (“It was terrible”) into an indirect statement (“It wasn’t terrible”) whose interpretation includes some possibilities that are consistent with the original (the poem was not terrible, but it was still pretty bad). 
+In our paradigm, we use negation as a way of turning a relatively direct statement (“It was terrible”) into an indirect statement (“It wasn’t terrible”) whose interpretation includes some possibilities that are consistent with or close to the unnegated statement  (i.e., the poem was not terrible, but it was still pretty bad). 
 
 Multifactorial, verbal theories -- like previous proposals regarding politeness -- are very difficult to relate directly to behavioral data. Therefore, to test our hypotheses about the factors underlying the production of polite language (what we refer to as its utility structure), we take a model comparison approach. We do this by formalizing the trade-off between different combinations of speakers' utilities in a class of probabilistic models of language use (the Rational Speech Act (RSA) framework; @frank2012; @goodman2016), with a particular focus on models with and without the self-presentational utility. In this framework, speakers are modeled as agents who choose utterances by reasoning about their potential effects on a listener, while listeners infer the meaning of an utterance by reasoning about speakers and what goals could have led them to produce their utterances.
 These models build on the idea that human social cognition can
@@ -418,6 +419,9 @@ ggsave("model_comparisons.png", plot = plot.comp, width = 11, height = 4,
 
 ```{r schematicPredictionsFig, fig.align="center", fig.pos = "!h", out.width = '80%', fig.cap="Model overview with schematic predictions. More saturated color indicates high probability (listener models) or high utility (speaker models). Top left: The literal listener $L_0$ posterior probability distribution over the true state (x-axis) given utterances (y-axis). Top right: Speaker $S_1$’s utility of utterances (y-axis) for different states (x-axis) given either the informational or social goal (facets); shown in color (orange indicates high utility and white indicates low utility). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances than favor higher valued states.  Middle: Politeness-aware pragmatic listener $L_1$’s joint posterior distribution over the true state (x-axis) and $S_1$ utility weighting (y-axis; higher value indicates greater weight on informational utility) given utterances (facets). Bottom: $S_2$’s utility of utterances (y-axis) for different states (x-axis) and different goals (facets). Informational utility tracks the literal meanings and varies by true state; social utility favors utterances that signal high-valued states; three versions of self-presentational utility are shown, corresponding to whether the speaker wants to project informativeness, kindness, and a balance. Only the balanced self-presentational speaker shows a preference for indirect speech. The bottom right-most facet shows $S_2$’s utterance preferences when they want to balance between the three utilities (informational, social, and presentational to project informativeness and kindness)."}
 knitr::include_graphics("fig/schematic.png", dpi = 100)
+knitr::knit_hooks$set(plot = function(x, options)  {
+  paste0(knitr::hook_plot_tex(x, options), "\n\\FloatBarrier\n")
+})
 ```
 
 
@@ -425,7 +429,7 @@ The behavior of the model can be understood through increasing levels of recursi
 
 The first-order speaker $S_1$ chooses utterances given a utility function with two components defined in terms of the literal listener: informational and social utility. *Informational utility* (\(U_{inf}\)) is the amount of information about the world state conveyed to the literal listener $L_0$ by the utterance w; for example, the highest information utterance associated with the 2-heart state is “good”; the best way to describe the 0-heart state is “terrible” (Figure 2, top right; left facet). *Social utility* (\(U_{soc}\)) is the expected subjective utility of the world state inferred by the literal listener $L_0$ given the utterance w and does not depend on the true state.^[The independence between true state and social utility stems from the assumption of no shared beliefs between speaker and listener about the true state. This independence is a deliberate feature of our experimental setup, designed to best disambiguate the models proposed. In future work, it would be important to examine how shared beliefs about the true state and the speaker’s goals may influence the speaker’s utterance choice.] For instance, the highest social utility utterance is “amazing”, because it strongly implies that the listener is in the 3-heart state; negated negative utterances like “not bad” also have some degree of social utility, because they imply high heart states, albeit less directly (Figure \ref{fig:schematicPredictionsFig}, top right; right facet).. The speaker combines these utilities assuming some weighting $phi$ and subtracts the cost of the utterance (defined in terms of the length of the utterance) in order to arrive at an overall utility of an utterance for a state and a goal-weighting:
 $U(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$
-The speaker then chooses utterances $w$ softmax-optimally given the state s and his goal weight mixture \(\phi\).
+The speaker then chooses utterances $w$ softmax rationally given the state s and his goal weight mixture \(\phi\).
 
 The pragmatic listener model $L_1$ reasons jointly about both the true state of the world and the speaker’s goals (Fig. \ref{fig:schematicPredictionsFig}, middle). Upon hearing [Your poem was] “amazing”, the listener faces a tough credit-assignment problem: The poem could indeed be worthy of three hearts, but it is also possible that the speaker had strong social goals and then no inference about the quality of the poem is warranted. Hearing [Your poem] was “terrible”, the inference is much easier: the poem is probably truly terrible (i.e., worthy of zero hearts) and the speaker probably does not have social goals. Negation makes the interpreted meanings less precise and hence, inferences about goals are also fuzzier: “not amazing” can be seen as a way of saying that the poem was worthy of 0 or 1 hearts, which satisfies some amount of both social and informational goals. “Not bad” is less clear: the speaker could be being nice and the poem was actually worthy of 0- or 1-hearts (i.e., it was bad) or the speaker could be being honest (i.e., it was not bad) and the poem was worth 2-hearts. 
 
@@ -694,11 +698,12 @@ A separate notion of plausible deniability may not be needed to explain most pol
 Maintaining plausible deniability is in one's own self-interest (e.g., due to controversial viewpoints or covert deception) and goes against the interests of the addressee; some amount of utility dis-alignment is presumed by these accounts. Politeness behavior appears present even in the absence of obvious conflict, however: In fact, you might be even more motivated to be polite to someone whose utilities are more aligned with yours (e.g., a friend). In our work here, we show that such behaviors can in fact arise from purely cooperative goals [@brown1987], though in cases of genuine conflict, plausible deniability likely plays a more central role in communication.
 
 Utility weights and value functions in our model could provide a framework for a quantitative understanding of systematic
-cross-cultural differences in what counts as polite. Cross-cultural differences in politeness could be a product of different weightings within the same
-utility structure. Culture could also affect
+cross-cultural differences in what counts as polite.
+Cultures may place value on satisfying different communicative goals, and speakers in these cultures may pursue those goals more strongly than speakers from other cultures. For example, we found in our model that a speaker who wants to appear informative should speak more negatively than a truly informative speaker; one could imagine run-away effects where a group becomes overly critical from individuals’ desires to appear informative. Culture could also affect
 the value function \(V\) that maps states of the world onto subjective
-values for the listener (e.g., the mapping from states to utilities may
-be nonlinear and involve reasoning about the future).
+values for the listener.
+For example, the mapping from states to utilities may
+be nonlinear and involve reasoning about the future; a social utility that takes into account reasoning about the future could help explain why it can often be nice to be informative.
 Our formal modeling approach, with systematic behavior measurements, provides an avenue towards understanding the vast range of politeness practices found across languages and contexts [@katz2005].
 
 Politeness is only one of the ways language use deviates from purely informational transmission.
