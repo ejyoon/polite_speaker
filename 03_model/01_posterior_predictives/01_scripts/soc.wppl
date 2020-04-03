@@ -55,8 +55,8 @@ var kernelFn = function(prevVal){
 }
 
 // measured in Experiment 1
-var literalSemantics = json.read('data/literal_semantics_3heart_raw.json');
-var data = json.read('data/utterance_3heart_registered.json')
+var literalSemantics = json.read('../../../02_analysis/01_data/literal_semantics.json');
+var data = json.read('../../../02_analysis/01_data/speaker_production.json')
 
 var litSemanticsPosteriorObj = _.fromPairs(map(function(u){
   return [u, _.fromPairs(map(function(s){
@@ -171,7 +171,7 @@ var litSemantics = _.fromPairs(map(function(u){
                                 social_phi*socialUtility
 
 // 	factor(RSAparameters.speakerOptimality * speakerMixedUtility); // triple mixture model
-	
+
 // 	factor(RSAparameters.speakerOptimality * (informative_phi*epistemicUtility + selfpres_phi*selfpresUtility)); // true informative + self pres
 // 	factor(RSAparameters.speakerOptimality * (social_phi*socialUtility + selfpres_phi*selfpresUtility)); // true social + self pres
 // 	factor(RSAparameters.speakerOptimality * (social_phi*socialUtility + informative_phi*epistemicUtility)); // true social + true informative
@@ -244,9 +244,9 @@ foreach(states, function(state) {
 // var posterior = Infer({model, method, samples, burn, verbose: true})
 // var filename = 'bda-s2_trueSoc_3heart_foreach-mcmc'+
 // numSamples+'_burn'+burn+'_chain'+index+'.json'
-// 
+//
 // json.write(filename, posterior)
-// 
+//
 // "output written to " + filename;
 
 var totalIterations = 80000, lag =  0;
@@ -271,4 +271,3 @@ var posterior = Infer({
 // json.write(outfile2, posterior)
 
 "written to " + outfile;
-

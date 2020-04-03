@@ -45,8 +45,8 @@ var kernelFn = function(prevVal){
 }
 
 // measured in Experiment 1
-var literalSemantics = json.read('data/literal_semantics_3heart_raw.json');
-var data = json.read('data/utterance_3heart_registered.json')
+var literalSemantics = json.read('../../../02_analysis/01_data/literal_semantics.json');
+var data = json.read('../../../02_analysis/01_data/speaker_production.json')
 
 var litSemanticsPosteriorObj = _.fromPairs(map(function(u){
   return [u, _.fromPairs(map(function(s){
@@ -252,9 +252,9 @@ factor(RSAparameters.speakerOptimality*speakerMixedUtility); // self(６)
 
     return [
       postPred,
-      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis[1]}, 
-      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis[0]}, 
-      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: "NA"}, 
+      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis[1]},
+      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis[0]},
+      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: "NA"},
       {key: "phi_s1", goal: goal, state: "NA", utt: "NA", val: S1_phi}
     ]
 

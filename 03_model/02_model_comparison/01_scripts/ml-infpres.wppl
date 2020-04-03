@@ -7,7 +7,7 @@
 // npm install
 // git fetch
 // git checkout bdmc
-// change last line on src/inference/bdmc.js	
+// change last line on src/inference/bdmc.js
 
 var index = last(process.argv) // load index as last command line index
 
@@ -53,8 +53,8 @@ var kernelFn = function(prevVal){
 }
 
 // measured in Experiment 1
-var literalSemantics = json.read('data/literal_semantics_3heart.json');
-var data = json.read('data/utterance_3heart_registered.json')
+var literalSemantics = json.read('../../../02_analysis/01_data/literal_semantics.json');
+var data = json.read('../../../02_analysis/01_data/speaker_production.json')
 
 var litSemanticsPosteriorObj = _.fromPairs(map(function(u){
   return [u, _.fromPairs(map(function(s){
@@ -170,9 +170,9 @@ var litSemantics = _.fromPairs(map(function(u){
     var speakerMixedUtility = informative_phi*epistemicUtility +
                               selfpres_phi*selfpresUtility +
                               social_phi*socialUtility
-                              
+
     var speakerPartialMixedUtility = informative_phi*epistemicUtility +
-                              selfpres_phi*selfpresUtility                        
+                              selfpres_phi*selfpresUtility
 
 
 //     var selfEUtility = s2Goals.phi*selfEpiUtility;
@@ -258,11 +258,11 @@ var litSemantics = _.fromPairs(map(function(u){
 
     return [
       postPred,
-      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis_self6[0]}, 
-//       {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[0]}, 
-//       {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[1]}, 
-      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis_self6[1]}, 
-      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_phis[2]}, 
+      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis_self6[0]},
+//       {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[0]},
+//       {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[1]},
+      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis_self6[1]},
+      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_phis[2]},
       {key: "phi_s1", goal: goal, state: "NA", utt: "NA", val: S1_phi}
     ]
 
@@ -294,9 +294,9 @@ var litSemantics = _.fromPairs(map(function(u){
 // var posterior = Infer({model, method, samples, burn, verbose: true})
 // var filename = 'bda-s2_self5_allNorm_3heart_paramAdj-mcmc'+
 // numSamples+'_burn'+burn+'_chain'+index+'.json'
-// 
+//
 // json.write(filename, posterior)
-// 
+//
 // "output written to " + filename;
 
 
