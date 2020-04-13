@@ -1,4 +1,4 @@
-// webppl s2-bda-4pred.wppl --require webppl-json 1
+// time webppl infsocpres.wppl --require webppl-json --require ~/tools/webppl-sample-writer-fork 1
 // requires webppl package: webppl-json
 
 var index = last(process.argv) // load index as last command line index
@@ -18,6 +18,16 @@ var statePrior = function(){
   return uniformDraw(states);
 };
 
+var foreach = function(fn, lst) {
+  var foreach_ = function(i) {
+    if (i < lst.length) {
+      fn(lst[i]);
+      foreach_(i + 1);
+    }
+  };
+  foreach_(0);
+};
+
 var isNegation = function(utt){
   return (utt.split("_")[0] == "not")
 };
@@ -34,7 +44,7 @@ var goalWeightPrior = Infer({model: function(){
 }})
 
 var nBins = weightBins.length;
-var kernelWidth = nBins / 4;
+var kernelWidth = 3//nBins / 4;
 
 var kernelFn = function(prevVal){
   var i = weightBins.indexOf(prevVal);
@@ -62,17 +72,8 @@ var states = _.uniq(_.map(data, "true_state"));
 
 var model = function(){
 
-var litSemantics = _.fromPairs(map(function(u){
-    return [u, _.fromPairs(map(function(s){
-      var litParams = litSemanticsPosteriorObj[u][s];
-      return [s, beta(litParams)]
-    }, states))]
-  }, utterances))
-
   var RSAparameters = {
     speakerOptimality: uniformDrift({a: 0, b: 20, width:2}),
-//     speakerOptimality2: uniformDrift({a:0, b: 10, width: 0.5}),
-//     alpha: uniformDrift({a: 0, b: 10, width:0.5}),
     cost: uniformDrift({a: 1, b: 10, width:0.25})
   };
 
@@ -84,6 +85,13 @@ var litSemantics = _.fromPairs(map(function(u){
   var utterancePrior = Infer({model: function(){
     return utterances[discrete(uttCosts)];
   }});
+
+	var litSemantics = _.fromPairs(map(function(u){
+	    return [u, _.fromPairs(map(function(s){
+	      var litParams = litSemanticsPosteriorObj[u][s];
+	      return [s, beta(litParams)]
+	    }, states))]
+	  }, utterances))
 
   var meaning = function(words, state){
     return flip(litSemantics[words][state]);
@@ -179,7 +187,7 @@ var litSemantics = _.fromPairs(map(function(u){
 // factor(RSAparameters.speakerOptimality*speakerSelfUtility); // self(2)
 //     factor(RSAparameters.speakerOptimality * L1_state.score(state)); // self(3)
 //    factor(RSAparameters.speakerOptimality * L1_goal.score(intendedGoals)); // self(4)
-	factor(RSAparameters.speakerOptimality * speakerMixedUtility); // self(5)
+		factor(RSAparameters.speakerOptimality * speakerMixedUtility); // self(5)
 	// factor(RSAparameters.speakerOptimality*speakerPartialMixedUtility); // self(６)
 
       return utterance
@@ -187,8 +195,7 @@ var litSemantics = _.fromPairs(map(function(u){
     })
   }, 10000)
 
-
-  var goalWeightsAndPostPred = map(function(goal){
+	foreach(function(goal){
 
     var S1_phi = sample(goalWeightPrior, {driftKernel: kernelFn})
 
@@ -205,7 +212,7 @@ var litSemantics = _.fromPairs(map(function(u){
 // 	 return [normalized_phis[0], normalized_true_phis[0], normalized_true_phis[1]]
 // 	}
 
-    var postPred = map(function(state){
+		foreach(function(state){
 
       var utteranceData = _.filter(data, {true_state: state, goal: goal});
 
@@ -220,10 +227,7 @@ var litSemantics = _.fromPairs(map(function(u){
 //         social_phi: normalized_true_phis[1]
       };
 
-      //       var RSApredictions = speaker1(exptConditionInfo.state,
-      //                                     exptConditionInfo.goalWeights);
       var RSApredictions = speaker2(exptConditionInfo);
-
 
       mapData({data: utteranceData}, function(d){
         observe(RSApredictions, d.utterance)
@@ -231,70 +235,58 @@ var litSemantics = _.fromPairs(map(function(u){
 
       var postSupport = RSApredictions.support();
 
-      var postPredictive = map(function(u){
-        return {
-          key: "posteriorPredictive",
-          goal: goal,
-          state: state,
-          utt: u,
-          val: Math.exp(RSApredictions.score(u))
-        }
+      foreach(function(u){
+				query.add(["posteriorPredictive", goal, state, u], Math.exp(RSApredictions.score(u)))
       }, postSupport)
-
-
-      var negEndorsement = sum(map(function(u){
-        return Math.exp(RSApredictions.score(u))
-      }, negative_utterances))
-
-      return _.flattenDeep([postPredictive, {
-        key: "posteriorPredictive",
-        goal: goal,
-        state: state,
-        utt: "negation",
-        val: negEndorsement
-      }])
 
     }, states)
 
-    return [
-      postPred,
-      {key: "phi_Selfpres", goal: goal, state: "NA", utt: "NA", val: normalized_phis[0]},
-//       {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[0]},
-//       {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_true_phis[1]},
-      {key: "phi_informative", goal: goal, state: "NA", utt: "NA", val: normalized_phis[1]},
-      {key: "phi_social", goal: goal, state: "NA", utt: "NA", val: normalized_phis[2]},
-      {key: "phi_s1", goal: goal, state: "NA", utt: "NA", val: S1_phi}
-    ]
+		query.add(["phi_Selfpres", goal, "NA", "NA"], normalized_phis[0])
+		query.add(["phi_informative", goal, "NA", "NA"], normalized_phis[1])
+		query.add(["phi_social", goal, "NA", "NA"], normalized_phis[2])
+		query.add(["phi_s1", goal, "NA", "NA"], S1_phi)
 
   }, goals)
 
-  var returnList = _.flattenDeep([
-    goalWeightsAndPostPred,
-    litSemantics,
-    {key: "speakerOptimality", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.speakerOptimality},
-//     {key: "speakerOptimality2", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.speakerOptimality2},
-//     {key: "alpha", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.alpha},
-    {key: "cost", goal: "NA", utt: "NA", state: "NA", val: RSAparameters.cost}
-  ])
+	// display(_.values(litSemantics))
 
-  var returnObj = _.fromPairs(map(function(i){
-    [i.key + "_" + i.goal + "_" + i.state + "_" + i.utt, i.val]
-  }, returnList))
+	foreach(function(utt){
+		var statesObj = litSemantics[utt]
+		foreach(function(state){
+			query.add(["litSemantics", "NA", state, utt], statesObj[state])
+		}, _.keys(statesObj))
+	}, _.keys(litSemantics))
 
-  return returnObj
+
+	query.add(["speakerOptimality", "NA", "NA", "NA"], RSAparameters.speakerOptimality)
+	query.add(["cost", "NA", "NA", "NA"], RSAparameters.cost)
+
+  return query
 
 }
 
+var header = "iteration,key,goal,state,utt,val"
 
+// var totalIterations = 80000, lag =  4;
+var totalIterations = 350000, lag =  15;
+// var totalIterations = 50000, lag =  5;
+var samples = totalIterations/lag, burn = totalIterations / 2;
+var output_file = 'bda-s2_self5_allNorm_3heart_paramAdj-imh'+
+ totalIterations + '_burn' + burn + '_lag' + lag + '_chain' + index + '.csv'
 
-var numSamples = 2;
-var method = "MCMC";
-var samples = numSamples;
-var burn = numSamples / 2;
-var posterior = Infer({model, method, samples, burn, verbose: true})
-var filename = 'bda-s2_self5_allNorm_3heart_paramAdj-mcmc'+
-numSamples+'_burn'+burn+'_chain'+index+'.json'
+var callback = webpplSampleWriter.streamQueryCSV(output_file, header);
 
-json.write(filename, posterior)
+var output = Infer({
+  model,
+  samples: samples,
+  burn: burn,
+  lag: lag,
+  // method: 'MCMC',
+  method: 'incrementalMH',
+  onlyMAP: true,
+  verbose: T,
+  verboseLag: totalIterations / 20,
+  callbacks: [callback]
+});
 
-"output written to " + filename;
+'output written to ' + output_file
