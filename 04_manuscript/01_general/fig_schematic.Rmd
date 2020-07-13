@@ -1,0 +1,524 @@
+---
+title: "Politeness S2 predictions"
+output: html_notebook
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(rwebppl)
+library(jsonlite)
+library(magrittr)
+library(ggthemes)
+library(forcats)
+library(knitr)
+library(gganimate)
+library(RColorBrewer)
+library(cowplot)
+library(here)
+library(viridis)
+
+```
+
+
+```{r languageUtils}
+language <- '
+var cost_yes = 1;
+// var cost_neg = 2;
+ var cost_neg = 1;
+
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+
+var utterances = [
+  "yes_terrible","yes_bad","yes_good","yes_amazing",
+  "not_terrible","not_bad","not_good","not_amazing"
+  ];
+
+var uttCosts = map(function(u) {
+	return isNegation(u) ? Math.exp(-cost_neg) : Math.exp(-cost_yes)
+}, utterances)
+
+var utterancePrior = Infer({method: "enumerate"}, function(){
+  return utterances[discrete(uttCosts)]
+});
+
+var literalSemantics = {
+  "state": [0, 1, 2, 3],
+  "not_terrible": [0.001, 0.353, 0.980, 0.863],
+  "not_bad": [0.020, 0.157, 0.999, 0.902],
+  "not_good": [0.961, 0.863, 0.039, 0.020],
+  "not_amazing": [0.961, 0.980, 0.627, 0.039],
+  "yes_terrible": [0.961, 0.627, 0.039, 0.039],
+  "yes_bad": [0.980, 0.882, 0.039, 0.020],
+  "yes_good": [0.001, 0.020, 0.941, 0.999],
+  "yes_amazing": [0.001, 0.001, 0.216, 0.980]
+};
+
+var meaning = function(words, state){
+  return flip(literalSemantics[words][state]);
+};
+'
+```
+
+```{r utils}
+utils <- '
+var states = [0, 1, 2, 3];
+
+var statePrior = function(){
+  return uniformDraw(states);
+};
+
+var speakerOptimality = 2.5;
+
+var round = function(x){
+	return Math.round(x * 100) / 100
+}
+
+// var phiWeights = [1, 1, 1, 1, 1, 1, 1, 1, 1]
+// var weightBins = [0.1, 0.3, 0.5, 0.7, 0.9]
+// var weightBins = [0.01, 0.3, 0.5, 0.7, 0.99]
+ var weightBins = [0.05, 0.25, 0.5, 0.75, 0.95]
+
+// var weightBins = map(round, _.range(0.05,1, 0.05))
+// var weightBins = map(round, _.range(0.1,1, 0.1))
+var phiWeights = repeat(weightBins.length, function(){1})
+
+var StatePrior = Categorical({vs: states, ps:[1,1,1,1]})
+'
+```
+
+
+
+```{r}
+prsa <-'
+var listener0 = cache(function(utterance) {
+  Infer({method: "enumerate"}, function(){
+    var state = sample(StatePrior)
+
+    var m = meaning(utterance, state);
+    condition(m);
+    return state;
+	})
+}, 10000);
+
+var speaker1 = cache(function(state, phi) {
+  Infer({method: "enumerate"}, function(){
+
+    var utterance = sample(utterancePrior);
+    var L0 = listener0(utterance);
+
+    var epistemicUtility = L0.score(state);
+    var socialUtility = expectation(L0, function(s){return s});
+    var eUtility = phi*epistemicUtility;
+    var sUtility = (1-phi)*socialUtility;
+    var speakerUtility = eUtility+sUtility;
+
+    factor(speakerOptimality*speakerUtility);
+
+    return utterance;
+	})
+}, 10000);
+
+var listener1 = cache(function(utterance) {
+  Infer({method: "enumerate"}, function(){
+
+   var phi = categorical ({vs: weightBins, ps: phiWeights})
+   var state = sample(StatePrior)
+
+   var S1 = speaker1(state, phi)
+   observe(S1, utterance)
+
+   return { state, phi }
+
+ })
+}, 10000);
+
+  var speaker2 = cache(function(state, S1_phi, selfpres_phi, social_phi, informative_phi) {
+    Enumerate(function(){
+    var utterance = sample(utterancePrior);
+    var normalized_phis = normalize([selfpres_phi, social_phi, informative_phi])
+    var phi_selfpres = normalized_phis[0];
+    var phi_social = normalized_phis[1];
+    var phi_informative = normalized_phis[2];
+
+    var L1 = listener1(utterance)
+	  var L1_goal = marginalize(L1, "phi");
+	  var L1_state = marginalize(L1, "state");
+
+    var epistemicUtility = L1_state.score(state);
+    var selfpresUtility = L1_goal.score(S1_phi);
+    var socialUtility = expectation(L1_state, function(s){return s});
+    var speakerMixedUtility = phi_informative*epistemicUtility +
+                              phi_selfpres*selfpresUtility +
+                              phi_social*socialUtility
+
+	factor(speakerOptimality * speakerMixedUtility);
+
+      return utterance
+
+    })
+  }, 10000)
+'
+```
+
+```{r}
+literalListenerCall <- '
+_.fromPairs(_.flatten(map(function(u){
+  var post = listener0(u)
+  var stateObj = map(function(s){
+    [u + "_" + s, Math.exp(post.score(s))]
+  }, states)
+  return stateObj
+}, utterances)))
+'
+```
+
+```{r}
+pragmaticListenerCall <- '
+_.fromPairs(_.flatten(map(function(u){
+  var post = listener1(u)
+  var stateObj = _.flatten(map(function(phi){
+      map(function(s){
+            [u + "_" + s + "_" + phi*100, Math.exp(post.score({state: s, phi: phi}))]
+          }, states)
+    }, weightBins))
+  return stateObj
+}, utterances)))
+'
+```
+
+
+```{r}
+speakerCall <- '
+_.flatten(
+map(function(phi){
+    map(function(s){
+      var speakProbs = speaker1(s, phi)
+      var uttObj = _.fromPairs(map(function(u){
+        [u, Math.exp(speakProbs.score(u))]
+      }, utterances))
+       return extend(uttObj,{ state: s, phi: phi, })
+    }, states)
+}, weightBins))
+'
+```
+
+```{r}
+pragmaticSpeakerCall <- '
+_.flattenDeep(
+map(function(S1_phi){
+    map(function(selfpres_phi){
+        map(function(social_phi){
+            map(function(informative_phi){
+                map(function(s){
+                   display(s + " " + S1_phi + " " +  selfpres_phi+ " " +  social_phi + " " +  informative_phi)
+                  var speakProbs = speaker2(s, S1_phi, selfpres_phi, social_phi, informative_phi)
+                  var uttObj = _.fromPairs(map(function(u){
+                    [u, Math.exp(speakProbs.score(u))]
+                  }, utterances))
+                   return extend(uttObj,{ state: s, phi_S1: S1_phi, 
+                                          phi_selfpres: normalize([selfpres_phi, social_phi, informative_phi])[0], 
+                                          phi_social: normalize([selfpres_phi, social_phi, informative_phi])[1], 
+                                          phi_informative: normalize([selfpres_phi, social_phi, informative_phi])[2]})
+                }, states)
+            }, weightBins)
+        }, weightBins)
+    }, weightBins)
+}, weightBins)
+)
+'
+```
+
+### L0 viz
+
+```{r}
+rs.l0 <- webppl(paste(utils, language, prsa, literalListenerCall,  sep = '\n'))
+
+
+rs.l0.tidy <- data.frame(rs.l0) %>% gather(utt_state, prob) %>%
+  separate(utt_state, into=c("positive", "utt", "state")) %>% 
+    mutate(utterance = paste(positive, utt),
+                utterance = factor(utterance,
+                                   levels = c("yes terrible",
+                                              "yes bad",
+                                              "yes good",
+                                              "yes amazing",
+                                              "not terrible",
+                                              "not bad",
+                                              "not good",
+                                              "not amazing")))
+```
+
+#### L0 static
+
+```{r ms-fig-l0}
+fig.l0.heat <- ggplot(rs.l0.tidy %>% 
+                                           mutate(utt = fct_recode(utterance, 
+                                            "amazing" = "yes amazing", 
+                                            "good" = "yes good", 
+                                            "bad" = "yes bad", 
+                                            "terrible" = "yes terrible"),
+                          utt = fct_relevel(utt, "terrible", "bad", "good", "amazing", "not terrible", "not bad", "not good", "not amazing"),
+                        positive = fct_relevel(positive, "yes")),               
+                 aes ( x = state, y = utt, fill = prob))+
+  geom_tile(colour = "grey95") + 
+  scale_fill_gradient(low = "white", high = "seagreen")+
+  facet_grid(positive ~ ., switch="y", scales = "free_y")+
+  guides(fill = F)+
+  ylab("utterance") +
+  xlab("true state") +
+  ggtitle(expression(L[0])) +
+  theme_few() +
+  theme(
+        strip.text.y = element_blank()
+        )  
+
+fig.l0.heat
+ggsave("../../04_manuscript/01_general/fig/l0_schematic.png", width = 3.5, height = 4)
+```
+
+### S1 viz
+
+```{r}
+rs.s1 <- webppl(paste(utils, language, prsa, speakerCall,  sep = '\n'))
+
+
+rs.s1.tidy <- rs.s1 %>%
+  gather(utt, prob, -state, -phi) %>%
+                   mutate(utt2 = utt) %>%
+                   mutate(utt = fct_recode(utt, "not amazing" = "not_amazing", 
+                                            "not terrible" = "not_terrible", 
+                                            "not good" = "not_good", 
+                                            "not bad" = "not_bad", 
+                                            "amazing" = "yes_amazing", 
+                                            "good" = "yes_good", 
+                                            "bad" = "yes_bad", 
+                                            "terrible" = "yes_terrible"),
+                          utt = fct_relevel(utt, "terrible", "bad", "good", "amazing", "not terrible", "not bad", "not good", "not amazing")) %>%
+                            
+                   separate(utt2, c("positive", "word")) %>%
+                   mutate(word = fct_relevel(word, "terrible", "bad", "good", "amazing")) %>%
+                   mutate(positive = fct_relevel(positive, "yes")) %>%
+                   mutate(positive = fct_recode(positive, "it was ~" = "yes", "it wasn't ~" = "not")) %>%
+  mutate(goal = case_when(phi == 0.95 ~ "informational", 
+                        phi == 0.05 ~ "social"
+                        # (phi == 0.25) ~ "both"
+                        )) %>%
+                   # mutate(goal = fct_relevel(goal, "informational", "social", "both")) %>%
+                   mutate(goal = fct_relevel(goal, "informational", "social", "both")) %>%
+                   filter(!is.na(goal))
+```
+
+```{r ms-fig-s1}
+fig.s1 <- ggplot(rs.s1.tidy, 
+                 aes ( x = state, y = utt, fill = prob))+
+  geom_tile(colour = "grey95") + 
+  # scale_fill_viridis(option="plasma") +
+  scale_fill_gradient(low = "white", high = "orange")+
+  facet_grid(positive ~ goal, switch="y", scales = "free_y")+
+  # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  guides(fill = F)+
+  ylab("utterance") +
+  # scale_y_continuous(position = "right") +
+  # scale_x_discrete(position = "top") +
+
+  xlab("true state") +
+  ggtitle(expression(S[1])) +
+  
+  # theme_bw()+
+  theme_few() +
+  theme(
+    # axis.text.x = element_text(angle = 45, hjust=1),
+        # strip.text.x = element_text(angle = 180),
+        strip.text.y = element_blank()
+        )  
+# theme(strip.placement = "outside")
+  # theme(        panel.border = element_rect(colour = "black", fill=NA, size=1))
+  # panel_border(remove = TRUE)
+  
+fig.s1
+# ggsave("../../04_manuscript/01_general/fig/s1_utility_schematic_stateBottom.png", width = 5, height = 4)
+ggsave("../../04_manuscript/01_general/fig/s1_utility_schematic_stateBottom_noNegCost.png", width = 5, height = 4)
+```
+
+
+### L1 viz
+
+```{r}
+rs.l1 <- webppl(paste(utils, language, prsa, pragmaticListenerCall,  sep = '\n'))
+
+rs.l1.tidy <- data.frame(rs.l1) %>% gather(utt_state, prob) %>%
+  separate(utt_state, into = c("positive", "utt", "state", "phi"), sep  = "_") %>%
+  mutate(positive2 = positive, utt2 = utt) %>%
+  unite("utterance", c("positive2", "utt2")) %>%
+  mutate(positive = factor(positive, levels = c("yes", "not")),
+         # positive = fct_recode(positive, 
+         #                       "it was ~" = "yes",
+         #                       "it wasn't ~" = "not"),
+         utt = factor(utt, levels = c(
+           "terrible",
+           "bad",
+           "good",
+           "amazing"
+         )),
+         fi = as.numeric(phi) / 100,
+         # phi = fct_recode(phi, 
+         #                  "phi1[S[1]] = 0.05" = "0.05",
+         #                  "phi1[S[1]] = 0.25" = "0.25",
+         #                  "phi1[S[1]] = 0.5" = "0.5",
+         #                  "phi1[S[1]] = 0.75" = "0.75",
+         #                  "phi1[S[1]] = 0.95" = "0.95"
+         #                  ),
+         utt = fct_recode(utterance, "not amazing" = "not_amazing", 
+                                            "not terrible" = "not_terrible", 
+                                            "not good" = "not_good", 
+                                            "not bad" = "not_bad", 
+                                            "amazing" = "yes_amazing", 
+                                            "good" = "yes_good", 
+                                            "bad" = "yes_bad", 
+                                            "terrible" = "yes_terrible"),
+                          utt = fct_relevel(utt, "terrible", "bad", "good", "amazing", "not terrible", "not bad", "not good", "not amazing"))
+```
+
+joint posterior
+
+```{r ms-fig-l1}
+fig.l1 <- ggplot(rs.l1.tidy, 
+                 # aes ( x = state, y = utt, fill = prob)
+                 aes ( x = state, y = factor(fi), fill = prob)
+                 )+
+  geom_tile(colour = "grey95") + 
+  scale_fill_gradient(low = "white", high = "seagreen")+
+  scale_y_discrete(expand=c(0.01, 0.01)) +
+  # facet_grid(positive*utt ~ fi, switch="y", scales = "free_y", labeller = label_bquote(cols = phi1[S[1]] == .(as.numeric(fi))))+
+  facet_wrap(. ~ utt, ncol=4)+
+  # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.25, .5, .75, 1))+
+  guides(fill = F)+
+  ylab("speaker's relative informational utility \ninferred by pragmatic listener") +
+    # ylab("inferred phi1[S[1]]") +
+theme_few()+
+  ggtitle(expression(L[1])) +
+  theme(
+        strip.text.y = element_blank(),
+      panel.spacing=unit(0, "lines")
+      # panel.spacing.y=unit(2, "lines")
+# panel.border = element_blank()
+        )
+
+  # panel_border(remove = TRUE)
+fig.l1
+# ggsave("../../04_manuscript/01_general/fig/l1_schematic.png", width = 8, height = 4)
+# ggsave("../../04_manuscript/01_general/fig/l1_schematic_v2.png", width = 8, height = 4)
+ggsave("../../04_manuscript/01_general/fig/l1_schematic_v2_noNegCost.png", width = 8, height = 4)
+```
+
+### S2 viz
+
+```{r}
+# schematic
+# rs.s2 <- webppl(paste(utils, language, prsa, pragmaticSpeakerCall,  sep = '\n'))
+# # save(rs.s2, file=here("02_analysis/01_data/s2_schematic_predictions_v2.RData"))
+# save(rs.s2, file=here("02_analysis/01_data/s2_schematic_predictions_noNegCost.RData"))
+# load(here("02_analysis/01_data/s2_schematic_predictions_v2.RData"))
+load(here("02_analysis/01_data/s2_schematic_predictions_noNegCost.RData"))
+
+# full model
+# load(here("model/data", "bda-utterance-allMods.RData"))
+
+# data
+# load(here("model/data",a "speakerProduction.RData"))
+
+# inferred full model weights
+# load(here("model/data", "bda-goalWeights.RData"))
+
+rs.s2.tidy <- rs.s2 %>%
+  gather(utt, prob, -state, -phi_S1, -phi_informative, -phi_social, -phi_selfpres) %>% 
+  mutate(phi_selfpres_bin = as.numeric(as.character(cut(phi_selfpres, 
+                                                        breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                        labels = c(0.1, 0.3, 0.5, 0.7, 0.9)))),
+         phi_informative_bin = as.numeric(as.character(cut(phi_informative, 
+                                                           breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                           labels = c(0.1, 0.3, 0.5, 0.7, 0.9)))),
+         phi_social_bin = as.numeric(as.character(cut(phi_social, 
+                                                      breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                                                      labels = c(0.1, 0.3, 0.5, 0.7, 0.9))))) %>%
+  mutate( 
+    goal = as.factor(case_when(
+      phi_informative_bin == 0.9 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.1 ~ "be truly informative",  
+      phi_informative_bin == 0.1 & phi_social_bin == 0.9 & phi_selfpres_bin == 0.1 ~ "be truly social",
+      # (phi_informative_bin == 0.5 | phi_informative_bin == 0.3 | phi_informative_bin == 0.7) & (phi_social_bin == 0.5 | phi_social_bin == 0.7 | phi_social_bin == 0.3) & phi_selfpres_bin == 0.1 ~ "be truly both",
+      phi_informative_bin == 0.5 & phi_social_bin == 0.5 & phi_selfpres_bin == 0.1 & phi_S1 == 0.1  ~ "be truly both", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & (phi_selfpres_bin == 0.9 | phi_selfpres_bin == 0.7) & phi_S1 == 0.9  ~ "look informative", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & phi_S1 == 0.1 ~ "look social", 
+      phi_informative_bin == 0.1 & phi_social_bin == 0.1 & phi_selfpres_bin == 0.9 & (phi_S1 == 0.3) ~ "look both",
+      TRUE ~ "NA"))) %>%
+  mutate(goal = factor(goal, levels = c("be truly informative", "be truly social", "be truly both", "look informative","look social", "look both","NA")))
+```
+
+#### S2 static
+
+```{r}
+
+rs.s2.tidy2 <- rs.s2.tidy %>%
+                   mutate(utt2 = utt) %>%
+                   mutate(utt = fct_recode(utt, "not amazing" = "not_amazing", 
+                                            "not terrible" = "not_terrible", 
+                                            "not good" = "not_good", 
+                                            "not bad" = "not_bad", 
+                                            "amazing" = "yes_amazing", 
+                                            "good" = "yes_good", 
+                                            "bad" = "yes_bad", 
+                                            "terrible" = "yes_terrible"),
+                          utt = fct_relevel(utt, "terrible", "bad", "good", "amazing", "not terrible", "not bad", "not good", "not amazing")) %>%
+                            
+                   separate(utt2, c("positive", "word")) %>%
+                   mutate(word = fct_relevel(word, "terrible", "bad", "good", "amazing")) %>%
+                   mutate(positive = fct_relevel(positive, "yes")) %>%
+                   mutate(positive = fct_recode(positive, "it was ~" = "yes", "it wasn't ~" = "not")) %>%
+                   mutate(goal = case_when(phi_informative_bin == 0.9 ~ "informational", 
+                                           phi_social_bin == 0.9 ~ "social",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.05 ~ "presentational \n(social S1)",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.25 ~ "presentational \n(both-goal S1)",
+                                           phi_selfpres_bin == 0.9 & phi_S1 == 0.95 ~ "presentational \n(informative S1)",
+                                           # phi_social_bin == 0.5 & phi_informative_bin == 0.5 ~ "informational \n and social",
+                                          phi_social_bin == 0.3 & phi_informative_bin == 0.3 & phi_selfpres_bin == 0.3 & phi_S1 == 0.25 ~ "informational, social \n and presentational")
+                          ) %>%
+                   mutate(goal = fct_relevel(goal, "informational", "social", "presentational \n(informative S1)", "presentational \n(social S1)", "presentational \n(both-goal S1)")) %>%
+                   filter(!is.na(goal))
+                   # filter(phi_informative_bin == 0.9)
+```
+
+
+```{r ms-fig-s2}
+fig.s2 <- ggplot(rs.s2.tidy2, 
+                 aes ( x = state, y = utt, fill = prob))+
+  geom_tile(colour = "grey95") + 
+  # scale_fill_viridis(option="plasma") +
+  scale_fill_gradient(low = "white", high = "orange")+
+  facet_grid(positive ~ goal, switch="y", scales = "free_y")+
+  # scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  guides(fill = F)+
+  ylab("utterance") +
+  # scale_y_continuous(position = "right") +
+  # scale_x_discrete(position = "top") +
+
+  xlab("true state") +
+  ggtitle(expression(S[2])) +
+  
+  # theme_bw()+
+  theme_few() +
+  theme(
+    # axis.text.x = element_text(angle = 45, hjust=1),
+        # strip.text.x = element_text(angle = 180),
+        strip.text.y = element_blank()
+        )  
+# theme(strip.placement = "outside")
+  # theme(        panel.border = element_rect(colour = "black", fill=NA, size=1))
+  # panel_border(remove = TRUE)
+  
+fig.s2
+# ggsave("../../04_manuscript/01_general/fig/s2_utility_schematic_stateBottom.png", width = 10, height = 4)
+ggsave("../../04_manuscript/01_general/fig/s2_utility_schematic_stateBottom_noNegCost.png", width = 10, height = 4)
+```

@@ -721,11 +721,12 @@ A formal account of politeness may also move us closer to courteous computation 
 
 The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance to be true:
 
-$$P_{L_0}(s | w) \propto  \delta_{[\![ w ]\!] (s)} \cdot P(s).$$
+$$P_{L_0}(s | w) \propto  \mathcal{L}(u, s) \cdot P(s).$$
 
-\noindent where $\delta_{[\![ w ]\!] (s)}$ is the Kronecker delta function which uses to the truth-functional denotation of the utterance $[\![ w ]\!](s)$ to return a value of 1 if the utterance $w$ is true of the state $s$ and 0 otherwise. 
+\noindent where $\mathcal{L}(u, s) = \theta \in [0,1]$ and $\theta$ is the probability that the utterance $u$ is true of state $s$, which is a generalization of more traditional, binary truth functional semantics (see @degen2020 for a discussion of this kind of “soft semantics”).
 The literal meaning is used to update the literal listener's prior beliefs
 over world states $P(s)$.
+$\theta$ is estimated empirically from the Literal Semantic task described in the next section, where it is roughly the proportion of participants who endorse the utterance $u$ in state $s$ in the Literal Semantic task.
 
 The *speaker* $S_1$ chooses utterances approximately optimally given a utility function, which can be decomposed into two components. 
 First, informational utility ($U_{inf}$) is the amount of information a literal listener $L_0$ would still not know about world state $s$ after hearing a speaker's utterance $w$. 
