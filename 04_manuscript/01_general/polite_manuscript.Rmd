@@ -673,15 +673,23 @@ Here, however, both the variance explained and marginal likelihood of the observ
 Only the full model captured participants' preference for negation when the speaker wanted to be informative and kind about truly bad states, as hypothesized (Figure \@ref(fig:comparison)).
 In sum, the full set of informational, social, and presentational utilities were required to fully explain participants' utterance choices.
 
-The utility weights inferred for the three-utility model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates in our experimental context and possibly beyond:
-*Being kind* ("social") requires not only weights on social and presentational utilities but equal weights on all three utilities, indicating that informativity is a part of language use
-even when it is explicitly not the goal.
-*Being informative* ("informative") pushes the weight on social utility ($\omega_{soc}$) close to zero, but the weight on *projecting kindness* ($\omega_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'.
-*Kind and informative* ("both") speakers emphasize informativity slightly
-more than kindness. 
-In all cases, however, the presentational utilities have greatest weight, suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our communicative task.
+The utility weights inferred for the three-utility model (Table \@ref(tab:phi)) provide additional insight into how polite language use operates in our experimental context and possibly beyond.
+As expected, the weight on social utility ($\omega_{soc}$) is highest when the speaker is trying to *be kind* and lowest when the speaker is *being informative*.
+Informational utility ($\omega_{inf}$) is highest when the goal is to be informative or *informative and kind* ("both goal"). 
+The weight on projecting kindness ($\omega_{pres}$) is also highest for the *be informative* and the *be informative and kind* conditions, though the degree of kindness being projected ($\phi$) varies between these conditions: A greater degree of kindness is projected in the "both goal" relative to the *be informative* condition. 
+In all conditions, however, the presentational utility has a high weight, suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our communicative task.
 Overall then, our condition manipulation altered the balance between these weights, 
 but all utilities played a role in all conditions.
+
+
+<!-- *Being kind* ("social") requires not only weights on social and presentational utilities but equal weights on all three utilities, indicating that informativity is a part of language use -->
+<!-- even when it is explicitly not the goal. -->
+<!-- *Being informative* ("informative") pushes the weight on social utility ($\omega_{soc}$) close to zero, but the weight on *projecting kindness* ($\omega_{pres}$) stays high, suggesting that speakers are expected to manage their own face even when they are not considering others'. -->
+<!-- *Kind and informative* ("both") speakers emphasize informativity slightly -->
+<!-- more than kindness.  -->
+<!-- In all cases, however, the presentational utilities have greatest weight, suggesting that managing the listener's inferences about oneself was integral to participants' decisions in the context of our communicative task. -->
+<!-- Overall then, our condition manipulation altered the balance between these weights,  -->
+<!-- but all utilities played a role in all conditions. -->
 
 # Discussion
 
