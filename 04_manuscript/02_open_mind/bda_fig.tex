@@ -74,18 +74,18 @@
 
   
    	\node[] at (6, 2.2){\text{Rational Speech Act model}};
-      \node[] at (4.95,1.6) {$P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp(\alpha \cdot \mathop{\mathbb{E}[U_{S_2}(w; s; \boldsymbol{\omega}; \phi)]})$};
+      \node[] at (4.7,1.6) {$P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp[\alpha \cdot U_{S_2}(w; s; \boldsymbol{\omega}; \phi)]$};
   	
-      \node[] at (4.9,1.1) {$U_{S_2}(w; s; \boldsymbol{\omega}; \phi) = \omega_{inf} \cdot \ln(P_{L_1}(s \mid w)) + $};
+      \node[] at (4.8,1.1) {$U_{S_2}(w; s; \boldsymbol{\omega}; \phi) = \omega_{inf} \cdot \ln P_{L_1}(s \mid w) + $};
       
-          \node[] at (6.3, 0.6){$      \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + $};
-
-     \node[] at (7.2, 0.1){$ \omega_{pres} \cdot (P_{L_1}(\phi \mid w))  -  c\cdot length(w)$};
+          \node[] at (6.1, 0.6)     {$ \omega_{pres} \cdot \ln P_{L_1}(\phi \mid w) + $};
+     \node[] at (7.0, 0.1){$      \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] -  c\cdot l(w)$};
+     
 
     \node[] at (4.9,-.4) {$ P_{L_1}(s, \phi \mid w) \propto P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi)$};
-	 \node[] at (4.8,-0.9) {$  P_{S_1}(w \mid s, \phi) \propto \mathrm{exp}(\alpha \cdot \mathbb{E}[U_{S_1}(w; s; \phi)])$};
-  \node[] at (4.45,-1.4) {$  U_{S_1}(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) +$};
-    \node[] at (7.15,-1.9) {$    (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - c\cdot length(w)$};
+	 \node[] at (4.55,-0.9) {$  P_{S_1}(w \mid s, \phi) \propto \mathrm{exp}[\alpha \cdot U_{S_1}(w; s; \phi)]$};
+  \node[] at (4.45,-1.4) {$  U_{S_1}(w; s; \phi) = \phi \cdot \ln P_{L_0}(s \mid w) +$};
+    \node[] at (6.8,-1.9) {$    (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - c\cdot l(w)$};
 
 
 %  \node[] at (4.4, -2.4){$P_{L_0}(s | w) \propto \mathcal{L}(u, s; \theta) \cdot P(s)$};
@@ -99,9 +99,11 @@
 
     \end{tabular}
   \end{center}
-  \caption{ Bayesian data analysis model to infer RSA model parameters and generate model predictions. RSA model ($S_2$) predicts the utterance production data ($d^{prod}$) for each utterance $w$, state $s$, goal $g$, and participant $i$. The RSA model relies upon the literal semantics of each utterance for each state $\theta^{lit}$ $P(x^d_k)$, constrained by the data from the literal semantics task $d^{lit}$ (see Supplement). The $S_2$ model generates predictions given goal weights $\boldsymbol{\omega_g}$ and intended social weight $\phi_g$, which varies by the goal condition $g$. RSA model has two global free parameters: the speaker optimality parameter $\alpha$ and the utterance cost of negation $c$.}
+  \caption{ Bayesian data analysis model to infer RSA model parameters and generate model predictions. RSA model ($S_2$) predicts the utterance production data ($d^{prod}$) for each utterance $w$, state $s$, goal $g$, and participant $i$. The RSA model relies upon the literal semantics of each utterance for each state $\theta^{lit}_{s,w}$, constrained by the data from the literal semantics task $d^{lit}$ (see Supplement). The $S_2$ model generates predictions given goal weights $\boldsymbol{\omega_g}$ and intended social weight $\phi_g$, which varies by the goal condition $g$. RSA model has two global free parameters: the speaker optimality parameter $\alpha$ and the utterance cost of negation $c$ (or, cost in terms of number of words).}
   \label{fig:bayesnet}
 \end{figure}
+
+%$P(x^d_k)$
 
 
 
