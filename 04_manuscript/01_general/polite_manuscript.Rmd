@@ -99,6 +99,11 @@ hdi_lower <- function(s){
 options("scipen"=10)   
 ```
 
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+
 ```{r load_data}
 # human data 
 load(here("02_analysis/01_data/speaker_production.RData"))
@@ -200,7 +205,7 @@ rating, in her mind, truly deserved by Bob's poem) and a set of goal weights
 Following standard practice in RSA models, Ann's production decision is softmax, which interpolates between choosing the maximum-utility utterance and probability matching [via speaker optimality parameter $\alpha$; @goodman2013]:
 
 \begin{equation}
-P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp(\alpha \cdot \mathop{\mathbb{E}}[U_{total}(w; s; \boldsymbol{\omega}; \phi)]). \label{eq:S2}
+P_{S_2}(w | s, \boldsymbol{\omega}) \propto \exp[\alpha \cdot U_{total}(w; s; \boldsymbol{\omega}; \phi) ] \label{eq:S2}
 \end{equation}
 
 
@@ -214,7 +219,7 @@ U_{total}(w; s; \boldsymbol{\omega}; \phi) = \omega_{inf} \cdot U_{inf}(w; s) + 
 \end{equation}
 
 First, a speaker may desire to be epistemically helpful, modeled as standard *informational utility* (\(U_{inf}\)).
-The informational utility indexes the utterance's *surprisal*, or amount of information the listener (\(L_1\)) would still not know about the state of the world \(s\) after hearing the speaker's utterance \(w\) (e.g., how likely is Bob to guess Ann's actual opinion of the poem): \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
+The informational utility indexes the utterance's negative *surprisal*, or amount of information the listener (\(L_1\)) would still not know about the state of the world \(s\) after hearing the speaker's utterance \(w\) (e.g., how likely is Bob to guess Ann's actual opinion of the poem): \(U_{inf}(w) = \ln(P_{L_1}(s | w))\).
 
 Speakers who optimize for informational utility produce accurate and informative utterances while those who optimize for social utility produce utterances that make the listener feel good.
 We define *social utility* (\(U_{soc}\)) to be the expected subjective utility of the state \(V(s)\) implied to the
@@ -719,27 +724,33 @@ A formal account of politeness may also move us closer to courteous computation 
 
 ## Model details
 
-The *literal listener* $L_0$ is a simple Bayesian agent that takes the utterance to be true:
+The full, three-component utility model is given by the following set of equations. 
 
-$$P_{L_0}(s | w) \propto  \mathcal{L}(u, s) \cdot P(s).$$
 
-\noindent where $\mathcal{L}(u, s) = \theta \in [0,1]$ and $\theta$ is the probability that the utterance $u$ is true of state $s$, which is a generalization of more traditional, binary truth functional semantics (see @degen2020 for a discussion of this kind of “soft semantics”).
-The literal meaning is used to update the literal listener's prior beliefs
-over world states $P(s)$.
-$\theta$ is estimated empirically from the Literal Semantic task described in the next section, where it is roughly the proportion of participants who endorse the utterance $u$ in state $s$ in the Literal Semantic task.
+\begin{align}
+P_{L_0}(s | w) &\propto& \mathcal{L}(u, s) \cdot P(s)\label{eq:L0}  \\ 
+P_{S_1}(w \mid s, \phi) &\propto& \mathrm{exp}[\alpha \cdot ( \phi \cdot \ln P_{L_0}(s \mid w) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w))] \label{eq:S1} \\ 
+P_{L_1}(s, \phi | w) &\propto& P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi) \label{eq:L1a} \\
+P_{S_2}(w | s, \boldsymbol{\omega}) &\propto& \exp[\alpha \cdot (\omega_{inf} \cdot \ln P_{L_1}(s \mid w) + \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + \omega_{pres} \cdot P_{L_1}(\phi \mid w) - C(w) )] \label{eq:S2a} 
+\end{align}
 
-The *speaker* $S_1$ chooses utterances approximately optimally given a utility function, which can be decomposed into two components. 
-First, informational utility ($U_{inf}$) is the amount of information a literal listener $L_0$ would still not know about world state $s$ after hearing a speaker's utterance $w$. 
-Second, social utility ($U_{soc}$) is the expected subjective utility of the state inferred given the utterance $w$. 
-The utility of an utterance subtracts the cost $c(w)$ from the weighted combination of the social and epistemic utilities. 
+The *literal listener* $L_0$ (Eq. \ref{eq:L0]) is a simple Bayesian agent that takes the utterance $w$ to be true to update a prior distribution over world states $P(s)$ and return a posterior distribution over states $P_{L_0}(s | w)$.
+We assume the prior over world states is uniformative and thus Eq. \ref{eq:L0} reduces to $P_{L_0}(s | w) \propto \mathcal{L}(u, s)$.
+$\mathcal{L}(u, s) = \theta \in [0,1]$ denotes a continuously-valued lexicon where $\theta$ is the probability that the utterance $u$ is true of state $s$; this kind of lexicon is a generalization of the more traditional, binary truth functional semantics (see @degen2020 for a discussion of this kind of “soft semantics”).
+$\theta$ is estimated empirically from the Literal Semantics task described in the next section, where it is roughly the proportion of participants who endorse the utterance $u$ in state $s$ in the Literal Semantics task.
 
-$$U(w; s; \phi) = \phi \cdot \ln(P_{L_0}(s \mid w)) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w).$$
+The first-order *speaker* $S_1$ (Eq. \ref{eq:S1]) chooses utterances approximately optimally given a utility function, which can be decomposed into two components: informational and social utility.
+First, informational utility ($U_{inf}$) is the amount of information a literal listener $L_0$ would still not know about world state $s$ after hearing a speaker's utterance $w$ is given by the log probability of the the world state given the utterance $\ln P(s \mid w)$. 
+Second, social utility ($U_{soc}$) is the expected subjective utility of the state inferred given the utterance $w$:  \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)], where $V(s)$ denotes the subjective utility function that maps states of the world $s$ onto subjective values. 
+For this paper, we assume that $V$ is the identity function that returns the number of hearts.
+The overall utility of an utterance subtracts the cost $c(w)$ from the weighted combination of the social and epistemic utilities, and the speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi$.
 
-\noindent The speaker then chooses utterances $w$ softmax-optimally given the state $s$ and his goal weight mixture $\phi$: 
+Equations \ref{eq:L1a} and \ref{eq:S2a} are described in the main text. Eq. \ref{eq:L1a} is a model of a pragmatic listener who jointly reasons about the state of the world and the first-order speaker's utility weighting (social vs. informational utility). Again, we assume a uninformative prior over states as well as an uniformed prior over the speakear's utility weights. Eq. \ref{eq:S2a} is a model of a second-order pragmatic speaker who produces utterances approximately optimally given a three-component utility function: informational, social, and presentational utilities. These utilities are defined with respect to the pragmatic listener $L_1$ and are computed by marginalizing $L_1$'s joint distribution over states and utility-weights: $P_{L_1}(s | w) = \int_\phi P_{L_1}(s, \phi | w) d\phi$ and $P_{L_1}(\phi | w) = \int_s P_{L_1}(s, \phi | w) ds$. The definitions of social and informational utility mirror those of the first-order speaker, only they are defined with respect to the $L_1$ distribution as opposed to the $L_0$ distribution. The self-presentational utility is the negative surprisal of the goal-weight parameter that $L_1$ reasons about: $\ln P_{L_1}(\phi | w)$. 
+These three utilities are then weighed by a set of three mixture components $\boldsymbol{\omega}$, which are inferred from the data separately for each experimental condition (see main text for details). 
 
-$$P_{S_1}(w \mid s, \phi) \propto \mathrm{exp}(\alpha \cdot \mathbb{E}[U(w; s; \phi)]).$$
 
-## Literal semantic task
+
+## Literal semantics task
 
 We probed judgments of literal meanings of the target words assumed by our model and used in our main experiment. 
 
