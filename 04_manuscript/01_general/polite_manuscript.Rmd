@@ -736,10 +736,10 @@ The full, three-component utility model is given by the following set of equatio
 
 
 \begin{align}
-P_{L_0}(s | w) &\propto& \mathcal{L}(u, s) \cdot P(s)\label{eq:L0}  \\ 
-P_{S_1}(w \mid s, \phi) &\propto& \mathrm{exp}[\alpha \cdot ( \phi \cdot \ln P_{L_0}(s \mid w) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w))] \label{eq:S1} \\ 
+P_{L_0}(s | w) &\propto& \mathcal{L}(u, s) \cdot P(s) \label{eq:L0} \\
+P_{S_1}(w \mid s, \phi) &\propto& \mathrm{exp}[\alpha \cdot ( \phi \cdot \ln P_{L_0}(s \mid w) + (1 - \phi) \cdot \mathbb{E}_{P_{L_0}(s \mid w)}[V(s)] - C(w))] \label{eq:S1} \\
 P_{L_1}(s, \phi | w) &\propto& P_{S_1}(w | s, \phi) \cdot P(s) \cdot P(\phi) \label{eq:L1a} \\
-P_{S_2}(w | s, \boldsymbol{\omega}) &\propto& \exp[\alpha \cdot (\omega_{inf} \cdot \ln P_{L_1}(s \mid w) + \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + \omega_{pres} \cdot P_{L_1}(\phi \mid w) - C(w) )] \label{eq:S2a} 
+P_{S_2}(w | s, \boldsymbol{\omega}) &\propto& \exp[\alpha \cdot (\omega_{inf} \cdot \ln P_{L_1}(s \mid w) + \omega_{soc} \cdot \mathbb{E}_{P_{L_1}(s \mid w)}[V(s)] + \omega_{pres} \cdot P_{L_1}(\phi \mid w) - C(w) )] \label{eq:S2a}
 \end{align}
 
 The *literal listener* $L_0$ (Eq. \ref{eq:L0]) is a simple Bayesian agent that takes the utterance $w$ to be true to update a prior distribution over world states $P(s)$ and return a posterior distribution over states $P_{L_0}(s | w)$.
@@ -856,12 +856,31 @@ colnames(other_tab) <- c("Model", "Cost of negation", "Speaker optimality")
 apa_table(other_tab, escape=FALSE, caption = "Inferred negation cost and speaker optimality parameters for all model variants.")
 ```
 
-Other than speaker goal mixture weights explained in the main text (shown in Table \@ref(tab:phi)), the full model has one global parameter: the speakers' (both $S_1$ and $S_2$) soft-max parameter, which we assume to be the same value $\alpha$ and infer from the data.
-We put a prior that was consistent with those used for similar models in this model class: $\alpha$ ~ $Uniform(0,20)$.
-Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal semantics task* above).
+Other than speaker goal mixture weights explained in the main text (shown in Table \@ref(tab:phi)), the full model has two global parameters: the speakers' (both $S_1$ and $S_2$) soft-max parameter $\alpha$, which we assume to be the same value, and the utterance cost parameter $c$.
+We operationalize utterance cost as a penalty on the number of words in an utterance; since utterances are only one or two words long, and two word-long utterances are those involving the negation particle "not", this cost parameter can also be thought of as a cost of producing a negation particle. 
+We use minimally assumptive priors that are consistent with those used for similar models in this model class: $\alpha \sim \text{Uniform}(0,20)$, $c \sim \text{Uniform}(1,10)$. 
+Cost $c$ is assumed to be greater than 1; values less than 1 would imply that a two word-long utterance is cheaper than a one-word long utterance (or, that there is a cost to not producing negation). 
+Finally, we incorporate the literal semantics data into the RSA model by maintaining uncertainty about the semantic weight of utterance $w$ for state $s$, for each of the states and utterances, and assuming a Beta-Binomial linking function between these weights and the literal semantics data (see *Literal Semantics task* above).
 We infer the posterior distribution over all of the model parameters and generate model predictions based on this posterior distribution using Bayesian data analysis [@lee2014]. 
 We ran 4 MCMC chains for 80,000 iterations, discarding the first 40,000 for burnin. 
-The inferred values of parameters are shown in Table \@ref(tab:otherParams).
+The inferred Maximum A-Posteriori values of parameters are shown in Table \@ref(tab:otherParams).
+
+We observe that the posterior distributions of the inferred parameters governing the speaker goal mixture weights are unstable across different MCMC chains. To confirm these observations, we ran 3 additional MCMC chains for 350,000 iterations. 
+The resulting posterior distributions for the utility-weight parameters as a function of the goal condition (a "goal-centric" view) are shown in Figure \ \@ref(fig:posteriorParamByGoal).
+As can be seen by comparing across the rows of Figure \ \@ref(fig:posteriorParamByGoal), both the values and the relative orderings of the utility-weight parameters vary as a function of the chain. For instance, in one run of the model, the informative goal condition has as its strongest utility weight the presentational utility (chain 1); in another, the strongest utility weight is the informational utility (chain 2); in yet another, the informational and presentational weights are approximately equal in strength (chain 3). At the same time, for the informative goal condition, the social utility weight is always close to 0, in all runs of the model. Indeed, the social utility weight appears most consistent across goal conditions and chains. Further, when we examine the utility weights as a function of goal conditions (a "utility-centric" view), we find other signatures of consistency (Figure \ \@ref(fig:posteriorParamByUtility)). 
+The relative ordering of goals is consistent across different MCMC chains; for example, the social-utility weight is highest for the social goal condition, lowest for the informational goal, and in the middle for the both-goal condition. In addition, the projected social-utility weight $\phi$ is inferred to be more on the informational-side (higher $\phi$ value) for the informational goal than for the social or both goal conditions. 
+These patterns suggest that a lower-dimensional parameterization of the model may be available, though the posterior predictive fits and model comparison presented in the main text suggest that the model’s parameterization has the appropriate flexibility necessary to account for our experimental data.
+
+```{r posteriorParamByGoal,  fig.pos = "!h", out.width="70%", fig.align="center", fig.cap="A goal-centric view of the utility-weight parameters. Columns denote different goal conditions and rows denote different MCMC chains. There are substantial inconsistencies in the posterior distributions over utility-weights. Social utility appears most consistent."}
+knitr::include_graphics("fig/4chains_350k_phiKernel3_params_weights.png", dpi = 160)
+```
+
+
+
+```{r posteriorParamByGoal,  fig.pos = "!h", out.width="70%", fig.align="center", fig.cap="A utility-centric view of the utility-weight parameters. Relative orderings of the utility-weights across the different goal conditions are consistent."}
+knitr::include_graphics("fig/4chains_350k_phiKernel3_params_weights_v2.png", dpi = 160)
+```
+
 
 ## Data Availability
 
