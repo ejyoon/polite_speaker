@@ -23,4 +23,4 @@ contains BDA model scripts and outputs, and other stat Rds files.
 
 ### 04_manuscript
 
-contains manuscript (see our preprint file in this repo [here](https://github.com/ejyoon/polite_speaker/blob/master/04_manuscript/02_pnas/PNAS_politeness.pdf) and uploaded on osf [here](https://psyarxiv.com/93fyg)).
+contains manuscript (see our preprint file in this repo [here](https://github.com/ejyoon/polite_speaker/blob/master/04_manuscript/01_general/polite_manuscript%20copy.pdf) and uploaded on osf [here](https://psyarxiv.com/67ne8)).
